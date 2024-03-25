@@ -1,4 +1,4 @@
-# TOINIOT² 2024 Main-Repo
+# TOINIOT 2024 Main-Repo
 
 TOINIOT² 2024年度 開発用メインリポジトリ
 
