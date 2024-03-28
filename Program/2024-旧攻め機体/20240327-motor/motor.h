@@ -13,8 +13,8 @@ extern short int M4;
 
 // Function
 void motorSetup(short int, short int, short int, short int, short int);
-void move(void);
 
+void move(void);
 void mpCalc(float, float, float, float);
 
 #endif
