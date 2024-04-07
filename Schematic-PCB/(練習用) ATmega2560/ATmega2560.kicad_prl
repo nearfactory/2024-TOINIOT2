@@ -64,11 +64,11 @@
       39,
       40
     ],
-    "visible_layers": "fffffff_ffffffff",
+    "visible_layers": "800ffff_ffffffff",
     "zone_display_mode": 0
   },
   "meta": {
-    "filename": "Atmega2560.kicad_prl",
+    "filename": "ATmega2560.kicad_prl",
     "version": 3
   },
   "project": {
