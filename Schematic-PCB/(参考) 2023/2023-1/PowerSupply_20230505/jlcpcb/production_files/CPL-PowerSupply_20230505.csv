@@ -1,0 +1,15 @@
+Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
+C1,10µF,C_0805_2012Metric,77.47,-95.25,270.0,bottom
+C2,22µF,C_0805_2012Metric,82.55,-99.06,270.0,bottom
+C3,2.2µF,C_0805_2012Metric,73.67,-116.195,270.0,bottom
+C4,1.0µF,C_0805_2012Metric,71.12,-116.205,270.0,bottom
+C5,0.1µF,C_0805_2012Metric,83.83,-116.195,270.0,bottom
+R1,10K,R_0805_2012Metric,86.37,-116.195,90.0,bottom
+R2,100,R_0805_2012Metric,81.29,-116.195,90.0,bottom
+R3,10K,R_0805_2012Metric,76.21,-116.195,90.0,bottom
+R4,20k,R_0805_2012Metric,80.01,-99.06,270.0,bottom
+R5,1.2k,R_0805_2012Metric,74.93,-95.25,90.0,bottom
+R6,1k,R_0805_2012Metric,82.55,-95.25,270.0,bottom
+R7,330,R_0805_2012Metric,80.01,-95.25,90.0,bottom
+R8,10,R_0805_2012Metric,77.47,-99.06,270.0,bottom
+R9,1K,R_0805_2012Metric,78.75,-116.195,270.0,bottom
