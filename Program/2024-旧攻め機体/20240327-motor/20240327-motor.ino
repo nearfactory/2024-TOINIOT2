@@ -6,7 +6,7 @@ int mode = 0;
 
 void setup() {
   pinSetup();
-  motorSetup(10, 100, 100, 100, 100);
+  motorSetup(100, 100, 100, 100, 100);
 
   tone(bzPin, soundPitch[9]);
   waitBtn(0);
@@ -15,15 +15,12 @@ void setup() {
 
 void loop() {
   if(digitalRead(btnPin[0]) == 1){
-    waitBtn(0);
     mode = 0;
   }
   if(digitalRead(btnPin[1]) == 1){
-    waitBtn(1);
     mode = 1;
   }
   if(digitalRead(btnPin[2]) == 1){
-    waitBtn(2);
     mode = 2;
   }
 
