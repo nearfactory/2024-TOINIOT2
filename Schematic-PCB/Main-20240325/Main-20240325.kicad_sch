@@ -3509,12 +3509,8 @@
     (property "Datasheet" "" (at 130.81 39.37 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-<<<<<<< Updated upstream
-    (pin "1" (uuid 345d4c7b-9e8f-40a4-b28e-52bba6ba9cda))
-=======
     (pin "1" (uuid cbe4a0e4-93ec-40d2-b420-65710803f575))
     (pin "2" (uuid 1262b8a9-f21c-4bf0-b91d-55b0409f5b8b))
->>>>>>> Stashed changes
     (instances
       (project "Main-20240325"
         (path "/d42c2da0-c5d1-4e9e-abe5-6ac5f9ded35c"
