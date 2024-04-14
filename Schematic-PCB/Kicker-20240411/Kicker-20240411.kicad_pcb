@@ -309,7 +309,11 @@
 		(descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R2"
+<<<<<<< Updated upstream
 			(at -2.828427 -1.414214 -135)
+=======
+			(at 0 -1.43 -135)
+>>>>>>> Stashed changes
 			(layer "F.SilkS")
 			(uuid "6905f23a-0f8d-4da1-bc86-6ec3de08c1ff")
 			(effects
@@ -7812,7 +7816,11 @@
 		(descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "capacitor")
 		(property "Reference" "C4"
+<<<<<<< Updated upstream
 			(at 2.710534 0 -45)
+=======
+			(at 0 -1.43 -45)
+>>>>>>> Stashed changes
 			(layer "F.SilkS")
 			(uuid "c673b8cc-40e0-42d7-b025-faa3f5b099b3")
 			(effects
