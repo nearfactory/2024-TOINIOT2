@@ -3134,7 +3134,7 @@
 		)
 		(uuid "bc9d282f-038d-469a-b6eb-0ba4d1be4e68")
 	)
-	(text "From Main"
+	(text "From MD"
 		(exclude_from_sim no)
 		(at 20.32 106.68 0)
 		(effects
