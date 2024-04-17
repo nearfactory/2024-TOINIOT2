@@ -3145,7 +3145,7 @@
 		)
 		(uuid "eef2778b-46f1-495f-a3c4-88b40ddf9d28")
 	)
-	(global_label "ball-1"
+	(global_label "ball01k"
 		(shape input)
 		(at 35.56 121.92 0)
 		(fields_autoplaced yes)
@@ -3157,7 +3157,7 @@
 		)
 		(uuid "06da86c9-2b93-42ff-a2a1-d6461e0648bd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 43.653 121.92 0)
+			(at 45.6207 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3167,7 +3167,7 @@
 			)
 		)
 	)
-	(global_label "ball-2"
+	(global_label "ball02k"
 		(shape input)
 		(at 35.56 124.46 0)
 		(fields_autoplaced yes)
@@ -3179,7 +3179,7 @@
 		)
 		(uuid "20c4a139-abc0-4886-b42e-1f859d3fcca5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 43.653 124.46 0)
+			(at 45.6207 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3255,7 +3255,7 @@
 			)
 		)
 	)
-	(global_label "ball-2"
+	(global_label "ball02k"
 		(shape output)
 		(at 137.16 123.19 0)
 		(fields_autoplaced yes)
@@ -3267,7 +3267,7 @@
 		)
 		(uuid "98e49a18-231f-4bff-8ad1-9b4a42a6cbc4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 145.253 123.19 0)
+			(at 147.2207 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3299,7 +3299,7 @@
 			)
 		)
 	)
-	(global_label "ball-1"
+	(global_label "ball01k"
 		(shape output)
 		(at 137.16 100.33 0)
 		(fields_autoplaced yes)
@@ -3311,7 +3311,7 @@
 		)
 		(uuid "e4aaa29d-25e8-4f5d-b6b0-c99d8be48fbf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 145.253 100.33 0)
+			(at 147.2207 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)

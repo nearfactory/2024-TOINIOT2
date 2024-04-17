@@ -13281,28 +13281,6 @@
 			)
 		)
 	)
-	(global_label "RX=Main"
-		(shape bidirectional)
-		(at 321.31 151.13 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "23a696d7-020d-4885-8340-78001f6ebd2a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 333.7614 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "D-"
 		(shape bidirectional)
 		(at 393.7 166.37 180)
@@ -13701,7 +13679,7 @@
 	)
 	(global_label "Line-MD-Main=RX_5V"
 		(shape input)
-		(at 347.98 148.59 0)
+		(at 321.31 148.59 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13711,7 +13689,7 @@
 		)
 		(uuid "60d3dd3b-a5ec-4608-9d66-faea00b8deb8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 372.3737 148.59 0)
+			(at 345.7037 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13831,28 +13809,6 @@
 			)
 		)
 	)
-	(global_label "TX=Main"
-		(shape bidirectional)
-		(at 321.31 148.59 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "7d03a38d-94c8-493d-86ef-e9a545d27955")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 333.6621 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "line04"
 		(shape output)
 		(at 115.57 62.23 0)
@@ -13921,7 +13877,7 @@
 	)
 	(global_label "Line-MD-Main=RX_5V"
 		(shape output)
-		(at 347.98 151.13 0)
+		(at 321.31 151.13 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13931,7 +13887,7 @@
 		)
 		(uuid "87d6dfa2-9a0d-4508-a982-9702db2a6b3d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 372.3737 151.13 0)
+			(at 345.7037 151.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
