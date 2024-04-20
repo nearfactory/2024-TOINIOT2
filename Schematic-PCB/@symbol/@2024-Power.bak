@@ -22,7 +22,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
+		(property "Footprint" ""
 			(at 0 2.794 0)
 			(effects
 				(font
@@ -31,7 +31,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://akizukidenshi.com/goodsaffix/njw4183_j.pdf"
+		(property "Datasheet" ""
 			(at 0 2.794 0)
 			(effects
 				(font
