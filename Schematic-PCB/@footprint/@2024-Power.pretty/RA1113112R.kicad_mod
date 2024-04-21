@@ -131,4 +131,15 @@
 			)
 		)
 	)
+	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Power.pretty/RA1113112R.stp"
+		(offset
+			(xyz 0 0 -9.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )

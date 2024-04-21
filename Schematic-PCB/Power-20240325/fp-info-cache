@@ -1,4 +1,4 @@
-23191342234686088
+23193058138433204
 @2023-2_MotorDriver
 DRV8874
 
@@ -272,6 +272,13 @@ VoltMeter
 0
 2
 2
+@2024-Power
+XT30PW-M
+
+
+0
+0
+0
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
