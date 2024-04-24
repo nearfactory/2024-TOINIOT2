@@ -2922,16 +2922,16 @@
 		(uuid "af1f38a2-c594-40dc-b888-f2d6cf575839")
 	)
 	(junction
-		(at 50.8 48.26)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c51cc8dd-aac8-4c2a-97d4-6f714587cdb8")
-	)
-	(junction
 		(at 243.84 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d040cecd-cd61-4dfe-b7a8-fb5d29a1a907")
+	)
+	(junction
+		(at 50.8 48.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d900ff84-b48c-4673-ac6d-5ebd01c592bb")
 	)
 	(junction
 		(at 53.34 35.56)
@@ -3667,16 +3667,6 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 48.26) (xy 50.8 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bc19bed6-84a2-414d-b05b-439be9694b84")
-	)
-	(wire
-		(pts
 			(xy 165.1 110.49) (xy 167.64 110.49)
 		)
 		(stroke
@@ -3714,6 +3704,16 @@
 			(type default)
 		)
 		(uuid "c94d3572-5d17-4262-a601-d665340750eb")
+	)
+	(wire
+		(pts
+			(xy 50.8 48.26) (xy 50.8 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "caa64e90-0c69-498d-8ad0-081397839e04")
 	)
 	(wire
 		(pts
@@ -3814,6 +3814,16 @@
 			(type default)
 		)
 		(uuid "e5383c8d-95dd-4f04-8d8f-7f276a872580")
+	)
+	(wire
+		(pts
+			(xy 50.8 48.26) (xy 53.34 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7031afe-63d2-4a4f-84d2-3570d6d7dca7")
 	)
 	(wire
 		(pts
@@ -8480,7 +8490,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 50.8 48.26 0)
+		(at 50.8 50.8 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8489,7 +8499,7 @@
 		(fields_autoplaced yes)
 		(uuid "b988aef0-4d61-40a7-8eb1-453ee9f82a32")
 		(property "Reference" "#PWR023"
-			(at 50.8 54.61 0)
+			(at 50.8 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8498,7 +8508,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 50.8 53.34 0)
+			(at 50.8 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8506,7 +8516,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 50.8 48.26 0)
+			(at 50.8 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8515,7 +8525,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 50.8 48.26 0)
+			(at 50.8 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8524,7 +8534,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 50.8 48.26 0)
+			(at 50.8 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
