@@ -1,0 +1,147 @@
+(footprint "XT30PW-M"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 3.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "3bc74045-0a0a-4395-a1fc-fa122a655f3d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "XT30PW-M"
+		(at 0 5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "7b6d8ea9-22ff-46bd-b8d4-cd8a16acba92")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 4 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4101a5ad-8bc5-4e86-9ca2-3f3ac7f3110e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 4 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1a1574cf-1843-4529-b12e-a6999168d3a7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 4 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4d7d724a-f453-4efa-9d9f-c58639d24819")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_text user "+"
+		(at -2.5 -3.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "98ec9e3e-c203-42c5-bf8d-b33f77847d49")
+		(effects
+			(font
+				(face "Arial Black")
+				(size 2 2)
+				(thickness 0.15)
+			)
+		)
+		(render_cache "+" 0
+			(polygon
+				(pts
+					(xy -3.249824 -3.88926) (xy -2.723725 -3.88926) (xy -2.723725 -4.420732) (xy -2.279692 -4.420732)
+					(xy -2.279692 -3.88926) (xy -1.750662 -3.88926) (xy -1.750662 -3.451577) (xy -2.279692 -3.451577)
+					(xy -2.279692 -2.920104) (xy -2.723725 -2.920104) (xy -2.723725 -3.451577) (xy -3.249824 -3.451577)
+				)
+			)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 6.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "282dc758-d611-4509-8893-3a028e5944cb")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" thru_hole circle
+		(at -5.5 10)
+		(size 2 2)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7442954b-19f4-4184-adf4-619b9f7d95d5")
+	)
+	(pad "" thru_hole circle
+		(at 5.5 10)
+		(size 2 2)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "6b718ef1-f14b-4488-87b1-8287e4257a76")
+	)
+	(pad "1" thru_hole circle
+		(at -2.5 0)
+		(size 3.4 3.4)
+		(drill 1.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "d6a16381-6809-4813-a094-773dab5abc88")
+	)
+	(pad "2" thru_hole circle
+		(at 2.5 0)
+		(size 3.4 3.4)
+		(drill 1.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "1b239016-7b37-473c-93c4-b754d47a2703")
+	)
+	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Power.pretty/XT30-F Board Side.step"
+		(offset
+			(xyz 0 -8.5 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 180)
+		)
+	)
+)

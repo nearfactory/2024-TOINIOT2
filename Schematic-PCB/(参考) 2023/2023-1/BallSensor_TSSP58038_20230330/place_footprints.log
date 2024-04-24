@@ -1,0 +1,134 @@
+12-16 12:37:52 com_github_bouni_kicad-jlcpcb-tools.store 210:Part U1 does not exist in the database and will be created from the board.
+12-16 12:37:52 com_github_bouni_kicad-jlcpcb-tools.store 210:Part U2 does not exist in the database and will be created from the board.
+12-16 12:40:07 com_github_bouni_kicad-jlcpcb-tools.partdetails 124:opening https://datasheet.lcsc.com/lcsc/2012110135_Worldsemi-WS2812B-2020_C965555.pdf
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Top layer
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask top
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste top
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Inner layer 1
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Inner layer 2
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Bottom layer
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask bottom
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste bottom
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Edges
+12-16 12:44:10 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted V score cut
+12-16 12:44:11 com_github_bouni_kicad-jlcpcb-tools.fabrication 237:Finished generating Excellon files
+12-16 12:44:11 com_github_bouni_kicad-jlcpcb-tools.fabrication 254:Finished generating ZIP file
+12-16 12:44:11 com_github_bouni_kicad-jlcpcb-tools.fabrication 289:Finished generating CPL file
+12-16 12:44:11 com_github_bouni_kicad-jlcpcb-tools.fabrication 306:Finished generating BOM file
+12-16 12:44:13 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Top layer
+12-16 12:44:13 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-16 12:44:13 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask top
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste top
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Inner layer 1
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Inner layer 2
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Bottom layer
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask bottom
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste bottom
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Edges
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted V score cut
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 237:Finished generating Excellon files
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 254:Finished generating ZIP file
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 289:Finished generating CPL file
+12-16 12:44:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 306:Finished generating BOM file
+12-16 23:46:16 com_github_bouni_kicad-jlcpcb-tools.store 246:Part U1 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:16 com_github_bouni_kicad-jlcpcb-tools.store 246:Part U2 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:16 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J3 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:16 com_github_bouni_kicad-jlcpcb-tools.store 246:Part C1 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J7 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J6 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J2 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J1 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J8 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J4 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D3 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part C2 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D10 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D9 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D4 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D2 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D8 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D5 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D6 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D1 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:17 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D7 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Top layer
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask top
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste top
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Bottom layer
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask bottom
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste bottom
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Edges
+12-16 23:46:48 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted V score cut
+12-16 23:46:49 com_github_bouni_kicad-jlcpcb-tools.fabrication 237:Finished generating Excellon files
+12-16 23:46:49 com_github_bouni_kicad-jlcpcb-tools.fabrication 254:Finished generating ZIP file
+12-16 23:46:49 com_github_bouni_kicad-jlcpcb-tools.fabrication 289:Finished generating CPL file
+12-16 23:46:49 com_github_bouni_kicad-jlcpcb-tools.fabrication 306:Finished generating BOM file
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Top layer
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask top
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste top
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Bottom layer
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask bottom
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste bottom
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Edges
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted V score cut
+12-17 00:30:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 237:Finished generating Excellon files
+12-17 00:31:00 com_github_bouni_kicad-jlcpcb-tools.fabrication 254:Finished generating ZIP file
+12-17 00:31:00 com_github_bouni_kicad-jlcpcb-tools.fabrication 289:Finished generating CPL file
+12-17 00:31:00 com_github_bouni_kicad-jlcpcb-tools.fabrication 306:Finished generating BOM file
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J3 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part U2 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J2 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 210:Part J5 does not exist in the database and will be created from the board.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J8 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part U1 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J4 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J7 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J6 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part J1 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D10 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D9 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D4 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part C2 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D2 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D8 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D5 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D3 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part C1 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D6 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D1 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:11 com_github_bouni_kicad-jlcpcb-tools.store 246:Part D7 is already in the database but value, footprint, bom or pos values changed in the board file, part will be updated, lcsc overwritten/cleared.
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Top layer
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask top
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste top
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Bottom layer
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask bottom
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste bottom
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Edges
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted V score cut
+12-17 00:49:14 com_github_bouni_kicad-jlcpcb-tools.fabrication 237:Finished generating Excellon files
+12-17 00:49:15 com_github_bouni_kicad-jlcpcb-tools.fabrication 254:Finished generating ZIP file
+12-17 00:49:15 com_github_bouni_kicad-jlcpcb-tools.fabrication 289:Finished generating CPL file
+12-17 00:49:15 com_github_bouni_kicad-jlcpcb-tools.fabrication 306:Finished generating BOM file
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Top layer
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask top
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste top
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Bottom layer
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Silk top
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Mask bottom
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Paste bottom
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted Edges
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 222:Successfully plotted V score cut
+12-17 00:49:34 com_github_bouni_kicad-jlcpcb-tools.fabrication 237:Finished generating Excellon files
+12-17 00:49:35 com_github_bouni_kicad-jlcpcb-tools.fabrication 254:Finished generating ZIP file
+12-17 00:49:35 com_github_bouni_kicad-jlcpcb-tools.fabrication 289:Finished generating CPL file
+12-17 00:49:35 com_github_bouni_kicad-jlcpcb-tools.fabrication 306:Finished generating BOM file

@@ -1,0 +1,295 @@
+(footprint "VoltMeter"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -0.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "9665dde4-af17-4d55-a39c-bfd5ef16721f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "VoltMeter"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "67acd339-b287-4f0f-9ddd-84c57f7b2297")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e63c76b8-21de-4e3f-bad0-845151b6c5f9")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4c7f6be0-f506-4d8a-9681-d3d6f05e0834")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d8dcd4e9-c8df-4c2b-b626-da7071cb8c48")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -15 -2)
+		(end -11.5 -2)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "8a35bc80-b410-4c59-ba22-65688b71ff43")
+	)
+	(fp_line
+		(start -15 2)
+		(end -15 -2)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "dbe56984-f144-44c2-baf3-86a28ef9fbcb")
+	)
+	(fp_line
+		(start -11.5 -5.5)
+		(end 11.5 -5.5)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "27305a26-b94d-4c71-b808-936d40243864")
+	)
+	(fp_line
+		(start -11.5 -2)
+		(end -11.5 -5.5)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "8e012fb2-c888-4668-935d-8ef905ed62c5")
+	)
+	(fp_line
+		(start -11.5 2)
+		(end -15 2)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "f8adc365-aaff-4d39-8183-0dacf586ed58")
+	)
+	(fp_line
+		(start -11.5 5.5)
+		(end -11.5 2)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "13a5f589-87c8-4399-84de-4aa19cc496d7")
+	)
+	(fp_line
+		(start 11.5 -5.5)
+		(end 11.5 -2)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "b06d6e4e-fab9-416e-83cf-c001cc4d40e8")
+	)
+	(fp_line
+		(start 11.5 -2)
+		(end 15 -2)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "c763ec0e-810e-4e35-ac93-3ced1ab1658e")
+	)
+	(fp_line
+		(start 11.5 2)
+		(end 11.5 5.5)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "3ef4ccb4-f20b-40ef-b2eb-fa07a771920f")
+	)
+	(fp_line
+		(start 11.5 5.5)
+		(end -11.5 5.5)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "c3c1fb32-3dd1-4e87-a6f9-3837504ed26c")
+	)
+	(fp_line
+		(start 15 -2)
+		(end 15 2)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "8dac4469-73ca-40cc-b8d3-697068618e3e")
+	)
+	(fp_line
+		(start 15 2)
+		(end 11.5 2)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "9fccf6b7-b294-446d-be1d-093355059404")
+	)
+	(fp_circle
+		(center -13 0)
+		(end -11.5 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "4101cf10-3083-4096-b8a8-bee6f93cd78d")
+	)
+	(fp_circle
+		(center 8.25 4.25)
+		(end 9.05 4.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "27163edd-acc1-472c-b220-e4b3f1fe00c7")
+	)
+	(fp_circle
+		(center 10 4.25)
+		(end 10.8 4.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "e953b9a2-f378-4ee5-b4ee-4a99a119c40d")
+	)
+	(fp_circle
+		(center 13 0)
+		(end 14.5 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "d77961b2-13fa-4494-b337-b55efb10b89f")
+	)
+	(fp_rect
+		(start 15.5 -6)
+		(end -15.5 6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "d963df56-5476-4fb3-9d75-bcdbe4f22616")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 2.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "2eca62c6-50fa-4987-9da1-f10b3d3193c2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" np_thru_hole circle
+		(at -13 0 90)
+		(size 2.3 2.3)
+		(drill 2.3)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "5b8a85d3-82c8-40cc-b173-4b964851423c")
+	)
+	(pad "" np_thru_hole circle
+		(at 13 0 90)
+		(size 2.3 2.3)
+		(drill 2.3)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "7693c9ec-dfa4-4d3a-95e3-890cb77aa2b2")
+	)
+	(pad "1" thru_hole circle
+		(at 10 4.25 90)
+		(size 1.5 1.5)
+		(drill 0.7)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "e8d9f56f-a459-43b9-8782-1bc9a3ea9706")
+	)
+	(pad "2" thru_hole circle
+		(at 8.25 4.25 90)
+		(size 1.5 1.5)
+		(drill 0.7)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "fbc49e47-003a-4ab5-842b-460995088f54")
+	)
+	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/KiCad Owns/FootPrints/@2023_PowerSupply.pretty/Voltmeter.step"
+		(offset
+			(xyz -11.5 -5.5 1)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

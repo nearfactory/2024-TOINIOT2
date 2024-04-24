@@ -1,0 +1,145 @@
+(footprint "RA1113112R"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -8.7 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "3d86b5da-9618-491a-b735-918e7b4c8248")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "RA1113112R"
+		(at 0 -1.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "dff4045e-1fbc-4623-afbb-be2154747c38")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "64d7ad06-48a9-4606-9cd2-5e85219e04dc")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "48a01439-fb27-4e24-b341-19c63f90d1f6")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1c3c0b76-bfa3-4b78-b1cb-85cc18186e6e")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -10.7 -7.5)
+		(end 9.7 -6.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.SilkS")
+		(uuid "852a6b69-b8b8-4800-96dc-d4b833c9374c")
+	)
+	(fp_rect
+		(start -10.7 -6.5)
+		(end -9.7 7.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.SilkS")
+		(uuid "baed2e2b-d70e-4ade-97d1-aad8885b791e")
+	)
+	(fp_rect
+		(start -9.7 6.5)
+		(end 10.7 7.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.SilkS")
+		(uuid "04e1426a-41fe-4e38-be9c-7a86ef8a5014")
+	)
+	(fp_rect
+		(start 9.7 -7.5)
+		(end 10.7 6.5)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.SilkS")
+		(uuid "841c5028-e405-4f4c-a048-57d665d4140e")
+	)
+	(fp_rect
+		(start 9.7 -6.5)
+		(end -9.7 6.5)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(fill none)
+		(layer "Edge.Cuts")
+		(uuid "c1f359d4-e075-4ade-aaeb-209935987946")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "038acd56-be0e-498c-84f5-8147d5ca81dd")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Power.pretty/RA1113112R.stp"
+		(offset
+			(xyz 0 0 -9.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
