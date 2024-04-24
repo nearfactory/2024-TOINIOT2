@@ -447,7 +447,7 @@
 		(path "/b74b1252-4ac1-4dd3-85ba-41f0cb453eff")
 		(sheetname "ルート")
 		(sheetfile "Kicker-20240411.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -4.939491 -4.555)
 			(end -3.339491 -4.555)
@@ -3383,7 +3383,7 @@
 		(path "/f5298efd-04c7-4acd-b0af-634c1304029d")
 		(sheetname "ルート")
 		(sheetfile "Kicker-20240411.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -4.939491 -4.555)
 			(end -3.339491 -4.555)
@@ -6328,7 +6328,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.SilkS")
-			(uuid "444cb3de-1535-4537-8e44-e4617189c71b")
+			(uuid "5b20fcb6-58bc-4ef3-9d47-e3822dfd1bb0")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6339,7 +6339,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "8442a5d3-e568-4b54-b2ea-f193e321a910")
+			(uuid "61c60313-4cd9-479d-9174-c05cef61bda8")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6387,7 +6387,7 @@
 			(size 3.2 3.2)
 			(drill 3.2)
 			(layers "F&B.Cu" "*.Mask")
-			(uuid "8658f780-1e4a-4f45-9dcf-fa0a339ee3ee")
+			(uuid "7cd7e4ba-af04-41c5-a560-af87261b9d5e")
 		)
 	)
 	(footprint "OptoDevice:Vishay_MINICAST-3Pin"
@@ -6459,7 +6459,7 @@
 		(path "/c2d1645d-0891-456d-bcce-ccd782a1be0a")
 		(sheetname "ルート")
 		(sheetfile "Kicker-20240411.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 5.14 1.5)
 			(end 0.05 1.5)
@@ -6738,7 +6738,7 @@
 		(path "/d6e3f304-e26a-4570-ac57-26da3b953675")
 		(sheetname "ルート")
 		(sheetfile "Kicker-20240411.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -6.57 3.6)
 			(end -5.545 3.6)
@@ -7137,7 +7137,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.SilkS")
-			(uuid "444cb3de-1535-4537-8e44-e4617189c71b")
+			(uuid "d94285b9-5f5b-4385-920a-9fd86e7f7d41")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7148,7 +7148,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "8442a5d3-e568-4b54-b2ea-f193e321a910")
+			(uuid "99d1f9d6-4a87-4289-af74-5697c7c00ce3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7196,7 +7196,7 @@
 			(size 3.2 3.2)
 			(drill 3.2)
 			(layers "F&B.Cu" "*.Mask")
-			(uuid "8658f780-1e4a-4f45-9dcf-fa0a339ee3ee")
+			(uuid "8dcf256b-8345-42a8-91d6-9b8155356307")
 		)
 	)
 	(footprint "Connector_JST:JST_XH_S2B-XH-A-1_1x02_P2.50mm_Horizontal"
@@ -7268,7 +7268,7 @@
 		(path "/943e30b3-28a5-47d5-a182-b3f5020e583b")
 		(sheetname "ルート")
 		(sheetfile "Kicker-20240411.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -2.56 -4.01)
 			(end -1.14 -4.01)
@@ -7734,7 +7734,7 @@
 		(path "/5862e853-7ec4-4508-98bf-581d95f5ba63")
 		(sheetname "ルート")
 		(sheetfile "Kicker-20240411.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -2.56 3.51)
 			(end 5.06 3.51)
@@ -8192,7 +8192,7 @@
 		(path "/4e522e97-b170-4e34-9266-55cff9d2807e")
 		(sheetname "ルート")
 		(sheetfile "Kicker-20240411.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_rect
 			(start -21 -10.25)
 			(end 21 10.25)
@@ -8514,7 +8514,7 @@
 		(path "/895779c6-3a87-4a0c-b46e-9df2ac26aed5")
 		(sheetname "ルート")
 		(sheetfile "Kicker-20240411.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 5.14 -1.51)
 			(end 2.54 -1.51)
@@ -8732,7 +8732,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.SilkS")
-			(uuid "444cb3de-1535-4537-8e44-e4617189c71b")
+			(uuid "d91f9357-7bcb-49dd-9fac-759b24e38121")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8743,7 +8743,7 @@
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
-			(uuid "8442a5d3-e568-4b54-b2ea-f193e321a910")
+			(uuid "d82531c3-1ef2-420c-8c6d-916cc9337297")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8791,7 +8791,7 @@
 			(size 3.2 3.2)
 			(drill 3.2)
 			(layers "F&B.Cu" "*.Mask")
-			(uuid "8658f780-1e4a-4f45-9dcf-fa0a339ee3ee")
+			(uuid "18a558b6-54a2-4b5a-98de-3a8a9b5cd889")
 		)
 	)
 	(footprint "Resistor_SMD:R_0603_1608Metric"
@@ -9436,7 +9436,7 @@
 		(path "/6348a65c-9b98-4a8f-824c-4bf2781aade9")
 		(sheetname "ルート")
 		(sheetfile "Kicker-20240411.kicad_sch")
-		(attr smd)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -2.4 -2)
 			(end 2.4 -2)
