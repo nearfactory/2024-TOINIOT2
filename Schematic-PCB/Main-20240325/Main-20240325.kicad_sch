@@ -5838,6 +5838,16 @@
 	)
 	(wire
 		(pts
+			(xy 144.78 81.28) (xy 147.32 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "96381da7-1dea-474b-9054-87bc5a60a597")
+	)
+	(wire
+		(pts
 			(xy 152.4 41.91) (xy 165.1 41.91)
 		)
 		(stroke
@@ -7277,28 +7287,6 @@
 			)
 		)
 	)
-	(global_label "neoPixel"
-		(shape output)
-		(at -55.88 93.98 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "82c6a38d-43e1-4588-84e3-746d1a0f4bb4")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at -66.9085 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "EN-1"
 		(shape input)
 		(at 170.18 140.97 0)
@@ -7493,6 +7481,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "NeoPixel_PWM"
+		(shape output)
+		(at 144.78 81.28 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "99ba2d55-6144-4f94-940c-efe1bb9e6809")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 128.4296 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
