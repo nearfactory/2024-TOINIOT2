@@ -74,43 +74,7 @@
 							)
 						)
 					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 1.27 -8.89 90)
-					(length 2.54)
-					(name "SCL"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 3.81 -8.89 90)
-					(length 2.54)
-					(name "SDA"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number ""
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -128,7 +92,43 @@
 							)
 						)
 					)
-					(number ""
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 1.27 -8.89 90)
+					(length 2.54)
+					(name "SCL"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 3.81 -8.89 90)
+					(length 2.54)
+					(name "SDA"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2111,7 +2111,7 @@
 	)
 	(global_label "SW-TOG-2"
 		(shape input)
-		(at 39.37 142.24 0)
+		(at 39.37 144.78 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2121,7 +2121,7 @@
 		)
 		(uuid "3f58462c-e36b-443c-95f7-099db703f17b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 51.7275 142.24 0)
+			(at 51.7275 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2243,7 +2243,7 @@
 	)
 	(global_label "SW-TOG-1"
 		(shape input)
-		(at 39.37 144.78 0)
+		(at 39.37 142.24 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2253,7 +2253,7 @@
 		)
 		(uuid "961b5698-70ba-4333-83e7-6703f704c04c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 51.7275 144.78 0)
+			(at 51.7275 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2465,7 +2465,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-UI:TVBP06-B043C"
 			(at 133.35 45.72 0)
 			(effects
 				(font
@@ -2517,7 +2517,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0657a97d-590b-4e4b-bb3f-cc08594f7272")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR012"
 			(at 140.97 52.07 0)
 			(effects
 				(font
@@ -2567,7 +2567,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR08")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -2599,7 +2599,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 120.65 50.8 0)
 			(effects
 				(font
@@ -2667,7 +2667,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-UI:TVBP06-B043C"
 			(at 133.35 99.06 0)
 			(effects
 				(font
@@ -2719,7 +2719,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0c8b93c0-708a-4add-89c0-40ff06bbac55")
-		(property "Reference" "R2"
+		(property "Reference" "R3"
 			(at 80.01 54.61 0)
 			(effects
 				(font
@@ -2737,7 +2737,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 82.55 55.88 0)
 			(effects
 				(font
@@ -2773,7 +2773,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "R2")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -2789,7 +2789,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "137087a8-2d93-4ecd-946c-87745488818b")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR05"
 			(at 54.61 148.59 0)
 			(effects
 				(font
@@ -2839,7 +2839,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR012")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -2855,7 +2855,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "19789675-efcd-4e1b-b02f-7e67fc66d177")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR06"
 			(at 82.55 67.31 0)
 			(effects
 				(font
@@ -2905,7 +2905,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR04")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -2921,7 +2921,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1f27af3b-66f8-4bc5-ae64-1542fd62a911")
-		(property "Reference" "R9"
+		(property "Reference" "R7"
 			(at 120.65 99.06 90)
 			(effects
 				(font
@@ -2937,7 +2937,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 120.65 104.14 0)
 			(effects
 				(font
@@ -2973,7 +2973,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "R9")
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -3005,7 +3005,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_XH_B10B-XH-A_1x10_P2.50mm_Vertical"
 			(at 31.75 147.32 0)
 			(effects
 				(font
@@ -3072,6 +3072,82 @@
 		)
 	)
 	(symbol
+		(lib_id "@2024-UI:Display")
+		(at 40.64 45.72 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2ef59a60-913b-49f7-8bb1-af8c73a61ea5")
+		(property "Reference" "U1"
+			(at 49.53 48.895 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 49.53 50.165 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "@2024-UI:Display"
+			(at 40.64 38.608 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 40.64 38.608 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 40.64 38.608 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "4"
+			(uuid "e89d7260-a52b-4f32-b075-234ab9eadfbb")
+		)
+		(pin "3"
+			(uuid "86d7d938-7f02-4c11-8907-096b40658e91")
+		)
+		(pin "1"
+			(uuid "8913b1dd-c353-4d37-9164-0889923e8f17")
+		)
+		(pin "2"
+			(uuid "55976a35-53a1-4adb-909f-2d8cd75e01b3")
+		)
+		(instances
+			(project "UI-20240325"
+				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
+					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 77.47 77.47 90)
 		(unit 1)
@@ -3081,7 +3157,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "56ae758c-2078-4ca8-8072-d26bb557c1c3")
-		(property "Reference" "R3"
+		(property "Reference" "R2"
 			(at 77.47 72.39 90)
 			(effects
 				(font
@@ -3097,7 +3173,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 77.47 77.47 0)
 			(effects
 				(font
@@ -3133,7 +3209,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "R3")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -3165,7 +3241,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 77.47 50.8 0)
 			(effects
 				(font
@@ -3217,7 +3293,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6a7f4058-d8ae-49e2-9637-e26980d1878a")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR04"
 			(at 54.61 138.43 0)
 			(effects
 				(font
@@ -3267,83 +3343,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR011")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "@2024-UI:Display")
-		(at 40.64 45.72 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "73baf766-e062-458a-a04f-ce25bc58b5a0")
-		(property "Reference" "U1"
-			(at 49.53 48.895 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "~"
-			(at 49.53 50.165 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 40.64 38.608 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 40.64 38.608 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 40.64 38.608 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin ""
-			(uuid "e2c3c1eb-15b8-4baf-8aed-aaf028458990")
-		)
-		(pin ""
-			(uuid "4cf4810c-3b37-4899-af63-4dd94408e105")
-		)
-		(pin ""
-			(uuid "d74625ac-ec9a-4bb4-a13b-3e522c048b83")
-		)
-		(pin ""
-			(uuid "f2b1a13c-4efa-453d-b3d7-f035e8126f63")
-		)
-		(instances
-			(project "UI-20240325"
-				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "U1")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -3359,7 +3359,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7662c1fe-0ba4-48eb-a532-49def0669d6c")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR03"
 			(at 36.83 66.04 0)
 			(effects
 				(font
@@ -3409,7 +3409,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR01")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -3441,7 +3441,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 120.65 77.47 0)
 			(effects
 				(font
@@ -3511,7 +3511,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 82.55 82.55 0)
 			(effects
 				(font
@@ -3563,7 +3563,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "82875c1a-0a8b-44ce-a4ae-9a97cab2f27e")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR09"
 			(at 125.73 67.31 0)
 			(effects
 				(font
@@ -3613,7 +3613,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR06")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -3629,7 +3629,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a6ae76b2-033f-4c34-b84f-c4b914b59c36")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR07"
 			(at 82.55 93.98 0)
 			(effects
 				(font
@@ -3679,7 +3679,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR05")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -3713,7 +3713,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 125.73 109.22 0)
 			(effects
 				(font
@@ -3783,7 +3783,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-UI:PKM13EPYH4000-A0"
 			(at 40.005 90.17 90)
 			(effects
 				(font
@@ -3851,7 +3851,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-UI:2MS1-T1-B4-VS2-Q-E-S"
 			(at 90.17 77.47 0)
 			(effects
 				(font
@@ -3906,7 +3906,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b605d4b2-024d-4561-9e2e-976491bd976e")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR010"
 			(at 125.73 93.98 0)
 			(effects
 				(font
@@ -3956,7 +3956,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR07")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -3972,7 +3972,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b6c07df6-b001-46f1-b0b8-04077481fce0")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR02"
 			(at 35.56 104.14 0)
 			(effects
 				(font
@@ -4022,7 +4022,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR010")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -4054,7 +4054,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-UI:2MS1-T1-B4-VS2-Q-E-S"
 			(at 90.17 50.8 0)
 			(effects
 				(font
@@ -4109,7 +4109,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c14b0f96-b259-42ae-942b-7af027683cb3")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR08"
 			(at 97.79 49.53 0)
 			(effects
 				(font
@@ -4159,7 +4159,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR03")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -4175,7 +4175,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c7902eee-6c69-42a9-9ca8-cc9c98761f7d")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR011"
 			(at 125.73 120.65 0)
 			(effects
 				(font
@@ -4225,7 +4225,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR09")
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -4241,7 +4241,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c7da1b6d-17ea-40f5-bb86-f9bb9a512fe3")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR01"
 			(at 27.94 58.42 0)
 			(effects
 				(font
@@ -4291,7 +4291,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "#PWR02")
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -4375,7 +4375,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e30fd9e7-5566-4ce1-af32-5afee9b51410")
-		(property "Reference" "R8"
+		(property "Reference" "R9"
 			(at 123.19 81.28 0)
 			(effects
 				(font
@@ -4393,7 +4393,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 125.73 82.55 0)
 			(effects
 				(font
@@ -4429,7 +4429,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "R8")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -4445,7 +4445,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e9280fb4-8b22-4534-8295-73b9711831f5")
-		(property "Reference" "R7"
+		(property "Reference" "R8"
 			(at 123.19 54.61 0)
 			(effects
 				(font
@@ -4463,7 +4463,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 125.73 55.88 0)
 			(effects
 				(font
@@ -4499,7 +4499,7 @@
 		(instances
 			(project "UI-20240325"
 				(path "/cf415513-ce1b-482f-888f-072969d0dcb5"
-					(reference "R7")
+					(reference "R8")
 					(unit 1)
 				)
 			)

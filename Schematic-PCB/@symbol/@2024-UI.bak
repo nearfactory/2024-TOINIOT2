@@ -49,7 +49,7 @@
 				(hide yes)
 			)
 		)
-		(symbol "Display_0_1"
+		(symbol "Display_1_1"
 			(rectangle
 				(start -7.62 0)
 				(end 7.62 -6.35)
@@ -58,11 +58,9 @@
 					(type default)
 				)
 				(fill
-					(type none)
+					(type background)
 				)
 			)
-		)
-		(symbol "Display_1_1"
 			(pin input line
 				(at -3.81 -8.89 90)
 				(length 2.54)
