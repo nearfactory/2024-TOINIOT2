@@ -1,0 +1,210 @@
+(footprint "2MS1-T1-B4-VS2-Q-E-S"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -3.81 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "f4f2f39a-81c6-4440-bbf5-3a2d7ab949a0")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "2MS1-T1-B4-VS2-Q-E-S"
+		(at 0 -2.31 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "800a3b22-6755-4e47-87a4-fc9226544342")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 -3.31 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7ad6e76b-0d75-4b22-8701-4aa029023418")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 -3.31 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e852a534-2d4c-4075-b58c-e7b5566cf102")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 -3.31 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "90285b7c-029d-4049-bbe3-7a75727a06fd")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -5.08 -2.54)
+		(end 5.08 2.54)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "d5f09a68-0394-43e9-9ccf-713ae7142eb5")
+	)
+	(fp_circle
+		(center -5.08 0)
+		(end -4.064 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "24c29642-b00b-49d7-802e-d09cb78fe375")
+	)
+	(fp_circle
+		(center -2.54 0)
+		(end -3.556 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "fe9a3386-a8d1-4be5-a7d6-4ce40cf378fc")
+	)
+	(fp_circle
+		(center 0 0)
+		(end -1.016 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "dec6a11f-a32a-47a7-b7ac-1f4e23becdb3")
+	)
+	(fp_circle
+		(center 2.54 0)
+		(end 1.524 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "7e330904-8ea9-43af-b07b-5ab3e42ebd1a")
+	)
+	(fp_circle
+		(center 5.08 0)
+		(end 4.064 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "b3d0363b-028f-4d61-8375-00ce67d659a3")
+	)
+	(fp_rect
+		(start -6.096 -2.794)
+		(end 6.096 2.794)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "88dade79-fe5f-4d2b-9b16-c04e434e8161")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -0.81 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "e83321d7-95af-4060-af02-a9664db13405")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" thru_hole circle
+		(at -5.08 0)
+		(size 1.8 1.8)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "19bcf78f-addc-4e7e-93b6-100a9e010329")
+	)
+	(pad "" thru_hole circle
+		(at 5.08 0)
+		(size 1.8 1.8)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "1e2ed22f-87d3-4e26-a840-1c9cc77c490c")
+	)
+	(pad "1" thru_hole circle
+		(at -2.54 0)
+		(size 1.8 1.8)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "29df1f61-2826-4a3b-8e11-a937fc3b3b9b")
+	)
+	(pad "2" thru_hole circle
+		(at 0 0)
+		(size 1.8 1.8)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "ebd4bc06-2559-4fd2-9761-3cf747600e7d")
+	)
+	(pad "3" thru_hole circle
+		(at 2.54 0)
+		(size 1.8 1.8)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "89986ef9-172e-48a8-ad20-4748a35aa1c7")
+	)
+	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-UI.pretty/2MS1-T1-B4-VS2-Q-E-S.step"
+		(offset
+			(xyz 10 25.5 -1.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 90)
+		)
+	)
+)
