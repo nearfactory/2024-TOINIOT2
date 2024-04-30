@@ -7180,7 +7180,7 @@
 		)
 	)
 	(global_label "Line-MD-Main=TX_3.3V"
-		(shape output)
+		(shape input)
 		(at 180.34 257.81 180)
 		(fields_autoplaced yes)
 		(effects
@@ -7400,7 +7400,7 @@
 		)
 	)
 	(global_label "Line-MD-Main=RX_3.3V"
-		(shape output)
+		(shape input)
 		(at 116.84 234.95 0)
 		(fields_autoplaced yes)
 		(effects
@@ -7444,7 +7444,7 @@
 		)
 	)
 	(global_label "Line-MD-Main=RX_3.3V"
-		(shape input)
+		(shape output)
 		(at 181.61 233.68 180)
 		(fields_autoplaced yes)
 		(effects
@@ -7466,7 +7466,7 @@
 		)
 	)
 	(global_label "Line-MD-Main=TX_5V"
-		(shape input)
+		(shape output)
 		(at 226.06 257.81 0)
 		(fields_autoplaced yes)
 		(effects
@@ -8192,7 +8192,7 @@
 		)
 	)
 	(global_label "Line-MD-Main=RX_5V"
-		(shape input)
+		(shape output)
 		(at 264.16 217.17 0)
 		(fields_autoplaced yes)
 		(effects
@@ -8280,7 +8280,7 @@
 		)
 	)
 	(global_label "Line-MD-Main=TX_5V"
-		(shape output)
+		(shape input)
 		(at 264.16 214.63 0)
 		(fields_autoplaced yes)
 		(effects
@@ -8302,7 +8302,7 @@
 		)
 	)
 	(global_label "Line-MD-Main=RX_5V"
-		(shape output)
+		(shape input)
 		(at 226.06 233.68 0)
 		(fields_autoplaced yes)
 		(effects
@@ -8324,7 +8324,7 @@
 		)
 	)
 	(global_label "Line-MD-Main=TX_3.3V"
-		(shape input)
+		(shape output)
 		(at 116.84 237.49 0)
 		(fields_autoplaced yes)
 		(effects
