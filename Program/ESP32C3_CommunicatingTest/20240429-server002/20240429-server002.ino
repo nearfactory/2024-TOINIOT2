@@ -48,6 +48,7 @@ void setup() {
     
     // 継続的に値を送信するためには PROPERTY_NOTIFY　を指定すること
     BLECharacteristic::PROPERTY_NOTIFY
+    // BLECharacteristic::PROPERTY_READ
   );
   pCharacteristic->addDescriptor(new BLE2902());
   
@@ -68,11 +69,12 @@ void loop() {
     // 送信する値を10msごとに更新
     pCharacteristic->setValue(light_val);
     pCharacteristic->notify();
-
-    Serial.println(light_val);
     
-    // 大量のパケットが送信されるとBLEが混雑してしまうため、それを防止する目的でdelay()を入れている
-    delay(10);
+    Serial.println("a");
   }
+  Serial.println(light_val);
   light_val = light_val < 10000 ? light_val+1 : 0;
+
+  // 大量のパケットが送信されるとBLEが混雑してしまうため、それを防止する目的でdelay()を入れている
+  delay(20);
 }
