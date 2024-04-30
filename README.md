@@ -6,6 +6,8 @@ TOINIOT² 2024年度 開発用メインリポジトリ
 
 [現時点での設計を確認する](https://a360.co/3VDlfLE)
 
+![機体配線図](https://github.com/Toiniot2-Wakayama/2024-TOINIOT2/blob/main/2024%20%23001%20%E6%A9%9F%E4%BD%93%E9%85%8D%E7%B7%9A%E5%9B%B3.jpg)
+
 
 
 ## Rules
