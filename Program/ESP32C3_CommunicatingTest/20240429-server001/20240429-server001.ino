@@ -28,7 +28,7 @@ void setup() {
                                        );
 
   // Hello Worldという文字列を値に指定
-  pCharacteristic->setValue("Hello World");
+  pCharacteristic->setValue("あいうえお");
 
   // BLE通信をスタートさせる
   pService->start();
