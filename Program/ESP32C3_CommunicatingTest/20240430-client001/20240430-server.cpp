@@ -10,7 +10,7 @@
 #include <BLEUtils.h>
 #include <BLE2902.h>
 
-// *  変数名の前についている"p" : ハンガリー記法によって変数名に追加された文字 その変数がポインタであることを示しているが、現在ではあまり使われていない
+// *  変数名の前についている"p" : ハンガリー記法によって変数名に追加された文字 この場合、その変数がポインタであることを示しているが、現在ではあまり使われていない
 
 BLEServer *pServer = NULL;              // *  setup() 内で再度定義されるため消しても動く？
 BLECharacteristic *pTxCharacteristic;   // *  MISO
@@ -141,7 +141,7 @@ void setup() {
   // Start the service
   pService->start();
   
-  // *  アドバタイズを開始
+  // *  スキャンを開始
   // Start advertising
   pServer->getAdvertising()->start();
   Serial.println("Waiting a client connection to notify...");
