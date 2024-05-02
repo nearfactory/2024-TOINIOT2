@@ -124,7 +124,7 @@ void setup() {
 										BLECharacteristic::PROPERTY_NOTIFY
 									);
 
-  // *  送信用のデスクリプタを指定  ここで std::string などを指定すれば恐らく文字列を送信できる
+  // *  送信用のデスクリプタを指定  ここで std::string などを指定すれば恐らく文字列を送信できる？
   pTxCharacteristic->addDescriptor(new BLE2902());
 
   // *  セントラル → ペリフェラルの受信用キャラクタリスティックを作成 ≒ MOSI
