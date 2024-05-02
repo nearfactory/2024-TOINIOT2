@@ -61,6 +61,7 @@ bool connectToServer(BLEAddress address_){
     Serial.print("Failed to find our service UUID : ");
     Serial.println(service_BLE_UUID.toString().c_str());
     client_ -> disconnect();
+
     return false;
   }
 
@@ -69,6 +70,7 @@ bool connectToServer(BLEAddress address_){
     Serial.print("Failed to find characteristic COPI ID : ");
     Serial.println(COPI_BLE_UUID.toString().c_str());
     client_ -> disconnect();
+
     return false;
   }
 
@@ -76,6 +78,8 @@ bool connectToServer(BLEAddress address_){
   if(remote_characteristic_CIPO == nullptr){
     Serial.print("Failed to find characteristic CIPO ID : ");
     Serial.println(CIPO_BLE_UUID.toString().c_str());
+    client_ -> disconnect();
+
     return false;
   }
 
@@ -101,6 +105,7 @@ class advertisedDeviceCallback : public BLEAdvertisedDeviceCallbacks{
       Serial.println( advertised_device_.getAddress().toString().c_str() ) ;
       advertised_device_.getScan()->stop();
       server_address = new BLEAddress( advertised_device_.getAddress() );
+
       do_connect = true;
     }
 
@@ -122,11 +127,14 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   Serial.println("BLE client began!");
-  BLEDevice::init("IOT2_ESP32C3_PERIPHERAL_01");
+  //BLEDevice::init("IOT2_ESP32C3_PERIPHERAL_01");
+  BLEDevice::init("");
   get_scan();
   Serial.println("Finished setup!");
 }
 
+String input_string="";
+std::string CIPO_string="";
 void loop() {
   // put your main code here, to run repeatedly:
   if(do_connect){
@@ -134,21 +142,25 @@ void loop() {
       Serial.println("we are now connected to the BLE server.");
       connected = true;
     }else{
-      Serial.println("we have failed to connect to the server; there is nothin more we will do.");
+      Serial.println("we have failed to connect to the server; there is nothing more we will do.");
       connected = false;
     }
     do_connect = false;
   }
 
   if(connected){
-    std::string recieved_value = remote_characteristic_COPI -> readValue();
-    Serial.println(recieved_value.c_str());
-    remote_characteristic_CIPO -> writeValue("the message from client!");
+    input_string = Serial.readString();
+    if(input_string.length() > 0) CIPO_string = input_string.c_str();
+
+    std::string COPI_string = remote_characteristic_COPI -> readValue();
+    remote_characteristic_CIPO -> writeValue(CIPO_string.c_str());
+    Serial.printf("COPI : \" %s \" ,    CIPO : \" %s \" \n", COPI_string.c_str() ,CIPO_string.c_str() );
+
   }else{
-    Serial.println("Not connected");
+    Serial.println("Not connected!");
     do_connect = false;
     get_scan();
   }
 
-  delay(1000);
+  delay(250);
 }
