@@ -75,7 +75,7 @@ bool connectToServer(BLEAddress address_) {
     return false;
   }
 
-  //この辺を全部COPIにすると動いた
+  //この辺を全部CIPOにすると動いた
   remote_characteristic_CIPO = remote_service->getCharacteristic(COPI_BLE_UUID);
   if (remote_characteristic_CIPO == nullptr) {
     Serial.print("Failed to find characteristic CIPO ID : ");
