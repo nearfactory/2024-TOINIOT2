@@ -64,11 +64,11 @@ void setup() {
 
 void loop() {
   if(device_connected){
-    static std::string send_str = "BLE connected !";
+    static std::string send_str = "message from central!";
     Serial.printf("notified : %s, ", send_str.c_str());
     COPI -> setValue(send_str);
     COPI -> notify();
-    Serial.printf("recieved : %s\n", CIPO_string.c_str());
+    Serial.printf("recieved string from peripheral : \" %s \" \n", CIPO_string.c_str());
     delay(1000);
   }
 
