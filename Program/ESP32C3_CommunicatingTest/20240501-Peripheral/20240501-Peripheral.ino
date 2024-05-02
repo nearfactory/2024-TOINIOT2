@@ -21,7 +21,7 @@ void notifyCallback(
   BLERemoteCharacteristic *BLE_remote_characteristic_,
   uint8_t *data_,
   size_t length_,
-  bool is_notify
+  bool is_notify_
 )
 {
   Serial.print("Notify callback for characteristic ");
