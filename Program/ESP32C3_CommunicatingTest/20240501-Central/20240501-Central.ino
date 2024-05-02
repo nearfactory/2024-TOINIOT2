@@ -5,6 +5,8 @@
 #include <BLEUtils.h>
 #include <BLE2902.h>
 
+#include<Arduino.h>
+
 #define CENTRAL_NAME "IOT2_ESP32C3_CENTRAL"
 
 #define SERVICE_UUID "17acb62a-e48e-4653-a2ed-7789f7e5ecc8"
@@ -62,14 +64,16 @@ void setup() {
   Serial.println("Waiting a client connection to notify...");
 }
 
+static std::string send_str = "message from central!";
+static int count=0;
 void loop() {
   if(device_connected){
-    static std::string send_str = "message from central!";
-    Serial.printf("notified : %s, ", send_str.c_str());
+    send_str = "central_" + std::to_string(count) ;
+    count++;
+    Serial.printf( "COPI : \" %s \" ,    CIPO : \" %s \" \n", send_str.c_str(), CIPO_string.c_str() );
     COPI -> setValue(send_str);
     COPI -> notify();
-    Serial.printf("recieved string from peripheral : \" %s \" \n", CIPO_string.c_str());
-    delay(1000);
+    delay(250);
   }
 
   if(!device_connected && previous_device_connected){
