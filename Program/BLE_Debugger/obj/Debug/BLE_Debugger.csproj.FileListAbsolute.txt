@@ -1,0 +1,9 @@
+F:\ScienceClub\2024-TOINIOT2\Program\BLE_Debugger\obj\Debug\BLE_Debugger.csproj.AssemblyReference.cache
+F:\ScienceClub\2024-TOINIOT2\Program\BLE_Debugger\obj\Debug\BLE_Debugger.Properties.Resources.resources
+F:\ScienceClub\2024-TOINIOT2\Program\BLE_Debugger\obj\Debug\BLE_Debugger.csproj.GenerateResource.cache
+F:\ScienceClub\2024-TOINIOT2\Program\BLE_Debugger\obj\Debug\BLE_Debugger.csproj.CoreCompileInputs.cache
+F:\ScienceClub\2024-TOINIOT2\Program\BLE_Debugger\bin\Debug\BLE_Debugger.exe.config
+F:\ScienceClub\2024-TOINIOT2\Program\BLE_Debugger\bin\Debug\BLE_Debugger.exe
+F:\ScienceClub\2024-TOINIOT2\Program\BLE_Debugger\bin\Debug\BLE_Debugger.pdb
+F:\ScienceClub\2024-TOINIOT2\Program\BLE_Debugger\obj\Debug\BLE_Debugger.exe
+F:\ScienceClub\2024-TOINIOT2\Program\BLE_Debugger\obj\Debug\BLE_Debugger.pdb
