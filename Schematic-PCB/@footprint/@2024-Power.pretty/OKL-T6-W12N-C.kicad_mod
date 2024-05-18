@@ -271,4 +271,15 @@
 		(thermal_bridge_angle 45)
 		(uuid "856c4bff-8dd9-4358-bf15-63ff3e210460")
 	)
+	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Power.pretty/OKL-T6-W12C.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )
