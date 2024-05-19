@@ -12610,7 +12610,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_FFC-FPC:TE_84953-5_1x05-1MP_P1.0mm_Horizontal"
+		(property "Footprint" "Connector_JST:JST_XH_S5B-XH-A-1_1x05_P2.50mm_Horizontal"
 			(at 309.88 218.44 0)
 			(effects
 				(font
@@ -13651,7 +13651,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@MyLibrary:XT30U-M"
+		(property "Footprint" "@2024-MD:XT30U-M"
 			(at 26.67 267.97 0)
 			(effects
 				(font
