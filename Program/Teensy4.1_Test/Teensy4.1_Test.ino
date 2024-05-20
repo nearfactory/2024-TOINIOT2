@@ -1,10 +1,15 @@
+#include <ADC.h>
+
+ADC adc{};
+
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
+  pinMode(A2, INPUT);
+  //adc.setAveraging(8);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  Serial.println("Teensy4.1");
-  delay(1000);
+  int raw=analogRead(A2);
+  Serial.println(raw);
+  delay(50);
 }
