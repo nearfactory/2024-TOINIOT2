@@ -150,12 +150,12 @@ void loop() {
     String strVal=value.c_str();
     int strNum=strVal.toInt();
     Serial.println(strVal);
-pRemoteCharacteristicTX->writeValue(Tx_value);
+    pRemoteCharacteristicTX->writeValue(Tx_value);
   } else{
     Serial.println("Not connected");
   //conectできないときにsscanループさせておくため
     doConnect = false;
     get_scan();
   }
-  delay(1000);
+  delay(250);
 }
