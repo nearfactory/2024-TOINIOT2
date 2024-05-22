@@ -163,4 +163,15 @@
 		(remove_unused_layers no)
 		(uuid "55be7e6a-8830-4cad-844c-8ec9f33f76bc")
 	)
+	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-MD.pretty/XT30-F.step"
+		(offset
+			(xyz -5 2.8 -3)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 90)
+		)
+	)
 )

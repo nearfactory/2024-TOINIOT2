@@ -931,4 +931,15 @@
 			(xyz -90 0 0)
 		)
 	)
+	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/DEV-16771.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )
