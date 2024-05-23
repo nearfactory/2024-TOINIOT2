@@ -4,7 +4,7 @@
 	(generator_version "8.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
-		(at 0 -18 0)
+		(at 0 -2.45 0)
 		(unlocked yes)
 		(layer "F.SilkS")
 		(uuid "8fc23ae1-eca7-4e9b-a41a-bf62aa9c3a3d")
@@ -16,7 +16,7 @@
 		)
 	)
 	(property "Value" "PKM13EPYH4000-A0"
-		(at 0 -16.5 0)
+		(at 0 1.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "c2e48652-ae21-4458-8131-ef4d5d591d05")
@@ -32,7 +32,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "2c1e6c35-4986-4928-ab26-0fa94bcfe7c0")
+		(uuid "e14065b7-373e-4cfd-a6bb-a549e0c83f34")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -44,7 +44,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "8d493025-2738-455e-8fe8-a7112d858983")
+		(uuid "1e5e1522-c7f1-4748-a5ec-e7358eabe2d2")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -56,7 +56,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "dcd77153-32cf-4db2-9ba2-dcb69fc375f5")
+		(uuid "68a219e4-483c-4369-b865-857fccde1b12")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -109,7 +109,7 @@
 		(uuid "8d0c7509-fa58-412d-a163-391f471f3cf3")
 	)
 	(fp_text user "${REFERENCE}"
-		(at 0 -15 0)
+		(at 0 3 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "a2f3210c-73ef-48cf-a109-22b4d1986345")
@@ -136,7 +136,7 @@
 		(remove_unused_layers no)
 		(uuid "7713c0b2-a6a9-468b-b6a3-95a4869037c7")
 	)
-	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/KiCad Owns/FootPrints/@2023_MainBoard.pretty/PKM13EPYH4000-A0.step"
+	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/KiCad Owns/FootPrints/@2023_PowerSupply.pretty/PKM13EPYH4000-A0.step"
 		(offset
 			(xyz 0 0 0.85)
 		)
