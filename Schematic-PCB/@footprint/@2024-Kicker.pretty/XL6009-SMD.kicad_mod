@@ -116,16 +116,16 @@
 	(pad "3" smd rect
 		(at 19.75 -9)
 		(size 3 3)
-		(layers "*.Mask" "F.Cu")
+		(layers "F.Cu" "F.Paste" "F.Mask")
 		(thermal_bridge_angle 45)
-		(uuid "97ee0750-58cc-4062-9e87-e1915581b685")
+		(uuid "69c805f2-7fcc-4614-9b9e-95d8e32ec8dd")
 	)
 	(pad "4" smd rect
 		(at 19.75 9)
 		(size 3 3)
-		(layers "*.Mask" "F.Cu")
+		(layers "F.Cu" "F.Paste" "F.Mask")
 		(thermal_bridge_angle 45)
-		(uuid "c1e62bdc-4aeb-47e8-9f1a-60808fd94fbc")
+		(uuid "143b561e-f8d6-4701-aafa-36e12683d888")
 	)
 	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Kicker.pretty/XL6009.step"
 		(offset
