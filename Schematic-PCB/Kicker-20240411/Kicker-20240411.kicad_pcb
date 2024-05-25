@@ -10164,7 +10164,11 @@
 		(at 155 110.5)
 		(descr "LED SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
 		(tags "LED")
+<<<<<<< Updated upstream
 		(property "Reference" "D3"
+=======
+		(property "Reference" "PWR"
+>>>>>>> Stashed changes
 			(at 2.5 0 0)
 			(layer "B.SilkS")
 			(uuid "fc915aa8-3556-42bc-bafb-2e5326b3dcc1")
