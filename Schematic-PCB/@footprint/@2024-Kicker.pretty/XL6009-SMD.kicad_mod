@@ -444,7 +444,7 @@
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz -90 0 0)
+			(xyz -90 0 180)
 		)
 	)
 	(model "C:/Users/h13-k/OneDrive/デスクトップ/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Kicker.pretty/XL6009.step"
