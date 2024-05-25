@@ -1,3 +1,6 @@
+//ESP32C3
+//Slave, Peripheral
+
 #include <Wire.h>
 
 #include "BLEDevice.h"
@@ -159,7 +162,7 @@ void loop() {
 
   if (connected) {
     std::string COPI_string = remote_characteristic_COPI->readValue();
-    remote_characteristic_CIPO->writeValue(c.c_str(), c.length());
+    remote_characteristic_CIPO->writeValue(CIPO_string.c_str(), CIPO_string.length());
     Serial.printf("COPI : \" %s \" ,    CIPO : \" %s \"\n", COPI_string.c_str(), CIPO_string.c_str());
   } else {
     Serial.println("Not connected!");
