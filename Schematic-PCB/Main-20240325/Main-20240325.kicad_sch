@@ -6331,10 +6331,6 @@
 		(uuid "6d9e96d6-dea9-4e9c-ac20-8c4a163956c3")
 	)
 	(no_connect
-		(at 55.88 87.63)
-		(uuid "73337d1a-9464-46ab-8910-111b4ed13344")
-	)
-	(no_connect
 		(at 58.42 62.23)
 		(uuid "7a3e8df6-6b6b-48e5-9ccf-bca76b57a128")
 	)
@@ -12092,7 +12088,7 @@
 	)
 	(global_label "ball01k"
 		(shape output)
-		(at 102.87 361.95 0)
+		(at 102.87 356.87 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12102,7 +12098,7 @@
 		)
 		(uuid "6e3eff5a-4481-4bee-9f1e-9960326b1637")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 112.9307 361.95 0)
+			(at 112.9307 356.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12246,22 +12242,22 @@
 	)
 	(global_label "KickerSignal-main"
 		(shape input)
-		(at 118.11 127 0)
+		(at 55.88 87.63 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "83a77e7e-aa31-440b-af83-4d63e274ac53")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 139.0565 127 0)
+			(at 35.439 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -12334,7 +12330,7 @@
 	)
 	(global_label "Line-MD-Main=TX_3.3V"
 		(shape input)
-		(at 102.87 359.41 0)
+		(at 102.87 367.03 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12344,7 +12340,7 @@
 		)
 		(uuid "8b3a1b43-db1e-45e7-9ed3-6eec32ab322f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 128.7756 359.41 0)
+			(at 128.7756 367.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12400,7 +12396,7 @@
 	)
 	(global_label "ball02k"
 		(shape output)
-		(at 102.87 364.49 0)
+		(at 102.87 359.41 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12410,7 +12406,7 @@
 		)
 		(uuid "8d7128cc-9910-4434-97b0-486cfe57f34b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 112.9307 364.49 0)
+			(at 112.9307 359.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13016,7 +13012,7 @@
 	)
 	(global_label "KickerSignal-main"
 		(shape input)
-		(at 102.87 367.03 0)
+		(at 102.87 361.95 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13026,7 +13022,7 @@
 		)
 		(uuid "c21c9b40-21cc-4ec0-8ed1-6ecf4f476025")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 123.8165 367.03 0)
+			(at 123.8165 361.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13038,7 +13034,7 @@
 	)
 	(global_label "Line-MD-Main=RX_3.3V"
 		(shape output)
-		(at 102.87 356.87 0)
+		(at 102.87 364.49 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13048,7 +13044,7 @@
 		)
 		(uuid "c43d8d8c-f005-4714-bf3c-94f14b9355db")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 129.078 356.87 0)
+			(at 129.078 364.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
