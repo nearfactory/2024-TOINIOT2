@@ -6339,12 +6339,20 @@
 		(uuid "6d9e96d6-dea9-4e9c-ac20-8c4a163956c3")
 	)
 	(no_connect
+		(at 55.88 87.63)
+		(uuid "73337d1a-9464-46ab-8910-111b4ed13344")
+	)
+	(no_connect
 		(at 58.42 62.23)
 		(uuid "7a3e8df6-6b6b-48e5-9ccf-bca76b57a128")
 	)
 	(no_connect
 		(at 99.06 57.15)
 		(uuid "7c91444f-b96b-4c80-aa44-5962897b681f")
+	)
+	(no_connect
+		(at 55.88 90.17)
+		(uuid "88fb9c96-3bbe-4059-9677-f0e57d6dc579")
 	)
 	(no_connect
 		(at 99.06 67.31)
@@ -11586,28 +11594,6 @@
 			)
 		)
 	)
-	(global_label "Cam-main=TX"
-		(shape bidirectional)
-		(at 157.48 269.24 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "27b1a254-5bf3-4415-ad9a-87d1853760e4")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 149.5855 269.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "SW-TAC-4"
 		(shape output)
 		(at 49.53 349.25 0)
@@ -12400,6 +12386,28 @@
 			)
 		)
 	)
+	(global_label "Cam-main=RX"
+		(shape bidirectional)
+		(at 157.48 269.24 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "91de3be6-fce2-4dd4-83da-610e62319cdc")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 140.1884 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "MOSI"
 		(shape input)
 		(at 157.48 273.05 180)
@@ -12479,6 +12487,28 @@
 		(uuid "99ba2d55-6144-4f94-940c-efe1bb9e6809")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 134.7796 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Cam-main=TX"
+		(shape bidirectional)
+		(at 157.48 278.13 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9a9d0acd-2602-425a-96ba-4ed7553b6243")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 149.5855 278.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13144,28 +13174,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "Cam-main=RX"
-		(shape bidirectional)
-		(at 157.48 278.13 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "e11414ee-63ac-4fad-8937-bc242781c4b5")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 140.1884 278.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -14461,7 +14469,7 @@
 		(fields_autoplaced yes)
 		(uuid "21d6e3f3-967c-4e0e-ab84-61a469c88059")
 		(property "Reference" "R4"
-			(at 147.32 190.5 0)
+			(at 147.32 190.4999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14469,8 +14477,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10K"
-			(at 147.32 193.04 0)
+		(property "Value" "1K"
+			(at 147.32 193.0399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18214,24 +18222,23 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "7d2cdffe-f07a-42d8-a55f-c2f314b51646")
 		(property "Reference" "R3"
-			(at 139.7 190.5 0)
+			(at 136.906 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Value" "10K"
-			(at 139.7 193.04 0)
+		(property "Value" "1K"
+			(at 136.906 193.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
