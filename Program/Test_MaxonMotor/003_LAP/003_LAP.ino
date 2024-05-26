@@ -20,25 +20,29 @@ void setup() {
 
   // PWM周波数を50KHzに設定
   // analogWriteFrequency(ピン番号, 周波数[Hz]);
-  analogWriteFrequency(2, 50000);
+  analogWriteFrequency(3, 50000);
 }
 
 float theta = 0;
 
 void loop() {
-  analogWrite(2, abs(sin(theta/180*PI)*255));
-  if(sin(theta/180*PI)*255 < 0){
-    digitalWrite(3, 1);
-  }
-  else{
-    digitalWrite(3, 0);
-  }
+  // 回転は常に100%
+  digitalWrite(2, 1);
 
-  Serial.print(-255);
+  float output;
+  output = (sin(theta/180*PI)*100 + 100) / 2 / 100 * 255;
+  // 正逆転をPWM制御する（0=逆転100%、127=ストップ、255=正転100%）
+  analogWrite(3, (int)output);
+
+  Serial.print(-100);
   Serial.print("\t");
-  Serial.print(255);
+  Serial.print(0);
   Serial.print("\t");
-  Serial.println(sin(theta/180*PI)*255);
+  Serial.print(100);
+  Serial.print("\t");
+  Serial.print(output);
+  Serial.print("\t");
+  Serial.printlm(sin(theta/180*PI)*100);
 
   theta += 1;
 
