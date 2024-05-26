@@ -1,4 +1,4 @@
-23213642505287330
+23223946058926991
 @2023-2_MotorDriver
 DRV8874
 
@@ -223,6 +223,27 @@ Joint
 0
 0
 0
+@2024-Kicker
+XL6009-SMD
+
+
+0
+4
+4
+@2024-Kicker
+XL6009-THT
+
+
+0
+4
+4
+@2024-MD
+JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical
+JST VH PBT series connector, B2P-VH-B (http://www.jst-mfg.com/product/pdf/eng/eVH.pdf), generated with kicad-footprint-generator
+connector JST VH vertical
+0
+2
+2
 @2024-MD
 XT30U-M
 
@@ -230,6 +251,27 @@ XT30U-M
 0
 2
 2
+@2024-Main
+MODULE_DEV-16771
+
+
+0
+65
+65
+@2024-Main
+Vishay_MINICAST-3Pin
+IR Receiver Vishay TSOP-xxxx, MINICAST package, see https://www.vishay.com/docs/82669/tsop32s40f.pdf
+IR Receiver Vishay TSOP-xxxx MINICAST
+0
+3
+3
+@2024-Main
+XIAO ESP32C3
+
+
+0
+14
+14
 @2024-Power
 2MS1-T1-B4-VS2-Q-E-S
 
