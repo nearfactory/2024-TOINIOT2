@@ -1,8 +1,10 @@
 {
     "files.associations": {
+        "*.toml": "bat",
         "*.tcc": "cpp",
         "deque": "cpp",
         "vector": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "ostream": "cpp"
     }
 }

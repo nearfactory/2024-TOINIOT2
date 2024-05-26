@@ -172,6 +172,7 @@ void loop() {
 }
 
 void recieveEvent(int number) {
+  Serial.println(number);
   CIPO_string = "";
   while (Wire.available() > 0) {
     char c = Wire.read();
