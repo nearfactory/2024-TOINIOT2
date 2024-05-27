@@ -42,7 +42,7 @@ void loop() {
   Serial.print("\t");
   Serial.print(output);
   Serial.print("\t");
-  Serial.printlm(sin(theta/180*PI)*100);
+  Serial.println(sin(theta/180*PI)*100);
 
   theta += 1;
 
