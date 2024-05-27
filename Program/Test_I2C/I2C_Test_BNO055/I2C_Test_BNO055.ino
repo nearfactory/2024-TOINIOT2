@@ -78,22 +78,22 @@ void loop(void)
 
   int8_t boardTemp = bno.getTemp();
   Serial.println();
-  Serial.print(F("temperature: "));
+  //Serial.print(F("temperature: "));
   Serial.println(boardTemp);
 
   uint8_t system, gyro, accel, mag = 0;
   bno.getCalibration(&system, &gyro, &accel, &mag);
   Serial.println();
-  Serial.print("Calibration: Sys=");
+  //Serial.print("Calibration: Sys=");
   Serial.print(system);
-  Serial.print(" Gyro=");
+  //Serial.print(" Gyro=");
   Serial.print(gyro);
-  Serial.print(" Accel=");
+  //Serial.print(" Accel=");
   Serial.print(accel);
-  Serial.print(" Mag=");
+  //Serial.print(" Mag=");
   Serial.println(mag);
 
-  Serial.println("--");
+  //Serial.println("--");
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
 
@@ -145,11 +145,11 @@ void printEvent(sensors_event_t* event) {
     Serial.print("Unk:");
   }
 
-  Serial.print("\tx= ");
+  //Serial.print("\tx= ");
   Serial.print(x);
-  Serial.print(" |\ty= ");
+  //Serial.print(" |\ty= ");
   Serial.print(y);
-  Serial.print(" |\tz= ");
+  //Serial.print(" |\tz= ");
   Serial.println(z);
 }
 
