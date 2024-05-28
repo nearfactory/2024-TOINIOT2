@@ -14596,7 +14596,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 323.85 0)
 			(effects
 				(font
@@ -14664,7 +14664,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 25.4 90)
 			(effects
 				(font
@@ -14932,7 +14932,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 209.55 0)
 			(effects
 				(font
@@ -15000,7 +15000,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 184.15 90)
 			(effects
 				(font
@@ -15337,7 +15337,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 275.59 0)
 			(effects
 				(font
@@ -15405,7 +15405,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 165.1 90)
 			(effects
 				(font
@@ -15473,7 +15473,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 241.3 90)
 			(effects
 				(font
@@ -15541,7 +15541,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 120.65 90)
 			(effects
 				(font
@@ -15674,7 +15674,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 99.06 176.53 90)
 			(effects
 				(font
@@ -15778,7 +15778,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 59.69 0)
 			(effects
 				(font
@@ -15912,7 +15912,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 99.06 308.61 90)
 			(effects
 				(font
@@ -16016,7 +16016,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 191.77 0)
 			(effects
 				(font
@@ -16152,7 +16152,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 171.45 90)
 			(effects
 				(font
@@ -16286,7 +16286,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 88.9 90)
 			(effects
 				(font
@@ -16354,7 +16354,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 323.85 0)
 			(effects
 				(font
@@ -16422,7 +16422,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 107.95 90)
 			(effects
 				(font
@@ -16489,7 +16489,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 158.75 0)
 			(effects
 				(font
@@ -16625,7 +16625,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 95.25 90)
 			(effects
 				(font
@@ -16761,7 +16761,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 31.75 90)
 			(effects
 				(font
@@ -17028,7 +17028,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 308.61 0)
 			(effects
 				(font
@@ -17161,7 +17161,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 196.85 90)
 			(effects
 				(font
@@ -17296,7 +17296,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 143.51 0)
 			(effects
 				(font
@@ -17364,7 +17364,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 76.2 90)
 			(effects
 				(font
@@ -17496,7 +17496,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 99.06 77.47 90)
 			(effects
 				(font
@@ -17802,7 +17802,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 57.15 90)
 			(effects
 				(font
@@ -17935,7 +17935,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 69.85 90)
 			(effects
 				(font
@@ -18137,7 +18137,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 139.7 90)
 			(effects
 				(font
@@ -18205,7 +18205,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 290.83 0)
 			(effects
 				(font
@@ -18537,7 +18537,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 50.8 90)
 			(effects
 				(font
@@ -18739,7 +18739,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 228.6 90)
 			(effects
 				(font
@@ -19512,7 +19512,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 59.69 0)
 			(effects
 				(font
@@ -19714,7 +19714,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 209.55 0)
 			(effects
 				(font
@@ -20165,7 +20165,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 38.1 90)
 			(effects
 				(font
@@ -20232,7 +20232,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 257.81 0)
 			(effects
 				(font
@@ -20435,7 +20435,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 92.71 0)
 			(effects
 				(font
@@ -20577,7 +20577,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 176.53 0)
 			(effects
 				(font
@@ -20779,7 +20779,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 127 90)
 			(effects
 				(font
@@ -20985,7 +20985,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 92.71 0)
 			(effects
 				(font
@@ -21053,7 +21053,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 242.57 0)
 			(effects
 				(font
@@ -21254,7 +21254,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 190.5 90)
 			(effects
 				(font
@@ -21321,7 +21321,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 110.49 0)
 			(effects
 				(font
@@ -21520,7 +21520,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 224.79 0)
 			(effects
 				(font
@@ -21588,7 +21588,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 215.9 90)
 			(effects
 				(font
@@ -21722,7 +21722,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 209.55 90)
 			(effects
 				(font
@@ -21994,7 +21994,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 82.55 90)
 			(effects
 				(font
@@ -22126,7 +22126,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 176.53 0)
 			(effects
 				(font
@@ -22194,7 +22194,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 224.79 0)
 			(effects
 				(font
@@ -22261,7 +22261,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 99.06 110.49 90)
 			(effects
 				(font
@@ -22501,7 +22501,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 99.06 44.45 90)
 			(effects
 				(font
@@ -22671,7 +22671,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 152.4 90)
 			(effects
 				(font
@@ -22739,7 +22739,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 77.47 0)
 			(effects
 				(font
@@ -22945,7 +22945,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 44.45 90)
 			(effects
 				(font
@@ -23078,7 +23078,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 191.77 0)
 			(effects
 				(font
@@ -23212,7 +23212,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 275.59 0)
 			(effects
 				(font
@@ -23280,7 +23280,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 177.8 90)
 			(effects
 				(font
@@ -23691,7 +23691,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 125.73 0)
 			(effects
 				(font
@@ -24322,7 +24322,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 222.25 90)
 			(effects
 				(font
@@ -24390,7 +24390,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 114.3 90)
 			(effects
 				(font
@@ -24525,7 +24525,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 99.06 242.57 90)
 			(effects
 				(font
@@ -24696,7 +24696,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 99.06 143.51 90)
 			(effects
 				(font
@@ -24868,7 +24868,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 101.6 90)
 			(effects
 				(font
@@ -24935,7 +24935,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 242.57 0)
 			(effects
 				(font
@@ -25003,7 +25003,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 203.2 90)
 			(effects
 				(font
@@ -25071,7 +25071,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 63.5 90)
 			(effects
 				(font
@@ -25275,7 +25275,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 158.75 90)
 			(effects
 				(font
@@ -25408,7 +25408,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 99.06 275.59 90)
 			(effects
 				(font
@@ -25643,7 +25643,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 44.45 0)
 			(effects
 				(font
@@ -25917,7 +25917,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 110.49 0)
 			(effects
 				(font
@@ -25985,7 +25985,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 257.81 0)
 			(effects
 				(font
@@ -26389,7 +26389,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 125.73 0)
 			(effects
 				(font
@@ -26456,7 +26456,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 77.47 0)
 			(effects
 				(font
@@ -26732,7 +26732,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 133.35 90)
 			(effects
 				(font
@@ -26938,7 +26938,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 234.95 90)
 			(effects
 				(font
@@ -27006,7 +27006,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
+		(property "Footprint" "@2024-Line:LED-3mm"
 			(at 22.86 146.05 90)
 			(effects
 				(font
@@ -27073,7 +27073,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 290.83 0)
 			(effects
 				(font
@@ -27140,7 +27140,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 99.06 209.55 90)
 			(effects
 				(font
@@ -27850,7 +27850,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 62.23 44.45 0)
 			(effects
 				(font
@@ -27984,7 +27984,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 158.75 0)
 			(effects
 				(font
@@ -28323,7 +28323,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024-Line:NJL7502L"
 			(at 143.51 143.51 0)
 			(effects
 				(font
