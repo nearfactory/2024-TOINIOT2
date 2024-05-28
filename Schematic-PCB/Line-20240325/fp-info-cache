@@ -1,4 +1,4 @@
-23229096647093125
+23230813520239516
 @2023-2_MotorDriver
 DRV8874
 
@@ -237,6 +237,13 @@ XL6009-THT
 0
 4
 4
+@2024-Line
+JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical
+JST VH PBT series connector, B2P-VH-B (http://www.jst-mfg.com/product/pdf/eng/eVH.pdf), generated with kicad-footprint-generator
+connector JST VH vertical
+0
+2
+2
 @2024-Line
 LED-3mm
 
