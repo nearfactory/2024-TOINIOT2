@@ -36,16 +36,37 @@ Teensy4.1(COM側) <-> FT232RL(UART2側)
 2022/12/28 : 新規
 **********************************************************************/
 
+#include<SoftwareSerial.h>
+
+//SoftwareSerial mySerial(0,1);
+
 void setup()
 {
-  Serial.begin(115200);
-  Serial1.setRX(0);
-  Serial1.setTX(1);
-  Serial1.begin(115200);
+  // pinMode(0,INPUT_PULLUP);
+  Serial.begin(9600);
+  Serial.println("Teensy4.1");
+  Serial1.begin(9600);
+  // Serial1.setRX(0);
+  // Serial1.setTX(1);
+  mySerial.begin(9600);
+  // Serial1.begin(9600);
+  // pinMode(1,OUTPUT);
 }
 
 void loop()
 {
+  // static int count = 0;
+  // static int ms = 0;
+  // if(millis()-ms >= 500){
+  //   if(count){
+  //     count = 0;
+  //   }else{
+  //     count = 1;
+  //   }
+  //   digitalWrite(1, count);
+  //   ms = millis();
+  // }
+
   if(Serial1.available() != 0)          //UART5にデータがあれば、読み取った内容をUART0に送信
   {
       Serial.write(Serial1.read());
@@ -55,4 +76,6 @@ void loop()
   {
       Serial1.write(Serial.read());
   }
+  // Serial.println(count);
+  // delay(50);
 }
