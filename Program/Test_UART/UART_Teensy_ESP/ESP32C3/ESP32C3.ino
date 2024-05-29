@@ -1,67 +1,57 @@
-// ESP32C3
+/**********************************************************************
+【ライセンスについて】
+Copyright(c) 2022 by tamanegi
+Released under the MIT license
+'http://tamanegi.digick.jp/about-licence/
 
-//Programing by たまねぎ
-//【スケッチの説明】
-//RP2040 CPU搭載基板で使用できます。
-//
-//Raspberry Pi pico 同士でUART通信を行います。
-//◆◆本スケッチは送信側、受信側共通です。◆◆
-//
-//パスコンからの読み取り文字を受信側にスルーします。
-//送信側から読み取った文字をパソコンへスルーします。
-//
-//【準備】
-//・Raspberry Pi pico を2枚用意します。
-//UARTはUART0を使用します。
-//送信側のRaspberry Pi pico のUART0 TX にGP0, UART0 RXにGP1を使用します。
-//受信側のRaspberry Pi pico には、送信側の配線がクロスするように配線します。
-//
-//Raspberry Pi pico の送信側と受信側に本スケッチを書き込みます。
-//
-//【バージョン情報】
-// 2022/7/9 : 新規
+【マイコン基板】
+ Teensy 4.1
+ 
+【スケッチの説明】
+ COMから読み取った情報を UART8へ出力します。
+ UART8から読み取った情報を COMへ出力します。
 
-#define UART0_TX   D6               //SDAにはGP0を使用する
-#define UART0_RX   D7               //SCLにはGP1を使用する
+【ライブラリ】
+Teensy > Teensy 4.0
 
-uint32_t i = 0;
+【準備】
+ UARTの通信にFT232RLを使用します。
 
-void setup() 
+Teensy4.1(COM側) <-> FT232RL(UART2側)
+ GPIO35(UART8 TX) <-> RX
+ GPIO34(UART8 RX) <-> TX
+
+ (Uart番号とオブジェクト名)
+ COM - Serial
+ UART1 - Serial1
+ UART2 - Serial2
+ UART3 - Serial3
+ UART4 - Serial4
+ UART5 - Serial5
+ UART6 - Serial6
+ UART7 - Serial7
+ UART8 - Serial1
+ 
+【バージョン情報】
+2022/12/28 : 新規
+**********************************************************************/
+
+void setup()
 {
-
-  Serial.begin(115200);           //パソコン側からの読み取りと書き込みに使用します。
-
-  // Serial1.setTX(UART0_TX);        //もう一方のRaspberry Pi Picoとの通信に使用します。
-  // Serial1.setRX(UART0_RX);
-  Serial1.setPins(UART0_RX, UART0_TX);
+  Serial.begin(115200);
+  Serial1.setPins(D7,D6);
   Serial1.begin(115200);
 }
 
-void loop() 
+void loop()
 {
-  char buf = 0;
-
-  //<<送信側としての処理>>
-  //パソコンからの受信処理と受信側への送信
-  if(Serial.available() == true)
+  if(Serial1.available() != 0)          //UART5にデータがあれば、読み取った内容をUART0に送信
   {
-    buf = Serial.read();
+      Serial.write(Serial1.read());
+  }
 
-    //ASCコード上で、0b1000 0000ビットが0の時、0b0111 0000 のいずれかが 1なら英文字（正確ではありません。)
-    if(((buf & 0x80) != 0x80) && ((buf & 0x40) == 0x40))
-    {
-      //ASCコード上で 0b0010 0000 のビットを反転させることで、大文字と小文字を入れ替える。
-      buf = buf ^ 0x20;
-    }
-    //受信側へデータを送信する。
-    Serial1.write(buf);
-  }  
-
-  //<<受信側としての処理>>
-  //送信側からの受信処理と、パソコンへの送信
-  if(Serial1.available() == true)
+  if(Serial.available() != 0)           //UART0にデータがあれば、読み取った内容をUART5に送信
   {
-    buf = Serial1.read();
-    Serial.write(buf);
-  } 
+      Serial1.write(Serial.read());
+  }
 }
