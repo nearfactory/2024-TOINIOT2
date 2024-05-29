@@ -18639,7 +18639,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 55.88 180)
+		(at 62.23 40.64 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18647,7 +18647,7 @@
 		(dnp no)
 		(uuid "6cfec366-0e77-43c3-8c0e-b68248ebac87")
 		(property "Reference" "U3"
-			(at 62.23 49.53 0)
+			(at 62.23 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18655,7 +18655,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 49.53 0)
+			(at 62.23 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18663,7 +18663,7 @@
 			)
 		)
 		(property "Footprint" "@2024-Line:NJL7502L"
-			(at 62.23 59.69 0)
+			(at 62.23 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18672,7 +18672,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 59.69 0)
+			(at 62.23 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18681,7 +18681,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 55.88 0)
+			(at 62.23 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19665,7 +19665,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 40.64 180)
+		(at 62.23 55.88 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -19673,7 +19673,7 @@
 		(dnp no)
 		(uuid "7da2cf81-184b-486d-ad02-fd14001bb95f")
 		(property "Reference" "U4"
-			(at 62.23 34.29 0)
+			(at 62.23 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19681,7 +19681,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 34.29 0)
+			(at 62.23 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19689,7 +19689,7 @@
 			)
 		)
 		(property "Footprint" "@2024-Line:NJL7502L"
-			(at 62.23 44.45 0)
+			(at 62.23 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19698,7 +19698,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 44.45 0)
+			(at 62.23 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19707,7 +19707,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 40.64 0)
+			(at 62.23 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
