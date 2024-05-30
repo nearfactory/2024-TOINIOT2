@@ -23,36 +23,31 @@ Teensy4.1(COM側) <-> FT232RL(UART2側)
 
  (Uart番号とオブジェクト名)
  COM - Serial
- UART1 - mySerial
+ UART1 - Serial1
  UART2 - Serial2
  UART3 - Serial3
  UART4 - Serial4
  UART5 - Serial5
  UART6 - Serial6
  UART7 - Serial7
- UART8 - mySerial
+ UART8 - Serial1
  
 【バージョン情報】
 2022/12/28 : 新規
 **********************************************************************/
-// #include <SoftwareSerial.h>
 
-// SoftwareSerial mySerial(0,1);
 void setup()
 {
-  // pinMode(2,INPUT_PULLUP);
-  Serial.begin(9600);
-  Serial1.begin(9600);
-  // mySerial.setPins(2,3);
-  // mySerial.setRX(2);
-  // mySerial.setTX(3);
-  // mySerial.begin(9600);
-  // pinMode(0,INPUT_PULLUP);
-  Serial.println("AtMega2560");
+  pinMode(0,INPUT_PULLUP);
+  Serial.begin(115200);
+  //Serial1.setRX(0);
+  //Serial1.setTX(1);
+  Serial1.begin(115200);
 }
 
 void loop()
 {
+  //Serial.println("v");
   if(Serial1.available() != 0)          //UART5にデータがあれば、読み取った内容をUART0に送信
   {
       Serial.write(Serial1.read());
@@ -62,7 +57,4 @@ void loop()
   {
       Serial1.write(Serial.read());
   }
-
-  // Serial.println(digitalRead(0));
-  // delay(100);
 }
