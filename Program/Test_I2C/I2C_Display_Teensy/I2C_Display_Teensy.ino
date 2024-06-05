@@ -1,3 +1,5 @@
+// Teensyはリセットボタンを押しながらUSBを挿してから書き込むと治る
+
 #include<Adafruit_BNO055.h>
 #include<Adafruit_GFX.h>
 #include<Adafruit_Sensor.h>
