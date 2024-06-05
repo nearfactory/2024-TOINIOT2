@@ -11340,6 +11340,17 @@
 		)
 		(uuid "1f89ad88-48d3-4372-a04f-cd2f7da3e797")
 	)
+	(text "TX-USB RX-USBの配線の間に、\nノイズ対策用の抵抗を入れられるようにパターンを作っておく"
+		(exclude_from_sim no)
+		(at 269.494 148.844 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "55c30cc9-9788-49f9-94ef-a64472ac2369")
+	)
 	(text "LED"
 		(exclude_from_sim no)
 		(at 16.51 21.59 0)
@@ -11350,6 +11361,16 @@
 			(justify left bottom)
 		)
 		(uuid "6e278377-51c5-4fde-97a2-c66e7d1d4d3f")
+	)
+	(text "D+ D-間は短く配線する\n"
+		(exclude_from_sim no)
+		(at 231.902 285.496 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "b3eb3b04-d393-4214-8bd0-3ec568cc2ded")
 	)
 	(text "To Motor Driver"
 		(exclude_from_sim no)
