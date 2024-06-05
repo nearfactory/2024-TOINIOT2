@@ -6547,16 +6547,6 @@
 	)
 	(wire
 		(pts
-			(xy 208.28 66.04) (xy 213.36 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1695348d-2357-4488-8b49-5f100ed33431")
-	)
-	(wire
-		(pts
 			(xy 110.49 316.23) (xy 110.49 313.69)
 		)
 		(stroke
@@ -8107,7 +8097,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 66.04) (xy 203.2 66.04)
+			(xy 186.69 66.04) (xy 213.36 66.04)
 		)
 		(stroke
 			(width 0)
@@ -13899,74 +13889,6 @@
 				)
 				(justify right)
 				(hide yes)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 205.74 66.04 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "01c407e0-b032-41b7-a16f-e88d665c136e")
-		(property "Reference" "R37"
-			(at 205.74 68.58 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "27"
-			(at 205.74 66.04 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 205.74 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 205.74 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 205.74 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a9c91625-21a8-4cdc-879b-9f467c7733f8")
-		)
-		(pin "2"
-			(uuid "9d690632-fd8d-43e0-a592-f184f48bd8e9")
-		)
-		(instances
-			(project "Line-20240325"
-				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
-					(reference "R37")
-					(unit 1)
-				)
 			)
 		)
 	)
