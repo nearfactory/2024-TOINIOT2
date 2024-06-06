@@ -5948,6 +5948,10 @@
 		(uuid "1bd16b7d-a127-4d06-b298-53ce918cd791")
 	)
 	(no_connect
+		(at 256.54 180.34)
+		(uuid "2ea9b58b-dc84-49b0-9c69-d27b077be071")
+	)
+	(no_connect
 		(at 213.36 114.3)
 		(uuid "34c50cc0-d61c-443d-844f-b3d9156d1437")
 	)
@@ -5956,12 +5960,28 @@
 		(uuid "37ca8c36-88a1-479b-bf50-0e682e5fbca7")
 	)
 	(no_connect
+		(at 256.54 187.96)
+		(uuid "4026aa77-143b-43c2-89a3-6e71361afacb")
+	)
+	(no_connect
+		(at 256.54 170.18)
+		(uuid "40a2c0b7-216e-4e5f-9a07-65703295d439")
+	)
+	(no_connect
 		(at 213.36 104.14)
 		(uuid "5390371f-00e4-4977-be52-32724e7e2429")
 	)
 	(no_connect
+		(at 256.54 172.72)
+		(uuid "5b05b19b-0412-4523-b8cb-063b02629be2")
+	)
+	(no_connect
 		(at 254 162.56)
 		(uuid "678c40d1-0c2a-434e-a0b1-15e6074f5775")
+	)
+	(no_connect
+		(at 256.54 119.38)
+		(uuid "68f1e0ac-ec5a-4d0c-9755-4e42a7ca8e9f")
 	)
 	(no_connect
 		(at 213.36 101.6)
@@ -5984,6 +6004,10 @@
 		(uuid "94f1427c-478e-4038-9f72-7a8c57a5eb76")
 	)
 	(no_connect
+		(at 256.54 185.42)
+		(uuid "9d6424d2-bd3e-4059-b04f-eb34f3f00e61")
+	)
+	(no_connect
 		(at 213.36 116.84)
 		(uuid "a70bd0f8-f279-4a3d-a3c8-001c0131ae9e")
 	)
@@ -5998,6 +6022,10 @@
 	(no_connect
 		(at 254 165.1)
 		(uuid "afd6661a-b21e-454f-a93b-3176feaef791")
+	)
+	(no_connect
+		(at 256.54 175.26)
+		(uuid "b07a5806-8653-4c2e-bcf4-f208f2ac86ef")
 	)
 	(no_connect
 		(at 213.36 88.9)
@@ -6018,6 +6046,10 @@
 	(no_connect
 		(at 278.13 274.32)
 		(uuid "bb3a3720-20b6-4cc8-adb6-a3d4bebe5e43")
+	)
+	(no_connect
+		(at 256.54 177.8)
+		(uuid "bbdde372-6015-4211-bdb3-c352018d378b")
 	)
 	(no_connect
 		(at 213.36 91.44)
@@ -6054,6 +6086,10 @@
 	(no_connect
 		(at 213.36 137.16)
 		(uuid "eaac9f39-616b-4a42-b5f8-2e2aedddbb57")
+	)
+	(no_connect
+		(at 256.54 116.84)
+		(uuid "f2a1f7ba-94d8-4d6b-8282-984fb42a1662")
 	)
 	(wire
 		(pts
@@ -11335,7 +11371,10 @@
 		(at 269.494 148.844 0)
 		(effects
 			(font
+				(face "游ゴシック")
 				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
 			)
 			(justify left)
 		)
@@ -11352,12 +11391,29 @@
 		)
 		(uuid "6e278377-51c5-4fde-97a2-c66e7d1d4d3f")
 	)
+	(text "クロックの発振子からMPUのピンまでの距離は同距離にする"
+		(exclude_from_sim no)
+		(at 174.752 49.53 0)
+		(effects
+			(font
+				(face "游ゴシック")
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "99a38a37-c3a1-4e4a-850c-547e1d655508")
+	)
 	(text "D+ D-間は短く配線する\n"
 		(exclude_from_sim no)
 		(at 231.902 285.496 0)
 		(effects
 			(font
+				(face "游ゴシック")
 				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
 			)
 		)
 		(uuid "b3eb3b04-d393-4214-8bd0-3ec568cc2ded")
