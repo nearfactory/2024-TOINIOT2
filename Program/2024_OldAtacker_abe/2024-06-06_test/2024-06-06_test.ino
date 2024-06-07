@@ -1,4 +1,10 @@
+// debug
+#define MOTOR_NOUSE
+
+#include<string.h>
+#include <Arduino.h>
 #include "ball.hpp"
+#include "buzzer.hpp"
 #include "line.hpp"
 #include "motor.hpp"
 
@@ -8,7 +14,8 @@ void setup() {
 
   ballSetup();
   lineSetup();
-  motorSetup();
+  buzzerSetup();
+  // motorSetup();
 }
 
 void loop() {
@@ -19,14 +26,40 @@ void loop() {
   static short ball[BALL_NUM]{1023};
   static bool line[LINE_NUM]{false};
   
-  lineUpdate(line);
-  ballUpdate(ball);
-  motorDebug();
+  // lineUpdate(line);
+  // ballUpdate(ball);
+  // ballDebug();
+  // motorDebug();
 
+  ballUpdate(ball);
+  int distance = 0;
+  for(auto& x:ball) distance+=x;
+  int ball_max = 0;
+  int dir=0;
+  for(int i=0;i<BALL_NUM;i++){
+    if(ball[i]>ball_max){
+      ball_max=ball[i];
+      dir = i;
+    }
+  }
+  Serial.print("max:");
+  Serial.print(1023*BALL_NUM);
+  Serial.print("min:");
+  Serial.println(0);
+  Serial.print("distance:");
+  Serial.print(distance);
+  Serial.print("\ndir:");
+  Serial.print(dir);
+  Serial.print("\n");
+
+  /*
   Serial.print("processing time:");
-  Serial.print(millis()-processing_start);
+  Serial.print((millis()-processing_start));
   Serial.println("(ms)");
   Serial.println("\n--------------------------------\n");
+  */
+
   count++;
+
   delay(50);
 }

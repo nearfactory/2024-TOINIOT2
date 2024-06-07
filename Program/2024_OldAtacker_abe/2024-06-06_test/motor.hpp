@@ -1,8 +1,16 @@
-#include "Arduino.h"
 #pragma once
+#ifndef MOTOR_NOUSE
+
+#include "Arduino.h"
 
 constexpr int MOTOR_NUM = 4;
 const uint8_t MOTOR_PIN[MOTOR_NUM][2] = { { 19, 3 }, { 17, 2 }, { 25, 5 }, { 23, 4 } };
+enum MOTOR : uint8_t{
+  LF=0,
+  LB,
+  RB,
+  RF
+};
 
 void motorSetup(){
   for(int j=0;j<MOTOR_NUM;j++){
@@ -24,3 +32,5 @@ void motorDebug(){
   count++;
   return;
 }
+
+#endif

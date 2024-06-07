@@ -67,6 +67,12 @@
     "visible_layers": "000d010_80000007",
     "zone_display_mode": 0
   },
+  "git": {
+    "repo_password": "",
+    "repo_type": "",
+    "repo_username": "",
+    "ssh_key": ""
+  },
   "meta": {
     "filename": "BallSensor_TSSP58038_20230330.kicad_prl",
     "version": 3
