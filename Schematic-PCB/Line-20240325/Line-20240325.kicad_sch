@@ -6573,7 +6573,7 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 363.855) (xy 31.75 363.855)
+			(xy 29.21 364.49) (xy 58.42 364.49)
 		)
 		(stroke
 			(width 0)
@@ -7883,7 +7883,7 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 366.395) (xy 31.75 366.395)
+			(xy 29.21 367.03) (xy 58.42 367.03)
 		)
 		(stroke
 			(width 0)
@@ -9493,6 +9493,16 @@
 	)
 	(wire
 		(pts
+			(xy 29.21 372.11) (xy 31.75 372.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a8eec9e9-fb7e-4765-96e6-895f71748c61")
+	)
+	(wire
+		(pts
 			(xy 35.56 57.15) (xy 35.56 63.5)
 		)
 		(stroke
@@ -9523,7 +9533,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 366.395) (xy 58.42 368.935)
+			(xy 58.42 361.95) (xy 58.42 364.49)
 		)
 		(stroke
 			(width 0)
@@ -10083,13 +10093,13 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 371.475) (xy 58.42 371.475)
+			(xy 29.21 369.57) (xy 31.75 369.57)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c9f5b44b-968d-4149-acd2-0fcd8fa470cf")
+		(uuid "c9c78314-baef-4645-b75e-ad382bb32165")
 	)
 	(wire
 		(pts
@@ -10280,16 +10290,6 @@
 			(type default)
 		)
 		(uuid "d46c9c91-13fd-4c3e-b6ab-7ac311e6a2c7")
-	)
-	(wire
-		(pts
-			(xy 29.21 368.935) (xy 58.42 368.935)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d49ab939-306a-4676-bf1c-94178c88d3db")
 	)
 	(wire
 		(pts
@@ -11113,7 +11113,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 371.475) (xy 58.42 374.015)
+			(xy 58.42 367.03) (xy 58.42 369.57)
 		)
 		(stroke
 			(width 0)
@@ -12650,28 +12650,6 @@
 			)
 		)
 	)
-	(global_label "Line-MD-Main=RX_5V"
-		(shape output)
-		(at 31.75 363.855 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "94c1acf8-b60c-4959-8a7b-56312a497ac2")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 56.1437 363.855 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "line_threshold"
 		(shape input)
 		(at 115.57 247.65 0)
@@ -13024,28 +13002,6 @@
 			)
 		)
 	)
-	(global_label "Line-MD-Main=RX_5V"
-		(shape input)
-		(at 31.75 366.395 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "b0871bca-c964-4096-af98-e8689f89a6a9")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 56.1437 366.395 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "line02"
 		(shape output)
 		(at 115.57 57.15 0)
@@ -13284,6 +13240,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Line-MD-Main=TX_5V"
+		(shape output)
+		(at 31.75 369.57 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "cb46afbd-e9dc-47f2-ab95-2edda5ee4dd6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 55.8413 369.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -13636,6 +13614,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Line-MD-Main=RX_5V"
+		(shape input)
+		(at 31.75 372.11 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ec94d0a3-f2a8-4e0f-8dad-de7cf6664683")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 56.1437 372.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -16246,7 +16246,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 58.42 366.395 0)
+		(at 58.42 361.95 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -16255,7 +16255,7 @@
 		(fields_autoplaced yes)
 		(uuid "385e714c-1e46-41b9-a70d-fd156d08cbb9")
 		(property "Reference" "#PWR026"
-			(at 58.42 370.205 0)
+			(at 58.42 365.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16264,7 +16264,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 58.42 361.315 0)
+			(at 58.42 356.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16272,7 +16272,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 58.42 366.395 0)
+			(at 58.42 361.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16281,7 +16281,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 58.42 366.395 0)
+			(at 58.42 361.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16290,7 +16290,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 58.42 366.395 0)
+			(at 58.42 361.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19831,7 +19831,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x04_Pin")
-		(at 24.13 366.395 0)
+		(at 24.13 367.03 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -19840,7 +19840,7 @@
 		(fields_autoplaced yes)
 		(uuid "7f5edee4-f4f3-4b5b-aa03-4fde1008688d")
 		(property "Reference" "J2"
-			(at 24.765 358.775 0)
+			(at 24.765 359.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19848,7 +19848,7 @@
 			)
 		)
 		(property "Value" "Conn_01x04_Pin"
-			(at 24.765 361.315 0)
+			(at 24.765 361.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19856,7 +19856,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_XH_S4B-XH-A-1_1x04_P2.50mm_Horizontal"
-			(at 24.13 366.395 0)
+			(at 24.13 367.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19865,7 +19865,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 24.13 366.395 0)
+			(at 24.13 367.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19874,7 +19874,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x04, script generated"
-			(at 24.13 366.395 0)
+			(at 24.13 367.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24766,7 +24766,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 58.42 374.015 0)
+		(at 58.42 369.57 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -24775,7 +24775,7 @@
 		(fields_autoplaced yes)
 		(uuid "d5edd673-fa55-47fb-b3f1-1c79a8c881c1")
 		(property "Reference" "#PWR027"
-			(at 58.42 380.365 0)
+			(at 58.42 375.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24784,7 +24784,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 58.42 379.095 0)
+			(at 58.42 374.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24792,7 +24792,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 58.42 374.015 0)
+			(at 58.42 369.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24801,7 +24801,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 58.42 374.015 0)
+			(at 58.42 369.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24810,7 +24810,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 58.42 374.015 0)
+			(at 58.42 369.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
