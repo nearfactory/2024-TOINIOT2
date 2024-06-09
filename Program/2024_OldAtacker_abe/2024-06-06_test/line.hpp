@@ -41,7 +41,7 @@ enum LINE : uint8_t{
   LEFT3,
   LEFT4,
   LEFT5,
-  LEEFT6,
+  LEFT6,
   BACK1,
   BACK2,
   BACK3,
