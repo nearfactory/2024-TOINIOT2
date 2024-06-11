@@ -11,7 +11,7 @@ void ballSetup(){
 }
 
 void ballDebug(){
-  //Serial.print("ball:");
+  Serial.print("ball debug ");
   for(auto x:BALL_PIN){
     Serial.print(x);
     Serial.print(":");

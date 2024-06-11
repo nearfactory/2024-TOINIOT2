@@ -6,11 +6,25 @@
 
 constexpr int MOTOR_NUM = 4;
 const uint8_t MOTOR_PIN[MOTOR_NUM][2] = { { 19, 3 }, { 17, 2 }, { 25, 5 }, { 23, 4 } };
+const uint8_t DEFAULT_MOTOR_DIR[MOTOR_NUM] = {1,0,0,1};
 enum MOTOR : uint8_t{
-  LF=0,
+  LF = 0,
   LB,
   RB,
-  RF
+  RF,
+
+  PH = 0,
+  EN,
+};
+enum class DIR : uint8_t{
+  FRONT = 0,
+  FRONT_LEFT,
+  LEFT,
+  BACK_LEFT,
+  BACK,
+  BACK_RIGHT,
+  RIGHT,
+  FRONT_RIGHT,
 };
 
 void motorSetup(){
@@ -26,7 +40,7 @@ void motorDebug(){
   static int count=0;
   int power = sin(count/40.0)*255;
   for(int i=0;i<4;i++){
-    digitalWrite(MOTOR_PIN[i][0], power<0?0:1 );
+    digitalWrite(MOTOR_PIN[i][0], power<0?0:1);
     analogWrite(MOTOR_PIN[i][1], abs(power));
   }
   
@@ -34,14 +48,83 @@ void motorDebug(){
   return;
 }
 
-// 15以下は動かない？
+
+void motorRaw(short* motor, short v1, short v2, short v3, short v4){
+  motor[0] = v1;
+  motor[1] = v2;
+  motor[2] = v3;
+  motor[3] = v4;
+  
+  return;
+}
+
+void motorRaw(short* motor, short v1, short v2, short v3, short v4, short power){
+  motor[0] = v1*power;
+  motor[1] = v2*power;
+  motor[2] = v3*power;
+  motor[3] = v4*power;
+
+  return;
+}
+
+// ちゃんと動く？
+void motorRaw(short* motor, DIR dir, short power){
+  switch(dir){
+    case DIR::FRONT:
+      motorRaw(motor, power, power, -power, -power);
+      break;
+    case DIR::FRONT_LEFT:
+      motorRaw(motor, 0, power, 0, -power);
+      break;
+    case DIR::LEFT:
+      motorRaw(motor, -power, power, power, -power);
+      break;
+    case DIR::BACK_LEFT:
+      motorRaw(motor, -power, 0, power, 0);
+      break;
+    case DIR::BACK:
+      motorRaw(motor, -power, -power, power, power);
+      break;
+    case DIR::BACK_RIGHT:
+      motorRaw(motor, 0, -power, 0, power);
+      break;
+    case DIR::RIGHT:
+      motorRaw(motor, power, -power, -power, power);
+      break;
+    case DIR::FRONT_RIGHT:
+      motorRaw(motor, power, 0, -power, 0);
+      break;
+  }
+
+  return;
+}
+
+
+void motorP(short* motor, short v1, short v2, short v3, short v4){
+  
+}
+
 // blend 0-100
-void setDir(uint8_t* motor, double dir, double default_dir, uint8_t power, int blend){
-  for(int i=0;i<MOTOR_NUM;i++){
-    double diffrence = dir - default_dir;
-    diffrence = fmod(fmod(diffrence,360.0)+360.0,360.0);
-    //motor[i] = power;
-  }  
+void setDir(short* motor, double dir, double goal_dir, uint8_t power, int blend){
+  short mpDir = 0;
+  dir -= goal_dir;
+  dir = dir < -180 ? dir + 360 : dir;
+  dir = dir > 180 ? dir - 360 : dir;
+
+  blend = blend<0?0:blend;
+  blend = blend>100?100:blend;
+  double P_GAIN_DIR = 0.95;
+  if(!(-10<dir && dir<10)){
+    mpDir = (dir * P_GAIN_DIR) * (-1);
+    for(int i=0;i<4;i++){
+      motor[i] = motor[i]*(100-blend)*0.01 + mpDir*blend*0.01;
+    }
+    // Serial.print("dir:");
+    // Serial.println(dir);
+    // Serial.print("mpDir:");
+    // Serial.println(mpDir);
+  }
+  
   return;
 }
 
@@ -50,9 +133,12 @@ void setMove(uint8_t* motor, double dir, uint8_t power, int blend){
   return;
 }
 
-void setMotor(uint8_t* motor){
+void setMotor(short* motor){
   for(int i=0;i<MOTOR_NUM;i++){
-    analogWrite(MOTOR_PIN[i], motor[i]);
+    bool flag = DEFAULT_MOTOR_DIR[i];
+    if(motor[i]<0) flag = !flag;
+    digitalWrite(MOTOR_PIN[i][MOTOR::PH], flag);
+    analogWrite(MOTOR_PIN[i][MOTOR::EN], abs(motor[i]*255*0.01));
   }
   return;
 }

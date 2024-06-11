@@ -1,6 +1,5 @@
 #pragma once
 #ifndef LINE_NOUSE
-
 constexpr int LINE_NUM = 22;
 const uint8_t LINE_PIN[LINE_NUM] = { 26, 27, 28, 29,    42, 43, 44, 45, 46, 47,    36, 37, 38, 39, 40, 41,    30, 31, 32, 33, 34, 35 };
 enum class LINE_PIN : uint8_t{
@@ -64,13 +63,13 @@ void lineSetup(){
 }
 
 void lineDebug(){
-  // line
   Serial.print("line debug:");
   for(auto x:LINE_PIN) Serial.print(digitalRead(x));
   Serial.println();
 
   return;
 }
+
 
 void lineUpdate(bool *line){
   for(int i=0;i<LINE_NUM;i++){
