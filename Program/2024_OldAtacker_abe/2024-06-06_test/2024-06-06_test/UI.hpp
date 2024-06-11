@@ -16,7 +16,8 @@ void LEDSetup(){
   return;
 }
 
-void LED(bool* led){
+
+void LEDWrite(bool* led){
   for(int i=0;i<LED_NUM;i++){
     digitalWrite(LED_PIN[i], led[i]);
   }

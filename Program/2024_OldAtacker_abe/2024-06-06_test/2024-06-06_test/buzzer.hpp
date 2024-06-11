@@ -38,17 +38,17 @@ void buzzerSetup() {
 };
 
 
-void buzzer(float pitch) {
+void buzzerWrite(float pitch) {
   analogWrite(BUZZER_PIN, pitch);
   return;
 }
 
-void buzzer(uint8_t pitch) {
+void buzzerWrite(uint8_t pitch) {
   analogWrite(BUZZER_PIN, SOUND_PITCH[pitch]);
   return;
 }
 
-void buzzer(void) {
+void buzzerWrite(void) {
   analogWrite(BUZZER_PIN, SOUND_PITCH[0]);
   return;
 }
