@@ -162,9 +162,9 @@ void loop() {
       led[0] = true;
     }
   }
-  led[0] = line[LINE::FRONT2];
-  led[1] = line[LINE::FRONT3];
-  led[2] = line[LINE::FRONT4];
+  // led[0] = line[LINE::FRONT2];
+  // led[1] = line[LINE::FRONT3];
+  // led[2] = line[LINE::FRONT4];
   setMotor(motor);
   LEDWrite(led);
   buzzerWrite(buzzer);
