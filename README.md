@@ -4,12 +4,9 @@ TOINIOT² 2024年度 開発用メインリポジトリ
 
 回路/基板データ・CADデータ・プログラムコード・プレゼンシートなどのデータ共有/保存用
 
-[現時点での設計を確認]([https://a360.co/3VDlfLE](https://a360.co/45l02Jf))
+[現時点での設計](https://a360.co/45l02Jf)
 
 [チーム内Wiki](https://github.com/nearfactory/2024-TOINIOT2/wiki)
-
-![機体配線図](https://github.com/Toiniot2-Wakayama/2024-TOINIOT2/blob/main/2024%20%23001%20%E6%A9%9F%E4%BD%93%E9%85%8D%E7%B7%9A%E5%9B%B3.jpg)
-
 
 
 ## Rules
