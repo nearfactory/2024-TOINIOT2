@@ -27,7 +27,7 @@ enum class DIR : uint8_t{
   FRONT_RIGHT,
 };
 
-void motorSetup(){
+inline void motorSetup(){
   for(int j=0;j<MOTOR_NUM;j++){
     for(int i=0;i<2;i++)
       pinMode(MOTOR_PIN[j][i], OUTPUT);
@@ -36,7 +36,7 @@ void motorSetup(){
   return;
 }
 
-void motorDebug(){
+inline void motorDebug(){
   static int count=0;
   int power = sin(count/40.0)*255;
   for(int i=0;i<4;i++){
@@ -49,7 +49,7 @@ void motorDebug(){
 }
 
 
-void motorRaw(short* motor, short v1, short v2, short v3, short v4){
+inline void motorRaw(short* motor, short v1, short v2, short v3, short v4){
   motor[0] = v1;
   motor[1] = v2;
   motor[2] = v3;
@@ -58,7 +58,7 @@ void motorRaw(short* motor, short v1, short v2, short v3, short v4){
   return;
 }
 
-void motorRaw(short* motor, short v1, short v2, short v3, short v4, short power){
+inline void motorRaw(short* motor, short v1, short v2, short v3, short v4, short power){
   motor[0] = v1*power;
   motor[1] = v2*power;
   motor[2] = v3*power;
@@ -68,7 +68,7 @@ void motorRaw(short* motor, short v1, short v2, short v3, short v4, short power)
 }
 
 // ちゃんと動く？
-void motorRaw(short* motor, DIR dir, short power){
+inline void motorRaw(short* motor, DIR dir, short power){
   switch(dir){
     case DIR::FRONT:
       motorRaw(motor, power, power, -power, -power);
@@ -100,12 +100,12 @@ void motorRaw(short* motor, DIR dir, short power){
 }
 
 
-void motorP(short* motor, short v1, short v2, short v3, short v4){
+inline void motorP(short* motor, short v1, short v2, short v3, short v4){
   
 }
 
 // blend 0-100
-void setDir(short* motor, double dir, double goal_dir, uint8_t power, int blend){
+inline void setDir(short* motor, double dir, double goal_dir, uint8_t power, int blend){
   short mpDir = 0;
   dir -= goal_dir;
   dir = dir < -180 ? dir + 360 : dir;
@@ -128,12 +128,12 @@ void setDir(short* motor, double dir, double goal_dir, uint8_t power, int blend)
   return;
 }
 
-void setMove(uint8_t* motor, double dir, uint8_t power, int blend){
+inline void setMove(uint8_t* motor, double dir, uint8_t power, int blend){
 
   return;
 }
 
-void setMotor(short* motor){
+inline void setMotor(short* motor){
   for(int i=0;i<MOTOR_NUM;i++){
     bool flag = DEFAULT_MOTOR_DIR[i];
     if(motor[i]<0) flag = !flag;

@@ -37,12 +37,12 @@ const float SOUND_PITCH[TONE_NUM] = {
 
 
 // LED
-void LEDSetup(){
+inline void LEDSetup(){
   for(auto p:LED_PIN) pinMode(p, OUTPUT);
   return;
 }
 
-void LEDWrite(bool* led){
+inline void setLED(bool* led){
   for(int i=0;i<LED_NUM;i++){
     digitalWrite(LED_PIN[i], led[i]);
   }
@@ -50,12 +50,12 @@ void LEDWrite(bool* led){
 }
 
 // button
-void buttonSetup(){
+inline void buttonSetup(){
   for(auto p:BTN_PIN) pinMode(p, INPUT);
   return;
 }
 
-void buttonUpdate(bool *button){
+inline void buttonUpdate(bool *button){
   for(int i=0;i<BTN_NUM;i++){
     button[i] = digitalRead(BTN_PIN[i]);
   }
@@ -63,24 +63,24 @@ void buttonUpdate(bool *button){
 }
 
 // buzzer
-void buzzerSetup() {
+inline void buzzerSetup() {
   pinMode(BUZZER_PIN, OUTPUT);
   analogWrite(BUZZER_PIN, SOUND_PITCH[0]);
   delay(100);
   analogWrite(BUZZER_PIN, 0);
 };
 
-void buzzerWrite(float pitch) {
+inline void setBuzzer(float pitch) {
   analogWrite(BUZZER_PIN, pitch);
   return;
 }
 
-void buzzerWrite(uint8_t pitch) {
+inline void setBuzzer(uint8_t pitch) {
   analogWrite(BUZZER_PIN, SOUND_PITCH[pitch]);
   return;
 }
 
-void buzzerWrite(void) {
+inline void setBuzzer(void) {
   analogWrite(BUZZER_PIN, SOUND_PITCH[0]);
   return;
 }

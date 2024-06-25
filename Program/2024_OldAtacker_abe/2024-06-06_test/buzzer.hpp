@@ -30,7 +30,7 @@ const float SOUND_PITCH[TONE_NUM] = {
   SOUND_PITCH[11] * 2,
 };
 
-void buzzerSetup() {
+inline void buzzerSetup() {
   pinMode(BUZZER_PIN, OUTPUT);
   analogWrite(BUZZER_PIN, SOUND_PITCH[0]);
   delay(100);
@@ -38,17 +38,17 @@ void buzzerSetup() {
 };
 
 
-void buzzer(float pitch) {
+inline void buzzer(float pitch) {
   analogWrite(BUZZER_PIN, pitch);
   return;
 }
 
-void buzzer(uint8_t pitch) {
+inline void buzzer(uint8_t pitch) {
   analogWrite(BUZZER_PIN, SOUND_PITCH[pitch]);
   return;
 }
 
-void buzzer(void) {
+inline void buzzer(void) {
   analogWrite(BUZZER_PIN, SOUND_PITCH[0]);
   return;
 }

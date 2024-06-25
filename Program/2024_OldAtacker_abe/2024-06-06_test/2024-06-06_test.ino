@@ -46,23 +46,91 @@ void setup() {
 }
 
 void loop() {
-  static int count=0;
-  int processing_start = millis();
+  // static int count=0;
+  // int processing_start = millis();
 
-  short  motor[MOTOR_NUM]{};
+  short motor[MOTOR_NUM]{};
 
   bool  button[BTN_NUM]{false};
   float buzzer = 0.0;
   bool  led[LED_NUM]{false};
-  buttonUpdate(button);
 
-  // ボール追う
+  //
+  //  line
+  //
+  bool line[LINE_NUM]{false};
+  lineUpdate(line);
+  // front
+  for(int i=LINE::FRONT1;i<LINE::FRONT4;i++){
+    if(line[i] && i!=LINE::FRONT3){
+      motorRaw(motor, -1,-1,1,1, 100);
+      setMotor(motor);
+      led[0] = true;
+      led[1] = true;
+      led[2] = false;
+      setLED(led);
+      setBuzzer();
+
+      delay(50);
+      goto SKIP_ALL_PROCESSING;
+    }
+  }
+  // left
+  for(int i=LINE::LEFT1;i<LINE::LEFT6;i++){
+    if(line[i]){
+      motorRaw(motor, 1,-1,-1,1, 100);
+      setMotor(motor);
+      led[0] = true;
+      led[1] = true;
+      led[2] = true;
+      setLED(led);
+      setBuzzer();
+
+      delay(30);
+      goto SKIP_ALL_PROCESSING;
+    }
+  }
+  // right
+  for(int i=LINE::RIGHT2;i<LINE::RIGHT6;i++){
+    if(line[i]){
+      motorRaw(motor, -1,1,1,-1, 100);
+      setMotor(motor);
+      led[0] = true;
+      led[1] = false;
+      led[2] = false;
+      setLED(led);
+      setBuzzer();
+
+      delay(30);
+      goto SKIP_ALL_PROCESSING;
+    }
+  }
+  // back
+  for(int i=LINE::BACK1;i<LINE::BACK6;i++){
+    if(line[i]){
+      motorRaw(motor, 1,1,-1,-1, 100);
+      setMotor(motor);
+      led[0] = true;
+      led[1] = false;
+      led[2] = true;
+      setLED(led);
+      setBuzzer();
+
+      delay(30);
+      goto SKIP_ALL_PROCESSING;
+    }
+  }
+
+  //
+  // ball
+  //
   short ball[BALL_NUM]{1023};
   ballUpdate(ball);
 
-  int ball_dir=0;
   int ball_distance = 0;
   for(auto& b:ball) ball_distance += b;
+
+  int ball_dir=0;
   int ball_max = 1023;
   for(int i=0;i<BALL_NUM;i++){
     if(ball[i]<ball_max){
@@ -70,47 +138,57 @@ void loop() {
       ball_dir = i;
     }
   }
-  // setMove(motor, ball_dir*360/16, 128, 100);
+
+  int motor_power=80;
   switch(ball_dir){
     case 0:
-      // motorRaw(motor, 1,1,-1,-1, 90);
-      motorRaw(motor, DIR::FRONT, 90);
+      // motorRaw(motor, DIR::FRONT, 70);
+      motorRaw(motor, 1,1,-1,-1, 70);
       break;
     case 1:
-      // motorRaw(motor, 0,1,0,-1, 90);
+      motorRaw(motor, 0,1,0,-1, motor_power);
       break;
     case 2:
     case 3:
-      // motorRaw(motor, -1,1,1,-1, 90);
+      motorRaw(motor, -1,1,1,-1, motor_power);
       break;
     case 4:
     case 5:
-      // motorRaw(motor, -1,0,1,0, 90);
+      motorRaw(motor, -1,0,1,0, motor_power);
       break;
     case 6:
     case 7:
     case 9:
     case 10:
-      // motorRaw(motor, -1,-1,1,1, 90);
+      motorRaw(motor, -1,-1,1,1, motor_power);
       break;
     case 8:
-      // motorRaw(motor, 1,-1,1,-1, 90);
+      motorRaw(motor, 1,-1,1,-1, motor_power);
       break;
     case 11:
     case 12:
-      // motorRaw(motor, 0,-1,0,1, 90);
+      motorRaw(motor, 0,-1,0,1, motor_power);
       break;
     case 13:
     case 14:
-      // motorRaw(motor, 1,-1,-1,1, 90);
+      motorRaw(motor, 1,-1,-1,1, motor_power);
       break;
     case 15:
-      // motorRaw(motor, 1,0,-1,0, 90);
+      motorRaw(motor, 1,0,-1,0, motor_power);
       break;
   }
 
+  //
+  // no ball
+  //
+  if(ball_distance > 16240){
+    for(auto& m:motor) m=0;
+  }
 
-  // 姿勢制御
+
+  // 
+  // dir
+  //
   sensors_event_t orientationData{};
   bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
   double dir = orientationData.orientation.x - 180;
@@ -118,63 +196,19 @@ void loop() {
   setDir(motor, dir, default_dir, 100, 40);
 
 
-  // ボールを見ていない
-  if(ball_distance > 16310){
-    for(auto& m:motor) m=0;
-  }
 
-  // 白線避け
-  bool line[LINE_NUM]{false};
-  lineUpdate(line);
-  led[0] = false;
-  // left
-  for(int i=LINE::LEFT1;i<LINE::LEFT6;i++){
-    int c = i-LINE::LEFT1+1;
-    if(line[i]){
-      //setMove(motor, 180.0, c*255/4, 75);
-      motorRaw(motor, 1,-1,-1,1, 100);
-      led[0] = true;
-    }
-  }
-  // back
-  for(int i=LINE::BACK1;i<LINE::BACK6;i++){
-    int c = i-LINE::BACK1+1;
-    if(line[i]){
-      //setMove(motor, 180.0, c*255/4, 75);
-      motorRaw(motor, 1,1,-1,-1, 100);
-      led[0] = true;
-    }
-  }
-  // right
-  for(int i=LINE::RIGHT2;i<LINE::RIGHT6;i++){
-    int c = i-LINE::RIGHT2+1;
-    if(line[i]){
-      //setMove(motor, 180.0, c*255/4, 75);
-      motorRaw(motor, -1,1,1,-1, 100);
-      led[0] = true;
-    }
-  }
-  // front
-  for(int i=LINE::FRONT1;i<LINE::FRONT4;i++){
-    int c = i-LINE::FRONT1+1;
-    if(line[i]){
-      motorRaw(motor, -1,-1,1,1, 100);
-      led[0] = true;
-    }
-  }
-  // led[0] = line[LINE::FRONT2];
-  // led[1] = line[LINE::FRONT3];
-  // led[2] = line[LINE::FRONT4];
+SKIP_ALL_PROCESSING:
+
+  //
+  // reflect valiables
+  //
   setMotor(motor);
-  LEDWrite(led);
-  buzzerWrite(buzzer);
+  setLED(led);
+  setBuzzer(buzzer);
 
-
-  // lineDebug();
-
-  // Serial.print("dir:");
-  // Serial.println(dir);
   /*
+  Serial.print("dir:");
+  Serial.println(dir);
   Serial.print("max:");
   Serial.print(1023*BALL_NUM);
   Serial.print("min:");
@@ -183,12 +217,9 @@ void loop() {
   Serial.println(ball_distance);
   Serial.print("ball_dir:");
   Serial.println(ball_dir*1023);
+  Serial.print("\n");
   */
-  // Serial.print("\n");
-  // front
 
-  /*
-  */
   /*
   Serial.print("processing time:");
   Serial.print((millis()-processing_start));
@@ -196,10 +227,7 @@ void loop() {
   Serial.println("\n--------------------------------\n");
   */
 
-  //setMotor(motor);
-  count++;
-
-  // delay(50);
+  // count++;
 }
 
 // setMoveの中身を書く

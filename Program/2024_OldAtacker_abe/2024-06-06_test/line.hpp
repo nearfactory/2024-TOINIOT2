@@ -56,13 +56,13 @@ enum LINE : uint8_t{
 };
 
 
-void lineSetup(){
+inline void lineSetup(){
   for(auto n:LINE_PIN) pinMode(n,INPUT);
 
   return;
 }
 
-void lineDebug(){
+inline void lineDebug(){
   Serial.print("line debug:");
   for(auto x:LINE_PIN) Serial.print(digitalRead(x));
   Serial.println();
@@ -71,7 +71,7 @@ void lineDebug(){
 }
 
 
-void lineUpdate(bool *line){
+inline void lineUpdate(bool *line){
   for(int i=0;i<LINE_NUM;i++){
     line[i] = digitalRead(LINE_PIN[i]);
   }
