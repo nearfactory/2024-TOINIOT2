@@ -39,12 +39,14 @@ inline void buzzerSetup() {
 
 
 inline void buzzer(float pitch) {
-  analogWrite(BUZZER_PIN, pitch);
+  if(pitch!=0.0f)
+    analogWrite(BUZZER_PIN, pitch);
   return;
 }
 
 inline void buzzer(uint8_t pitch) {
-  analogWrite(BUZZER_PIN, SOUND_PITCH[pitch]);
+  if(pitch!=0.0f)
+    analogWrite(BUZZER_PIN, SOUND_PITCH[pitch]);
   return;
 }
 

@@ -52,6 +52,7 @@ void loop() {
   short motor[MOTOR_NUM]{};
 
   bool  button[BTN_NUM]{false};
+  buttonUpdate(button);
   float buzzer = 0.0;
   bool  led[LED_NUM]{false};
 
@@ -155,15 +156,23 @@ void loop() {
     case 4:
     case 5:
       motorRaw(motor, -1,0,1,0, motor_power);
+      led[0]=true;
       break;
     case 6:
     case 7:
     case 9:
     case 10:
       motorRaw(motor, -1,-1,1,1, motor_power);
+      setMotor(motor);
+      delay(100);
+      led[1]=true;
       break;
     case 8:
       motorRaw(motor, 1,-1,1,-1, motor_power);
+      setMotor(motor);
+      led[2]=true;
+      setLED(led);
+      delay(100);
       break;
     case 11:
     case 12:
@@ -183,6 +192,7 @@ void loop() {
   //
   if(ball_distance > 16240){
     for(auto& m:motor) m=0;
+    buzzer = SOUND_PITCH[0];
   }
 
 
@@ -205,6 +215,24 @@ SKIP_ALL_PROCESSING:
   setMotor(motor);
   setLED(led);
   setBuzzer(buzzer);
+
+  //
+  // button
+  // 
+  while(button[0]){
+    buttonUpdate(button);
+    motorP(motor,0,0,0,0);
+    while(!button[0]){
+      buttonUpdate(button);
+      while(button[0]){
+        buttonUpdate(button);
+        while(!button[0]){
+          goto SKIP_ALL_PROCESSING;
+        }
+      }
+    }
+  }
+  // ballDebug();
 
   /*
   Serial.print("dir:");

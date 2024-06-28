@@ -27,6 +27,17 @@ enum class DIR : uint8_t{
   FRONT_RIGHT,
 };
 
+inline void motorSetup();
+inline void motorDebug();
+inline void motorRaw(short* motor, short v1, short v2, short v3, short v4);
+inline void motorRaw(short* motor, short v1, short v2, short v3, short v4, short power);
+inline void motorRaw(short* motor, DIR dir, short power);
+inline void motorP(short* motor, short v1, short v2, short v3, short v4);
+inline void setDir(short* motor, double dir, double goal_dir, uint8_t power, int blend);
+inline void setMove(uint8_t* motor, double dir, uint8_t power, int blend);
+inline void setMotor(short* motor);
+
+
 inline void motorSetup(){
   for(int j=0;j<MOTOR_NUM;j++){
     for(int i=0;i<2;i++)
@@ -101,7 +112,17 @@ inline void motorRaw(short* motor, DIR dir, short power){
 
 
 inline void motorP(short* motor, short v1, short v2, short v3, short v4){
-  
+  static short motor_now[MOTOR_NUM]={0.0f};
+  // for(auto&m:motor) m += ()
+  int p_step=64;
+  for(int i=0;i<p_step;i++){
+    motor[0] += (v1-motor[0]) / (p_step-i);
+    motor[1] += (v1-motor[1]) / (p_step-i);
+    motor[2] += (v1-motor[2]) / (p_step-i);
+    motor[3] += (v1-motor[3]) / (p_step-i);
+    setMotor(motor);
+  }
+
 }
 
 // blend 0-100
