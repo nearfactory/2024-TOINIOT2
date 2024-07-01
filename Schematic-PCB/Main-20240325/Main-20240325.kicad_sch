@@ -12879,7 +12879,7 @@
 	)
 	(global_label "ball02k"
 		(shape output)
-		(at 36.83 373.38 0)
+		(at 36.83 375.92 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12889,7 +12889,7 @@
 		)
 		(uuid "8d7128cc-9910-4434-97b0-486cfe57f34b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 46.8907 373.38 0)
+			(at 46.8907 375.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13627,7 +13627,7 @@
 	)
 	(global_label "KickerSignal"
 		(shape input)
-		(at 36.83 375.92 0)
+		(at 36.83 373.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13637,7 +13637,7 @@
 		)
 		(uuid "c21c9b40-21cc-4ec0-8ed1-6ecf4f476025")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 57.7765 375.92 0)
+			(at 57.7765 373.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
