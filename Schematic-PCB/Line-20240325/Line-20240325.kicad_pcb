@@ -16088,7 +16088,7 @@
 		(descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R38"
-			(at 0 -1.43 360)
+			(at 0 -1.43 0)
 			(layer "F.SilkS")
 			(uuid "8358b90e-e23d-43df-8044-14f02d77202a")
 			(effects
@@ -16099,7 +16099,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 0 1.43 360)
+			(at 0 1.43 0)
 			(layer "F.Fab")
 			(uuid "b5bdf892-e453-4722-9dc4-79db73647494")
 			(effects
@@ -16251,7 +16251,7 @@
 			(uuid "e7d99ec9-350e-4060-b46f-d35b70ef3794")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(uuid "df0bd055-92e5-46f1-9805-1bf4720d1d22")
 			(effects
@@ -21243,7 +21243,7 @@
 		)
 		(fp_arc
 			(start 1.041131 1.079837)
-			(mid 0.000117 1.500007)
+			(mid 0.000117 1.500008)
 			(end -1.040963 1.08)
 			(stroke
 				(width 0.12)
@@ -29046,7 +29046,7 @@
 		)
 		(fp_arc
 			(start -1.500555 -1.165473)
-			(mid 1.899999 -0.000451)
+			(mid 1.899998 -0.000453)
 			(end -1.5 1.16619)
 			(stroke
 				(width 0.1)
@@ -29522,7 +29522,7 @@
 		)
 		(fp_arc
 			(start 1.041131 1.079837)
-			(mid 0.000117 1.500007)
+			(mid 0.000117 1.500008)
 			(end -1.040963 1.08)
 			(stroke
 				(width 0.12)
