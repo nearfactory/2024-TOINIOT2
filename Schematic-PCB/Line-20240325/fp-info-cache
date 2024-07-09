@@ -1,109 +1,102 @@
-23150724140902717
-@2024-Power
-2MS1-T1-B4-VS2-Q-E-S
+23148975346642782
+@2024-Line
+AL4BT
 
 
 0
-5
-3
-@2024-Power
-Fuse
-
-
-0
-4
 2
-@2024-Power
-N
-SOT, 3 Pin (https://www.jedec.org/system/files/docs/to-236h.pdf variant AB), generated with kicad-footprint-generator ipc_gullwing_generator.py
-SOT TO_SOT_SMD
+2
+@2024-Line
+JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical
+JST VH PBT series connector, B2P-VH-B (http://www.jst-mfg.com/product/pdf/eng/eVH.pdf), generated with kicad-footprint-generator
+connector JST VH vertical
 0
-3
-3
-@2024-Power
-OKL-T6-W12N-C
+2
+2
+@2024-Line
+LED-3mm
 
 
 0
-9
-7
-@2024-Power
+2
+2
+@2024-Line
+NJL7502L
+
+
+0
+2
+2
+@2024-Line
+SOIC-14_3.9x8.7mm_P1.27mm
+SOIC, 14 Pin (JEDEC MS-012AB, https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/soic_narrow-r/r_14.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
+SOIC SO
+0
+14
+14
+@MyLibrary
+BNO055
+
+
+0
+8
+8
+@MyLibrary
+IC_BNO080
+
+
+0
+28
+28
+@MyLibrary
+MODULE_DEV-16771
+
+
+0
+65
+65
+@MyLibrary
+MOUDLE14P-SMD-2.54-21X17.8MM
+
+
+0
+14
+14
+@MyLibrary
 PKM13EPYH4000-A0
 
 
 0
 2
 2
-@2024-Power
-RA1113112R
-
-
-0
-0
-0
-@2024-Power
-SS12D01G4
+@MyLibrary
+SS12D01G4-G_2
 
 
 0
 3
 3
-@2024-Power
-VIN
+@MyLibrary
+TVBP06-BN043CB-B
 
 
 0
 2
 2
-@2024-Power
-VoltMeter
-
-
-0
-2
-2
-@2024-Power
-XT30PW-M
-
-
-0
-4
-2
-@2024-UI
-2MS1-T1-B4-VS2-Q-E-S
-
-
-0
-5
-3
-@2024-UI
-Display
+@MyLibrary
+XL6009
 
 
 0
 4
 4
-@2024-UI
-PKM13EPYH4000-A0
+@MyLibrary
+XT30U-M
 
 
 0
 2
 2
-@2024-UI
-TVBP06-B043C
-
-
-0
-2
-2
-@2024-UI
-TVGP01-G73BB
-
-
-0
-4
-4
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
