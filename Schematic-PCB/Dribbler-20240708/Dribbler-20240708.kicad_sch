@@ -2217,7 +2217,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 83.82 31.75 0)
 			(effects
 				(font
@@ -2286,7 +2286,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 91.44 31.75 0)
 			(effects
 				(font
@@ -2555,7 +2555,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
+		(property "Footprint" "Connector_JST:JST_XH_S2B-XH-A-1_1x02_P2.50mm_Horizontal"
 			(at 24.13 124.46 0)
 			(effects
 				(font
@@ -2887,7 +2887,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
+		(property "Footprint" "Connector_JST:JST_XH_S2B-XH-A-1_1x02_P2.50mm_Horizontal"
 			(at 54.61 124.46 0)
 			(effects
 				(font
@@ -3325,7 +3325,7 @@
 			(uuid "27d3cc26-0bdd-403d-af0c-f4eb588d04fc")
 		)
 		(instances
-			(project ""
+			(project "Dribbler-20240708"
 				(path "/0a3116e9-faad-4936-b617-c6a76f14ef35"
 					(reference "J4")
 					(unit 1)
