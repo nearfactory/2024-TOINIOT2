@@ -20350,8 +20350,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9f8881f2-78d7-4049-8f66-91e125befc41")
-		(property "Reference" "C10"
-			(at 60.96 321.31 0)
+		(property "Reference" "C4"
+			(at 60.96 321.3099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20360,7 +20360,7 @@
 			)
 		)
 		(property "Value" "100uF"
-			(at 60.96 323.85 0)
+			(at 60.96 323.8499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20404,7 +20404,7 @@
 		(instances
 			(project "Line-20240325"
 				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
-					(reference "C10")
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -23899,8 +23899,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dfa6ebf0-4d6c-486b-9dbb-fcdfc0b7655d")
-		(property "Reference" "C4"
-			(at 97.79 372.1163 0)
+		(property "Reference" "C10"
+			(at 97.79 372.1162 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23909,7 +23909,7 @@
 			)
 		)
 		(property "Value" "22pF"
-			(at 97.79 374.6563 0)
+			(at 97.79 374.6562 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23953,7 +23953,7 @@
 		(instances
 			(project "Line-20240325"
 				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
-					(reference "C4")
+					(reference "C10")
 					(unit 1)
 				)
 			)
