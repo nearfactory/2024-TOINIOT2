@@ -1,4 +1,4 @@
-23241134197756837
+23242854986164138
 @2023-2_MotorDriver
 DRV8874
 
@@ -279,6 +279,13 @@ SOIC SO
 0
 14
 14
+@2024-Line
+Tactile1
+
+
+0
+2
+2
 @2024-MD
 JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical
 JST VH PBT series connector, B2P-VH-B (http://www.jst-mfg.com/product/pdf/eng/eVH.pdf), generated with kicad-footprint-generator
