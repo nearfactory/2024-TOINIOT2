@@ -9280,7 +9280,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-MD:JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical"
+		(property "Footprint" "@2024TOINIOT2-MD:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
 			(at 360.68 213.36 0)
 			(effects
 				(font
@@ -9418,7 +9418,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-MD:JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical"
+		(property "Footprint" "@2024TOINIOT2-MD:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
 			(at 360.68 233.68 0)
 			(effects
 				(font
@@ -9486,7 +9486,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-MD:JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical"
+		(property "Footprint" "@2024TOINIOT2-MD:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
 			(at 360.68 223.52 0)
 			(effects
 				(font
@@ -10373,7 +10373,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-MD:JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical"
+		(property "Footprint" "@2024TOINIOT2-MD:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
 			(at 360.68 243.84 0)
 			(effects
 				(font
@@ -13023,7 +13023,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-MD:XT30U-M"
+		(property "Footprint" "@2024TOINIOT2-MD:XT30U-M"
 			(at 26.67 267.97 0)
 			(effects
 				(font

@@ -12917,7 +12917,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 176.53 0)
 			(effects
 				(font
@@ -12985,7 +12985,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 25.4 90)
 			(effects
 				(font
@@ -13053,7 +13053,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:Tactile1"
+		(property "Footprint" "@2024TOINOT2-Line:Tactile1"
 			(at 104.14 363.22 0)
 			(effects
 				(font
@@ -13596,7 +13596,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 125.73 0)
 			(effects
 				(font
@@ -13664,7 +13664,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 184.15 90)
 			(effects
 				(font
@@ -14067,7 +14067,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 158.75 0)
 			(effects
 				(font
@@ -14135,7 +14135,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 165.1 90)
 			(effects
 				(font
@@ -14203,7 +14203,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 120.65 90)
 			(effects
 				(font
@@ -14401,7 +14401,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 191.77 0)
 			(effects
 				(font
@@ -14535,7 +14535,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 257.81 0)
 			(effects
 				(font
@@ -14671,7 +14671,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 171.45 90)
 			(effects
 				(font
@@ -14805,7 +14805,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 88.9 90)
 			(effects
 				(font
@@ -14873,7 +14873,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 107.95 90)
 			(effects
 				(font
@@ -14940,7 +14940,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 77.47 0)
 			(effects
 				(font
@@ -15076,7 +15076,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 95.25 90)
 			(effects
 				(font
@@ -15212,7 +15212,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 31.75 90)
 			(effects
 				(font
@@ -15480,7 +15480,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 191.77 0)
 			(effects
 				(font
@@ -15683,7 +15683,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 196.85 90)
 			(effects
 				(font
@@ -15923,7 +15923,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 77.47 0)
 			(effects
 				(font
@@ -16161,7 +16161,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 76.2 90)
 			(effects
 				(font
@@ -16430,7 +16430,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 57.15 90)
 			(effects
 				(font
@@ -16563,7 +16563,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 69.85 90)
 			(effects
 				(font
@@ -16631,7 +16631,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 139.7 90)
 			(effects
 				(font
@@ -16765,7 +16765,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 50.8 90)
 			(effects
 				(font
@@ -17547,7 +17547,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 44.45 0)
 			(effects
 				(font
@@ -17683,7 +17683,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 275.59 0)
 			(effects
 				(font
@@ -18127,7 +18127,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 38.1 90)
 			(effects
 				(font
@@ -18194,7 +18194,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 143.51 0)
 			(effects
 				(font
@@ -18458,7 +18458,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 59.69 0)
 			(effects
 				(font
@@ -18600,7 +18600,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 257.81 0)
 			(effects
 				(font
@@ -18801,7 +18801,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 127 90)
 			(effects
 				(font
@@ -18936,7 +18936,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 209.55 0)
 			(effects
 				(font
@@ -19004,7 +19004,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 290.83 0)
 			(effects
 				(font
@@ -19275,7 +19275,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 190.5 90)
 			(effects
 				(font
@@ -19343,7 +19343,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 92.71 0)
 			(effects
 				(font
@@ -19476,7 +19476,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 125.73 0)
 			(effects
 				(font
@@ -19544,7 +19544,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 215.9 90)
 			(effects
 				(font
@@ -19677,7 +19677,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 209.55 90)
 			(effects
 				(font
@@ -19881,7 +19881,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 82.55 90)
 			(effects
 				(font
@@ -20094,7 +20094,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 110.49 0)
 			(effects
 				(font
@@ -20161,7 +20161,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 275.59 0)
 			(effects
 				(font
@@ -20501,7 +20501,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 152.4 90)
 			(effects
 				(font
@@ -20569,7 +20569,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 209.55 0)
 			(effects
 				(font
@@ -20637,7 +20637,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 44.45 90)
 			(effects
 				(font
@@ -20770,7 +20770,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 110.49 0)
 			(effects
 				(font
@@ -20904,7 +20904,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 177.8 90)
 			(effects
 				(font
@@ -21315,7 +21315,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 92.71 0)
 			(effects
 				(font
@@ -21812,7 +21812,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 222.25 90)
 			(effects
 				(font
@@ -21880,7 +21880,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 114.3 90)
 			(effects
 				(font
@@ -22188,7 +22188,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 101.6 90)
 			(effects
 				(font
@@ -22256,7 +22256,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 143.51 0)
 			(effects
 				(font
@@ -22324,7 +22324,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 203.2 90)
 			(effects
 				(font
@@ -22392,7 +22392,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 63.5 90)
 			(effects
 				(font
@@ -22596,7 +22596,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 158.75 90)
 			(effects
 				(font
@@ -22795,7 +22795,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 176.53 0)
 			(effects
 				(font
@@ -22997,7 +22997,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 224.79 0)
 			(effects
 				(font
@@ -23064,7 +23064,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 290.83 0)
 			(effects
 				(font
@@ -23571,7 +23571,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 224.79 0)
 			(effects
 				(font
@@ -23639,7 +23639,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 59.69 0)
 			(effects
 				(font
@@ -23847,7 +23847,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 133.35 90)
 			(effects
 				(font
@@ -24053,7 +24053,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024-Line:LED-3mm"
+		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
 			(at 22.86 146.05 90)
 			(effects
 				(font
@@ -24120,7 +24120,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 158.75 0)
 			(effects
 				(font
@@ -24190,7 +24190,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "@2024-Line:AL4BT"
+		(property "Footprint" "@2024TOINOT2-Line:AL4BT"
 			(at 191.77 59.69 0)
 			(effects
 				(font
@@ -24326,7 +24326,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical"
+		(property "Footprint" "@2024TOINOT2-Line:JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical"
 			(at 21.59 323.85 0)
 			(effects
 				(font
@@ -24796,7 +24796,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 44.45 0)
 			(effects
 				(font
@@ -24929,7 +24929,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 62.23 242.57 0)
 			(effects
 				(font
@@ -25200,7 +25200,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Line:NJL7502L"
+		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
 			(at 143.51 242.57 0)
 			(effects
 				(font
