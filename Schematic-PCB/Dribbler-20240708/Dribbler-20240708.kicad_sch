@@ -2208,7 +2208,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "330"
 			(at 81.28 33.02 0)
 			(effects
 				(font
@@ -2277,7 +2277,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "330"
 			(at 93.98 33.02 0)
 			(effects
 				(font
