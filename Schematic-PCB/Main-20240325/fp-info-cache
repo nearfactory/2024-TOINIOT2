@@ -1,4 +1,4 @@
-23193682651435685
+23197125276138632
 @2024-Dribbler
 DRV8874 module
 
@@ -63,6 +63,13 @@ Tactile1
 2
 2
 @2024-MD
+1.0K-FX-15PWB
+
+
+0
+0
+0
+@2024-MD
 JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical
 JST VH PBT series connector, B2P-VH-B (http://www.jst-mfg.com/product/pdf/eng/eVH.pdf), generated with kicad-footprint-generator
 connector JST VH vertical
@@ -76,6 +83,13 @@ connector JST XH vertical
 0
 2
 2
+@2024-MD
+KH-CL1.0-H2.5-15PIN
+
+
+0
+17
+16
 @2024-MD
 XT30U-M
 
