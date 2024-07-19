@@ -15101,6 +15101,7 @@
 	(symbol
 		(lib_id "Connector:Conn_01x15_Pin")
 		(at 29.21 368.3 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15108,7 +15109,7 @@
 		(dnp no)
 		(uuid "1cfac975-ef5f-4792-95a4-07e3894f8b23")
 		(property "Reference" "J3"
-			(at 29.845 345.44 0)
+			(at 29.845 391.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15116,14 +15117,14 @@
 			)
 		)
 		(property "Value" "Conn_01x15_Pin"
-			(at 29.845 347.98 0)
+			(at 29.845 388.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Connector_FFC-FPC:TE_1-1734839-5_1x15-1MP_P0.5mm_Horizontal"
+		(property "Footprint" "@2024-MD:1.0K-FX-15PWB"
 			(at 29.21 368.3 0)
 			(effects
 				(font
