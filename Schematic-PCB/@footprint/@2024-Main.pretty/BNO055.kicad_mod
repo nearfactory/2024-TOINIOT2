@@ -1,0 +1,238 @@
+(footprint "BNO055"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -7.665 0)
+		(layer "F.SilkS")
+		(uuid "b2eacc99-81a0-4edf-9ef7-f30e50d19a21")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "CERDIP-8_W7.62mm_SideBrazed"
+		(at 3.81 11.475 0)
+		(layer "F.Fab")
+		(uuid "60017200-4f67-4e4a-b6a9-0a4d0136fde3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b06316f0-d1bb-4d68-b34f-22556a7c113f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7c476c9b-9844-4cb9-8f74-c45f03e18ce0")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cd5f1b3a-eaff-4819-a1ec-37cb19e5d646")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -5.5 -9)
+		(end 5.5 9)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "59c15011-f04f-49d4-890b-5f0cd9336358")
+	)
+	(fp_poly
+		(pts
+			(xy -7 -4.2) (xy -6.2 -3.8) (xy -7 -3.4)
+		)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.SilkS")
+		(uuid "36709f98-ae50-41f7-b982-6d53421b68bf")
+	)
+	(fp_rect
+		(start -5.6 -9.1)
+		(end 5.6 9.1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "2594bacf-005a-42e5-911b-7c8b8d0cae65")
+	)
+	(fp_line
+		(start 0.065 -1.795)
+		(end 1.065 -2.795)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "0e439681-f838-4220-8fc2-eaa665843ed7")
+	)
+	(fp_line
+		(start 0.065 10.415)
+		(end 0.065 -1.795)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "4b559f86-43fc-4242-9cbe-07c5ed4be7bf")
+	)
+	(fp_line
+		(start 1.065 -2.795)
+		(end 7.555 -2.795)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "4d52a671-6444-4a38-9195-a0cd3aa7d2cb")
+	)
+	(fp_line
+		(start 7.555 -2.795)
+		(end 7.555 10.415)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "074b33b0-50d4-420a-9727-e79186c6a6f5")
+	)
+	(fp_line
+		(start 7.555 10.415)
+		(end 0.065 10.415)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7c91bee5-4a2e-44d0-a92a-7571718abde0")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 3.81 3.81 90)
+		(layer "F.Fab")
+		(uuid "499708ca-6255-45a0-b7c6-16cdd00336a7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at -3.81 -3.81)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "56b1d569-b1e6-4948-895d-c35e5b6e5c75")
+	)
+	(pad "2" thru_hole circle
+		(at -3.81 -1.27)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "1c0a74f0-e26c-47e1-8239-3cc56c3dada2")
+	)
+	(pad "3" thru_hole circle
+		(at -3.81 1.27)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "50b43033-b16e-4313-849a-74cf80d87bd1")
+	)
+	(pad "4" thru_hole circle
+		(at -3.81 3.81)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "980626e0-f82a-4bd9-b0d4-e9be5bf78318")
+	)
+	(pad "5" thru_hole circle
+		(at 3.81 3.81)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "9a83b7d3-90ed-4f7b-8724-680d70d9628d")
+	)
+	(pad "6" thru_hole circle
+		(at 3.81 1.27)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "24d1e1bf-9606-454d-90dc-2cfedc1fff07")
+	)
+	(pad "7" thru_hole circle
+		(at 3.81 -1.27)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "c488a044-462d-4cba-a72e-18a736eddedf")
+	)
+	(pad "8" thru_hole circle
+		(at 3.81 -3.81)
+		(size 1.6 1.6)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7ee3d2b2-b58c-4ab9-9e3e-057278c115ab")
+	)
+	(model "C:/Users/桐蔭高校科学部/Desktop/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/BNO055.step"
+		(offset
+			(xyz 0 0 2.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 90)
+		)
+	)
+)

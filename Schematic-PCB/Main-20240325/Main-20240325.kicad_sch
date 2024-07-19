@@ -14879,7 +14879,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 166.37 235.585 0)
 			(effects
 				(font
@@ -14949,7 +14949,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:XIAO ESP32C3"
+		(property "Footprint" "@2024TOINIOT2-Main:XIAO ESP32C3"
 			(at 48.26 169.672 0)
 			(effects
 				(font
@@ -15053,7 +15053,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 166.37 189.865 0)
 			(effects
 				(font
@@ -15230,7 +15230,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 118.11 349.885 0)
 			(effects
 				(font
@@ -15645,7 +15645,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 166.37 304.165 0)
 			(effects
 				(font
@@ -15850,7 +15850,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
+		(property "Footprint" "@2024TOINIOT2-Main:BNO055"
 			(at 139.7 118.364 0)
 			(effects
 				(font
@@ -16068,7 +16068,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 166.37 349.885 0)
 			(effects
 				(font
@@ -16403,7 +16403,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 118.11 189.865 0)
 			(effects
 				(font
@@ -17101,7 +17101,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 118.11 258.445 0)
 			(effects
 				(font
@@ -17722,7 +17722,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 118.11 235.585 0)
 			(effects
 				(font
@@ -18071,7 +18071,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 166.37 327.025 0)
 			(effects
 				(font
@@ -18683,7 +18683,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:MODULE_DEV-16771"
+		(property "Footprint" "@2024TOINIOT2-Main:MODULE_DEV-16771"
 			(at 54.61 78.74 0)
 			(effects
 				(font
@@ -19496,7 +19496,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 166.37 281.305 0)
 			(effects
 				(font
@@ -19982,7 +19982,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 118.11 304.165 0)
 			(effects
 				(font
@@ -20471,7 +20471,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 166.37 258.445 0)
 			(effects
 				(font
@@ -21376,7 +21376,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 118.11 212.725 0)
 			(effects
 				(font
@@ -21650,7 +21650,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 118.11 281.305 0)
 			(effects
 				(font
@@ -22931,7 +22931,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 166.37 212.725 0)
 			(effects
 				(font
@@ -23704,7 +23704,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Main:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 118.11 327.025 0)
 			(effects
 				(font
