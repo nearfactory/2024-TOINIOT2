@@ -12734,7 +12734,7 @@
 	)
 	(global_label "SW-TAC-1"
 		(shape input)
-		(at 74.93 78.74 0)
+		(at 74.93 81.28 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12744,7 +12744,7 @@
 		)
 		(uuid "4edd4a03-2d50-4f40-9483-9023be33df49")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 86.9996 78.74 0)
+			(at 86.9996 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12932,7 +12932,7 @@
 	)
 	(global_label "SW-TAC-2"
 		(shape input)
-		(at 74.93 81.28 0)
+		(at 74.93 78.74 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12942,7 +12942,7 @@
 		)
 		(uuid "69ed4c70-f279-443d-ad69-677f5ba40d06")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 86.9996 81.28 0)
+			(at 86.9996 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
