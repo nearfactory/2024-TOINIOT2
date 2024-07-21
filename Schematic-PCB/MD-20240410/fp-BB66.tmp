@@ -1,4 +1,11 @@
-23179976988208831
+23195403961078559
+@2024-Dribbler
+DRV8874 module
+
+
+0
+14
+14
 @2024-Kicker
 XL6009-SMD
 
@@ -56,13 +63,6 @@ Tactile1
 2
 2
 @2024-MD
-1.0K-FX-15PWB
-
-
-0
-17
-16
-@2024-MD
 JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical
 JST VH PBT series connector, B2P-VH-B (http://www.jst-mfg.com/product/pdf/eng/eVH.pdf), generated with kicad-footprint-generator
 connector JST VH vertical
@@ -91,13 +91,6 @@ XT30U-M
 2
 2
 @2024-Main
-BNO055
-
-
-0
-8
-8
-@2024-Main
 MODULE_DEV-16771
 
 
@@ -113,6 +106,13 @@ IR Receiver Vishay TSOP-xxxx MINICAST
 3
 @2024-Main
 XIAO ESP32C3
+
+
+0
+14
+14
+@2024-Main-ESP32C3
+MOUDLE14P-SMD-2.54-21X17.8MM
 
 
 0
@@ -223,6 +223,69 @@ TVGP01-G73BB
 0
 4
 4
+@MyLibrary
+BNO055
+
+
+0
+8
+8
+@MyLibrary
+IC_BNO080
+
+
+0
+28
+28
+@MyLibrary
+MODULE_DEV-16771
+
+
+0
+65
+65
+@MyLibrary
+MOUDLE14P-SMD-2.54-21X17.8MM
+
+
+0
+14
+14
+@MyLibrary
+PKM13EPYH4000-A0
+
+
+0
+2
+2
+@MyLibrary
+SS12D01G4-G_2
+
+
+0
+3
+3
+@MyLibrary
+TVBP06-BN043CB-B
+
+
+0
+2
+2
+@MyLibrary
+XL6009
+
+
+0
+4
+4
+@MyLibrary
+XT30U-M
+
+
+0
+2
+2
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
