@@ -15124,7 +15124,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-MD:1.0K-FX-15PWB"
+		(property "Footprint" "@2024TOINIOT2-MD:1.0K-FX-15PWB"
 			(at 29.21 368.3 0)
 			(effects
 				(font
