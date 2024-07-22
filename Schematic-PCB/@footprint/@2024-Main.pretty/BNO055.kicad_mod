@@ -15,8 +15,9 @@
 		)
 	)
 	(property "Value" "CERDIP-8_W7.62mm_SideBrazed"
-		(at 3.81 11.475 0)
+		(at 0 -0.1 0)
 		(layer "F.Fab")
+		(hide yes)
 		(uuid "60017200-4f67-4e4a-b6a9-0a4d0136fde3")
 		(effects
 			(font
@@ -99,67 +100,6 @@
 		(layer "F.CrtYd")
 		(uuid "2594bacf-005a-42e5-911b-7c8b8d0cae65")
 	)
-	(fp_line
-		(start 0.065 -1.795)
-		(end 1.065 -2.795)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "F.Fab")
-		(uuid "0e439681-f838-4220-8fc2-eaa665843ed7")
-	)
-	(fp_line
-		(start 0.065 10.415)
-		(end 0.065 -1.795)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "F.Fab")
-		(uuid "4b559f86-43fc-4242-9cbe-07c5ed4be7bf")
-	)
-	(fp_line
-		(start 1.065 -2.795)
-		(end 7.555 -2.795)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "F.Fab")
-		(uuid "4d52a671-6444-4a38-9195-a0cd3aa7d2cb")
-	)
-	(fp_line
-		(start 7.555 -2.795)
-		(end 7.555 10.415)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "F.Fab")
-		(uuid "074b33b0-50d4-420a-9727-e79186c6a6f5")
-	)
-	(fp_line
-		(start 7.555 10.415)
-		(end 0.065 10.415)
-		(stroke
-			(width 0.1)
-			(type solid)
-		)
-		(layer "F.Fab")
-		(uuid "7c91bee5-4a2e-44d0-a92a-7571718abde0")
-	)
-	(fp_text user "${REFERENCE}"
-		(at 3.81 3.81 90)
-		(layer "F.Fab")
-		(uuid "499708ca-6255-45a0-b7c6-16cdd00336a7")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
 	(pad "1" thru_hole rect
 		(at -3.81 -3.81)
 		(size 1.6 1.6)
@@ -225,6 +165,17 @@
 		(uuid "7ee3d2b2-b58c-4ab9-9e3e-057278c115ab")
 	)
 	(model "C:/Users/桐蔭高校科学部/Desktop/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/BNO055.step"
+		(offset
+			(xyz 0 0 2.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 90)
+		)
+	)
+	(model "${MYMODEL}/@2024-Main.pretty/BNO055.step"
 		(offset
 			(xyz 0 0 2.5)
 		)
