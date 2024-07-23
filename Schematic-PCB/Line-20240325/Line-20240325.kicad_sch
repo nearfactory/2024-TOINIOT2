@@ -4599,16 +4599,16 @@
 		(uuid "3c3d1e95-dd4b-4238-90fd-1a7712bf5efd")
 	)
 	(junction
+		(at 266.7 154.94)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "411a6a0a-8a54-4c80-be1d-16b33208998c")
+	)
+	(junction
 		(at 46.99 185.42)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4625e026-a4e1-4127-836b-4b972038afa5")
-	)
-	(junction
-		(at 270.51 154.94)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "46a2785e-e5b7-43db-9ff1-811b718ebacb")
 	)
 	(junction
 		(at 158.75 38.1)
@@ -4633,6 +4633,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4c2938a0-23ff-4212-ae23-c3b88e39e551")
+	)
+	(junction
+		(at 46.99 236.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4c4b90d7-12ad-475f-87c8-2ad224095726")
 	)
 	(junction
 		(at 35.56 127)
@@ -4675,12 +4681,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "59469bcb-4624-4e3f-91e6-3b00046af561")
-	)
-	(junction
-		(at 158.75 251.46)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5d9c3595-25e3-45f8-a36a-687af302aa2a")
 	)
 	(junction
 		(at 46.99 203.2)
@@ -5007,12 +5007,6 @@
 		(uuid "de2ef660-e34d-4e16-b253-5dc28a21c3fa")
 	)
 	(junction
-		(at 46.99 236.22)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e08eae8d-f5ca-479a-9bbe-2fe3066fae50")
-	)
-	(junction
 		(at 17.78 107.95)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5097,14 +5091,16 @@
 		(uuid "f7f3adb6-966f-44dd-b2a2-c0b3a5ffd849")
 	)
 	(junction
+		(at 158.75 251.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f8acabef-b21e-4fa0-a496-81b07bf39b69")
+	)
+	(junction
 		(at 68.58 328.93)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fe854d6d-09a9-4c7c-9078-327db340b644")
-	)
-	(no_connect
-		(at 213.36 139.7)
-		(uuid "0b8f8aae-b946-473d-b4e7-fdd945859c0b")
 	)
 	(no_connect
 		(at 256.54 180.34)
@@ -5139,10 +5135,6 @@
 		(uuid "678c40d1-0c2a-434e-a0b1-15e6074f5775")
 	)
 	(no_connect
-		(at 256.54 119.38)
-		(uuid "68f1e0ac-ec5a-4d0c-9755-4e42a7ca8e9f")
-	)
-	(no_connect
 		(at 184.15 278.13)
 		(uuid "6b257414-e620-425d-91cf-d255364c7c09")
 	)
@@ -5175,12 +5167,12 @@
 		(uuid "a7493f8f-7488-44db-b77e-ddf8d0f69fa0")
 	)
 	(no_connect
-		(at 213.36 96.52)
-		(uuid "acee8189-7f89-486d-a30f-39977fa2e4a5")
+		(at 256.54 182.88)
+		(uuid "ab5b7e90-8478-40dd-a386-3eceb5259efa")
 	)
 	(no_connect
-		(at 213.36 175.26)
-		(uuid "ad05d24c-e086-4e8e-8291-1d5c223259ee")
+		(at 213.36 96.52)
+		(uuid "acee8189-7f89-486d-a30f-39977fa2e4a5")
 	)
 	(no_connect
 		(at 254 165.1)
@@ -5223,24 +5215,12 @@
 		(uuid "dac17c99-3685-4638-a714-699c204c6781")
 	)
 	(no_connect
-		(at 213.36 134.62)
-		(uuid "e0374f84-e641-49bb-ac99-8a3469a76c33")
-	)
-	(no_connect
 		(at 213.36 182.88)
 		(uuid "e03d94a0-0c0d-475c-8dc6-24f788aac165")
 	)
 	(no_connect
 		(at 213.36 119.38)
 		(uuid "e9e29797-f41f-4154-83ac-d33b73e1279a")
-	)
-	(no_connect
-		(at 213.36 137.16)
-		(uuid "eaac9f39-616b-4a42-b5f8-2e2aedddbb57")
-	)
-	(no_connect
-		(at 256.54 116.84)
-		(uuid "f2a1f7ba-94d8-4d6b-8282-984fb42a1662")
 	)
 	(no_connect
 		(at 213.36 114.3)
@@ -5655,6 +5635,16 @@
 			(type default)
 		)
 		(uuid "139b3a25-526b-46bb-8b6b-186e11ebf9c6")
+	)
+	(wire
+		(pts
+			(xy 46.99 236.22) (xy 46.99 251.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13a18869-d046-44d2-bf10-f26c840e6906")
 	)
 	(wire
 		(pts
@@ -6298,16 +6288,6 @@
 	)
 	(wire
 		(pts
-			(xy 278.13 154.94) (xy 270.51 154.94)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "39cf0e9f-832c-49cf-97ad-1aa3bff60243")
-	)
-	(wire
-		(pts
 			(xy 180.34 62.23) (xy 180.34 66.04)
 		)
 		(stroke
@@ -6348,7 +6328,7 @@
 	)
 	(wire
 		(pts
-			(xy 254 154.94) (xy 270.51 154.94)
+			(xy 254 154.94) (xy 259.08 154.94)
 		)
 		(stroke
 			(width 0)
@@ -6648,7 +6628,7 @@
 	)
 	(wire
 		(pts
-			(xy 270.51 165.1) (xy 270.51 167.64)
+			(xy 266.7 162.56) (xy 266.7 165.1)
 		)
 		(stroke
 			(width 0)
@@ -6858,16 +6838,6 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 236.22) (xy 46.99 251.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "52e788a6-9d21-49a0-a260-d00eb1ed37c9")
-	)
-	(wire
-		(pts
 			(xy 92.71 86.36) (xy 74.93 86.36)
 		)
 		(stroke
@@ -6875,16 +6845,6 @@
 			(type default)
 		)
 		(uuid "52fe7aba-568d-459e-a934-65ec6a29e1e4")
-	)
-	(wire
-		(pts
-			(xy 130.81 251.46) (xy 113.03 251.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "54022c0c-2787-4a96-a122-c6490be34516")
 	)
 	(wire
 		(pts
@@ -7068,7 +7028,7 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 232.41) (xy 92.71 232.41)
+			(xy 115.57 255.27) (xy 113.03 255.27)
 		)
 		(stroke
 			(width 0)
@@ -7268,6 +7228,16 @@
 	)
 	(wire
 		(pts
+			(xy 210.82 134.62) (xy 213.36 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e7afc17-2600-4e82-b537-f330df69307f")
+	)
+	(wire
+		(pts
 			(xy 191.77 257.81) (xy 191.77 260.35)
 		)
 		(stroke
@@ -7398,7 +7368,7 @@
 	)
 	(wire
 		(pts
-			(xy 92.71 236.22) (xy 74.93 236.22)
+			(xy 113.03 251.46) (xy 130.81 251.46)
 		)
 		(stroke
 			(width 0)
@@ -7495,6 +7465,16 @@
 			(type default)
 		)
 		(uuid "7896e255-3dd0-4738-9490-4dae56bde158")
+	)
+	(wire
+		(pts
+			(xy 74.93 236.22) (xy 92.71 236.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78b21f30-cdf5-4880-98ae-9a1451e8ec2a")
 	)
 	(wire
 		(pts
@@ -7808,6 +7788,16 @@
 	)
 	(wire
 		(pts
+			(xy 210.82 139.7) (xy 213.36 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "859d5492-4967-49a8-9db9-5cc0edf9655e")
+	)
+	(wire
+		(pts
 			(xy 175.26 78.74) (xy 175.26 81.28)
 		)
 		(stroke
@@ -7848,7 +7838,7 @@
 	)
 	(wire
 		(pts
-			(xy 115.57 255.27) (xy 113.03 255.27)
+			(xy 90.17 232.41) (xy 92.71 232.41)
 		)
 		(stroke
 			(width 0)
@@ -8378,16 +8368,6 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 236.22) (xy 49.53 236.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a276adae-d0d5-4eaf-8463-73b6bd5263db")
-	)
-	(wire
-		(pts
 			(xy 115.57 100.33) (xy 113.03 100.33)
 		)
 		(stroke
@@ -8478,7 +8458,7 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 251.46) (xy 156.21 251.46)
+			(xy 46.99 236.22) (xy 49.53 236.22)
 		)
 		(stroke
 			(width 0)
@@ -8718,6 +8698,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 251.46) (xy 158.75 269.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b914b486-4164-4c24-ade4-7ae726d1861f")
+	)
+	(wire
+		(pts
 			(xy 92.71 177.8) (xy 64.77 177.8)
 		)
 		(stroke
@@ -8745,6 +8735,16 @@
 			(type default)
 		)
 		(uuid "bb5c5370-f885-4a94-b772-f99a10ed8485")
+	)
+	(wire
+		(pts
+			(xy 264.16 154.94) (xy 266.7 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb951cdf-e69d-4b0c-87d4-4e0b3e497cfc")
 	)
 	(wire
 		(pts
@@ -8835,6 +8835,16 @@
 			(type default)
 		)
 		(uuid "be80cc03-f198-4ad4-a79e-54b4e6e9196a")
+	)
+	(wire
+		(pts
+			(xy 156.21 251.46) (xy 158.75 251.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "beffc534-3420-4e16-a1e8-43576f0c0143")
 	)
 	(wire
 		(pts
@@ -9048,6 +9058,16 @@
 	)
 	(wire
 		(pts
+			(xy 266.7 154.94) (xy 269.24 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cb61f31b-e36f-4d6c-8310-752907d9bdd1")
+	)
+	(wire
+		(pts
 			(xy 158.75 86.36) (xy 156.21 86.36)
 		)
 		(stroke
@@ -9098,6 +9118,16 @@
 	)
 	(wire
 		(pts
+			(xy 210.82 175.26) (xy 213.36 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cea4f035-ca67-4464-b25a-e4d644508041")
+	)
+	(wire
+		(pts
 			(xy 35.56 171.45) (xy 35.56 177.8)
 		)
 		(stroke
@@ -9118,7 +9148,7 @@
 	)
 	(wire
 		(pts
-			(xy 270.51 154.94) (xy 270.51 157.48)
+			(xy 266.7 154.94) (xy 266.7 157.48)
 		)
 		(stroke
 			(width 0)
@@ -9468,16 +9498,6 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 236.22) (xy 158.75 251.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "df39ad8e-c834-48e8-940d-9ce2de128bba")
-	)
-	(wire
-		(pts
 			(xy 115.57 181.61) (xy 113.03 181.61)
 		)
 		(stroke
@@ -9545,6 +9565,16 @@
 			(type default)
 		)
 		(uuid "e35a176d-6daa-4c8d-a74e-e9f20d8422a1")
+	)
+	(wire
+		(pts
+			(xy 210.82 137.16) (xy 213.36 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e3effc35-0a3d-4b95-bf29-1a2fcf25d94f")
 	)
 	(wire
 		(pts
@@ -9848,7 +9878,7 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 251.46) (xy 158.75 269.24)
+			(xy 158.75 236.22) (xy 158.75 251.46)
 		)
 		(stroke
 			(width 0)
@@ -10343,22 +10373,22 @@
 	)
 	(global_label "line27"
 		(shape output)
-		(at 115.57 232.41 0)
+		(at 90.17 255.27 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "059a1c68-4da1-4273-972b-4f0c4e526220")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 232.41 0)
+			(at 81.4839 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -10409,29 +10439,7 @@
 	)
 	(global_label "line21"
 		(shape output)
-		(at 90.17 199.39 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "16932114-9d57-481d-8357-9f9043d3a6cc")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 199.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "line16"
-		(shape input)
-		(at 256.54 104.14 0)
+		(at 115.57 199.39 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -10439,9 +10447,9 @@
 			)
 			(justify left)
 		)
-		(uuid "1a17b670-0331-4438-89f6-9b19b17b8eb1")
+		(uuid "16932114-9d57-481d-8357-9f9043d3a6cc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 104.14 0)
+			(at 124.2561 199.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10451,9 +10459,31 @@
 			)
 		)
 	)
+	(global_label "line16"
+		(shape input)
+		(at 210.82 165.1 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1a17b670-0331-4438-89f6-9b19b17b8eb1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 201.9082 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "line09"
 		(shape input)
-		(at 256.54 96.52 0)
+		(at 256.54 81.28 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -10463,7 +10493,7 @@
 		)
 		(uuid "1aaa381c-ed79-412a-a204-a66d0a3a17ba")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 96.52 0)
+			(at 265.2261 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10475,22 +10505,22 @@
 	)
 	(global_label "line26"
 		(shape input)
-		(at 256.54 137.16 0)
+		(at 210.82 139.7 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "1c8154c3-1a5f-415b-a5f0-04598680216d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 137.16 0)
+			(at 201.9082 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -10507,7 +10537,7 @@
 		)
 		(uuid "1da5de59-b998-4325-89a7-0837a7189b70")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 78.74 0)
+			(at 265.2261 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10519,7 +10549,7 @@
 	)
 	(global_label "line15"
 		(shape input)
-		(at 256.54 101.6 0)
+		(at 256.54 96.52 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -10529,7 +10559,7 @@
 		)
 		(uuid "1f6879af-73c3-4731-ae2c-b162a458b09e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 101.6 0)
+			(at 265.4518 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10629,22 +10659,22 @@
 	)
 	(global_label "line25"
 		(shape input)
-		(at 256.54 134.62 0)
+		(at 210.82 175.26 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "382138e6-4997-46b6-b39e-75a229c9a7d9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 134.62 0)
+			(at 201.9082 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -10695,7 +10725,29 @@
 	)
 	(global_label "line03"
 		(shape output)
-		(at 115.57 34.29 0)
+		(at 90.17 57.15 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "41eb0d61-a78d-4cd3-8ffc-8e678ae03504")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 81.4839 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line19"
+		(shape input)
+		(at 256.54 116.84 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -10703,9 +10755,9 @@
 			)
 			(justify left)
 		)
-		(uuid "41eb0d61-a78d-4cd3-8ffc-8e678ae03504")
+		(uuid "44053e51-3b7e-47a7-8f44-44bf5fdc0ddd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 34.29 0)
+			(at 265.4518 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10715,90 +10767,68 @@
 			)
 		)
 	)
-	(global_label "line19"
-		(shape input)
-		(at 210.82 129.54 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "44053e51-3b7e-47a7-8f44-44bf5fdc0ddd")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "line14"
 		(shape output)
-		(at 90.17 156.21 180)
+		(at 115.57 156.21 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "4941d219-24dd-4aa1-80d7-133fa62af9d3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 156.21 0)
+			(at 124.2561 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "line09"
 		(shape output)
-		(at 90.17 100.33 180)
+		(at 115.57 123.19 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "4a26f1d3-0f86-4872-a309-0f242af0209a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 100.33 0)
+			(at 124.2561 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "line10"
 		(shape output)
-		(at 90.17 123.19 180)
+		(at 115.57 100.33 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "4d48d67b-e6bd-40dd-abff-3d3180d36923")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 123.19 0)
+			(at 124.2561 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -10827,22 +10857,22 @@
 	)
 	(global_label "line20"
 		(shape output)
-		(at 115.57 189.23 0)
+		(at 90.17 166.37 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "5265e8fe-3bad-4fff-9790-9651c6053d50")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 189.23 0)
+			(at 81.4839 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -10871,44 +10901,44 @@
 	)
 	(global_label "line28"
 		(shape output)
-		(at 115.57 255.27 0)
+		(at 90.17 232.41 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "53d6f6f1-f4e5-4ede-ad86-6327b1362c5b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 255.27 0)
+			(at 81.4839 232.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "line28"
 		(shape input)
-		(at 256.54 142.24 0)
+		(at 210.82 134.62 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "5464ef1c-44b3-4f11-8914-f139d660e061")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 142.24 0)
+			(at 201.9082 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -10937,22 +10967,22 @@
 	)
 	(global_label "line13"
 		(shape output)
-		(at 90.17 133.35 180)
+		(at 115.57 133.35 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "5710af9d-30c4-4cac-9025-890b82b4e224")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 133.35 0)
+			(at 124.2561 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -10981,66 +11011,66 @@
 	)
 	(global_label "line32"
 		(shape input)
-		(at 256.54 114.3 0)
+		(at 210.82 124.46 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "5d7a36c5-1bbe-4014-ab96-91996914eff3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 114.3 0)
+			(at 201.9082 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "line29"
 		(shape input)
-		(at 256.54 106.68 0)
+		(at 210.82 132.08 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "5e682fe2-1727-43bf-9392-8794e0e547a9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 106.68 0)
+			(at 201.9082 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "line16"
 		(shape output)
-		(at 115.57 156.21 0)
+		(at 90.17 133.35 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "6045a46a-f6b1-4c68-a285-24045b69cbea")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 156.21 0)
+			(at 81.4839 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -11101,7 +11131,7 @@
 		)
 		(uuid "65879f28-907b-44f6-b4e4-42839a746c44")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 162.56 0)
+			(at 202.1339 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11113,22 +11143,22 @@
 	)
 	(global_label "line17"
 		(shape input)
-		(at 210.82 124.46 180)
+		(at 256.54 111.76 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "68d0547d-30b0-4912-8029-a6c4524c4a32")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 124.46 0)
+			(at 265.4518 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -11157,51 +11187,51 @@
 	)
 	(global_label "line06"
 		(shape output)
-		(at 90.17 90.17 180)
+		(at 115.57 67.31 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "702ff017-1bba-4890-a2ca-eed60ff81df7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 90.17 0)
+			(at 124.2561 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "line10"
 		(shape input)
-		(at 210.82 165.1 180)
+		(at 256.54 83.82 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "703bb346-8bfe-4c2d-b581-c1085b2eb035")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 165.1 0)
+			(at 265.4518 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "line23"
 		(shape input)
-		(at 256.54 86.36 0)
+		(at 256.54 71.12 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -11211,7 +11241,7 @@
 		)
 		(uuid "70809cf5-5ca3-4717-bd9e-daf6d232fae6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 86.36 0)
+			(at 265.2261 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11233,7 +11263,7 @@
 		)
 		(uuid "718d0e1b-b04a-4bf9-ba08-d12ff597fd25")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 160.02 0)
+			(at 202.1339 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11289,29 +11319,7 @@
 	)
 	(global_label "line20"
 		(shape input)
-		(at 210.82 132.08 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "80aff155-8e90-45d4-95bb-5de27ef26381")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "line04"
-		(shape output)
-		(at 115.57 57.15 0)
+		(at 256.54 119.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -11319,14 +11327,36 @@
 			)
 			(justify left)
 		)
-		(uuid "81638ceb-88e9-45da-b761-9ce59ebfce66")
+		(uuid "80aff155-8e90-45d4-95bb-5de27ef26381")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 57.15 0)
+			(at 265.4518 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line04"
+		(shape output)
+		(at 90.17 34.29 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "81638ceb-88e9-45da-b761-9ce59ebfce66")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 81.4839 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -11355,22 +11385,22 @@
 	)
 	(global_label "line12"
 		(shape output)
-		(at 115.57 123.19 0)
+		(at 90.17 100.33 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "86042aa2-1e89-4c03-aac0-6a349d04125d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 123.19 0)
+			(at 81.4839 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -11443,7 +11473,7 @@
 	)
 	(global_label "line22"
 		(shape input)
-		(at 256.54 83.82 0)
+		(at 256.54 68.58 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -11453,7 +11483,7 @@
 		)
 		(uuid "8d03a15d-255d-4f80-bc67-96bd9be26cc1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 83.82 0)
+			(at 265.2261 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11465,22 +11495,22 @@
 	)
 	(global_label "line07"
 		(shape output)
-		(at 115.57 67.31 0)
+		(at 90.17 90.17 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "9105dfa9-b16f-4495-977e-feb7d7eae274")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 67.31 0)
+			(at 81.4839 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -11575,7 +11605,7 @@
 	)
 	(global_label "line_threshold"
 		(shape output)
-		(at 278.13 154.94 0)
+		(at 269.24 154.94 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -11585,7 +11615,7 @@
 		)
 		(uuid "9a5f6c0e-71e6-4d79-9d81-b0537f560ca1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 294.4802 154.94 0)
+			(at 285.5902 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11597,22 +11627,22 @@
 	)
 	(global_label "line29"
 		(shape output)
-		(at 90.17 265.43 180)
+		(at 115.57 265.43 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "9e10d011-9d7a-40c4-a2d1-07da047424a3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 265.43 0)
+			(at 124.2561 265.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -11707,22 +11737,22 @@
 	)
 	(global_label "line17"
 		(shape output)
-		(at 90.17 166.37 180)
+		(at 115.57 189.23 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "a6f02220-1aea-4f70-96e9-889ba28b80cd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 166.37 0)
+			(at 124.2561 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -11751,51 +11781,7 @@
 	)
 	(global_label "line31"
 		(shape input)
-		(at 256.54 111.76 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "af179ae4-b880-4da2-9da8-3ece52fba1e3")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "line08"
-		(shape output)
-		(at 115.57 90.17 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "b0513910-b47f-4ddc-97c3-85ab73406697")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "line02"
-		(shape output)
-		(at 90.17 57.15 180)
+		(at 210.82 127 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -11803,9 +11789,9 @@
 			)
 			(justify right)
 		)
-		(uuid "b11df670-0852-4fa7-b813-bdd61aea6d8f")
+		(uuid "af179ae4-b880-4da2-9da8-3ece52fba1e3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 57.15 0)
+			(at 201.9082 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11815,29 +11801,7 @@
 			)
 		)
 	)
-	(global_label "line21"
-		(shape input)
-		(at 256.54 81.28 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "b133a0eb-cd88-48f9-b565-70c54f081650")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "line05"
+	(global_label "line08"
 		(shape output)
 		(at 90.17 67.31 180)
 		(fields_autoplaced yes)
@@ -11847,7 +11811,7 @@
 			)
 			(justify right)
 		)
-		(uuid "b38ab546-8700-468c-8e66-4b82d318b286")
+		(uuid "b0513910-b47f-4ddc-97c3-85ab73406697")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 81.4839 67.31 0)
 			(effects
@@ -11859,9 +11823,9 @@
 			)
 		)
 	)
-	(global_label "line23"
+	(global_label "line02"
 		(shape output)
-		(at 115.57 199.39 0)
+		(at 115.57 34.29 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -11869,14 +11833,80 @@
 			)
 			(justify left)
 		)
-		(uuid "b62f691d-4acf-401a-8ecd-b8561c465944")
+		(uuid "b11df670-0852-4fa7-b813-bdd61aea6d8f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 199.39 0)
+			(at 124.2561 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line21"
+		(shape input)
+		(at 256.54 66.04 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b133a0eb-cd88-48f9-b565-70c54f081650")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 265.2261 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line05"
+		(shape output)
+		(at 115.57 90.17 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b38ab546-8700-468c-8e66-4b82d318b286")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 124.2561 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line23"
+		(shape output)
+		(at 90.17 199.39 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b62f691d-4acf-401a-8ecd-b8561c465944")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 81.4839 199.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -11949,22 +11979,22 @@
 	)
 	(global_label "line11"
 		(shape input)
-		(at 210.82 177.8 180)
+		(at 256.54 86.36 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "bfa052d1-d93c-4e9f-ad49-dcf20ae9a484")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 177.8 0)
+			(at 265.4518 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -11993,22 +12023,22 @@
 	)
 	(global_label "line31"
 		(shape output)
-		(at 115.57 265.43 0)
+		(at 90.17 265.43 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "ca7e2fc5-a176-4817-9d85-c8fe77844d09")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 265.43 0)
+			(at 81.4839 265.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -12059,22 +12089,22 @@
 	)
 	(global_label "line32"
 		(shape output)
-		(at 115.57 288.29 0)
+		(at 90.17 288.29 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "cb971ef3-6562-47ce-a72d-7eb734312f25")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 288.29 0)
+			(at 81.4839 288.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -12103,29 +12133,7 @@
 	)
 	(global_label "line12"
 		(shape input)
-		(at 210.82 180.34 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "d211ff00-4b67-40d6-9a49-cfa9c19d2788")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "line24"
-		(shape output)
-		(at 115.57 222.25 0)
+		(at 256.54 88.9 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12133,14 +12141,36 @@
 			)
 			(justify left)
 		)
-		(uuid "d22acec5-f602-4389-bc21-dc2cc3c1e03d")
+		(uuid "d211ff00-4b67-40d6-9a49-cfa9c19d2788")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 222.25 0)
+			(at 265.4518 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line24"
+		(shape output)
+		(at 90.17 222.25 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d22acec5-f602-4389-bc21-dc2cc3c1e03d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 81.4839 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -12169,29 +12199,7 @@
 	)
 	(global_label "line26"
 		(shape output)
-		(at 90.17 255.27 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "d669f421-4d0a-4435-ad49-4c107ab22082")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 255.27 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "line19"
-		(shape output)
-		(at 115.57 166.37 0)
+		(at 115.57 232.41 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12199,9 +12207,9 @@
 			)
 			(justify left)
 		)
-		(uuid "d97ab3a6-2857-43c9-a1af-8b58fc57882d")
+		(uuid "d669f421-4d0a-4435-ad49-4c107ab22082")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 166.37 0)
+			(at 124.2561 232.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12211,9 +12219,9 @@
 			)
 		)
 	)
-	(global_label "line22"
+	(global_label "line19"
 		(shape output)
-		(at 90.17 222.25 180)
+		(at 90.17 189.23 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12221,14 +12229,36 @@
 			)
 			(justify right)
 		)
-		(uuid "d9cd18db-f524-4cde-bf5c-b725372803b8")
+		(uuid "d97ab3a6-2857-43c9-a1af-8b58fc57882d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 222.25 0)
+			(at 81.4839 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line22"
+		(shape output)
+		(at 115.57 222.25 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d9cd18db-f524-4cde-bf5c-b725372803b8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 124.2561 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -12257,22 +12287,22 @@
 	)
 	(global_label "line30"
 		(shape input)
-		(at 256.54 109.22 0)
+		(at 210.82 129.54 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "dec699c3-16f0-4971-8db3-dce28741b691")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 109.22 0)
+			(at 201.9082 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -12301,22 +12331,22 @@
 	)
 	(global_label "line01"
 		(shape output)
-		(at 90.17 34.29 180)
+		(at 115.57 57.15 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "e17e9159-e4e0-4cf5-80ad-b77ab5fad006")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 34.29 0)
+			(at 124.2561 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -12345,44 +12375,44 @@
 	)
 	(global_label "line18"
 		(shape output)
-		(at 90.17 189.23 180)
+		(at 115.57 166.37 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "e856a938-735d-4f79-9297-803771d3556d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 189.23 0)
+			(at 124.2561 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "line14"
 		(shape input)
-		(at 210.82 172.72 180)
+		(at 256.54 93.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "ea5cee85-c588-4c08-bee0-d734b715046c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 172.72 0)
+			(at 265.4518 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -12411,29 +12441,7 @@
 	)
 	(global_label "line27"
 		(shape input)
-		(at 256.54 139.7 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "ecbd2da5-3e7c-470d-86b8-cf91d2550710")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "line25"
-		(shape output)
-		(at 90.17 232.41 180)
+		(at 210.82 137.16 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12441,9 +12449,9 @@
 			)
 			(justify right)
 		)
-		(uuid "ed4f31e0-1fc1-4153-a645-25fd19314701")
+		(uuid "ecbd2da5-3e7c-470d-86b8-cf91d2550710")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 232.41 0)
+			(at 201.9082 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12453,9 +12461,9 @@
 			)
 		)
 	)
-	(global_label "line15"
+	(global_label "line25"
 		(shape output)
-		(at 115.57 133.35 0)
+		(at 115.57 255.27 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12463,9 +12471,9 @@
 			)
 			(justify left)
 		)
-		(uuid "f0c0f59c-15b1-41d7-a19c-d25cfbc98ca4")
+		(uuid "ed4f31e0-1fc1-4153-a645-25fd19314701")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 133.35 0)
+			(at 124.2561 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12475,9 +12483,31 @@
 			)
 		)
 	)
+	(global_label "line15"
+		(shape output)
+		(at 90.17 156.21 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f0c0f59c-15b1-41d7-a19c-d25cfbc98ca4")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 81.4839 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "line24"
 		(shape input)
-		(at 256.54 88.9 0)
+		(at 256.54 73.66 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12487,7 +12517,7 @@
 		)
 		(uuid "f10b6b2d-491c-41b6-97ea-f32c9a68d49d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 265.4518 88.9 0)
+			(at 265.2261 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12521,22 +12551,22 @@
 	)
 	(global_label "line13"
 		(shape input)
-		(at 210.82 170.18 180)
+		(at 256.54 91.44 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "f46289a9-3f8a-4a97-b7e5-6d00664d430d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 170.18 0)
+			(at 265.4518 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -12565,22 +12595,22 @@
 	)
 	(global_label "line30"
 		(shape output)
-		(at 90.17 288.29 180)
+		(at 115.57 288.29 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "f64f7147-b1a4-46aa-ad73-e751b498ab9a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 81.4839 288.29 0)
+			(at 124.2561 288.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -12631,22 +12661,22 @@
 	)
 	(global_label "line11"
 		(shape output)
-		(at 115.57 100.33 0)
+		(at 90.17 123.19 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "fb7a83f1-78cc-47e1-a463-5ac0ad009516")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.2561 100.33 0)
+			(at 81.4839 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -12675,22 +12705,22 @@
 	)
 	(global_label "line18"
 		(shape input)
-		(at 210.82 127 180)
+		(at 256.54 114.3 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "fd4331c4-861b-490e-84ff-37f1e2717ba0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 127 0)
+			(at 265.4518 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -12707,7 +12737,7 @@
 		)
 		(uuid "ff7bf39f-44e8-4e13-aa7b-89f2c0f53669")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 201.9082 157.48 0)
+			(at 202.1339 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12719,7 +12749,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 172.72 180)
+		(at 143.51 182.88 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12727,7 +12757,7 @@
 		(dnp no)
 		(uuid "0431fb66-0373-44ad-b67a-64628edc4e93")
 		(property "Reference" "U17"
-			(at 62.23 166.37 0)
+			(at 143.51 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12735,15 +12765,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 166.37 0)
+			(at 143.51 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 176.53 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12752,7 +12782,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 176.53 0)
+			(at 143.51 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12761,7 +12791,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 172.72 0)
+			(at 143.51 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12810,7 +12840,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 25.4 90)
 			(effects
 				(font
@@ -12878,7 +12908,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:Tactile1"
+		(property "Footprint" "@2024TOINIOT2-Line:Tactile1"
 			(at 104.14 363.22 0)
 			(effects
 				(font
@@ -13011,7 +13041,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LM339"
+		(property "Footprint" "@2024TOINIOT2-Line:LM339"
 			(at 95.25 264.16 0)
 			(effects
 				(font
@@ -13293,8 +13323,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 121.92 0)
-		(mirror x)
+		(at 62.23 106.68 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13302,7 +13331,7 @@
 		(dnp no)
 		(uuid "0f84b160-0b49-4d98-84b2-0f82168b4cce")
 		(property "Reference" "U12"
-			(at 143.51 115.57 0)
+			(at 62.23 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13310,15 +13339,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 115.57 0)
+			(at 62.23 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 125.73 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13327,7 +13356,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 125.73 0)
+			(at 62.23 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13336,7 +13365,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 121.92 0)
+			(at 62.23 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13385,7 +13414,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 184.15 90)
 			(effects
 				(font
@@ -13453,7 +13482,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LM339"
+		(property "Footprint" "@2024TOINIOT2-Line:LM339"
 			(at 95.25 66.04 0)
 			(effects
 				(font
@@ -13798,8 +13827,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 154.94 0)
-		(mirror x)
+		(at 62.23 139.7 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13807,7 +13835,7 @@
 		(dnp no)
 		(uuid "1b18f251-d86e-4bfa-9281-196241bf7448")
 		(property "Reference" "U16"
-			(at 143.51 148.59 0)
+			(at 62.23 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13815,15 +13843,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 148.59 0)
+			(at 62.23 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 158.75 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13832,7 +13860,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 158.75 0)
+			(at 62.23 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13841,7 +13869,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 154.94 0)
+			(at 62.23 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13890,7 +13918,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 165.1 90)
 			(effects
 				(font
@@ -13958,7 +13986,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 120.65 90)
 			(effects
 				(font
@@ -14132,8 +14160,78 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 266.7 160.02 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "21c84964-0313-4501-9bd1-032fe406badc")
+		(property "Reference" "C10"
+			(at 269.24 158.7563 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10uF"
+			(at 269.24 161.2963 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 266.7 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 266.7 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 266.7 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c0617369-b64b-4d55-ba59-01368999f396")
+		)
+		(pin "1"
+			(uuid "59c1839a-529a-4f5d-ab0c-8965200e5eb1")
+		)
+		(instances
+			(project ""
+				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
+					(reference "C10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 187.96 180)
+		(at 143.51 167.64 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14141,7 +14239,7 @@
 		(dnp no)
 		(uuid "247e7ccf-afe7-4cd2-bd8e-df5d4fd70032")
 		(property "Reference" "U18"
-			(at 62.23 181.61 0)
+			(at 143.51 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14149,15 +14247,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 181.61 0)
+			(at 143.51 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 191.77 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14166,7 +14264,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 191.77 0)
+			(at 143.51 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14175,7 +14273,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 187.96 0)
+			(at 143.51 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14200,7 +14298,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 270.51 167.64 0)
+		(at 266.7 165.1 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -14210,7 +14308,7 @@
 		(fields_autoplaced yes)
 		(uuid "264d7d3d-b67d-4554-a7e9-a5a06639e28e")
 		(property "Reference" "#PWR040"
-			(at 270.51 173.99 0)
+			(at 266.7 171.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14219,7 +14317,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 270.51 172.72 0)
+			(at 266.7 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14227,7 +14325,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 270.51 167.64 0)
+			(at 266.7 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14236,7 +14334,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 270.51 167.64 0)
+			(at 266.7 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14245,7 +14343,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 270.51 167.64 0)
+			(at 266.7 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14267,7 +14365,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 254 180)
+		(at 143.51 238.76 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14275,7 +14374,7 @@
 		(dnp no)
 		(uuid "272b7281-f99e-44ed-ae46-a363ac0eafd3")
 		(property "Reference" "U26"
-			(at 62.23 247.65 0)
+			(at 143.51 232.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14283,15 +14382,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 247.65 0)
+			(at 143.51 232.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 257.81 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 242.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14300,7 +14399,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 257.81 0)
+			(at 143.51 242.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14309,7 +14408,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 254 0)
+			(at 143.51 238.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14426,7 +14525,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 171.45 90)
 			(effects
 				(font
@@ -14560,7 +14659,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LM339"
+		(property "Footprint" "@2024TOINIOT2-Line:LM339"
 			(at 95.25 231.14 0)
 			(effects
 				(font
@@ -14664,7 +14763,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 88.9 90)
 			(effects
 				(font
@@ -14732,7 +14831,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 107.95 90)
 			(effects
 				(font
@@ -14800,7 +14899,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LM339"
+		(property "Footprint" "@2024TOINIOT2-Line:LM339"
 			(at 95.25 198.12 0)
 			(effects
 				(font
@@ -14880,7 +14979,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 73.66 180)
+		(at 143.51 83.82 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14888,7 +14987,7 @@
 		(dnp no)
 		(uuid "2ee4b3c7-e3e4-4bd8-a399-b9794cf1369f")
 		(property "Reference" "U5"
-			(at 62.23 67.31 0)
+			(at 143.51 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14896,15 +14995,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 67.31 0)
+			(at 143.51 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 77.47 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14913,7 +15012,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 77.47 0)
+			(at 143.51 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14922,7 +15021,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 73.66 0)
+			(at 143.51 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15039,7 +15138,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 95.25 90)
 			(effects
 				(font
@@ -15175,7 +15274,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 31.75 90)
 			(effects
 				(font
@@ -15419,8 +15518,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 187.96 0)
-		(mirror x)
+		(at 62.23 167.64 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15428,7 +15527,7 @@
 		(dnp no)
 		(uuid "3d401d89-3144-446c-9f4d-e68edb834b97")
 		(property "Reference" "U20"
-			(at 143.51 181.61 0)
+			(at 62.23 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15436,15 +15535,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 181.61 0)
+			(at 62.23 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 191.77 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15453,7 +15552,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 191.77 0)
+			(at 62.23 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15462,7 +15561,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 187.96 0)
+			(at 62.23 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15646,7 +15745,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 196.85 90)
 			(effects
 				(font
@@ -15758,8 +15857,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 73.66 0)
-		(mirror x)
+		(at 62.23 83.82 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15767,7 +15866,7 @@
 		(dnp no)
 		(uuid "41b41be3-6f35-49af-a4ed-8be1625415ee")
 		(property "Reference" "U7"
-			(at 143.51 67.31 0)
+			(at 62.23 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15775,15 +15874,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 67.31 0)
+			(at 62.23 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 77.47 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15792,7 +15891,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 77.47 0)
+			(at 62.23 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15801,7 +15900,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 73.66 0)
+			(at 62.23 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15916,7 +16015,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 76.2 90)
 			(effects
 				(font
@@ -16185,7 +16284,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 57.15 90)
 			(effects
 				(font
@@ -16293,6 +16392,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 261.62 154.94 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4df96321-e0fe-4db9-bd26-d2f9db1b3863")
+		(property "Reference" "R40"
+			(at 261.62 160.02 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1K"
+			(at 261.62 157.48 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 261.62 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 261.62 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 261.62 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ab7a3b35-e765-4912-bbdd-8cfe9fdb8283")
+		)
+		(pin "2"
+			(uuid "4b539679-55fc-4f8d-8bb1-98f22de9230a")
+		)
+		(instances
+			(project ""
+				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
+					(reference "R40")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:LED_Small")
 		(at 22.86 69.85 0)
 		(unit 1)
@@ -16318,7 +16484,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 69.85 90)
 			(effects
 				(font
@@ -16386,7 +16552,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 139.7 90)
 			(effects
 				(font
@@ -16520,7 +16686,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 50.8 90)
 			(effects
 				(font
@@ -17105,7 +17271,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 55.88 180)
+		(at 143.51 35.56 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -17113,7 +17279,7 @@
 		(dnp no)
 		(uuid "6cfec366-0e77-43c3-8c0e-b68248ebac87")
 		(property "Reference" "U2"
-			(at 62.23 49.53 0)
+			(at 143.51 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17121,15 +17287,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 49.53 0)
+			(at 143.51 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 59.69 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17138,7 +17304,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 59.69 0)
+			(at 143.51 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17147,7 +17313,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 55.88 0)
+			(at 143.51 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17240,8 +17406,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 271.78 0)
-		(mirror x)
+		(at 62.23 271.78 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -17249,7 +17414,7 @@
 		(dnp no)
 		(uuid "71922a04-5a27-4873-87e8-f2b7c7a569d1")
 		(property "Reference" "U31"
-			(at 143.51 265.43 0)
+			(at 62.23 265.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17257,15 +17422,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 265.43 0)
+			(at 62.23 265.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 275.59 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 275.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17274,7 +17439,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 275.59 0)
+			(at 62.23 275.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17283,7 +17448,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 271.78 0)
+			(at 62.23 271.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17536,7 +17701,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LM339"
+		(property "Footprint" "@2024TOINIOT2-Line:LM339"
 			(at 95.25 132.08 0)
 			(effects
 				(font
@@ -17708,7 +17873,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 38.1 90)
 			(effects
 				(font
@@ -17752,7 +17917,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 139.7 180)
+		(at 143.51 134.62 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -17760,7 +17925,7 @@
 		(dnp no)
 		(uuid "7a678bb3-e315-4edd-ac16-3a1f852b34d4")
 		(property "Reference" "U13"
-			(at 62.23 133.35 0)
+			(at 143.51 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17768,15 +17933,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 133.35 0)
+			(at 143.51 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 143.51 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17785,7 +17950,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 143.51 0)
+			(at 143.51 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17794,7 +17959,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 139.7 0)
+			(at 143.51 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17950,7 +18115,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 40.64 180)
+		(at 143.51 50.8 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -17958,7 +18123,7 @@
 		(dnp no)
 		(uuid "7da2cf81-184b-486d-ad02-fd14001bb95f")
 		(property "Reference" "U1"
-			(at 62.23 34.29 0)
+			(at 143.51 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17966,15 +18131,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 34.29 0)
+			(at 143.51 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 44.45 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17983,7 +18148,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 44.45 0)
+			(at 143.51 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17992,7 +18157,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 40.64 0)
+			(at 143.51 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18091,8 +18256,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 254 0)
-		(mirror x)
+		(at 62.23 233.68 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18100,7 +18265,7 @@
 		(dnp no)
 		(uuid "7fa2ef32-e9e3-45ce-ac80-3edcacb7be30")
 		(property "Reference" "U28"
-			(at 143.51 247.65 0)
+			(at 62.23 240.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18108,15 +18273,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 247.65 0)
+			(at 62.23 240.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 257.81 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 229.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18125,7 +18290,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 257.81 0)
+			(at 62.23 229.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18134,7 +18299,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 254 0)
+			(at 62.23 233.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18316,7 +18481,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 127 90)
 			(effects
 				(font
@@ -18428,7 +18593,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 205.74 180)
+		(at 143.51 205.74 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18436,7 +18602,7 @@
 		(dnp no)
 		(uuid "87626188-0e11-466c-bdd3-151b41fae5be")
 		(property "Reference" "U21"
-			(at 62.23 199.39 0)
+			(at 143.51 199.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18444,15 +18610,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 199.39 0)
+			(at 143.51 199.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 209.55 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18461,7 +18627,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 209.55 0)
+			(at 143.51 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18470,7 +18636,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 205.74 0)
+			(at 143.51 205.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18495,8 +18661,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 287.02 0)
-		(mirror x)
+		(at 62.23 287.02 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18504,7 +18669,7 @@
 		(dnp no)
 		(uuid "891e00c9-b833-44c0-b2e3-336eff1ac08b")
 		(property "Reference" "U32"
-			(at 143.51 280.67 0)
+			(at 62.23 280.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18512,15 +18677,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 280.67 0)
+			(at 62.23 280.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 290.83 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 290.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18529,7 +18694,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 290.83 0)
+			(at 62.23 290.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18538,7 +18703,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 287.02 0)
+			(at 62.23 287.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18790,7 +18955,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 190.5 90)
 			(effects
 				(font
@@ -18834,8 +18999,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 88.9 0)
-		(mirror x)
+		(at 62.23 68.58 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18843,7 +19008,7 @@
 		(dnp no)
 		(uuid "8db9e826-0477-4aaf-a3c0-e49350c534f4")
 		(property "Reference" "U8"
-			(at 143.51 82.55 0)
+			(at 62.23 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18851,15 +19016,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 82.55 0)
+			(at 62.23 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 92.71 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18868,7 +19033,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 92.71 0)
+			(at 62.23 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18877,7 +19042,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 88.9 0)
+			(at 62.23 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18968,7 +19133,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 121.92 180)
+		(at 143.51 106.68 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18976,7 +19142,7 @@
 		(dnp no)
 		(uuid "91820112-7a1b-4c17-8347-7eddf29157b0")
 		(property "Reference" "U10"
-			(at 62.23 115.57 0)
+			(at 143.51 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18984,15 +19150,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 115.57 0)
+			(at 143.51 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 125.73 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19001,7 +19167,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 125.73 0)
+			(at 143.51 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19010,7 +19176,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 121.92 0)
+			(at 143.51 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19059,7 +19225,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 215.9 90)
 			(effects
 				(font
@@ -19192,7 +19358,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 209.55 90)
 			(effects
 				(font
@@ -19396,7 +19562,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 82.55 90)
 			(effects
 				(font
@@ -19585,8 +19751,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 106.68 0)
-		(mirror x)
+		(at 62.23 121.92 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -19594,7 +19759,7 @@
 		(dnp no)
 		(uuid "9c251ca4-205d-46fc-a86b-35c39c7da74a")
 		(property "Reference" "U11"
-			(at 143.51 100.33 0)
+			(at 62.23 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19602,15 +19767,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 100.33 0)
+			(at 62.23 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 110.49 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19619,7 +19784,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 110.49 0)
+			(at 62.23 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19628,7 +19793,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 106.68 0)
+			(at 62.23 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19653,7 +19818,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 271.78 180)
+		(at 143.51 271.78 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -19661,7 +19827,7 @@
 		(dnp no)
 		(uuid "9cc92169-51eb-4cb8-b155-92cdd6243467")
 		(property "Reference" "U29"
-			(at 62.23 265.43 0)
+			(at 143.51 265.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19669,15 +19835,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 265.43 0)
+			(at 143.51 265.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 275.59 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 275.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19686,7 +19852,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 275.59 0)
+			(at 143.51 275.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19695,7 +19861,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 271.78 0)
+			(at 143.51 271.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19713,77 +19879,6 @@
 			(project "Line-20240325"
 				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
 					(reference "U29")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 270.51 161.29 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9e03fa38-bc56-4201-8f1f-39ca8ecb1bc4")
-		(property "Reference" "C10"
-			(at 266.7 160.0199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10uF"
-			(at 266.7 162.5599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 269.5448 165.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 270.51 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 270.51 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "3866a52f-ae4f-4b95-a64e-a2e8faf00e61")
-		)
-		(pin "1"
-			(uuid "1265f2a0-6ad1-48e7-9ff7-8ffe972a9e80")
-		)
-		(instances
-			(project "Line-20240325"
-				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
-					(reference "C10")
 					(unit 1)
 				)
 			)
@@ -19951,7 +20046,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LM339"
+		(property "Footprint" "@2024TOINIOT2-Line:LM339"
 			(at 95.25 33.02 0)
 			(effects
 				(font
@@ -20120,7 +20215,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 152.4 90)
 			(effects
 				(font
@@ -20164,8 +20259,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 205.74 0)
-		(mirror x)
+		(at 62.23 205.74 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -20173,7 +20267,7 @@
 		(dnp no)
 		(uuid "aa4cda7c-b463-4a5e-a84b-1d9e44da6e46")
 		(property "Reference" "U23"
-			(at 143.51 199.39 0)
+			(at 62.23 199.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20181,15 +20275,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 199.39 0)
+			(at 62.23 199.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 209.55 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20198,7 +20292,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 209.55 0)
+			(at 62.23 209.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20207,7 +20301,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 205.74 0)
+			(at 62.23 205.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20256,7 +20350,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 44.45 90)
 			(effects
 				(font
@@ -20366,7 +20460,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 106.68 180)
+		(at 143.51 121.92 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -20374,7 +20469,7 @@
 		(dnp no)
 		(uuid "b1b59478-185c-4c10-b3d7-2a3ffb0f5f19")
 		(property "Reference" "U9"
-			(at 62.23 100.33 0)
+			(at 143.51 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20382,15 +20477,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 100.33 0)
+			(at 143.51 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 110.49 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20399,7 +20494,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 110.49 0)
+			(at 143.51 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20408,7 +20503,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 106.68 0)
+			(at 143.51 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20523,7 +20618,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 177.8 90)
 			(effects
 				(font
@@ -20911,7 +21006,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 88.9 180)
+		(at 143.51 68.58 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -20919,7 +21014,7 @@
 		(dnp no)
 		(uuid "b930be15-cf60-40b9-a9c5-1bd66f3a68f5")
 		(property "Reference" "U6"
-			(at 62.23 82.55 0)
+			(at 143.51 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20927,15 +21022,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 82.55 0)
+			(at 143.51 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 92.71 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20944,7 +21039,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 92.71 0)
+			(at 143.51 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20953,7 +21048,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 88.9 0)
+			(at 143.51 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21431,7 +21526,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LM339"
+		(property "Footprint" "@2024TOINIOT2-Line:LM339"
 			(at 95.25 99.06 0)
 			(effects
 				(font
@@ -21535,7 +21630,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 222.25 90)
 			(effects
 				(font
@@ -21603,7 +21698,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 114.3 90)
 			(effects
 				(font
@@ -21671,7 +21766,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LM339"
+		(property "Footprint" "@2024TOINIOT2-Line:LM339"
 			(at 95.25 165.1 0)
 			(effects
 				(font
@@ -21911,7 +22006,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 101.6 90)
 			(effects
 				(font
@@ -21955,8 +22050,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 139.7 0)
-		(mirror x)
+		(at 62.23 154.94 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -21964,7 +22058,7 @@
 		(dnp no)
 		(uuid "c3a93975-5e41-412c-b17c-ca5689f82bac")
 		(property "Reference" "U15"
-			(at 143.51 133.35 0)
+			(at 62.23 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21972,15 +22066,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 133.35 0)
+			(at 62.23 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 143.51 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21989,7 +22083,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 143.51 0)
+			(at 62.23 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21998,7 +22092,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 139.7 0)
+			(at 62.23 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22047,7 +22141,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 203.2 90)
 			(effects
 				(font
@@ -22115,7 +22209,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 63.5 90)
 			(effects
 				(font
@@ -22319,7 +22413,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 158.75 90)
 			(effects
 				(font
@@ -22494,8 +22588,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 172.72 0)
-		(mirror x)
+		(at 62.23 182.88 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -22503,7 +22597,7 @@
 		(dnp no)
 		(uuid "ca165234-992c-416e-a555-6255d7075681")
 		(property "Reference" "U19"
-			(at 143.51 166.37 0)
+			(at 62.23 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22511,15 +22605,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 166.37 0)
+			(at 62.23 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 176.53 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22528,7 +22622,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 176.53 0)
+			(at 62.23 179.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22537,7 +22631,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 172.72 0)
+			(at 62.23 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22696,8 +22790,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 220.98 0)
-		(mirror x)
+		(at 62.23 220.98 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -22705,7 +22798,7 @@
 		(dnp no)
 		(uuid "d22ff522-5932-423b-aa43-1c0847b413b3")
 		(property "Reference" "U24"
-			(at 143.51 214.63 0)
+			(at 62.23 214.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22713,15 +22806,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 214.63 0)
+			(at 62.23 214.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 224.79 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 224.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22730,7 +22823,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 224.79 0)
+			(at 62.23 224.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22739,7 +22832,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 220.98 0)
+			(at 62.23 220.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22764,7 +22857,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 287.02 180)
+		(at 143.51 287.02 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -22772,7 +22866,7 @@
 		(dnp no)
 		(uuid "d2fd7b00-9caf-4424-8fd6-4b75cb31c5e6")
 		(property "Reference" "U30"
-			(at 62.23 280.67 0)
+			(at 143.51 280.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22780,15 +22874,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 280.67 0)
+			(at 143.51 280.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 290.83 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 290.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22797,7 +22891,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 290.83 0)
+			(at 143.51 290.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22806,7 +22900,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 287.02 0)
+			(at 143.51 287.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23167,7 +23261,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 220.98 180)
+		(at 143.51 220.98 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -23175,7 +23270,7 @@
 		(dnp no)
 		(uuid "d8993f16-3103-437b-9cb8-7449df62d6bb")
 		(property "Reference" "U22"
-			(at 62.23 214.63 0)
+			(at 143.51 214.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23183,15 +23278,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 214.63 0)
+			(at 143.51 214.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 224.79 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 224.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23200,7 +23295,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 224.79 0)
+			(at 143.51 224.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23209,7 +23304,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 220.98 0)
+			(at 143.51 220.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23234,8 +23329,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 55.88 0)
-		(mirror x)
+		(at 62.23 35.56 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -23243,7 +23338,7 @@
 		(dnp no)
 		(uuid "dcfe65e1-17fa-470d-ab0c-4458c22c54a3")
 		(property "Reference" "U4"
-			(at 143.51 49.53 0)
+			(at 62.23 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23251,15 +23346,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 49.53 0)
+			(at 62.23 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 59.69 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23268,7 +23363,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 59.69 0)
+			(at 62.23 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23277,7 +23372,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 55.88 0)
+			(at 62.23 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23466,7 +23561,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 133.35 90)
 			(effects
 				(font
@@ -23672,7 +23767,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:LED-3mm"
+		(property "Footprint" "@2024TOINIOT2-Line:LED-3mm"
 			(at 22.86 146.05 90)
 			(effects
 				(font
@@ -23716,7 +23811,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 154.94 180)
+		(at 143.51 149.86 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -23724,7 +23819,7 @@
 		(dnp no)
 		(uuid "e4e6cdcb-9174-4bc6-8e13-beb9415676fe")
 		(property "Reference" "U14"
-			(at 62.23 148.59 0)
+			(at 143.51 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23732,15 +23827,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 148.59 0)
+			(at 143.51 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 158.75 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 146.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23749,7 +23844,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 158.75 0)
+			(at 143.51 146.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23758,7 +23853,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 154.94 0)
+			(at 143.51 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23809,7 +23904,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:AL4BT"
+		(property "Footprint" "@2024TOINIOT2-Line:AL4BT"
 			(at 191.77 59.69 0)
 			(effects
 				(font
@@ -24391,8 +24486,8 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 40.64 0)
-		(mirror x)
+		(at 62.23 50.8 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -24400,7 +24495,7 @@
 		(dnp no)
 		(uuid "f1c31982-fbcd-433a-9030-0acbc60d9e3c")
 		(property "Reference" "U3"
-			(at 143.51 34.29 0)
+			(at 62.23 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24408,15 +24503,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 34.29 0)
+			(at 62.23 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 44.45 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24425,7 +24520,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 44.45 0)
+			(at 62.23 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24434,7 +24529,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 40.64 0)
+			(at 62.23 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24525,7 +24620,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 62.23 238.76 180)
+		(at 143.51 248.92 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -24533,7 +24628,7 @@
 		(dnp no)
 		(uuid "f5bbd586-313c-44ce-b02e-bf2adcd69dcd")
 		(property "Reference" "U25"
-			(at 62.23 232.41 0)
+			(at 143.51 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24541,15 +24636,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 62.23 232.41 0)
+			(at 143.51 255.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 62.23 242.57 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 143.51 245.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24558,7 +24653,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 62.23 242.57 0)
+			(at 143.51 245.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24567,7 +24662,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 62.23 238.76 0)
+			(at 143.51 248.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24795,8 +24890,7 @@
 	)
 	(symbol
 		(lib_id "@2024-Line:NJL7502L")
-		(at 143.51 238.76 0)
-		(mirror x)
+		(at 62.23 254 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -24804,7 +24898,7 @@
 		(dnp no)
 		(uuid "facd1bc6-7eb9-48e2-bec8-93cdc1acfed4")
 		(property "Reference" "U27"
-			(at 143.51 232.41 0)
+			(at 62.23 247.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24812,15 +24906,15 @@
 			)
 		)
 		(property "Value" "~"
-			(at 143.51 232.41 0)
+			(at 62.23 247.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINOT2-Line:NJL7502L"
-			(at 143.51 242.57 0)
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
+			(at 62.23 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24829,7 +24923,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 242.57 0)
+			(at 62.23 257.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24838,7 +24932,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.51 238.76 0)
+			(at 62.23 254 0)
 			(effects
 				(font
 					(size 1.27 1.27)
