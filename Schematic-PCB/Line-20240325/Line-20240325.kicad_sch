@@ -5103,10 +5103,6 @@
 		(uuid "fe854d6d-09a9-4c7c-9078-327db340b644")
 	)
 	(no_connect
-		(at 256.54 180.34)
-		(uuid "2ea9b58b-dc84-49b0-9c69-d27b077be071")
-	)
-	(no_connect
 		(at 210.82 180.34)
 		(uuid "30803670-f2b8-4e7c-b275-aea828086653")
 	)
@@ -5119,24 +5115,12 @@
 		(uuid "38405863-6310-4b8a-a3ae-099934badde2")
 	)
 	(no_connect
-		(at 256.54 187.96)
-		(uuid "4026aa77-143b-43c2-89a3-6e71361afacb")
-	)
-	(no_connect
-		(at 256.54 170.18)
-		(uuid "40a2c0b7-216e-4e5f-9a07-65703295d439")
-	)
-	(no_connect
 		(at 210.82 170.18)
 		(uuid "435ba31b-068e-4dc8-89fe-61d8a1cf0e6d")
 	)
 	(no_connect
 		(at 213.36 104.14)
 		(uuid "5390371f-00e4-4977-be52-32724e7e2429")
-	)
-	(no_connect
-		(at 256.54 172.72)
-		(uuid "5b05b19b-0412-4523-b8cb-063b02629be2")
 	)
 	(no_connect
 		(at 210.82 177.8)
@@ -5171,10 +5155,6 @@
 		(uuid "94f1427c-478e-4038-9f72-7a8c57a5eb76")
 	)
 	(no_connect
-		(at 256.54 185.42)
-		(uuid "9d6424d2-bd3e-4059-b04f-eb34f3f00e61")
-	)
-	(no_connect
 		(at 213.36 116.84)
 		(uuid "a70bd0f8-f279-4a3d-a3c8-001c0131ae9e")
 	)
@@ -5183,20 +5163,12 @@
 		(uuid "a7493f8f-7488-44db-b77e-ddf8d0f69fa0")
 	)
 	(no_connect
-		(at 256.54 182.88)
-		(uuid "ab5b7e90-8478-40dd-a386-3eceb5259efa")
-	)
-	(no_connect
 		(at 213.36 96.52)
 		(uuid "acee8189-7f89-486d-a30f-39977fa2e4a5")
 	)
 	(no_connect
 		(at 254 165.1)
 		(uuid "afd6661a-b21e-454f-a93b-3176feaef791")
-	)
-	(no_connect
-		(at 256.54 175.26)
-		(uuid "b07a5806-8653-4c2e-bcf4-f208f2ac86ef")
 	)
 	(no_connect
 		(at 213.36 88.9)
@@ -5209,10 +5181,6 @@
 	(no_connect
 		(at 213.36 93.98)
 		(uuid "b307425b-e6e3-4544-bd3b-b1f4cf9cdcb5")
-	)
-	(no_connect
-		(at 256.54 177.8)
-		(uuid "bbdde372-6015-4211-bdb3-c352018d378b")
 	)
 	(no_connect
 		(at 213.36 91.44)
@@ -10617,6 +10585,28 @@
 			)
 		)
 	)
+	(global_label "line08"
+		(shape input)
+		(at 256.54 187.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "28b51237-871e-4add-bfcf-5188e360e3ff")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 265.2261 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "line_threshold"
 		(shape input)
 		(at 115.57 273.05 0)
@@ -10630,6 +10620,28 @@
 		(uuid "2a974244-b75b-4f90-9fe5-be3d9da3a871")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 131.9202 273.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line07"
+		(shape input)
+		(at 256.54 185.42 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "31bbb8b3-f052-449b-a391-dce7102bbe3e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 265.2261 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11004,6 +11016,28 @@
 		(uuid "5710af9d-30c4-4cac-9025-890b82b4e224")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 124.2561 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line02"
+		(shape input)
+		(at 256.54 172.72 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5974482e-11e5-49c2-89c9-45ae0053a298")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 265.4518 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11554,6 +11588,28 @@
 		(uuid "941103e0-7196-47a6-b354-45b877685635")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 131.9202 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line03"
+		(shape input)
+		(at 256.54 175.26 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "95e7454b-8b3c-442e-84cf-9b727b760912")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 265.4518 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12289,6 +12345,28 @@
 			)
 		)
 	)
+	(global_label "line06"
+		(shape input)
+		(at 256.54 182.88 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dac3cc45-8c8f-4392-ae76-01772e151219")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 265.2261 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "line_threshold"
 		(shape input)
 		(at 115.57 247.65 0)
@@ -12351,6 +12429,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line04"
+		(shape input)
+		(at 256.54 177.8 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e0d2e0a5-798c-4ea9-8bd0-ff439a82df3e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 265.4518 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -12575,6 +12675,28 @@
 			)
 		)
 	)
+	(global_label "line05"
+		(shape input)
+		(at 256.54 180.34 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f3be892b-ddaf-4f01-90c3-fa9d848f6862")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 265.2261 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "line13"
 		(shape input)
 		(at 256.54 91.44 0)
@@ -12588,6 +12710,28 @@
 		(uuid "f46289a9-3f8a-4a97-b7e5-6d00664d430d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 265.4518 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "line01"
+		(shape input)
+		(at 256.54 170.18 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f58e23c2-8f94-461d-8e99-3d95fa613194")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 265.4518 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
