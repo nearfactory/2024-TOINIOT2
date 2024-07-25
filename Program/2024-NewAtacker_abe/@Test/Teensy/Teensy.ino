@@ -46,7 +46,7 @@ enum MOTOR : uint8_t{
   PH,
 };
 
-// Sub Serial 2
+// ToSub Serial 2
 
 // UI
 constexpr int BUTTON_NUM = 4;
@@ -62,6 +62,7 @@ Adafruit_SSD1306 display(DISPLAY_W, DISPLAY_H, &Wire, OLED_RESET);
 
 
 void setup() {
+
   // Serial
   Serial.begin(9600);
   Serial.println("Teensy4.1 Test Program 2024-07-25");
@@ -91,10 +92,10 @@ void setup() {
   }
   Serial.println("Motor");
 
-  // Sub
+  // ToSub
   Serial2.begin(9600);
   Serial2.println("Teensy4.1 Test Program 2024-07-25");
-  Serial.println("Sub");
+  Serial.println("ToSub");
 
   // UI-Button
   for(auto p:BUTTON_PIN) pinMode(p, INPUT);
@@ -151,15 +152,15 @@ void loop() {
   }
   Serial.printf("Motor\t:%d\n", motor_power);
 
-  // Sub-TX
-  Serial.print("Sub-TX\t:");
+  // ToSub-TX
+  Serial.print("ToSub-TX\t:");
   std::string sub_tx{};
   for(auto b:ball) sub_tx += (std::to_string(b) + " ");
   Serial2.write(sub_tx.c_str());
   Serial.printf("\"%s\"\n", sub_tx.c_str());
 
-  // Sub-RX
-  Serial.print("Sub-RX\t:");
+  // ToSub-RX
+  Serial.print("ToSub-RX\t:");
   std::string sub_rx{};
   while(Serial2.available()){
     sub_rx += static_cast<char>(Serial2.read());
@@ -188,6 +189,6 @@ void loop() {
   display.display();
 
   count++;
-  Serial.printf("Time\t:%d\n\n", millis()-begin_ms );
+  Serial.printf("Time\t:%d(ms)\n\n", millis()-begin_ms );
 
 }
