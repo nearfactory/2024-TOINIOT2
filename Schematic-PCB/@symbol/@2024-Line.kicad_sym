@@ -2219,7 +2219,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024TOINIOT2-Line:LM339"
 			(at -7.62 -1.27 0)
 			(effects
 				(font
@@ -2279,7 +2279,7 @@
 				)
 			)
 			(pin passive line
-				(at 10.16 -10.16 180)
+				(at 10.16 -17.78 180)
 				(length 2.54)
 				(name "4IN-"
 					(effects
@@ -2297,7 +2297,7 @@
 				)
 			)
 			(pin passive line
-				(at 10.16 -6.35 180)
+				(at 10.16 -13.97 180)
 				(length 2.54)
 				(name "4IN+"
 					(effects
@@ -2315,7 +2315,7 @@
 				)
 			)
 			(pin passive line
-				(at 10.16 -13.97 180)
+				(at 10.16 -10.16 180)
 				(length 2.54)
 				(name "GND"
 					(effects
@@ -2333,7 +2333,7 @@
 				)
 			)
 			(pin passive line
-				(at 10.16 -2.54 180)
+				(at 10.16 -6.35 180)
 				(length 2.54)
 				(name "4OUT"
 					(effects
@@ -2351,7 +2351,7 @@
 				)
 			)
 			(pin passive line
-				(at 10.16 -25.4 180)
+				(at 10.16 -2.54 180)
 				(length 2.54)
 				(name "3OUT"
 					(effects
@@ -2369,7 +2369,7 @@
 				)
 			)
 			(pin passive line
-				(at -10.16 -25.4 0)
+				(at -10.16 -6.35 0)
 				(length 2.54)
 				(name "2OUT"
 					(effects
@@ -2387,7 +2387,7 @@
 				)
 			)
 			(pin passive line
-				(at -10.16 -13.97 0)
+				(at -10.16 -10.16 0)
 				(length 2.54)
 				(name "VCC"
 					(effects
@@ -2405,7 +2405,7 @@
 				)
 			)
 			(pin passive line
-				(at -10.16 -17.78 0)
+				(at -10.16 -13.97 0)
 				(length 2.54)
 				(name "2IN-"
 					(effects
@@ -2423,7 +2423,7 @@
 				)
 			)
 			(pin passive line
-				(at -10.16 -21.59 0)
+				(at -10.16 -17.78 0)
 				(length 2.54)
 				(name "2IN+"
 					(effects
@@ -2441,7 +2441,7 @@
 				)
 			)
 			(pin passive line
-				(at -10.16 -10.16 0)
+				(at -10.16 -21.59 0)
 				(length 2.54)
 				(name "1IN-"
 					(effects
@@ -2459,7 +2459,7 @@
 				)
 			)
 			(pin passive line
-				(at -10.16 -6.35 0)
+				(at -10.16 -25.4 0)
 				(length 2.54)
 				(name "1IN+"
 					(effects
@@ -2477,7 +2477,7 @@
 				)
 			)
 			(pin passive line
-				(at 10.16 -17.78 180)
+				(at 10.16 -21.59 180)
 				(length 2.54)
 				(name "3IN-"
 					(effects
@@ -2495,7 +2495,7 @@
 				)
 			)
 			(pin passive line
-				(at 10.16 -21.59 180)
+				(at 10.16 -25.4 180)
 				(length 2.54)
 				(name "3IN+"
 					(effects
@@ -2534,7 +2534,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024TOINIOT2-Line:NJL7502L"
 			(at 0 3.81 0)
 			(effects
 				(font
