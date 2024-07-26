@@ -16523,7 +16523,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 49.53 90)
 			(effects
 				(font
@@ -17765,7 +17765,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 95.25 90)
 			(effects
 				(font
@@ -18034,7 +18034,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 118.11 90)
 			(effects
 				(font
@@ -18236,7 +18236,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 129.54 90)
 			(effects
 				(font
@@ -18305,7 +18305,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF"
+		(property "Value" "LPF"
 			(at 466.09 161.2963 0)
 			(effects
 				(font
@@ -19110,7 +19110,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 106.68 90)
 			(effects
 				(font
@@ -19652,7 +19652,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 152.4 90)
 			(effects
 				(font
@@ -21132,7 +21132,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "LPF"
 			(at 458.47 157.48 90)
 			(effects
 				(font
@@ -22138,7 +22138,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 60.96 90)
 			(effects
 				(font
@@ -22342,7 +22342,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 152.4 90)
 			(effects
 				(font
@@ -22886,7 +22886,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 72.39 90)
 			(effects
 				(font
@@ -22954,7 +22954,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 140.97 90)
 			(effects
 				(font
@@ -23795,7 +23795,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 243.84 90)
 			(effects
 				(font
@@ -23931,7 +23931,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 140.97 90)
 			(effects
 				(font
@@ -24141,7 +24141,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 255.27 90)
 			(effects
 				(font
@@ -24209,7 +24209,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 220.98 90)
 			(effects
 				(font
@@ -24549,7 +24549,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 118.11 90)
 			(effects
 				(font
@@ -24888,7 +24888,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 186.69 90)
 			(effects
 				(font
@@ -25022,7 +25022,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 163.83 90)
 			(effects
 				(font
@@ -25194,7 +25194,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 175.26 90)
 			(effects
 				(font
@@ -25602,7 +25602,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 198.12 90)
 			(effects
 				(font
@@ -25670,7 +25670,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 49.53 90)
 			(effects
 				(font
@@ -26088,7 +26088,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 209.55 90)
 			(effects
 				(font
@@ -26156,7 +26156,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 129.54 90)
 			(effects
 				(font
@@ -26294,7 +26294,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 83.82 90)
 			(effects
 				(font
@@ -27713,77 +27713,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 372.11 76.2 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b5a49661-5596-4b29-b035-7456c641af93")
-		(property "Reference" "C5"
-			(at 369.57 74.9363 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0.1uF"
-			(at 369.57 77.4763 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 372.11 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 372.11 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 372.11 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "10f7bb3b-c19e-484a-ac91-afaa4e5995b4")
-		)
-		(pin "2"
-			(uuid "d32d9466-998e-4854-871c-3c5cfa8e9cd8")
-		)
-		(instances
-			(project "Line-20240325"
-				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
-					(reference "C5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_Small")
 		(at 427.99 257.81 0)
 		(mirror y)
@@ -27939,7 +27868,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 232.41 90)
 			(effects
 				(font
@@ -28075,7 +28004,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 163.83 90)
 			(effects
 				(font
@@ -28276,7 +28205,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 95.25 90)
 			(effects
 				(font
@@ -29256,7 +29185,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 38.1 90)
 			(effects
 				(font
@@ -29458,7 +29387,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 60.96 90)
 			(effects
 				(font
@@ -29526,7 +29455,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 106.68 90)
 			(effects
 				(font
@@ -29698,7 +29627,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 38.1 90)
 			(effects
 				(font
@@ -29766,7 +29695,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 82.55 72.39 90)
 			(effects
 				(font
@@ -29811,6 +29740,77 @@
 			(project "Line-20240325"
 				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
 					(reference "R36")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 372.11 76.2 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d4712683-67c1-4e48-8484-3d8f24030d69")
+		(property "Reference" "C5"
+			(at 369.57 74.9236 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "0.1uF"
+			(at 369.57 77.4636 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 372.11 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 372.11 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 372.11 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b145244a-63fa-4222-97a4-db7202673a47")
+		)
+		(pin "2"
+			(uuid "691cde13-9a08-46ff-b4e0-69c79dad22bd")
+		)
+		(instances
+			(project "Line-20240325"
+				(path "/3ba7fdd5-fa74-4790-8511-1df233340313"
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -30714,7 +30714,7 @@
 				)
 			)
 		)
-		(property "Value" "1K"
+		(property "Value" "Line-Pulldown"
 			(at 137.16 83.82 90)
 			(effects
 				(font
