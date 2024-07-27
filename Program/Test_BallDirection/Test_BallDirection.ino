@@ -51,7 +51,7 @@ void loop() {
   short ball_y_2 = 0;
   double ball_dir_2 = 0;
   for(int i=-2;i<=2;i++){
-    int j = (ball_big_index + i) % BALL_NUM;
+    int j = (ball_big_index + BALL_NUM + i) % BALL_NUM;
     double sensor_dir = (j-1)*360.0/16.0 + 90.0;
     ball_x_2 += ball[j] * cos(sensor_dir);
     ball_y_2 += ball[j] * sin(sensor_dir);
@@ -65,7 +65,7 @@ void loop() {
   short ball_y_3 = 0;
   double ball_dir_3 = 0;
   for(int i=-3;i<=3;i++){
-    int j = (ball_big_index + i) % BALL_NUM;
+    int j = (ball_big_index + BALL_NUM + i) % BALL_NUM;
     double sensor_dir = (j-1)*360.0/16.0 + 90.0;
     ball_x_3 += ball[j] * cos(sensor_dir);
     ball_y_3 += ball[j] * sin(sensor_dir);
