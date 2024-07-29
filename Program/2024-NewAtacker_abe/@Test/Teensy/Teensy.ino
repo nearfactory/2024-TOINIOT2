@@ -19,7 +19,7 @@ const uint8_t BALL_PIN[BALL_NUM] = {
 // Camera Serial 8
 
 // DIR
-Adafruit_BNO055 bno(55, 0x28, &Wire);
+Adafruit_BNO055 bno(55, 0x28, &Wire2);
 
 // Dribbler (sub)
 
@@ -58,7 +58,7 @@ constexpr uint8_t DISPLAY_W = 128;
 constexpr uint8_t DISPLAY_H = 64;
 constexpr uint8_t DISPLAY_ADDR = 0x3c;
 constexpr uint8_t OLED_RESET = -1;
-Adafruit_SSD1306 display(DISPLAY_W, DISPLAY_H, &Wire, OLED_RESET);
+Adafruit_SSD1306 display(DISPLAY_W, DISPLAY_H, &Wire2, OLED_RESET);
 
 
 void setup() {
@@ -66,6 +66,9 @@ void setup() {
   // Serial
   Serial.begin(9600);
   Serial.println("Teensy4.1 Test Program 2024-07-25");
+  
+  // I2C
+  Wire2.begin();
 
   // Ball
   for(auto p:BALL_PIN) pinMode(p, INPUT);
@@ -104,7 +107,6 @@ void setup() {
   pinMode(BUZZER_PIN, OUTPUT);
 
   // UI-Display
-  Wire.begin();
   while(!display.begin(SSD1306_SWITCHCAPVCC, DISPLAY_ADDR));
   display.setTextSize(8);
 
