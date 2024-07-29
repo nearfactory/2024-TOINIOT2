@@ -25864,16 +25864,16 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x06_Pin")
-		(at 375.92 273.05 0)
+		(at 375.92 275.59 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "9c03ecca-d396-4c11-a2e9-3122d1892ef0")
 		(property "Reference" "J3"
-			(at 376.555 262.89 0)
+			(at 376.555 285.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -25881,7 +25881,7 @@
 			)
 		)
 		(property "Value" "Conn_01x06_Pin"
-			(at 376.555 265.43 0)
+			(at 376.555 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -25889,7 +25889,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Horizontal"
-			(at 375.92 273.05 0)
+			(at 375.92 275.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -25898,7 +25898,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 375.92 273.05 0)
+			(at 375.92 275.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -25907,7 +25907,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x06, script generated"
-			(at 375.92 273.05 0)
+			(at 375.92 275.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
