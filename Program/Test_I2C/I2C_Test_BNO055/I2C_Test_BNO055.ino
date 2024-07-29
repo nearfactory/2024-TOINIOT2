@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
@@ -32,16 +33,21 @@ uint16_t BNO055_SAMPLERATE_DELAY_MS = 100;
 
 // Check I2C device address and correct line below (by default address is 0x29 or 0x28)
 //                                   id, address
-Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28, &Wire);
+// TwoWire Wire2;
+Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28, &Wire2);
 
-TwoWire wire();
+// TwoWire wire();
 
 void setup(void)
 {
-  //wire.setSCL(24);
-  //wire.setSDA(25);
+  // Wire.setSCL(24);
+  // Wire.setSDA(25);
   
   Serial.begin(115200);
+
+  // Wire.setSDA(25);
+  // Wire.setSCL(24);
+  Wire2.begin();
 
   while (!Serial) delay(10);  // wait for serial port to open!
 
