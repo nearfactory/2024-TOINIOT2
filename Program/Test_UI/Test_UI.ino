@@ -25,7 +25,7 @@
 #include <Wire.h>
 
 constexpr int SW_TAC_NUM = 5;
-const uint8_t SW_TAC_PIN[SW_TAC_NUM] = { 5,4,3,2,1 };
+const uint8_t SW_TAC_PIN[SW_TAC_NUM] = { 36,37,31,30,32 };
 enum SW : uint8_t{
   TAC_1 = 0,
   TAC_2,
@@ -34,7 +34,7 @@ enum SW : uint8_t{
   TAC_5
 };
 
-constexpr uint8_t BUZZER_PIN = 0;
+constexpr uint8_t BUZZER_PIN = 33;
 
 constexpr uint8_t DISPLAY_W = 128;
 constexpr uint8_t DISPLAY_H = 64;
@@ -81,15 +81,16 @@ void loop() {
 
 
   // buzzer (1,2)
-  static float buzzer = 440.0f;
+  static float buzzer = 0.0f;
   if(sw_tac[SW::TAC_1]) buzzer += 4.0f;
   if(sw_tac[SW::TAC_2]) buzzer -= 4.0f;
   buzzer = buzzer<0.0f ? 0.0f : buzzer;
+
   // buzzer = buzzer>255.0f ? 255.0f : buzzer;
   // analogWrite(BUZZER_PIN, (int)buzzer);
   tone(BUZZER_PIN, buzzer);
   
-  display.setCursor(8, 16);
+  display.setCursor(8, 8);
   display.print("bz+");
   display.setCursor(8, 48);
   display.print("bz-");
@@ -111,8 +112,14 @@ void loop() {
 
   // kicker (5)
   display.setCursor(88, 48);
+  // if(sw_tac[SW::TAC_5]) display.print("kick");
   display.print("kick");
+  // display.invertDisplay(sw_tac[SW::TAC_1]);
   display.invertDisplay(sw_tac[SW::TAC_5]);
+  // display.invertDisplay(true);
+  // digitalWrite(SW_TAC_PIN[4], 1);
+  // digitalWrite(SW_TAC_PIN[4], 0);
+  // delay(1000);
 
 
   // ----
@@ -123,5 +130,5 @@ void loop() {
   Serial.printf("\nbuzzer:%f", buzzer);
   Serial.printf("\nprocess:%d(ms)\n\n\n", millis()-begin_ms );
 
-  delay(25);
+  // delay(25);
 }
