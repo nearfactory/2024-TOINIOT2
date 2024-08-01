@@ -1,8 +1,9 @@
 Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
-C2,0.1uF,C_0603_1608Metric,173.0,-124.5,0.0,bottom
-C5,0.33u,C_0603_1608Metric,216.0,-87.5,0.0,bottom
-C6,0.33u,C_0603_1608Metric,144.0,-87.5,180.0,bottom
-R1,10K,R_0603_1608Metric,188.125,-120.275,0.0,bottom
-R2,330,R_0603_1608Metric,155.0,-112.5,180.0,bottom
-R3,39K,R_0603_1608Metric,216.0,-85.75,180.0,bottom
-R4,39K,R_0603_1608Metric,144.0,-85.75,0.0,bottom
+C2,0.1uF,C_0603_1608Metric,0.0,-31.35,0.0,bottom
+C5,0.33u,C_0603_1608Metric,36.0,6.4,0.0,bottom
+C6,0.33u,C_0603_1608Metric,-36.0,6.4,180.0,bottom
+R1,10K,R_0603_1608Metric,3.75,-19.825,90.0,bottom
+R2,330,R_0603_1608Metric,1.75,-29.35,0.0,bottom
+R3,39K,R_0603_1608Metric,36.0,8.15,180.0,bottom
+R4,39K,R_0603_1608Metric,-36.0,8.15,0.0,bottom
+U1,~,XL6009-SMD,0.0,-10.35,0.0,top
