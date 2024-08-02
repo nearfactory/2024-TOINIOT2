@@ -320,7 +320,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINIOT2-Kicker:XL6009-SMD"
+		(property "Footprint" ""
 			(at 0 2.54 0)
 			(effects
 				(font
