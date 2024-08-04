@@ -5738,7 +5738,7 @@
 	)
 	(global_label "ball02k"
 		(shape input)
-		(at 85.09 93.98 0)
+		(at 85.09 83.82 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5748,7 +5748,7 @@
 		)
 		(uuid "0fe75c42-80d0-4519-b948-1ef6933e479d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 95.1507 93.98 0)
+			(at 95.1507 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5826,7 +5826,7 @@
 	)
 	(global_label "ball01k"
 		(shape input)
-		(at 85.09 83.82 0)
+		(at 85.09 93.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5836,7 +5836,7 @@
 		)
 		(uuid "a6e505de-e5f4-45e0-9fbb-79699187643c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 95.1507 83.82 0)
+			(at 95.1507 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6890,8 +6890,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 213.36 81.28 0)
-		(mirror y)
+		(at 213.36 83.82 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6899,7 +6898,7 @@
 		(dnp no)
 		(uuid "5862e853-7ec4-4508-98bf-581d95f5ba63")
 		(property "Reference" "J3"
-			(at 213.36 78.74 0)
+			(at 213.36 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6907,7 +6906,7 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Pin"
-			(at 214.63 81.28 0)
+			(at 214.63 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6917,7 +6916,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_XH_S2B-XH-A-1_1x02_P2.50mm_Horizontal"
-			(at 213.36 81.28 0)
+			(at 213.36 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6926,7 +6925,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 213.36 81.28 0)
+			(at 213.36 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6935,7 +6934,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 213.36 81.28 0)
+			(at 213.36 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
