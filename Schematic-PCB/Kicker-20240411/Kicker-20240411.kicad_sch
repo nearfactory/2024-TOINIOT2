@@ -5670,7 +5670,7 @@
 		)
 		(uuid "92b95777-36c2-47c6-a494-30f9bdfbaa34")
 	)
-	(text "Boost-module"
+	(text "Photo-coupler"
 		(exclude_from_sim no)
 		(at 106.68 16.51 0)
 		(effects
