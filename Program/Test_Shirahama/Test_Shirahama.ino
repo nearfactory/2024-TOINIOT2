@@ -49,7 +49,7 @@ void setup() {
   }
 
   // osushi
-  pinMode(OSUSHI_PIN, INPUT);
+  pinMode(OSUSHI_PIN, OUTPUT);
 
   // ball
   for(auto p:BALL_PIN) pinMode(p, INPUT);
@@ -65,9 +65,9 @@ void loop() {
   uint8_t power = 128;
   Serial.print("motor : ");
   for(int i=0;i<MOTOR_NUM;i++){
-    analogWrite(MOTOR_PIN[i][MOTOR::EN], power);
-    digitalWrite(MOTOR_PIN[i][MOTOR::PH], 0);
-    Serial.printf("%04d ", power);
+    // analogWrite(MOTOR_PIN[i][MOTOR::EN], power);
+    // digitalWrite(MOTOR_PIN[i][MOTOR::PH], 0);
+    // Serial.printf("%04d ", power);
   }
   Serial.println();
 
@@ -75,7 +75,7 @@ void loop() {
   static auto previous_kick_ms = millis();
   if( millis()-previous_kick_ms > 5000){
     digitalWrite(OSUSHI_PIN, 1);
-    delay(100);
+    delay(50);
     digitalWrite(OSUSHI_PIN, 0);
 
     previous_kick_ms = millis();
@@ -91,9 +91,10 @@ void loop() {
   for(int p=0;p<BALL_NUM;p++){
     // Serial.printf("ball%02d%04d ", p, analogRead(BALL_PIN[p]));
     ball[p] = analogRead(BALL_PIN[p]);
-    Serial.printf("%04d ", ball[p]);
+    // Serial.printf("%04d ", ball[p]);
   }
   Serial.println();
+  display.
   
   // 全てのセンサの値
   short ball_x = 0;
