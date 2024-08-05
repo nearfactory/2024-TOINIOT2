@@ -2955,16 +2955,6 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 81.28) (xy 82.55 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3036a507-7cb9-490a-84d2-bea27a6892f9")
-	)
-	(wire
-		(pts
 			(xy 119.38 40.64) (xy 119.38 43.18)
 		)
 		(stroke
@@ -3165,6 +3155,16 @@
 	)
 	(wire
 		(pts
+			(xy 82.55 86.36) (xy 82.55 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "682b2d97-1c6f-43a3-a602-c79f032cb3ad")
+	)
+	(wire
+		(pts
 			(xy 73.66 33.02) (xy 73.66 35.56)
 		)
 		(stroke
@@ -3235,6 +3235,16 @@
 	)
 	(wire
 		(pts
+			(xy 77.47 91.44) (xy 85.09 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "732180e2-33ed-4ca2-9d28-fa4be7680582")
+	)
+	(wire
+		(pts
 			(xy 93.98 35.56) (xy 96.52 35.56)
 		)
 		(stroke
@@ -3282,6 +3292,16 @@
 			(type default)
 		)
 		(uuid "879daad7-5348-479f-823e-eb90a568763e")
+	)
+	(wire
+		(pts
+			(xy 77.47 86.36) (xy 82.55 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "88333867-d0e0-400a-851e-639910956262")
 	)
 	(wire
 		(pts
@@ -3565,16 +3585,6 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 91.44) (xy 77.47 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e07ede08-d614-4b64-a295-caab6014b65b")
-	)
-	(wire
-		(pts
 			(xy 175.26 88.9) (xy 177.8 88.9)
 		)
 		(stroke
@@ -3582,16 +3592,6 @@
 			(type default)
 		)
 		(uuid "e3ba57b6-256a-40c6-9afd-bcf1eb94d5ca")
-	)
-	(wire
-		(pts
-			(xy 77.47 86.36) (xy 85.09 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e5383c8d-95dd-4f04-8d8f-7f276a872580")
 	)
 	(wire
 		(pts
@@ -5670,7 +5670,7 @@
 		)
 		(uuid "92b95777-36c2-47c6-a494-30f9bdfbaa34")
 	)
-	(text "Boost-module"
+	(text "Photo-coupler"
 		(exclude_from_sim no)
 		(at 106.68 16.51 0)
 		(effects
@@ -5870,7 +5870,7 @@
 	)
 	(global_label "Sig-main"
 		(shape output)
-		(at 85.09 86.36 0)
+		(at 85.09 91.44 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5880,7 +5880,7 @@
 		)
 		(uuid "bc4eea6c-d7e0-49f2-9509-fffcd9f17226")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 105.531 86.36 0)
+			(at 105.531 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6890,8 +6890,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 213.36 81.28 0)
-		(mirror y)
+		(at 213.36 83.82 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6899,7 +6898,7 @@
 		(dnp no)
 		(uuid "5862e853-7ec4-4508-98bf-581d95f5ba63")
 		(property "Reference" "J3"
-			(at 213.36 78.74 0)
+			(at 213.36 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6907,7 +6906,7 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Pin"
-			(at 214.63 81.28 0)
+			(at 214.63 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6917,7 +6916,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_XH_S2B-XH-A-1_1x02_P2.50mm_Horizontal"
-			(at 213.36 81.28 0)
+			(at 213.36 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6926,7 +6925,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 213.36 81.28 0)
+			(at 213.36 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6935,7 +6934,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 213.36 81.28 0)
+			(at 213.36 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8446,6 +8445,7 @@
 	(symbol
 		(lib_id "Connector:Conn_01x05_Pin")
 		(at 72.39 88.9 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8453,7 +8453,7 @@
 		(dnp no)
 		(uuid "d6e3f304-e26a-4570-ac57-26da3b953675")
 		(property "Reference" "J2"
-			(at 72.39 80.772 0)
+			(at 72.39 97.028 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8461,7 +8461,7 @@
 			)
 		)
 		(property "Value" "Conn_01x05_Pin"
-			(at 73.025 81.28 0)
+			(at 73.025 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8469,7 +8469,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_XH_S5B-XH-A-1_1x05_P2.50mm_Horizontal"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Horizontal"
 			(at 72.39 88.9 0)
 			(effects
 				(font

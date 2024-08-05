@@ -1,9 +1,11 @@
 Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
-C2,0.1uF,C_0603_1608Metric,0.0,-31.35,0.0,bottom
-C5,0.33u,C_0603_1608Metric,36.0,6.4,0.0,bottom
-C6,0.33u,C_0603_1608Metric,-36.0,6.4,180.0,bottom
-R1,10K,R_0603_1608Metric,3.75,-19.825,90.0,bottom
-R2,330,R_0603_1608Metric,1.75,-29.35,0.0,bottom
-R3,39K,R_0603_1608Metric,36.0,8.15,180.0,bottom
-R4,39K,R_0603_1608Metric,-36.0,8.15,0.0,bottom
-U1,~,XL6009-SMD,0.0,-10.35,0.0,top
+C2,0.33u,C_0603_1608Metric,38.15,8.8,0.0,top
+C3,0.33u,C_0603_1608Metric,-38.15,8.8,0.0,top
+C5,0.1uF,C_0603_1608Metric,0.005319,-35.2357,0.0,top
+R1,39K,R_0603_1608Metric,38.2,10.6,180.0,top
+R2,39K,R_0603_1608Metric,-38.2,10.6,0.0,top
+R3,330,R_0603_1608Metric,0.005319,-36.9857,0.0,top
+R4,10K,R_0603_1608Metric,0.0,-27.5,0.0,top
+R5,10K,R_0603_1608Metric,0.005319,-29.2357,0.0,top
+U1,TSSP58P38,Vishay_MINICAST-3Pin,39.025,16.0,-90.0,top
+U2,TSSP58P38,Vishay_MINICAST-3Pin,-39.025,16.0,90.0,top
