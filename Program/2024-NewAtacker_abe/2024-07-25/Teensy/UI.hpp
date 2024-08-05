@@ -1,5 +1,6 @@
-#include "WProgram.h"
 #pragma once
+
+#include <string>
 
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GFX.h>
@@ -7,9 +8,9 @@
 
 namespace{
   constexpr uint8_t BTN_NUM = 4;
-  const     uint8_t BTN_PIN = { 36,37,31,30 };
+  const     uint8_t BTN_PIN[BTN_NUM] = { 36,37,31,30 };
 
-  constexpr uint8_t BUZZER_PIN = 33;
+  constexpr uint8_t BZ_PIN = 33;
 
   constexpr uint8_t DISPLAY_W = 128;
   constexpr uint8_t DISPLAY_H = 64;
@@ -49,5 +50,12 @@ void bzUpdate(){
   if(bz > -1.0f){
     tone(BZ_PIN, bz);
   }
+  return;
+}
+
+void printd(uint8_t x, uint8_t y, std::string str){
+  display.setCursor(x, y);
+  display.print(str.c_str());
+
   return;
 }

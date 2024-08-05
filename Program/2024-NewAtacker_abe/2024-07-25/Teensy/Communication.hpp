@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Wire.h>
+
 void communicationSetup(){
   // UART
   Serial.begin(115200);   // pc
