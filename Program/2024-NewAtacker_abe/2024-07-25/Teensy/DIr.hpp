@@ -16,6 +16,12 @@ inline void dirSetup(){
   return;
 }
 
+inline void dirCalibration(uint8_t system, uint8_t gyro, uint8_t accel, uint8_t mag){
+  bno.getCalibration(&system, &gyro, &accel, &mag);
+
+  return;
+}
+
 inline void dirUpdate(){
   sensors_event_t orientation{};
   bno.getEvent(&orientation, Adafruit_BNO055::VECTOR_EULER);

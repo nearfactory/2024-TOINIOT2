@@ -8,7 +8,7 @@
 
 #include "Ball.hpp"
 #include "Communication.hpp"
-#include "DIr.hpp"
+// #include "Dir.hpp"
 #include "Kicker.hpp"
 
 namespace{
@@ -22,19 +22,29 @@ namespace{
   constexpr uint8_t DISPLAY_RESET = -1;
   constexpr uint8_t DISPLAY_ADDR = 0x3c;
 
-  uint8_t MODE = 0;
-  constexpr uint8_t MODE_NUM = 8;
-  const std::string MODE_NAME[MODE_NUM] = {
-    "ball",
-    "ball-k",
-    "ble",
-    "camera",
-    "dir",
-    "dribbler",
-    "line",
-    "valiables"
-  };
 }
+uint8_t MODE = 0;
+constexpr uint8_t MODE_NUM = 8;
+const std::string MODE_NAME[MODE_NUM] = {
+  "ball",
+  "ball-k",
+  "ble",
+  "camera",
+  "dir",
+  "dribbler",
+  "line",
+  "valiables"
+};
+enum MODE : uint8_t{
+  BALL = 0,
+  BALL_K,
+  BLE,
+  CAMERA,
+  DIR,
+  DRIBBLER,
+  LINE,
+  VALIABLES
+};
 
 
 bool button[BUTTON_NUM] = {false};
