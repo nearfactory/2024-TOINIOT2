@@ -131,7 +131,7 @@ void get_scan(){
 
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("BLE_Cliant_start");
   BLEDevice::init("TOINIOT2_DEFENDER");
   get_scan();
@@ -155,12 +155,20 @@ void loop() {
     String strVal = value.c_str();
     int strNum=strVal.toInt();
     Serial.println(strVal);
-    pRemoteCharacteristicRX -> writeValue("periferal", strlen("periferal"));
+    static std::string send_str = "a";
+    static std::string previous_send_str = "a";
+    if(Serial.available()){
+      while(Serial.available()){
+        send_str = (char)Serial.read();
+      }
+      previous_send_str = send_str;
+    }
+    pRemoteCharacteristicRX -> writeValue(send_str.c_str());
     // pRemoteCharacteristicTX -> 
   } else{
     Serial.println("Not connected");
     doConnect = false;
     get_scan();
   }
-  delay(1000);
+  delay(100);
 }

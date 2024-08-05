@@ -1,3 +1,16 @@
+// void setup(){
+//   Serial1.setPins(D7,D6);
+//   Serial1.begin(9600);
+//   Serial1.println("fujiking");
+// }
+
+// void loop(){
+//   static uint32_t c = 0;
+//   Serial1.printf("fujiki %d\n",c);
+//   c++;
+//   delay(150);
+// }
+
 // atacker
 // celtral
 
@@ -34,15 +47,22 @@ class CentralCallbacks : public BLEServerCallbacks{
 
 class CharacteristicCallbacks : public BLECharacteristicCallbacks{
   void onWrite(BLECharacteristic *_characteristic){
-    auto _D2A = _characteristic -> getValue();
-    if(_D2A.length())
+    String _D2A = _characteristic -> getValue();
+    // _characteristic -> setValue();
+    if(_D2A.length()>0){
       D2A_str = _D2A.c_str();
+      Serial1.println(D2A_str.c_str());
+    }
+      // Serial.println("\n\n\n\nreceived!\n\n\n\n");
   }
 };
 
 void setup() {
   Serial.begin(9600);
   Serial.println("BLE central(atacker)");
+
+  Serial1.setPins(D7,D6);
+  Serial1.begin(9600);
 
   BLEDevice::init(CENTRAL_NAME);
 
@@ -57,7 +77,7 @@ void setup() {
   D2A = service -> createCharacteristic(D2A_UUID, BLECharacteristic::PROPERTY_WRITE);
   D2A -> addDescriptor(new BLE2902());
 
-  A2D = service -> createCharacteristic(A2D_UUID, BLECharacteristic::PROPERTY_READ);
+  A2D = service -> createCharacteristic(A2D_UUID, BLECharacteristic::PROPERTY_WRITE);
   A2D -> setCallbacks(new CharacteristicCallbacks());
 
   service -> start();
