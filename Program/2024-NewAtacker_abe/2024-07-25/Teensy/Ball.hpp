@@ -8,19 +8,13 @@ const uint8_t BALL_PIN[BALL_NUM] = {
 
 
 int ball[BALL_NUM] = { 1023 };
+float ball_dir = 0;
 
 
 inline void ballSetup(){
   for(auto p:BALL_PIN) pinMode(p, INPUT);
 
   Serial.println("ball setup");
-  return;
-}
-
-inline void ballUpdate(){
-  for(int i=0;i<BALL_NUM;i++){
-    ball[i] = analogRead(BALL_PIN[i]);
-  }
   return;
 }
 
@@ -80,4 +74,13 @@ inline float ballDirection3(){
     ball_y += ball[j] * sin(sensor_dir/180.0*3.14);
   }
   return atan2(ball_y, ball_x) * (180.0 / PI);
+}
+
+inline void ballUpdate(){
+  for(int i=0;i<BALL_NUM;i++){
+    ball[i] = analogRead(BALL_PIN[i]);
+  }
+
+  ball_dir = ballDirection();
+  return;
 }

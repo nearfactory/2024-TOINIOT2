@@ -1,12 +1,19 @@
 #pragma once
 
+#include <string>
+
 #include <Wire.h>
+
+
+std::string BLE_atk{};
+std::string BLE_def{};
+
 
 void communicationSetup(){
   // UART
   Serial.begin(115200);   // pc
   Serial1.begin(115200);  // line
-  Serial2.begin(115200);  // sub
+  Serial2.begin(9600);  // sub
   // Serial8.begin(115200);  // camera
   
 
@@ -18,9 +25,26 @@ void communicationSetup(){
   // Serial1.print("T");
 
   // Sub
-  Serial2.print("T");
+  // Serial2.print("T");
 
 
   Serial.println("communication setup");
+  return;
+}
+
+void Serial2Update(){
+  if(Serial2.available()){
+    BLE_def = "";
+    while(Serial2.available()){
+      BLE_def += static_cast<char>(Serial2.read());
+    }
+  }
+  Serial2.println(BLE_atk.c_str());
+
+  Serial.print("atk:");
+  Serial.println(BLE_atk.c_str());
+  Serial.print("def:");
+  Serial.println(BLE_def.c_str());
+
   return;
 }
