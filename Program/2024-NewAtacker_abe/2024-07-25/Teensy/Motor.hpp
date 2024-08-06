@@ -69,7 +69,7 @@ inline void moveDir(short dir, short power, bool max_power){
       }
     }
   }
-  double p = 100.0 / abs(motor[power_big_id]);
+  double p = (double)power / abs(motor[power_big_id]);
   if(!max_power) p = 1.0;
   // Serial.println();
   // Serial.printf("big:%d\n",power_big);
@@ -79,9 +79,9 @@ inline void moveDir(short dir, short power, bool max_power){
   // Serial.print("max ");
   for(int i=0;i<MOTOR_NUM;i++){
     motor[i] *= p;
-    Serial.printf("m%d:%d ", i+1, motor[i]);
+    // Serial.printf("m%d:%d ", i+1, motor[i]);
   }
-  Serial.println();
+  // Serial.println();
 
   return;
 }

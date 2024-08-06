@@ -77,13 +77,14 @@ inline void UISetup(){
   pinMode(BZ_PIN, OUTPUT);
 
   // display
-  // // Serial.println("display");
-  // // if(!display.begin(SSD1306_SWITCHCAPVCC, DISPLAY_ADDR)){
-  // //   Serial.println("display error!");
-  // //   while(true);
-  // // }
-  // // display.setTextColor(WHITE);
-  // display.setTextSize(1);
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
+    Serial.println("Display error!");
+    while(true);
+  }
+  display.setTextColor(WHITE);
+  display.setTextSize(1);
+  
+  Serial.println("ui setup");
   return;
 }
 
@@ -162,8 +163,10 @@ inline void debugDisplay(uint8_t mode){
       uint8_t circle_r = 24;
       uint8_t text_r = circle_r + 4;
 
-      printd(8,24,"distance");
+      printd(8,24,"dist:");
       printd(8,32,to_string(ball_distance));
+      printd(8,48,"exis:"+to_string(ball_exist));
+      printd(8,40,"hold:"+to_string(ball_holding));
       
       string str = to_string(ball_dir);
       str.erase(str.begin()+5,str.end());
@@ -230,20 +233,20 @@ inline void debugDisplay(uint8_t mode){
       printd(8,   56, "m1:"+to_string(motor[0]) );
       printd(120, 56, "m2:"+to_string(motor[1]), TEXT_ALIGN_X::RIGHT);
 
-      printd(120,32,"stop",TEXT_ALIGN_X::RIGHT,TEXT_ALIGN_Y::MIDDLE);
-      if(buttonUp(3)){
-        for(int i=0;i<100;i++){
-          for(int j=0;j<MOTOR_NUM;j++){
-            motor[j]--;
-            motor[j]<0?0:motor[j];
-          }
-          motorRaw();
-          delay(5);
-        }
-        while(buttonUp(3)){
-          buttonUpdate();
-        }
-      }
+      // printd(120,32,"stop",TEXT_ALIGN_X::RIGHT,TEXT_ALIGN_Y::MIDDLE);
+      // if(buttonUp(3)){
+      //   for(int i=0;i<100;i++){
+      //     for(int j=0;j<MOTOR_NUM;j++){
+      //       motor[j]--;
+      //       motor[j]<0?0:motor[j];
+      //     }
+      //     motorRaw();
+      //     delay(5);
+      //   }
+      //   while(buttonUp(3)){
+      //     buttonUpdate();
+      //   }
+      // }
       break;
     }
 

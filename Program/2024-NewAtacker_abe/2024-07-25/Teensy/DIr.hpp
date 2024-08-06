@@ -14,6 +14,7 @@ inline void dirSetup(){
     while(true);
   }
 
+  Serial.println("dir setup");
   return;
 }
 

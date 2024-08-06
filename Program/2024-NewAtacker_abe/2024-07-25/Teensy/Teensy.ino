@@ -16,20 +16,29 @@ using namespace std;
 void setup() {
   communicationSetup();
   ballSetup();
-  // dirSetup();
+  dirSetup();
   // kickerSetup();
   motorSetup();
   UISetup();
 
+
+  display.clearDisplay();
+  display.setCursor(8, 8);
+  display.println("TOINIOT2 UI Test 2024-07-31");
+  display.display();
+  delay(2000);
+
   // calibration
   /*
+  */
   DISPLAY_MODE = DISPLAY_MODE::DIR;
   uint8_t system = 0, gyro = 0, accel = 0, mag = 0;
   while(system!=3 || gyro!=3 || mag!=3){
     display.clearDisplay();
     printd(8,8,"calibration...");
+    Serial.println("calibration...");
 
-    dirCalibration(&system, &gyro, &accel, &mag);
+    // dirCalibration(&system, &gyro, &accel, &mag);
     bno.getCalibration(&system, &gyro, &accel, &mag);
     printd(32,24,"system:"+to_string(system));
     printd(32,32,"gyro  :"+to_string(gyro));
@@ -37,19 +46,19 @@ void setup() {
     printd(32,48,"mag   :"+to_string(mag));
 
     display.display();
+    delay(10);
   }
 
   display.clearDisplay();
   printd(120,32,"start",TEXT_ALIGN_X::RIGHT, TEXT_ALIGN_Y::MIDDLE);
-  */
-  // while(buttonUp(4)){
-  //   buttonUpdate();
-  // }
+  while(buttonUp(4)){
+    buttonUpdate();
+  }
 
 
   // set default dir
-  // dirUpdate();
-  // default_dir = dir;
+  dirUpdate();
+  default_dir = dir;
 
   // motorRaw(0,0,0,0);
   motorRaw(-40,-40,40,40);
@@ -61,13 +70,13 @@ void setup() {
 void loop() {
   static auto begin_ms = millis();
   digitalWrite(LED_BUILTIN, HIGH);
-  // // display.clearDisplay();
+  display.clearDisplay();
 
   ballUpdate(BALL::DIR);
   buttonUpdate();
   // subUpdate();
 
-  // dirUpdate();
+  dirUpdate();
 
   // analogWrite(0,0);
 
@@ -78,9 +87,11 @@ void loop() {
   motor_dir += button[0];
   motor_dir -= button[1];
 
+  short motor_power = (ball_distance-6500) / 98;
   Serial.printf("dir:%d\n", motor_dir);
-  moveDir(motor_dir, 100, true);
-  motorRaw();
+  moveDir(ball_dir-180, motor_power, true);
+  if(!ball_exist) motorRaw(0,0,0,0);
+  // motorRaw();
 
   // setDir();
   // motorRaw(-100,-100,100,100);
@@ -103,19 +114,19 @@ void loop() {
   /*
   */
 
-  // Serial.printf("ball_min:-270\nball_max:90\n");
-  // Serial.printf("ball:%lf\n", ball_dir);
-  // Serial.printf("ball_distance:%d\n", ball_distance);
-  // Serial.printf("ball_holding:%d\n", ball_holding);
-  // Serial.printf("ball_exist:%d\n", ball_exist);
+  Serial.printf("ball_min:-270\nball_max:90\n");
+  Serial.printf("ball:%lf\n", ball_dir);
+  Serial.printf("ball_distance:%d\n", ball_distance);
+  Serial.printf("ball_holding:%d\n", ball_holding);
+  Serial.printf("ball_exist:%d\n", ball_exist);
 
   // UI (display)
-  // clearVariables();
-  // addVariables("process", begin_ms-millis());
-  // begin_ms = millis();
-  // if(buttonUp(4)) DISPLAY_MODE = (DISPLAY_MODE+1)%DISPLAY_MODE_NUM;
-  // debugDisplay(DISPLAY_MODE);
-  // display.display();
+  clearVariables();
+  addVariables("process", millis()-begin_ms);
+  begin_ms = millis();
+  if(buttonUp(4)) DISPLAY_MODE = (DISPLAY_MODE+1)%DISPLAY_MODE_NUM;
+  debugDisplay(DISPLAY_MODE);
+  display.display();
 
   // printd(8, 8, "process:"+std::to_string(millis()-begin_ms)+"(ms)");
   delay(50);
