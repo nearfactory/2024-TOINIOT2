@@ -53,3 +53,8 @@ inline void motorRaw(int8_t m1, int8_t m2, int8_t m3, int8_t m4){
 inline void motorP(){
   return;
 }
+
+inline void setDir(){
+
+  return;
+}

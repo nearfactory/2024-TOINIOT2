@@ -160,6 +160,9 @@ inline void debugDisplay(uint8_t mode){
     case DISPLAY_MODE::BALL :{
       uint8_t circle_r = 24;
       uint8_t text_r = circle_r + 4;
+
+      printd(8,24,"distance");
+      printd(8,32,to_string(ball_distance));
       
       string str = to_string(ball_dir);
       str.erase(str.begin()+5,str.end());
@@ -227,7 +230,19 @@ inline void debugDisplay(uint8_t mode){
       printd(120, 56, "m2:"+to_string(motor[1]), TEXT_ALIGN_X::RIGHT);
 
       printd(120,32,"stop",TEXT_ALIGN_X::RIGHT,TEXT_ALIGN_Y::MIDDLE);
-      buttonUp(3);
+      if(buttonUp(3)){
+        for(int i=0;i<100;i++){
+          for(int j=0;j<MOTOR_NUM;j++){
+            motor[j]--;
+            motor[j]<0?0motor[j];
+          }
+          motorRaw();
+          delay(5);
+        }
+        while(buttonUp(3)){
+          buttonUpdate();
+        }
+      }
       break;
     }
 

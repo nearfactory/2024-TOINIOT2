@@ -63,7 +63,8 @@ void loop() {
 
   analogWrite(0,0);
 
-  motorRaw(-100,-100,100,100);
+  setDir();
+  // motorRaw(-100,-100,100,100);
 
 
   // UI (display)
