@@ -14,14 +14,15 @@
 using namespace std;
 
 void setup() {
-  ballSetup();
   communicationSetup();
-  dirSetup();
-  kickerSetup();
+  ballSetup();
+  // dirSetup();
+  // kickerSetup();
   motorSetup();
   UISetup();
 
   // calibration
+  /*
   DISPLAY_MODE = DISPLAY_MODE::DIR;
   uint8_t system = 0, gyro = 0, accel = 0, mag = 0;
   while(system!=3 || gyro!=3 || mag!=3){
@@ -40,40 +41,78 @@ void setup() {
 
   display.clearDisplay();
   printd(120,32,"start",TEXT_ALIGN_X::RIGHT, TEXT_ALIGN_Y::MIDDLE);
+  */
   while(buttonUp(4)){
     buttonUpdate();
   }
 
 
   // set default dir
-  dirUpdate();
-  default_dir = dir;
+  // dirUpdate();
+  // default_dir = dir;
+  Serial.println("setup()");
 }
 
 void loop() {
   static auto begin_ms = millis();
   digitalWrite(LED_BUILTIN, HIGH);
-  display.clearDisplay();
+  // // display.clearDisplay();
 
   ballUpdate(BALL::DIR);
   buttonUpdate();
-  subUpdate();
+  // subUpdate();
 
-  dirUpdate();
+  // dirUpdate();
 
-  analogWrite(0,0);
+  // analogWrite(0,0);
 
-  setDir();
+  // motor_min
+  // motor_powerz
+
+  static short motor_power;
+  motor_power += button[0];
+  motor_power -= button[1];
+
+  // motor_power = (motor_power+180)%360-180;
+  Serial.printf("motor_power:%d\n", motor_power);
+
+  motor_power = motor_power<-255?-255:motor_power;
+  motor_power = motor_power>255?255:motor_power;
+
+  for(auto&m:motor) m = motor_power;
+  motorRaw();
+
+  // setDir();
   // motorRaw(-100,-100,100,100);
+  
+  if(buttonUp(3)){
+    for(int i=0;i<100;i++){
+      for(int j=0;j<MOTOR_NUM;j++){
+        motor[j]--;
+        motor[j]<0?0:motor[j];
+      }
+      motorRaw();
+      delay(5);
+    }
+    while(!buttonUp(3)){
+      buttonUpdate();
+    }
+  }
 
+  // Serial.printf("ball_min:-270\nball_max:90\n");
+  // Serial.printf("ball:%lf\n", ball_dir);
+  // Serial.printf("ball_distance:%d\n", ball_distance);
+  // Serial.printf("ball_holding:%d\n", ball_holding);
+  // Serial.printf("ball_exist:%d\n", ball_exist);
 
   // UI (display)
-  clearVariables();
-  addVariables("process", begin_ms-millis());
-  begin_ms = millis();
-  if(buttonUp(4)) DISPLAY_MODE = (DISPLAY_MODE+1)%DISPLAY_MODE_NUM;
-  debugDisplay(DISPLAY_MODE);
-  display.display();
+  // clearVariables();
+  // addVariables("process", begin_ms-millis());
+  // begin_ms = millis();
+  // if(buttonUp(4)) DISPLAY_MODE = (DISPLAY_MODE+1)%DISPLAY_MODE_NUM;
+  // debugDisplay(DISPLAY_MODE);
+  // display.display();
 
   // printd(8, 8, "process:"+std::to_string(millis()-begin_ms)+"(ms)");
+  delay(50);
 }

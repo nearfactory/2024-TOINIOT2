@@ -77,11 +77,12 @@ inline void UISetup(){
   pinMode(BZ_PIN, OUTPUT);
 
   // display
-  if(!display.begin(SSD1306_SWITCHCAPVCC, DISPLAY_ADDR)){
-    Serial.println("display error!");
-    while(true);
-  }
-  display.setTextColor(WHITE);
+  // // Serial.println("display");
+  // // if(!display.begin(SSD1306_SWITCHCAPVCC, DISPLAY_ADDR)){
+  // //   Serial.println("display error!");
+  // //   while(true);
+  // // }
+  // // display.setTextColor(WHITE);
   // display.setTextSize(1);
   return;
 }
@@ -234,7 +235,7 @@ inline void debugDisplay(uint8_t mode){
         for(int i=0;i<100;i++){
           for(int j=0;j<MOTOR_NUM;j++){
             motor[j]--;
-            motor[j]<0?0motor[j];
+            motor[j]<0?0:motor[j];
           }
           motorRaw();
           delay(5);

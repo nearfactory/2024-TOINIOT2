@@ -16,6 +16,7 @@ short ball[BALL_NUM] = { 1023 };
 float ball_dir = 0;
 short ball_distance = 0;
 bool  ball_holding = false;
+bool  ball_exist = true;
 
 short   ball_big = 1023;
 uint8_t ball_big_id = 0;
@@ -95,6 +96,7 @@ inline void ballUpdate(BALL mode){
   ball_small_id = 0;
   ball_big = 0;
   ball_big_id = 8;
+  ball_distance = 0;
   for(int i=0;i<BALL_NUM;i++){
     ball[i] = analogRead(BALL_PIN[i]);
     ball_distance += ball[i];
@@ -107,7 +109,10 @@ inline void ballUpdate(BALL mode){
     }
   }
 
-  // ball_holding
+  ball_holding = 5200 < ball_distance && ball_distance < 6500;
+  ball_exist = ball_distance < 16300;
+  // ball_holding 5200-6800
+  // exist < 16300
 
   switch(mode){
     case BALL::DIR :

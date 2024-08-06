@@ -34,7 +34,7 @@ inline void motorRaw(){
     motor[i] = motor[i]<-100 ? -100 : motor[i];
     motor[i] = motor[i]>100  ? 100  : motor[i];
     digitalWrite(MOTOR_PIN[i][MOTOR::PH], motor[i]>0);
-    analogWrite(MOTOR_PIN[i][MOTOR::EN], abs(motor[i]));
+    analogWrite(MOTOR_PIN[i][MOTOR::EN], abs(motor[i]*255/100));
   }
 
   return;
@@ -51,6 +51,15 @@ inline void motorRaw(int8_t m1, int8_t m2, int8_t m3, int8_t m4){
 }
 
 inline void motorP(){
+  return;
+}
+
+inline void move_dir(double dir, short power){
+  for(int i=0;i<MOTOR_NUM;i++){
+    motor[i] = sin(dir-(45+i*90)*3.14/180.0)*power;
+  }
+
+  // motorRaw();
   return;
 }
 
