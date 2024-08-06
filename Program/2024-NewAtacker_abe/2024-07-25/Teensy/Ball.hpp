@@ -38,11 +38,11 @@ inline float ballDirection(){
   short ball_y = 0;
 
   for(int i=0;i<BALL_NUM;i++){
-    double sensor_dir = (i-1)*360.0/16.0 + 180.0 - 67.5;
-    ball_x += ball[i] * cos(sensor_dir/180.0*PI);
-    ball_y += ball[i] * sin(sensor_dir/180.0*PI);
+    double sensor_dir = (i-1)/8.0+3.14;
+    ball_x += ball[i] * cos(sensor_dir*PI);
+    ball_y += ball[i] * sin(sensor_dir*PI);
   }
-  return atan2(ball_y, ball_x) * 180.0 / PI - 90.0;
+  return atan2(ball_y, ball_x) * 180.0 / PI;
 }
 
 inline float ballDirection2(){

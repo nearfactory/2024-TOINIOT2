@@ -86,7 +86,21 @@ inline void moveDir(short dir, short power, bool max_power){
   return;
 }
 
-inline void setDir(){
+inline void setDir(double dir, double goal_dir, uint8_t power, int blend){
+  short mpDir = 0;
+  dir -= goal_dir;
+  dir = dir < -180 ? dir + 360 : dir;
+  dir = dir > 180 ? dir - 360 : dir;
 
+  blend = blend<0?0:blend;
+  blend = blend>100?100:blend;
+  double P_GAIN_DIR = 0.95;
+  if(!(-10<dir && dir<10)){
+    mpDir = (dir * P_GAIN_DIR);
+    for(int i=0;i<4;i++){
+      motor[i] = motor[i]*(100-blend)*0.01 + mpDir*blend*0.01;
+    }
+  }
+  
   return;
 }

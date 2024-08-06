@@ -21,13 +21,6 @@ void setup() {
   motorSetup();
   UISetup();
 
-
-  display.clearDisplay();
-  display.setCursor(8, 8);
-  display.println("TOINIOT2 UI Test 2024-07-31");
-  display.display();
-  delay(2000);
-
   // calibration
   /*
   */
@@ -50,8 +43,9 @@ void setup() {
   }
 
   display.clearDisplay();
-  printd(120,32,"start",TEXT_ALIGN_X::RIGHT, TEXT_ALIGN_Y::MIDDLE);
-  while(buttonUp(4)){
+  printd(120,56,"start",TEXT_ALIGN_X::RIGHT, TEXT_ALIGN_Y::BOTTOM);
+  display.display();
+  while(!buttonUp(4)){
     buttonUpdate();
   }
 
@@ -59,12 +53,16 @@ void setup() {
   // set default dir
   dirUpdate();
   default_dir = dir;
+  dir_default_display = -dir;
 
   // motorRaw(0,0,0,0);
-  motorRaw(-40,-40,40,40);
-  delay(1);
+  // motorRaw(-40,-40,40,40);
+  // delay(1);
 
-  Serial.println("setup()");
+  // Serial.println("setup()");
+
+  // motorRaw(40,40,40,40);
+  // delay(2000);
 }
 
 void loop() {
@@ -87,15 +85,15 @@ void loop() {
   motor_dir += button[0];
   motor_dir -= button[1];
 
-  short motor_power = (ball_distance-6500) / 98;
-  Serial.printf("dir:%d\n", motor_dir);
-  moveDir(ball_dir-180, motor_power, true);
-  if(!ball_exist) motorRaw(0,0,0,0);
+  short motor_power = (ball_distance-6500) *0.8 / 98;
+  // Serial.printf("dir:%d\n", motor_dir);
+  moveDir(ball_dir, motor_power, true);
   // motorRaw();
 
   // setDir();
   // motorRaw(-100,-100,100,100);
   
+  /*
   if(buttonUp(3)){
     for(int i=0;i<100;i++){
       for(int j=0;j<MOTOR_NUM;j++){
@@ -111,8 +109,13 @@ void loop() {
       buttonUpdate();
     }
   }
-  /*
   */
+
+  setDir(dir,default_dir,60,40);
+  // motorRaw(40,40,40,40);
+  motorRaw();
+  
+  if(!ball_exist) motorRaw(0,0,0,0);
 
   Serial.printf("ball_min:-270\nball_max:90\n");
   Serial.printf("ball:%lf\n", ball_dir);
@@ -129,5 +132,5 @@ void loop() {
   display.display();
 
   // printd(8, 8, "process:"+std::to_string(millis()-begin_ms)+"(ms)");
-  delay(50);
+  // delay(50);
 }

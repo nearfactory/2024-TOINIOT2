@@ -163,21 +163,24 @@ inline void debugDisplay(uint8_t mode){
       uint8_t circle_r = 24;
       uint8_t text_r = circle_r + 4;
 
-      printd(8,24,"dist:");
-      printd(8,32,to_string(ball_distance));
-      printd(8,48,"exis:"+to_string(ball_exist));
-      printd(8,40,"hold:"+to_string(ball_holding));
-      
       string str = to_string(ball_dir);
-      str.erase(str.begin()+5,str.end());
-      printd(8, 32, str, TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::MIDDLE);
-      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, -ball_dir, circle_r);
-      
-      double ball_small_angle = (ball_small_id*360.0/BALL_NUM+180.0)/180.0*3.14;
-      printd(DISPLAY_W/2+text_r*cos(-ball_small_angle), DISPLAY_H/2+text_r*sin(-ball_small_angle), to_string(ball_small), TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
-      double ball_big_angle = (ball_big_id*360.0/BALL_NUM+180.0)/180.0*3.14;
-      printd(DISPLAY_W/2+text_r*cos(-ball_big_angle), DISPLAY_H/2+text_r*sin(-ball_big_angle), to_string(ball_big), TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      str.erase(str.begin()+4,str.end());
+      printd(8, 40, str);
 
+      // printd(8,24,"dist:",TEXT_ALIGN_X::LEFT,TEXT_ALIGN_Y::BOTTOM);
+      printd(8,48,"exist:"+to_string(ball_exist));
+      printd(8,56,"hold :"+to_string(ball_holding));
+      
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, ball_dir+180, circle_r);
+      
+      // double ball_small_angle = (ball_small_id*360.0/BALL_NUM+180.0)/180.0*3.14;
+      // printd(DISPLAY_W/2+text_r*cos(-ball_small_angle), DISPLAY_H/2+text_r*sin(-ball_small_angle), to_string(ball_small), TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      // double ball_big_angle = (ball_big_id*360.0/BALL_NUM+180.0)/180.0*3.14;
+      // printd(DISPLAY_W/2+text_r*cos(-ball_big_angle), DISPLAY_H/2+text_r*sin(-ball_big_angle), to_string(ball_big), TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+
+      printd(120,40,to_string(ball_small),    TEXT_ALIGN_X::RIGHT);
+      printd(120,48,to_string(ball_big),      TEXT_ALIGN_X::RIGHT);
+      printd(120,56,to_string(ball_distance), TEXT_ALIGN_X::RIGHT);
       for(int i=0;i<BALL_NUM;i++){
         double angle = (i*360/BALL_NUM+180);
         // Serial.println(angle);
@@ -212,8 +215,8 @@ inline void debugDisplay(uint8_t mode){
       str.erase(str.begin()+5,str.end());
       printd(8, 32, str, TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::MIDDLE);
 
-      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, -default_dir, 16);
-      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, -dir, 24);
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180-default_dir-dir_default_display, 24);
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180-dir-dir_default_display, 16);
       break;
     }
     
@@ -228,10 +231,10 @@ inline void debugDisplay(uint8_t mode){
     }
 
     case DISPLAY_MODE::MOTOR :{
-      printd(8,   24, "m4:"+to_string(motor[3]) );
-      printd(120, 24, "m3:"+to_string(motor[2]), TEXT_ALIGN_X::RIGHT);
-      printd(8,   56, "m1:"+to_string(motor[0]) );
-      printd(120, 56, "m2:"+to_string(motor[1]), TEXT_ALIGN_X::RIGHT);
+      printd(8,   24, "m4:"+to_string((int)motor[3]) );
+      printd(120, 24, "m3:"+to_string((int)motor[2]), TEXT_ALIGN_X::RIGHT);
+      printd(8,   56, "m1:"+to_string((int)motor[0]) );
+      printd(120, 56, "m2:"+to_string((int)motor[1]), TEXT_ALIGN_X::RIGHT);
 
       // printd(120,32,"stop",TEXT_ALIGN_X::RIGHT,TEXT_ALIGN_Y::MIDDLE);
       // if(buttonUp(3)){
