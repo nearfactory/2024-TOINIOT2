@@ -54,15 +54,6 @@ void setup() {
   dirUpdate();
   default_dir = dir;
   dir_default_display = -dir;
-
-  // motorRaw(0,0,0,0);
-  // motorRaw(-40,-40,40,40);
-  // delay(1);
-
-  // Serial.println("setup()");
-
-  // motorRaw(40,40,40,40);
-  // delay(2000);
 }
 
 void loop() {
@@ -86,8 +77,16 @@ void loop() {
   motor_dir -= button[1];
 
   short motor_power = (ball_distance-6500) *0.8 / 98;
+  // 線形にずらした角度に進める
   // Serial.printf("dir:%d\n", motor_dir);
-  moveDir(ball_dir, motor_power, true);
+  double difference = 0.0;
+  if(abs(ball_dir)>30){
+    difference = ball_dir<0?-60:60;
+  }else{
+    difference = 60*ball_dir/45;
+  }
+  double move_dir = ball_dir + difference;
+  moveDir(move_dir, 80, true);
   // motorRaw();
 
   // setDir();
@@ -111,11 +110,17 @@ void loop() {
   }
   */
 
+  bz=0.0f;
+  if(ball_holding) {
+    moveDir(0.0, 90, false);
+    bz=440.0f;
+  }
+  bzUpdate();
+  if(!ball_exist) motorRaw(0,0,0,0);
   setDir(dir,default_dir,60,40);
   // motorRaw(40,40,40,40);
   motorRaw();
   
-  if(!ball_exist) motorRaw(0,0,0,0);
 
   Serial.printf("ball_min:-270\nball_max:90\n");
   Serial.printf("ball:%lf\n", ball_dir);
@@ -125,6 +130,7 @@ void loop() {
 
   // UI (display)
   clearVariables();
+  addVariables("move_dir",move_dir);
   addVariables("process", millis()-begin_ms);
   begin_ms = millis();
   if(buttonUp(4)) DISPLAY_MODE = (DISPLAY_MODE+1)%DISPLAY_MODE_NUM;

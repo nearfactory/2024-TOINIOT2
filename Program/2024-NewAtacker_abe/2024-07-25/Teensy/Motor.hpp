@@ -98,7 +98,8 @@ inline void setDir(double dir, double goal_dir, uint8_t power, int blend){
   if(!(-10<dir && dir<10)){
     mpDir = (dir * P_GAIN_DIR);
     for(int i=0;i<4;i++){
-      motor[i] = motor[i]*(100-blend)*0.01 + mpDir*blend*0.01;
+      // motor[i] = motor[i]*(100-blend)*0.01 + mpDir*blend*0.01;
+      motor[i] += mpDir;
     }
   }
   
