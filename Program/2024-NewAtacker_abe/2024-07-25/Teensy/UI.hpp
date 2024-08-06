@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GFX.h>
@@ -10,6 +11,8 @@
 #include "Communication.hpp"
 // #include "Dir.hpp"
 #include "Kicker.hpp"
+
+using namespace std;
 
 namespace{
   constexpr uint8_t BUTTON_NUM = 4;
@@ -21,21 +24,20 @@ namespace{
   constexpr uint8_t DISPLAY_H = 64;
   constexpr uint8_t DISPLAY_RESET = -1;
   constexpr uint8_t DISPLAY_ADDR = 0x3c;
+  constexpr uint8_t DISPLAY_MODE_NUM = 8;
+  const std::string DISPLAY_MODE_NAME[DISPLAY_MODE_NUM] = {
+    "ball",
+    "ball-k",
+    "ble",
+    "camera",
+    "dir",
+    "dribbler",
+    "line",
+    "variables"
+  };
 
 }
-uint8_t MODE = 0;
-constexpr uint8_t MODE_NUM = 8;
-const std::string MODE_NAME[MODE_NUM] = {
-  "ball",
-  "ball-k",
-  "ble",
-  "camera",
-  "dir",
-  "dribbler",
-  "line",
-  "valiables"
-};
-enum MODE : uint8_t{
+enum DISPLAY_MODE : uint8_t{
   BALL = 0,
   BALL_K,
   BLE,
@@ -45,15 +47,27 @@ enum MODE : uint8_t{
   LINE,
   VALIABLES
 };
+enum class TEXT_ALIGN_X : uint8_t{
+  LEFT = 0,
+  CENTER,
+  RIGHT
+};
+enum class TEXT_ALIGN_Y : uint8_t{
+  TOP = 0,
+  MIDDLE,
+  BOTTOM
+};
 
 
-bool button[BUTTON_NUM] = {false};
-bool previous_button[BUTTON_NUM] = {false};
-float bz = -1.0f;
-Adafruit_SSD1306 display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET);
+bool                button[BUTTON_NUM] = {false};
+bool                previous_button[BUTTON_NUM] = {false};
+float               bz = -1.0f;
+Adafruit_SSD1306    display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET);
+uint8_t             DISPLAY_MODE = 0;
+vector<std::string> debug_variables(0);
 
 
-void UISetup(){
+inline void UISetup(){
   // button
   for(auto p:BUTTON_PIN) pinMode(p, INPUT);
 
@@ -70,7 +84,8 @@ void UISetup(){
   return;
 }
 
-void buttonUpdate(){
+// button
+inline void buttonUpdate(){
   for(int i=0;i<BUTTON_NUM;i++){
     previous_button[i] = button[i];
     button[i] = digitalRead(BUTTON_PIN[i]);
@@ -78,74 +93,132 @@ void buttonUpdate(){
   return;
 }
 
-bool buttonUp(uint8_t num){
+inline bool buttonUp(uint8_t num){
   num = num<1 ? 1 : num;
   num = num>5 ? 5 : num;
   return (!button[num-1]) && previous_button[num-1];
 }
 
-void bzUpdate(){
+// buzzer
+inline void bzUpdate(){
   if(bz > -1.0f){
     tone(BZ_PIN, bz);
   }
   return;
 }
 
-void printd(uint8_t x, uint8_t y, std::string str){
+// display
+inline void printd(uint8_t x, uint8_t y, std::string str, TEXT_ALIGN_X align_x = TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y align_y = TEXT_ALIGN_Y::TOP){
+  switch(align_x){
+    case TEXT_ALIGN_X::LEFT :
+      break;
+    case TEXT_ALIGN_X::CENTER :
+      x -= str.length()*8/2;
+      break;
+    case TEXT_ALIGN_X::RIGHT :
+      x -= str.length()*8;
+      break;
+  }
+  switch(align_y){
+    case TEXT_ALIGN_Y::TOP :
+      break;
+    case TEXT_ALIGN_Y::MIDDLE :
+      y -= 8/2;
+      break;
+    case TEXT_ALIGN_Y::BOTTOM :
+      y -=8;
+      break;
+  }
   display.setCursor(x, y);
   display.print(str.c_str());
 
   return;
 }
 
-void drawAngleLine(float angle, uint8_t r){
-  display.drawLine(DISPLAY_W/2, DISPLAY_H/2, DISPLAY_W/2+cos(angle*3.14/180)*r, DISPLAY_H/2+sin(angle*3.14/180)*r, WHITE);
-
+inline void drawAngleLine(uint8_t center_x, uint8_t center_y, float angle, uint8_t r){
+  display.drawLine(center_x, center_y, center_x+cos(angle*3.14/180)*r, center_y+sin(angle*3.14/180)*r, WHITE);
   return;
 }
 
-void debugDisplay(uint8_t mode){
-    // 0 "ball",
-    // 1 "ball-k",
-    // 2 "ble",
-    // 3 "camera",
-    // 4 "dir",
-    // 5 "dribbler",
-    // 6 "line",
-    // 7 "valiables"
-  printd(8,8,MODE_NAME[mode]);
+inline void clearVariables(){
+  debug_variables.clear();
+}
+
+template <typename T>
+inline void addVariables(std::string name, T variables){
+  debug_variables.emplace_back(name+":"+to_string(variables));
+  return;
+}
+
+inline void debugDisplay(uint8_t mode){
+  printd(8,8,DISPLAY_MODE_NAME[mode]);
+  // printd(120,32,"4.mode", TEXT_ALIGN_X::RIGHT, TEXT_ALIGN_Y::MIDDLE);
 
   switch(mode){
-    case 0:
-      drawAngleLine(-ball_dir,24);
+    case DISPLAY_MODE::BALL :{
+      uint8_t circle_r = 24;
+      uint8_t text_r = circle_r + 4;
+      
+      string str = to_string(ball_dir);
+      str.erase(str.begin()+5,str.end());
+      printd(8, 32, str, TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::MIDDLE);
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, -ball_dir, circle_r);
+      
+      double ball_small_angle = (ball_small_id*360.0/BALL_NUM+180.0)/180.0*3.14;
+      printd(DISPLAY_W/2+text_r*cos(-ball_small_angle), DISPLAY_H/2+text_r*sin(-ball_small_angle), to_string(ball_small), TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      double ball_big_angle = (ball_big_id*360.0/BALL_NUM+180.0)/180.0*3.14;
+      printd(DISPLAY_W/2+text_r*cos(-ball_big_angle), DISPLAY_H/2+text_r*sin(-ball_big_angle), to_string(ball_big), TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+
+      for(int i=0;i<BALL_NUM;i++){
+        double angle = (i*360/BALL_NUM+180);
+        // Serial.println(angle);
+        angle = angle/180*3.14;
+        uint8_t x = DISPLAY_W/2+(int16_t)cos(angle)*circle_r;
+        uint8_t y = DISPLAY_H/2+(int16_t)sin(angle)*circle_r;
+        printd(x, y, ".", TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::BOTTOM);
+        // printd(DISPLAY_W/2+cos(angle)*circle_r, DISPLAY_H/2+sin(angle)*circle_r, to_string(ball[i]),TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      }
       break;
-    case 1:
-      printd(64,32,"no data");
+    }
+    case DISPLAY_MODE::BALL_K :{
+      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
-    case 2:
+    }
+    case DISPLAY_MODE::BLE :{
       printd(8, 24, "ATK:"+BLE_atk);
       printd(8, 40, "DEF:"+BLE_def);
       break;
-    case 3:
-      printd(64,32,"no data");
-      // display.setCursor(64,32);
-      // display.print("no data");
+    }
+    case DISPLAY_MODE::CAMERA :{
+      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
-    case 4:
-      drawAngleLine(-dir, 24);
+    }
+    case DISPLAY_MODE::DIR :{
+      string str = to_string(dir);
+      str.erase(str.begin()+5,str.end());
+      printd(8, 32, str, TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::MIDDLE);
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, -dir, 24);
       break;
-    case 5:
-      printd(64,32,"no data");
+    }
+    case DISPLAY_MODE::DRIBBLER :{
+      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
-    case 6:
-      printd(64,32,"no data");
+    }
+    case DISPLAY_MODE::LINE :{
+      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
-    case 7:
-      printd(64,32,"no data");
+    }
+    case DISPLAY_MODE::VALIABLES :{
+      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
-    default:
+    }
+    default:{
+      for(int i=0;i<debug_variables.size();i++){
+        printd(8,24,debug_variables[i]);
+      }
       printd(8,8,"internal error!");
       break;
+    }
   }
 
   return;

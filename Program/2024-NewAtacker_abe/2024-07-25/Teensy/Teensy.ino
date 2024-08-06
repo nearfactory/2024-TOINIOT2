@@ -14,19 +14,16 @@
 using namespace std;
 
 void setup() {
-  communicationSetup();
   ballSetup();
+  communicationSetup();
   dirSetup();
   kickerSetup();
   motorSetup();
   UISetup();
 
-  display.clearDisplay();
-  printd(8,8,"TOINIOT2 Atacker 2024-07-30");
-  Serial.println("TOINIOT2 Teensy4.1 2024-07-30");
-  display.display();
-
-  MODE = MODE::DIR;
+  /*
+  // calibration
+  DISPLAY_MODE = DISPLAY_MODE::DIR;
   uint8_t system = 0, gyro = 0, accel = 0, mag = 0;
   while(system!=3 || gyro!=3 || mag!=3){
     display.clearDisplay();
@@ -41,26 +38,30 @@ void setup() {
 
     display.display();
   }
+  */
 }
 
 void loop() {
   auto begin_ms = millis();
   display.clearDisplay();
 
-  buttonUpdate();
+  ballUpdate(BALL::DIR);
 
-  ballUpdate();
-  // auto dir = dirUpdate();
-  // drawAngleLine(-ball_dir,24);
-
-  Serial2Update();
+  subUpdate();
   dirUpdate();
 
+  analogWrite(0,0);
+
+  motorRaw(100,-100,100,100);
+
+
+  buttonUpdate();
   // UI (display)
-  if(buttonUp(4)) MODE = (MODE+1)%MODE_NUM;
-  debugDisplay(MODE);
+  clearVariables();
+  addVariables("process", begin_ms-millis());
+  if(buttonUp(4)) DISPLAY_MODE = (DISPLAY_MODE+1)%DISPLAY_MODE_NUM;
+  debugDisplay(DISPLAY_MODE);
+  display.display();
 
   // printd(8, 8, "process:"+std::to_string(millis()-begin_ms)+"(ms)");
-  display.display();
-  delay(50);
 }

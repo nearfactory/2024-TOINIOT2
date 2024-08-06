@@ -14,7 +14,8 @@ enum MOTOR : uint8_t{
 };
 
 
-int16_t motor[MOTOR_NUM] = { 0 };
+// -100~100[%]
+int8_t motor[MOTOR_NUM] = { 0 };
 
 
 inline void motorSetup(){
@@ -28,11 +29,31 @@ inline void motorSetup(){
   return;
 }
 
-inline void motorRaw(){
-  for(int i=0;i<MOTOR_NUM;i++){
-    analogWrite(MOTOR_PIN[i][MOTOR::EN], motor[i]);
-    digitalWrite(MOTOR_PIN[i][MOTOR::PH], motor[i]>0);  // ※
-  }
+inline void motorRaw(int8_t m1, int8_t m2, int8_t m3, int8_t m4){
 
+  m1 = m1<-100 ? -100 : m1;
+  m1 = m1>100  ? 100  : m1;
+  digitalWrite(MOTOR_PIN[0][MOTOR::PH], m1>0);
+  analogWrite(MOTOR_PIN[0][MOTOR::EN], abs(m1));
+  
+  m2 = m2<-100 ? -100 : m2;
+  m2 = m2>100  ? 100  : m2;
+  digitalWrite(MOTOR_PIN[1][MOTOR::PH], m2>0);
+  analogWrite(MOTOR_PIN[1][MOTOR::EN], abs(m2));
+
+  m3 = m3<-100 ? -100 : m3;
+  m3 = m3>100  ? 100  : m3;
+  digitalWrite(MOTOR_PIN[2][MOTOR::PH], m3>0);
+  analogWrite(MOTOR_PIN[2][MOTOR::EN], abs(m3));
+
+  m4 = m4<-100 ? -100 : m4;
+  m4 = m4>100  ? 100  : m4;
+  digitalWrite(MOTOR_PIN[3][MOTOR::PH], m4>0);
+  analogWrite(MOTOR_PIN[3][MOTOR::EN], abs(m4));
+
+  return;
+}
+
+inline void motorP(){
   return;
 }
