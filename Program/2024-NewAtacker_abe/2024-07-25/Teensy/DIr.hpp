@@ -5,6 +5,7 @@
 
 Adafruit_BNO055 bno(55, 0x28, &Wire2);
 
+double default_dir = 0.0;
 double dir = 0.0;
 
 inline void dirSetup(){

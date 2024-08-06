@@ -48,11 +48,6 @@ inline void subUpdate(){
   }
   Serial2.println(BLE_atk.c_str());
 
-  Serial.print("atk:");
-  Serial.println(BLE_atk.c_str());
-  Serial.print("def:");
-  Serial.println(BLE_def.c_str());
-
   return;
 }
 

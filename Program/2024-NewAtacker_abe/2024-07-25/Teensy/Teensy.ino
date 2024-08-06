@@ -21,7 +21,6 @@ void setup() {
   motorSetup();
   UISetup();
 
-  /*
   // calibration
   DISPLAY_MODE = DISPLAY_MODE::DIR;
   uint8_t system = 0, gyro = 0, accel = 0, mag = 0;
@@ -29,7 +28,7 @@ void setup() {
     display.clearDisplay();
     printd(8,8,"calibration...");
 
-    // dirCalibration(&system, &gyro, &accel, &mag);
+    dirCalibration(&system, &gyro, &accel, &mag);
     bno.getCalibration(&system, &gyro, &accel, &mag);
     printd(32,24,"system:"+to_string(system));
     printd(32,32,"gyro  :"+to_string(gyro));
@@ -38,27 +37,39 @@ void setup() {
 
     display.display();
   }
-  */
+
+  display.clearDisplay();
+  printd(120,32,"start",TEXT_ALIGN_X::RIGHT, TEXT_ALIGN_Y::MIDDLE);
+  while(buttonUp(4)){
+    buttonUpdate();
+  }
+
+
+  // set default dir
+  dirUpdate();
+  default_dir = dir;
 }
 
 void loop() {
-  auto begin_ms = millis();
+  static auto begin_ms = millis();
+  digitalWrite(LED_BUILTIN, HIGH);
   display.clearDisplay();
 
   ballUpdate(BALL::DIR);
-
+  buttonUpdate();
   subUpdate();
+
   dirUpdate();
 
   analogWrite(0,0);
 
-  motorRaw(100,-100,100,100);
+  motorRaw(-100,-100,100,100);
 
 
-  buttonUpdate();
   // UI (display)
   clearVariables();
   addVariables("process", begin_ms-millis());
+  begin_ms = millis();
   if(buttonUp(4)) DISPLAY_MODE = (DISPLAY_MODE+1)%DISPLAY_MODE_NUM;
   debugDisplay(DISPLAY_MODE);
   display.display();

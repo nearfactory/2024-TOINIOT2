@@ -14,7 +14,7 @@ inline void kickerSetup(){
 
 inline void kick(){
   digitalWrite(KICKER_PIN, 1);
-  // delay();
+  delay(50);
   digitalWrite(KICKER_PIN, 0);
 
   return;

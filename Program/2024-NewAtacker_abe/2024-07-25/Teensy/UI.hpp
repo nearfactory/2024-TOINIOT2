@@ -24,7 +24,7 @@ namespace{
   constexpr uint8_t DISPLAY_H = 64;
   constexpr uint8_t DISPLAY_RESET = -1;
   constexpr uint8_t DISPLAY_ADDR = 0x3c;
-  constexpr uint8_t DISPLAY_MODE_NUM = 8;
+  constexpr uint8_t DISPLAY_MODE_NUM = 9;
   const std::string DISPLAY_MODE_NAME[DISPLAY_MODE_NUM] = {
     "ball",
     "ball-k",
@@ -33,6 +33,7 @@ namespace{
     "dir",
     "dribbler",
     "line",
+    "motor",
     "variables"
   };
 
@@ -45,7 +46,8 @@ enum DISPLAY_MODE : uint8_t{
   DIR,
   DRIBBLER,
   LINE,
-  VALIABLES
+  MOTOR,
+  VARIABLES
 };
 enum class TEXT_ALIGN_X : uint8_t{
   LEFT = 0,
@@ -173,45 +175,70 @@ inline void debugDisplay(uint8_t mode){
         double angle = (i*360/BALL_NUM+180);
         // Serial.println(angle);
         angle = angle/180*3.14;
-        uint8_t x = DISPLAY_W/2+(int16_t)cos(angle)*circle_r;
-        uint8_t y = DISPLAY_H/2+(int16_t)sin(angle)*circle_r;
-        printd(x, y, ".", TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::BOTTOM);
+        uint8_t x = DISPLAY_W/2+(int16_t)(cos(angle)*circle_r);
+        uint8_t y = DISPLAY_H/2+(int16_t)(sin(angle)*circle_r);
+        // printd(x, y, ".", TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::BOTTOM);
+        display.drawPixel(x, y, WHITE);
         // printd(DISPLAY_W/2+cos(angle)*circle_r, DISPLAY_H/2+sin(angle)*circle_r, to_string(ball[i]),TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       }
       break;
     }
+
     case DISPLAY_MODE::BALL_K :{
       printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
     }
+
     case DISPLAY_MODE::BLE :{
       printd(8, 24, "ATK:"+BLE_atk);
       printd(8, 40, "DEF:"+BLE_def);
       break;
     }
+
     case DISPLAY_MODE::CAMERA :{
       printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
     }
+
     case DISPLAY_MODE::DIR :{
       string str = to_string(dir);
       str.erase(str.begin()+5,str.end());
       printd(8, 32, str, TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::MIDDLE);
+
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, -default_dir, 16);
       drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, -dir, 24);
       break;
     }
+    
     case DISPLAY_MODE::DRIBBLER :{
       printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
     }
+
     case DISPLAY_MODE::LINE :{
       printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
     }
-    case DISPLAY_MODE::VALIABLES :{
-      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+
+    case DISPLAY_MODE::MOTOR :{
+      printd(8,   24, "m4:"+to_string(motor[3]) );
+      printd(120, 24, "m3:"+to_string(motor[2]), TEXT_ALIGN_X::RIGHT);
+      printd(8,   56, "m1:"+to_string(motor[0]) );
+      printd(120, 56, "m2:"+to_string(motor[1]), TEXT_ALIGN_X::RIGHT);
+
+      printd(120,32,"stop",TEXT_ALIGN_X::RIGHT,TEXT_ALIGN_Y::MIDDLE);
+      buttonUp(3);
       break;
     }
+
+    case DISPLAY_MODE::VARIABLES :{
+      // printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      for(int i=0;i<debug_variables.size();i++){
+        printd(8,16+8*i,debug_variables[i]);
+      }
+      break;
+    }
+
     default:{
       for(int i=0;i<debug_variables.size();i++){
         printd(8,24,debug_variables[i]);
@@ -219,6 +246,7 @@ inline void debugDisplay(uint8_t mode){
       printd(8,8,"internal error!");
       break;
     }
+
   }
 
   return;

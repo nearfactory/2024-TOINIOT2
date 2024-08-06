@@ -14,6 +14,8 @@ enum class BALL{
 
 short ball[BALL_NUM] = { 1023 };
 float ball_dir = 0;
+short ball_distance = 0;
+bool  ball_holding = false;
 
 short   ball_big = 1023;
 uint8_t ball_big_id = 0;
@@ -95,6 +97,7 @@ inline void ballUpdate(BALL mode){
   ball_big_id = 8;
   for(int i=0;i<BALL_NUM;i++){
     ball[i] = analogRead(BALL_PIN[i]);
+    ball_distance += ball[i];
     if(ball_small>ball[i]){
       ball_small = ball[i];
       ball_small_id = i;
@@ -103,6 +106,8 @@ inline void ballUpdate(BALL mode){
       ball_big_id = i;
     }
   }
+
+  // ball_holding
 
   switch(mode){
     case BALL::DIR :
