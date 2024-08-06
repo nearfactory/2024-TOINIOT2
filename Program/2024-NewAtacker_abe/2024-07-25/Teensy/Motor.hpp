@@ -15,7 +15,7 @@ enum MOTOR : uint8_t{
 
 
 // -100~100[%]
-int8_t motor[MOTOR_NUM] = { 0 };
+int8_t motor[MOTOR_NUM] = { 100 };
 
 
 inline void motorSetup(){
@@ -24,7 +24,7 @@ inline void motorSetup(){
     pinMode(MOTOR_PIN[i][MOTOR::PH], OUTPUT);
     analogWriteFrequency(MOTOR_PIN[i][MOTOR::EN], 40000);
   }
-
+  
   Serial.println("motor setup");
   return;
 }
@@ -54,12 +54,35 @@ inline void motorP(){
   return;
 }
 
-inline void move_dir(double dir, short power){
+inline void moveDir(short dir, short power, bool max_power){
+  short power_big = 0;
+  short power_big_id = 0;
+  // Serial.print("default ");
   for(int i=0;i<MOTOR_NUM;i++){
-    motor[i] = sin(dir-(45+i*90)*3.14/180.0)*power;
+    double t = (dir-45-i*90)*3.14/180.0;
+    motor[i] = sin(t)*power;
+    // Serial.printf("m%d:%d ", i+1, motor[i]);
+    if(max_power){
+      if(abs(motor[i]>power_big)){
+        power_big = motor[i];
+        power_big_id = i;
+      }
+    }
   }
+  double p = 100.0 / abs(motor[power_big_id]);
+  if(!max_power) p = 1.0;
+  // Serial.println();
+  // Serial.printf("big:%d\n",power_big);
+  // Serial.printf("id:%d\n",power_big_id);
+  // Serial.printf("p:%lf\n",p);
+  
+  // Serial.print("max ");
+  for(int i=0;i<MOTOR_NUM;i++){
+    motor[i] *= p;
+    Serial.printf("m%d:%d ", i+1, motor[i]);
+  }
+  Serial.println();
 
-  // motorRaw();
   return;
 }
 

@@ -42,14 +42,19 @@ void setup() {
   display.clearDisplay();
   printd(120,32,"start",TEXT_ALIGN_X::RIGHT, TEXT_ALIGN_Y::MIDDLE);
   */
-  while(buttonUp(4)){
-    buttonUpdate();
-  }
+  // while(buttonUp(4)){
+  //   buttonUpdate();
+  // }
 
 
   // set default dir
   // dirUpdate();
   // default_dir = dir;
+
+  // motorRaw(0,0,0,0);
+  motorRaw(-40,-40,40,40);
+  delay(1);
+
   Serial.println("setup()");
 }
 
@@ -69,17 +74,12 @@ void loop() {
   // motor_min
   // motor_powerz
 
-  static short motor_power;
-  motor_power += button[0];
-  motor_power -= button[1];
+  static short motor_dir = 0;
+  motor_dir += button[0];
+  motor_dir -= button[1];
 
-  // motor_power = (motor_power+180)%360-180;
-  Serial.printf("motor_power:%d\n", motor_power);
-
-  motor_power = motor_power<-255?-255:motor_power;
-  motor_power = motor_power>255?255:motor_power;
-
-  for(auto&m:motor) m = motor_power;
+  Serial.printf("dir:%d\n", motor_dir);
+  moveDir(motor_dir, 100, true);
   motorRaw();
 
   // setDir();
@@ -88,8 +88,10 @@ void loop() {
   if(buttonUp(3)){
     for(int i=0;i<100;i++){
       for(int j=0;j<MOTOR_NUM;j++){
-        motor[j]--;
+        if(motor[j]>0) motor[j]--;
+        // if(motor[j]<0) motor[j]++;
         motor[j]<0?0:motor[j];
+        // motor[j]*=0.1;
       }
       motorRaw();
       delay(5);
@@ -98,6 +100,8 @@ void loop() {
       buttonUpdate();
     }
   }
+  /*
+  */
 
   // Serial.printf("ball_min:-270\nball_max:90\n");
   // Serial.printf("ball:%lf\n", ball_dir);
