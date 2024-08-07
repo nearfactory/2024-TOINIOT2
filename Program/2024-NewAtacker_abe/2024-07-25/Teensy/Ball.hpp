@@ -11,9 +11,14 @@ enum class BALL{
   DIR3
 };
 
+constexpr short BALL_DISTANCE_MIN = 7000;
+constexpr short BALL_DISTANCE_MAX = 15800;
+constexpr short BALL_DISTANCE_RANGE = BALL_DISTANCE_MAX-BALL_DISTANCE_MIN;
+
 
 short ball[BALL_NUM] = { 1023 };
 float ball_dir = 0;
+float prev_ball_dir = 0;
 short ball_distance = 0;
 bool  ball_holding = false;
 bool  ball_exist = true;
@@ -24,6 +29,8 @@ uint8_t ball_big_id = 0;
 short   ball_small = 0;
 uint8_t ball_small_id = 0;
 
+bool prev_ball_holding = false;
+uint32_t ball_hold_begin = 0;
 
 inline void ballSetup(){
   for(auto p:BALL_PIN) pinMode(p, INPUT);
@@ -109,10 +116,15 @@ inline void ballUpdate(BALL mode){
     }
   }
 
-  ball_holding = 5200 < ball_distance && ball_distance < 6500;
-  ball_exist = ball_distance < 16300;
+  prev_ball_holding = ball_holding;
+  ball_holding = ball_distance < BALL_DISTANCE_MIN && abs(ball_dir)<30;
+  ball_exist = ball_distance < BALL_DISTANCE_MAX;
   // ball_holding 5200-6800
   // exist < 16300
+
+  if(!(ball_holding&&prev_ball_holding)){
+    ball_hold_begin = millis();
+  }
 
   switch(mode){
     case BALL::DIR :
@@ -125,6 +137,13 @@ inline void ballUpdate(BALL mode){
       ball_dir = ballDirection3();
       break;
   }
+
+  // prev_ball_dir = ball_dir;
+  // short tolerance = 20;
+  // if((abs(ball_dir)-abs(prev_ball_dir))>tolerance){
+  //   if(ball_dir>prev_ball_dir) ball_dir = prev_ball_dir+tolerance;
+  //   if(ball_dir<prev_ball_dir) ball_dir = prev_ball_dir-tolerance;
+  // }
 
   return;
 }

@@ -27,11 +27,11 @@ namespace{
   constexpr uint8_t DISPLAY_MODE_NUM = 9;
   const std::string DISPLAY_MODE_NAME[DISPLAY_MODE_NUM] = {
     "ball",
-    "ball-k",
     "ble",
     "camera",
     "dir",
     "dribbler",
+    "kicker",
     "line",
     "motor",
     "variables"
@@ -40,11 +40,11 @@ namespace{
 }
 enum DISPLAY_MODE : uint8_t{
   BALL = 0,
-  BALL_K,
   BLE,
   CAMERA,
   DIR,
   DRIBBLER,
+  KICKER,
   LINE,
   MOTOR,
   VARIABLES
@@ -67,6 +67,7 @@ float               bz = -1.0f;
 Adafruit_SSD1306    display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET);
 uint8_t             DISPLAY_MODE = 0;
 vector<std::string> debug_variables(0);
+vector<void*>       debug_variables_addr(0);
 
 
 inline void UISetup(){
@@ -146,6 +147,7 @@ inline void drawAngleLine(uint8_t center_x, uint8_t center_y, float angle, uint8
 
 inline void clearVariables(){
   debug_variables.clear();
+  debug_variables_addr.clear();
 }
 
 template <typename T>
@@ -171,8 +173,9 @@ inline void debugDisplay(uint8_t mode){
       printd(8,48,"exist:"+to_string(ball_exist));
       printd(8,56,"hold :"+to_string(ball_holding));
       
-      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, ball_dir+180, circle_r);
-      
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, -ball_dir-180, circle_r);
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 0, 8);
+
       // double ball_small_angle = (ball_small_id*360.0/BALL_NUM+180.0)/180.0*3.14;
       // printd(DISPLAY_W/2+text_r*cos(-ball_small_angle), DISPLAY_H/2+text_r*sin(-ball_small_angle), to_string(ball_small), TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       // double ball_big_angle = (ball_big_id*360.0/BALL_NUM+180.0)/180.0*3.14;
@@ -194,11 +197,6 @@ inline void debugDisplay(uint8_t mode){
       break;
     }
 
-    case DISPLAY_MODE::BALL_K :{
-      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
-      break;
-    }
-
     case DISPLAY_MODE::BLE :{
       printd(8, 24, "ATK:"+BLE_atk);
       printd(8, 40, "DEF:"+BLE_def);
@@ -215,6 +213,7 @@ inline void debugDisplay(uint8_t mode){
       str.erase(str.begin()+5,str.end());
       printd(8, 32, str, TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::MIDDLE);
 
+      display.drawPixel(DISPLAY_W/2+24*cos((180-prev_dir)*3.14/180.0),DISPLAY_H/2+24*sin((180-prev_dir)*3.14/180.0),WHITE);
       drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180-default_dir-dir_default_display, 24);
       drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180-dir-dir_default_display, 16);
       break;
@@ -225,16 +224,29 @@ inline void debugDisplay(uint8_t mode){
       break;
     }
 
+    case DISPLAY_MODE::KICKER :{
+      // printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      printd(8,24,"ball01k:"+to_string(ball01k));
+      printd(8,32,"ball02k:"+to_string(ball02k));
+      display.setCursor(8,40);
+      display.printf("charged:%04d/5000",millis()-kicked_ms<5000?millis()-kicked_ms:5000);
+      // printd(8,40,"charged:"+to_string(millis()-kicked_ms)+"/5000");
+
+      break;
+    }
+
     case DISPLAY_MODE::LINE :{
       printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       break;
     }
 
     case DISPLAY_MODE::MOTOR :{
-      printd(8,   24, "m4:"+to_string((int)motor[3]) );
-      printd(120, 24, "m3:"+to_string((int)motor[2]), TEXT_ALIGN_X::RIGHT);
-      printd(8,   56, "m1:"+to_string((int)motor[0]) );
-      printd(120, 56, "m2:"+to_string((int)motor[1]), TEXT_ALIGN_X::RIGHT);
+      printd(8,   24, "m4:"+to_string((int)motor_raw[3]) );
+      printd(120, 24, "m3:"+to_string((int)motor_raw[2]), TEXT_ALIGN_X::RIGHT);
+      printd(8,   56, "m1:"+to_string((int)motor_raw[0]) );
+      printd(120, 56, "m2:"+to_string((int)motor_raw[1]), TEXT_ALIGN_X::RIGHT);
+
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, move_dir, 24);
 
       // printd(120,32,"stop",TEXT_ALIGN_X::RIGHT,TEXT_ALIGN_Y::MIDDLE);
       // if(buttonUp(3)){
@@ -254,9 +266,16 @@ inline void debugDisplay(uint8_t mode){
     }
 
     case DISPLAY_MODE::VARIABLES :{
+      /*
+      static short selector = 0;
+      selector += buttonUP(3);
+      selector = selector % debug_variables.size();
+      printd(8,24+8*selector,">");
+      selector -= buttonDOWN(2);
+      */
       // printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
       for(int i=0;i<debug_variables.size();i++){
-        printd(8,16+8*i,debug_variables[i]);
+        printd(16,24+8*i,debug_variables[i]);
       }
       break;
     }

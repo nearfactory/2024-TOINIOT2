@@ -17,7 +17,7 @@ void setup() {
   communicationSetup();
   ballSetup();
   dirSetup();
-  // kickerSetup();
+  kickerSetup();
   motorSetup();
   UISetup();
 
@@ -63,6 +63,7 @@ void loop() {
 
   ballUpdate(BALL::DIR);
   buttonUpdate();
+  clearVariables();
   // subUpdate();
 
   dirUpdate();
@@ -76,62 +77,55 @@ void loop() {
   motor_dir += button[0];
   motor_dir -= button[1];
 
-  short motor_power = (ball_distance-6500) *0.8 / 98;
+  // 回り込み
+  // short motor_power = (ball_distance-6500) *0.8 / 98;
   // 線形にずらした角度に進める
   // Serial.printf("dir:%d\n", motor_dir);
-  double difference = 0.0;
-  if(abs(ball_dir)>30){
-    difference = ball_dir<0?-60:60;
-  }else{
-    difference = 60*ball_dir/45;
-  }
-  double move_dir = ball_dir + difference;
-  moveDir(move_dir, 80, true);
-  // motorRaw();
-
-  // setDir();
-  // motorRaw(-100,-100,100,100);
   
   /*
-  if(buttonUp(3)){
-    for(int i=0;i<100;i++){
-      for(int j=0;j<MOTOR_NUM;j++){
-        if(motor[j]>0) motor[j]--;
-        // if(motor[j]<0) motor[j]++;
-        motor[j]<0?0:motor[j];
-        // motor[j]*=0.1;
-      }
-      motorRaw();
-      delay(5);
-    }
-    while(!buttonUp(3)){
-      buttonUpdate();
-    }
+  double default_difference = (BALL_DISTANCE_MAX-ball_distance)/BALL_DISTANCE_RANGE*85+5;
+  double difference = 0.0;
+  if(abs(ball_dir)>45){
+    difference = ball_dir<0?-default_difference:default_difference;
+  }else{
+    difference = default_difference*ball_dir/45;
   }
-  */
+  move_dir = ball_dir + difference;
+  moveDir(move_dir, 70, true);
 
-  bz=0.0f;
-  if(ball_holding) {
-    moveDir(0.0, 90, false);
-    bz=440.0f;
+  addVariables("Move_dir",move_dir);
+  addVariables("diffe",difference);
+  */
+  short difference=0;
+  if(abs(ball_dir)>15){
+    difference = ball_dir<0?-70:70;
+  }else{
+    difference = 20*ball_dir/15;
+    // difference = ball_dir<0?-difference:difference;
   }
-  bzUpdate();
+  moveDir(ball_dir+difference,90,false);
+
+
+  // 90-5
+  if(ball_holding) {
+    moveDir(0.0, 90, true);
+    if(millis()-kicked_ms>5000 && millis()-ball_hold_begin > 300){
+      kick();
+    }
+  }
   if(!ball_exist) motorRaw(0,0,0,0);
   setDir(dir,default_dir,60,40);
   // motorRaw(40,40,40,40);
-  motorRaw();
   
+  motorRaw();
+  // motorRapidP(motor[0],motor[1],motor[2],motor[3]);
+  // motorRaw();
+  // for(int i=0;i<kMOTOR_NUM;i++) motor_now[i] = motor[i];
 
-  Serial.printf("ball_min:-270\nball_max:90\n");
-  Serial.printf("ball:%lf\n", ball_dir);
-  Serial.printf("ball_distance:%d\n", ball_distance);
-  Serial.printf("ball_holding:%d\n", ball_holding);
-  Serial.printf("ball_exist:%d\n", ball_exist);
 
   // UI (display)
-  clearVariables();
-  addVariables("move_dir",move_dir);
   addVariables("process", millis()-begin_ms);
+  addVariables("ball_hold",millis()-ball_hold_begin);
   begin_ms = millis();
   if(buttonUp(4)) DISPLAY_MODE = (DISPLAY_MODE+1)%DISPLAY_MODE_NUM;
   debugDisplay(DISPLAY_MODE);
