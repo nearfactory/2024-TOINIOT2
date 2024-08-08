@@ -41,8 +41,7 @@ void dirSetup(void)
   if (!bno.begin())
   {
     Serial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
-    while (1)
-      ;
+    while (1);
   }
   bno.setExtCrystalUse(true);
   Serial.println("BNO055 Connected Successfully!");
@@ -108,7 +107,8 @@ void refreshLine(void)
     lineBlock[1] = 1;
   }
 
-  if (line[10] + line[11] + line[12] + line[13] + line[14] + line[15] == 0)
+  // if (line[10] + line[11] + line[12] + line[13] + line[14] + line[15] == 0)
+  if (line[10] + line[11] + line[14] + line[15] == 0)
   {
     lineBlock[2] = 0;
   }
@@ -117,7 +117,8 @@ void refreshLine(void)
     lineBlock[2] = 1;
   }
 
-  if (line[16] + line[17] + line[18] + line[19] + line[20] + line[21] == 0)
+  // if (line[16] + line[17] + line[18] + line[19] + line[20] + line[21] == 0)
+  if (line[16] + line[17] + line[18] + line[19] + line[20] == 0)
   {
     lineBlock[3] = 0;
   }
