@@ -81,7 +81,15 @@ void loop() {
 
 
   // buzzer (1,2)
+<<<<<<< Updated upstream
   static float buzzer = 0.0f;
+=======
+<<<<<<< Updated upstream
+  static float buzzer = 440.0f;
+=======
+  static float buzzer = 0.0f;
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   if(sw_tac[SW::TAC_1]) buzzer += 4.0f;
   if(sw_tac[SW::TAC_2]) buzzer -= 4.0f;
   buzzer = buzzer<0.0f ? 0.0f : buzzer;
