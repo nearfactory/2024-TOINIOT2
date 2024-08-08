@@ -103,7 +103,7 @@ void loop() {
     difference = 20*ball_dir/15;
     // difference = ball_dir<0?-difference:difference;
   }
-  moveDir(ball_dir+difference,90,false);
+  moveDir(ball_dir+difference,80,false);
 
 
   // 90-5
