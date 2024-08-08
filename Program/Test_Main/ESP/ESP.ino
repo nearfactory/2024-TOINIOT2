@@ -16,6 +16,7 @@ void setup() {
   Serial.println("TOINIOT2 Main ESP32C3 Test 2024-07-31");
 
   // Serial1 (to main)
+  Serial1.setPins(D7, D6);
   Serial1.begin(9600);
   Serial1.println("ESP32C3");
 
@@ -25,14 +26,14 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("UART\"");
   Serial1.print("ESP32C3 UART");
+  Serial.print("UART\"");
   while(Serial1.available()){
-    Serial.print( static_cast<char>(Serial1.read()) );
+    Serial.print( static_cast<char>( Serial1.read()) );
   }
   Serial.print("\"\n");
 
-  delay(50);
+  delay(100);
 }
 
 void receiveEvent(int size){

@@ -1,10 +1,10 @@
 //clian側ソース
 #include "BLEDevice.h"
 
-#define SERVICE_UUID "17acb62a-e48e-4653-a2ed-7789f7e5ecc8"
-#define CHARACTERISTIC_UUID_TX "6b9e155c-29e3-4cc7-a82c-67a941cf2a78"
-#define CHARACTERISTIC_UUID_RX "7076c0f6-79bb-4fc9-bcea-57cba5163d55"
-#define SERVER_NAME         "esp32ble"
+#define SERVER_NAME         "TOINIOT2_ATACKER"
+#define SERVICE_UUID "6a10c527-bac9-485e-bdb8-462f3b72bd59"
+#define CHARACTERISTIC_UUID_TX "07edec9a-716c-4379-b18b-2bb8eb1a2bea"
+#define CHARACTERISTIC_UUID_RX "2234bf79-5ff8-4b47-a139-b9a20801eaf4"
 #define Tx_value 'S'
 
 static BLEUUID  serviceUUID(SERVICE_UUID);
@@ -86,7 +86,7 @@ bool connectToServer(BLEAddress pAddress) {
     
     // Read the value of the characteristic.
     if(pRemoteCharacteristicRX->canRead()) {
-      std::string value = pRemoteCharacteristicRX->readValue();
+      String value = pRemoteCharacteristicRX->readValue();
       Serial.print("The characteristic value was: ");
       Serial.println(value.c_str());
     }
@@ -128,7 +128,7 @@ void get_scan(){
 void setup() {
   Serial.begin(115200);
   Serial.println("BLE_Cliant_start");
-  BLEDevice::init("");
+  BLEDevice::init("TOINIOT2_DEFENDER");
   get_scan();
   Serial.println("End of setup");
 }
@@ -146,11 +146,11 @@ void loop() {
     doConnect = false;
   }
   if (connected) {
-    std::string value = pRemoteCharacteristicRX->readValue();
+    String value = pRemoteCharacteristicRX->readValue();
     String strVal=value.c_str();
     int strNum=strVal.toInt();
     Serial.println(strVal);
-pRemoteCharacteristicTX->writeValue(Tx_value);
+    pRemoteCharacteristicTX->writeValue(Tx_value);
   } else{
     Serial.println("Not connected");
   //conectできないときにsscanループさせておくため

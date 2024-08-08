@@ -45,8 +45,8 @@ void setup(void)
   
   Serial.begin(115200);
 
-  // Wire.setSDA(25);
-  // Wire.setSCL(24);
+  Wire.setSDA(25);
+  Wire.setSCL(24);
   Wire2.begin();
 
   while (!Serial) delay(10);  // wait for serial port to open!

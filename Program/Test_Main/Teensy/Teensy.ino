@@ -16,7 +16,7 @@
 #include <Adafruit_BNO055.h>
 #include <Wire.h>
 
-constexpr uint8_t BALL_PIN = A0;
+constexpr uint8_t BALL_PIN = A14;
 
 Adafruit_BNO055 bno(55,0x28,&Wire2);
 constexpr uint8_t ESP_ADDR = 0x32;
@@ -27,10 +27,10 @@ void setup() {
   Serial.println("TOINIOT2 Main Teensy4.1 Test 2024-07-31");
 
   /*
+  */
   // Serial2 (to sub)
   Serial2.begin(9600);
   Serial2.println("Teensy4.1");
-  */
 
   // I2C
   Wire2.begin();
@@ -39,6 +39,8 @@ void setup() {
   pinMode(BALL_PIN, INPUT);
 
   // bno
+  /*
+  */
   if(!bno.begin()){
     Serial.println("bno error");
     while(true);
@@ -49,11 +51,12 @@ void setup() {
 void loop() {
   auto begin_ms = millis();
   /*
+  */
   // Serial2 (to sub)
   Serial2.print("Teensy4.1 UART");
   Serial.print("UART:\"");
-  while(Serial2.available()){
-    Serial.print( static_cast<char>(Serial2.read()) );
+  while( Serial2.available() ){
+    Serial.print( (char)Serial2.read() );
   }
   Serial.print("\"\n");
 
@@ -64,15 +67,21 @@ void loop() {
 
   Serial.print("I2C:\"");
   Wire2.requestFrom(ESP_ADDR, 12);
-  for(int i=0;i<12;i++){
+  /*
+  for(int i=0;i<11;i++){
     Serial.print( static_cast<char>(Wire2.read()) );
   }
   Serial.print("\"\n");
   */
+  while(Wire2.available()){
+    Serial.print( static_cast<char>(Wire2.read()) );
+  }
+  Serial.print("\"\n");
 
   // ball
   short ball = analogRead(BALL_PIN);
-  Serial.printf("ball:%d\n", ball);
+  Serial.printf("\n\nball:%d\n", ball);
+  Serial.printf("min:0 max:1023\n");
 
   // bno
   sensors_event_t dir{};
@@ -82,4 +91,5 @@ void loop() {
   // ----
   Serial.printf("process:%d(ms)\n", millis()-begin_ms );
 
+  delay(100);
 }

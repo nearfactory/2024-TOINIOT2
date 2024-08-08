@@ -74,7 +74,8 @@ void loop() {
 
 
 
-  Serial.printf("all:%lf, 2:%lf, 3:%lf\n", ball_dir_all, ball_dir_2, ball_dir_3);
-  for(auto b:ball) Serial.printf("%d ", b);
-  Serial.printf("\ntime:%d(ms)\n", millis()-begin_ms );
+  // Serial.printf("all:%lf, 2:%lf, 3:%lf\n", ball_dir_all, ball_dir_2, ball_dir_3);
+  for(auto b:ball) Serial.printf("%04d ", b);
+  Serial.println();
+  // Serial.printf("\ntime:%d(ms)\n", millis()-begin_ms );
 }
