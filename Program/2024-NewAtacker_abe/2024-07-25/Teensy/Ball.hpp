@@ -51,6 +51,7 @@ uint32_t ball_hold_begin = 0;
 
 // セットアップ関数（.inoのsetup()内で呼び出し）
 inline void ballSetup(){
+  // pinMode変更
   for(auto p:BALL_PIN) pinMode(p, INPUT);
 
   Serial.println("ball setup");

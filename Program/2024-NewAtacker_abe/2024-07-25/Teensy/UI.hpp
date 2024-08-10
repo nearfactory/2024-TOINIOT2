@@ -70,14 +70,14 @@ vector<std::string> debug_variables(0);
 vector<void*>       debug_variables_addr(0);
 
 
-inline void UISetup(){
-  // button
-  for(auto p:BUTTON_PIN) pinMode(p, INPUT);
 
-  // buzzer
+// セットアップ関数（.inoのsetup()内で呼び出し）
+inline void UISetup(){
+  // pinMode変更
+  for(auto p:BUTTON_PIN) pinMode(p, INPUT);
   pinMode(BZ_PIN, OUTPUT);
 
-  // display
+  // ディスプレイ初期化
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
     Serial.println("Display error!");
     while(true);
@@ -89,7 +89,7 @@ inline void UISetup(){
   return;
 }
 
-// button
+// ボタンのH/Lを取得してグローバル変数を更新
 inline void buttonUpdate(){
   for(int i=0;i<BUTTON_NUM;i++){
     previous_button[i] = button[i];
@@ -98,13 +98,14 @@ inline void buttonUpdate(){
   return;
 }
 
+// ボタンのH/Lの切り替わりをT/Fで返す
 inline bool buttonUp(uint8_t num){
   num = num<1 ? 1 : num;
   num = num>5 ? 5 : num;
   return (!button[num-1]) && previous_button[num-1];
 }
 
-// buzzer
+// グローバル変数に格納されている周波数でブザーに出力
 inline void bzUpdate(){
   if(bz > -1.0f){
     tone(BZ_PIN, bz);
