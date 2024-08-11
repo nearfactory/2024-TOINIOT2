@@ -59,7 +59,7 @@ void setup() {
   display.display();
 
   // 4番ボタンが押されるまで待機
-  // →HIGHになったらループ脱出
+  // HIGH→LOWになったらループ脱出
   while(!buttonUp(4)){
     buttonUpdate();
   }
@@ -84,34 +84,7 @@ void loop() {
 
   dirUpdate();
 
-  // analogWrite(0,0);
 
-  // motor_min
-  // motor_powerz
-
-  static short motor_dir = 0;
-  motor_dir += button[0];
-  motor_dir -= button[1];
-
-  // 回り込み
-  // short motor_power = (ball_distance-6500) *0.8 / 98;
-  // 線形にずらした角度に進める
-  // Serial.printf("dir:%d\n", motor_dir);
-  
-  /*
-  double default_difference = (BALL_DISTANCE_MAX-ball_distance)/BALL_DISTANCE_RANGE*85+5;
-  double difference = 0.0;
-  if(abs(ball_dir)>45){
-    difference = ball_dir<0?-default_difference:default_difference;
-  }else{
-    difference = default_difference*ball_dir/45;
-  }
-  move_dir = ball_dir + difference;
-  moveDir(move_dir, 70, true);
-
-  addVariables("Move_dir",move_dir);
-  addVariables("diffe",difference);
-  */
   short difference=0;
   if(abs(ball_dir)>15){
     difference = ball_dir<0?-70:70;
@@ -122,21 +95,22 @@ void loop() {
   moveDir(ball_dir+difference,80,false);
 
 
-  // 90-5
+  // ボールを保持している
   if(ball_holding) {
     moveDir(0.0, 90, true);
     if(millis()-kicked_ms>5000 && millis()-ball_hold_begin > 300){
       kick();
     }
   }
+
+  // ボールが存在しない
   if(!ball_exist) motorRaw(0,0,0,0);
-  setDir(dir,default_dir,60,40);
-  // motorRaw(40,40,40,40);
   
+  // 姿勢制御
+  setDir(dir,default_dir,60,40);
+  
+  // モーターに適用
   motorRaw();
-  // motorRapidP(motor[0],motor[1],motor[2],motor[3]);
-  // motorRaw();
-  // for(int i=0;i<kMOTOR_NUM;i++) motor_now[i] = motor[i];
 
 
   // UI (display)
@@ -147,6 +121,4 @@ void loop() {
   debugDisplay(DISPLAY_MODE);
   display.display();
 
-  // printd(8, 8, "process:"+std::to_string(millis()-begin_ms)+"(ms)");
-  // delay(50);
 }

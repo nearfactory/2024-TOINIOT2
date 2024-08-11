@@ -21,8 +21,8 @@ constexpr short BALL_DISTANCE_RANGE = BALL_DISTANCE_MAX-BALL_DISTANCE_MIN;
 
 
 
-// センサ値格納用配列（1023で初期化）
-short ball[BALL_NUM] = { 1023 };
+// センサ値格納用配列（0で初期化）
+short ball[BALL_NUM] = { 0 };
 // 測定ボール角度
 float ball_dir = 0;
 // 直前の測定ボール角度
@@ -35,16 +35,16 @@ bool  ball_holding = false;
 bool  ball_exist = true;
 
 // 比較用最大値格納用変数
-short   ball_big = 1023;
+short   ball_big = 0;
 // 最大値のセンサインデックス
 uint8_t ball_big_id = 0;
-// センサ値最小値(?)
-short   ball_small = 0;
+// 比較用最小値格納用変数
+short   ball_small = 1023;
 // 最小値のセンサインデックス
 uint8_t ball_small_id = 0;
 // 直前のボール保持フラグ
 bool prev_ball_holding = false;
-// (?)
+// ボールを保持し始めた時刻
 uint32_t ball_hold_begin = 0;
 
 
@@ -69,13 +69,6 @@ inline float ballDirection(){
 
   // 各センサ値をx成分/y成分に分解し2軸の成分に加算
   for(int i=0;i<BALL_NUM;i++){
-    // ☆原本
-    // センサ角度 (rad)(?)
-    // double sensor_dir = (i-1)/8.0+3.14;
-    // ball_x += ball[i] * cos(sensor_dir*PI);
-    // ball_y += ball[i] * sin(sensor_dir*PI);
-
-    // ★寺田編集済み
     // センサ角度 (rad)
     double sensor_dir = PI*(i+4)/8;
     ball_x += ball[i] * cos(sensor_dir);
@@ -93,8 +86,8 @@ inline float ballDirection(){
 // 最大のセンサ値を出すセンサの左右2つずつを活用して算出
 inline float ballDirection2(){
   // センサの最大値と最大値を記録したセンサのインデックスを初期化
-  short ball_big = 0;
-  short ball_big_index = 0;
+  ball_big = 0;
+  ball_big_index = 0;
 
   //各センサ値の値を最大値を比較・更新し最大値とインデックスを算出
   for(int i=0;i<BALL_NUM;i++){
@@ -115,11 +108,6 @@ inline float ballDirection2(){
     // BALL_NUMを加算している→割られる数が負になると剰余も負で出力されてしまうのを防ぐため
     int j = (ball_big_index + BALL_NUM + i) % BALL_NUM;
 
-    // ☆原本
-    // double sensor_dir = (j-1)*360.0/16.0 + 90.0 - 67.5;
-    // ball_x += ball[j] * cos(sensor_dir/180.0*PI);
-    // ball_y += ball[j] * sin(sensor_dir/180.0*PI);
-
     // ★寺田編集済み
     double sensor_dir = PI*(j+4)/8;
     ball_x += ball[j] * cos(sensor_dir);
@@ -137,8 +125,8 @@ inline float ballDirection2(){
 // 最大のセンサ値を出すセンサの左右3つずつを活用して算出
 inline float ballDirection3(){
   // センサの最大値と最大値を記録したセンサのインデックスを初期化
-  short ball_big = 0;
-  short ball_big_index = 0;
+  ball_big = 0;
+  ball_big_index = 0;
   
   //各センサ値の値を最大値を比較・更新し最大値とインデックスを算出
   for(int i=0;i<BALL_NUM;i++){
@@ -158,11 +146,6 @@ inline float ballDirection3(){
     // j が 実際のセンサインデックス
     // BALL_NUMを加算している→割られる数が負になると剰余も負で出力されてしまうのを防ぐため
     int j = (ball_big_index + BALL_NUM + i) % BALL_NUM;
-
-    // ☆原本
-    // double sensor_dir = (j-1)*360.0/16.0 + 90.0 - 67.5;
-    // ball_x += ball[j] * cos(sensor_dir/180.0*PI);
-    // ball_y += ball[j] * sin(sensor_dir/180.0*PI);
 
     // ★寺田編集済み
     double sensor_dir = PI*(j+4)/8;
@@ -226,13 +209,6 @@ inline void ballUpdate(BALL mode){
       ball_dir = ballDirection3();
       break;
   }
-
-  // prev_ball_dir = ball_dir;
-  // short tolerance = 20;
-  // if((abs(ball_dir)-abs(prev_ball_dir))>tolerance){
-  //   if(ball_dir>prev_ball_dir) ball_dir = prev_ball_dir+tolerance;
-  //   if(ball_dir<prev_ball_dir) ball_dir = prev_ball_dir-tolerance;
-  // }
 
   return;
 }
