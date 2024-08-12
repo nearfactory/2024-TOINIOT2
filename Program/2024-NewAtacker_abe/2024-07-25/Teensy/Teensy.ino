@@ -77,6 +77,7 @@ void loop() {
   digitalWrite(LED_BUILTIN, HIGH);
   display.clearDisplay();
 
+  // データを更新
   ballUpdate(BALL::DIR);
   buttonUpdate();
   clearVariables();
@@ -85,6 +86,32 @@ void loop() {
   dirUpdate();
 
 
+  // motor_min
+  // motor_powerz
+
+  static short motor_dir = 0;
+  motor_dir += button[0];
+  motor_dir -= button[1];
+
+  // 回り込み
+  // short motor_power = (ball_distance-6500) *0.8 / 98;
+  // 線形にずらした角度に進める
+  // Serial.printf("dir:%d\n", motor_dir);
+  
+  /*
+  double default_difference = (BALL_DISTANCE_MAX-ball_distance)/BALL_DISTANCE_RANGE*85+5;
+  double difference = 0.0;
+  if(abs(ball_dir)>45){
+    difference = ball_dir<0?-default_difference:default_difference;
+  }else{
+    difference = default_difference*ball_dir/45;
+  }
+  move_dir = ball_dir + difference;
+  moveDir(move_dir, 70, true);
+
+  addVariables("Move_dir",move_dir);
+  addVariables("diffe",difference);
+  */
   short difference=0;
   if(abs(ball_dir)>15){
     difference = ball_dir<0?-70:70;
