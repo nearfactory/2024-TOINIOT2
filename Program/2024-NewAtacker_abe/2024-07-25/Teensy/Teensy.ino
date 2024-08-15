@@ -41,7 +41,6 @@ void setup() {
     Serial.println("calibration...");
 
     // キャリブレーション状況を取得・ディスプレイバッファへ書き込み
-    // dirCalibration(&system, &gyro, &accel, &mag);
     bno.getCalibration(&system, &gyro, &accel, &mag);
     printd(32,24,"system:"+to_string(system));
     printd(32,32,"gyro  :"+to_string(gyro));
@@ -64,8 +63,7 @@ void setup() {
     buttonUpdate();
   }
 
-
-
+  
   // 攻め方向を取得・更新
   dirUpdate();
   default_dir = dir;
@@ -80,38 +78,17 @@ void loop() {
   // データを更新
   ballUpdate(BALL::DIR);
   buttonUpdate();
-  clearVariables();
+  dirUpdate();
   // subUpdate();
 
-  dirUpdate();
-
-
-  // motor_min
-  // motor_powerz
+  clearVariables();
 
   static short motor_dir = 0;
   motor_dir += button[0];
   motor_dir -= button[1];
 
-  // 回り込み
-  // short motor_power = (ball_distance-6500) *0.8 / 98;
-  // 線形にずらした角度に進める
-  // Serial.printf("dir:%d\n", motor_dir);
   
-  /*
-  double default_difference = (BALL_DISTANCE_MAX-ball_distance)/BALL_DISTANCE_RANGE*85+5;
-  double difference = 0.0;
-  if(abs(ball_dir)>45){
-    difference = ball_dir<0?-default_difference:default_difference;
-  }else{
-    difference = default_difference*ball_dir/45;
-  }
-  move_dir = ball_dir + difference;
-  moveDir(move_dir, 70, true);
-
-  addVariables("Move_dir",move_dir);
-  addVariables("diffe",difference);
-  */
+  // 回り込み
   short difference=0;
   if(abs(ball_dir)>15){
     difference = ball_dir<0?-70:70;
