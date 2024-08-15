@@ -1,4 +1,4 @@
-23258528088110169
+23261975369355918
 @2023-2_MotorDriver
 DRV8874
 
@@ -251,6 +251,20 @@ GPS-54D-014
 0
 8
 8
+@2024-cansat
+MODULE_DEV-16771
+
+
+0
+48
+48
+@2024-cansat
+PKM13EPYH4000-A0
+
+
+0
+2
+2
 @2024-cansat
 Pin-Extender
 
