@@ -2557,7 +2557,7 @@
 	(footprint "@2024TOINIOT2-Main:BNO055"
 		(layer "F.Cu")
 		(uuid "1e8592a1-e3f1-4c25-a299-147093148641")
-		(at 0 -7.5)
+		(at 0 0)
 		(property "Reference" "U3"
 			(at 0 -7.665 0)
 			(layer "F.SilkS")
