@@ -68,17 +68,26 @@ void loop() {
     }
 
     strip.setPixelColor(i,(uint8_t)r,(uint8_t)g,(uint8_t)b);
-    Serial.printf("%lf ", hue);
+    // Serial.printf("%lf ", hue);
   }
 
   Serial.println();
-  Serial.printf("dir:%d hue:%d sat:%d val:%d \n", dir, h, s, v);
+  // Serial.printf("dir:%d hue:%d sat:%d val:%d \n", dir, h, s, v);
 
 
   Serial1.println(h);
   Serial2.println(h);
   Serial8.println(h);
 
+  while(Serial1.available()){
+    Serial.print((char)Serial1.read());
+  }
+  while(Serial2.available()){
+    Serial.print((char)Serial2.read());
+  }
+  while(Serial8.available()){
+    Serial.print((char)Serial8.read());
+  }
 
   dir+=8;
   strip.show();
