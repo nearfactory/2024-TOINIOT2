@@ -1,12 +1,16 @@
 #include <Adafruit_NeoPixel.h>
 
-constexpr uint8_t NEOPIXEL_PIN = 8;
+constexpr uint8_t NEOPIXEL_PIN = 6;
 
 Adafruit_NeoPixel strip(60, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   Serial.begin(9600);
   Serial.println("TOINIOT2 NeoPixel Test 2024-08-28");
+
+  Serial1.begin(9600);
+  Serial2.begin(9600);
+  Serial8.begin(9600);
 
   strip.begin();
   strip.show();
@@ -24,7 +28,7 @@ void loop() {
   short s = 256;
   short v = 256;
 
-  strip.setBrightness(40);
+  strip.setBrightness(32);
   for(int i=0;i<16;i++){
     double r=0;
     double g=0;
@@ -69,6 +73,11 @@ void loop() {
 
   Serial.println();
   Serial.printf("dir:%d hue:%d sat:%d val:%d \n", dir, h, s, v);
+
+
+  Serial1.println(h);
+  Serial2.println(h);
+  Serial8.println(h);
 
 
   dir+=8;
