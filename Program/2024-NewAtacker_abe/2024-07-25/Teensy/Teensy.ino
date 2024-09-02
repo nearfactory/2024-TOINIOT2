@@ -114,6 +114,7 @@ void loop() {
   setDir(dir,default_dir,60,40);
   
   // モーターに適用
+  motorP();
   motorRaw();
 
 
