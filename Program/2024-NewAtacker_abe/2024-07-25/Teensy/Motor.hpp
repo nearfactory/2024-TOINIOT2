@@ -15,8 +15,8 @@ enum MOTOR : uint8_t{
 
 
 // -100~100[%]
-int8_t motor[MOTOR_NUM] = { 100 };
-int8_t motor_raw[MOTOR_NUM] = {100};
+int8_t motor[MOTOR_NUM] = {0};
+int8_t motor_raw[MOTOR_NUM] = {0};
 int8_t motor_now[MOTOR_NUM] = {0};
 short motor_sum = 0;
 double move_dir = 0;
@@ -68,6 +68,9 @@ int motor_goal_prev[MOTOR_NUM] = {};
 
 inline void motorP(){
   for(int i = 0; i < MOTOR_NUM; i++){
+
+    motor_goal[i] = motor_raw[i];
+    
     motor_goal[i] = motor_goal[i] > -255 ? motor_goal[i] : -255;
     motor_goal[i] = motor_goal[i] < 255  ? motor_goal[i] :  255;
 
@@ -80,6 +83,7 @@ inline void motorP(){
       p_count[i] = 1;
     }
 
+    motor_raw[i] = motor_goal[i];
     motor_goal_prev[i] = motor_goal[i];
   }
   return;
