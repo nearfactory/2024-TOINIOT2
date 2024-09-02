@@ -58,15 +58,29 @@ inline void motorRaw(int8_t m1, int8_t m2, int8_t m3, int8_t m4){
   return;
 }
 
-inline void motorP(int8_t m1, int8_t m2, int8_t m3, int8_t m4){
-  int step = 2;
-  for(int i=0;i<step;i++){
-    motor_now[0] += (motor[0]-motor_now[0])/(step-i);
-    motor_now[1] += (motor[1]-motor_now[1])/(step-i);
-    motor_now[2] += (motor[2]-motor_now[2])/(step-i);
-    motor_now[3] += (motor[3]-motor_now[3])/(step-i);
-    motorRaw(motor_now[0],motor_now[1],motor_now[2],motor_now[3]);
-    // Serial.printf("m1:%d m2:%d m3:%d m4:%d\n",motor_now[0],motor_now[1],motor_now[2],motor_now[3]);
+int p_step = 10;
+int p_count[MOTOR_NUM] = 0;
+int p_val[MOTOR_NUM] = 0;
+
+int motor_goal[MOTOR_NUM] = {};
+int motor_goal_prev[MOTOR_NUM] = {};
+
+
+inline void motorP(){
+  for(int i = 0; i < MOTOR_NUM; i++){
+    motor_goal[i] = motor_goal[i] > -255 ? motor_goal[i] : -255;
+    motor_goal[i] = motor_goal[i] < 255  ? motor_goal[i] :  255;
+
+    if(motor_goal_prev[i] == motor_goal[i]  &&  p_count[i] < p_step){
+      motor_now[i] += p_val[i];
+      p_count[i]++;
+    }else if(motor_goal_prev[i] != motor_goal[i]){
+      p_val[i] = (motor_goal[i] - motor_now[i]) / p_step;
+      motor_now[i] += p_val[i];
+      p_count[i] = 1;
+    }
+
+    motor_goal_prev[i] = motor_goal[i];
   }
   return;
 }
