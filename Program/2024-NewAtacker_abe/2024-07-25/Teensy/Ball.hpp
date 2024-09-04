@@ -86,8 +86,8 @@ inline float ballDirection(){
 // 最大のセンサ値を出すセンサの左右2つずつを活用して算出
 inline float ballDirection2(){
   // センサの最大値と最大値を記録したセンサのインデックスを初期化
-  ball_big = 0;
-  ball_big_index = 0;
+  short ball_big = 0;
+  short ball_big_index = 0;
 
   //各センサ値の値を最大値を比較・更新し最大値とインデックスを算出
   for(int i=0;i<BALL_NUM;i++){
@@ -125,8 +125,8 @@ inline float ballDirection2(){
 // 最大のセンサ値を出すセンサの左右3つずつを活用して算出
 inline float ballDirection3(){
   // センサの最大値と最大値を記録したセンサのインデックスを初期化
-  ball_big = 0;
-  ball_big_index = 0;
+  short ball_big = 0;
+  short ball_big_index = 0;
   
   //各センサ値の値を最大値を比較・更新し最大値とインデックスを算出
   for(int i=0;i<BALL_NUM;i++){

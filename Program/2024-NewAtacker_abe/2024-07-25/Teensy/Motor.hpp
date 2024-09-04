@@ -15,9 +15,9 @@ enum MOTOR : uint8_t{
 
 
 // -100~100[%]
-int8_t motor[MOTOR_NUM] = {0};
-int8_t motor_raw[MOTOR_NUM] = {0};
-int8_t motor_now[MOTOR_NUM] = {0};
+double motor[MOTOR_NUM] = {0};
+double motor_raw[MOTOR_NUM] = {0};
+double motor_now[MOTOR_NUM] = {0};
 short motor_sum = 0;
 double move_dir = 0;
 
@@ -59,11 +59,11 @@ inline void motorRaw(int8_t m1, int8_t m2, int8_t m3, int8_t m4){
 }
 
 int p_step = 10;
-int p_count[MOTOR_NUM] = 0;
-int p_val[MOTOR_NUM] = 0;
+int p_count[MOTOR_NUM] = {0};
+double p_val[MOTOR_NUM] = {0};
 
-int motor_goal[MOTOR_NUM] = {};
-int motor_goal_prev[MOTOR_NUM] = {};
+double motor_goal[MOTOR_NUM] = {};
+double motor_goal_prev[MOTOR_NUM] = {};
 
 
 inline void motorP(){
@@ -77,10 +77,14 @@ inline void motorP(){
     if(motor_goal_prev[i] == motor_goal[i]  &&  p_count[i] < p_step){
       motor_now[i] += p_val[i];
       p_count[i]++;
+      Serial.print("A");
     }else if(motor_goal_prev[i] != motor_goal[i]){
       p_val[i] = (motor_goal[i] - motor_now[i]) / p_step;
       motor_now[i] += p_val[i];
       p_count[i] = 1;
+      Serial.print("B");
+    }else{
+      Serial.print("C");
     }
 
     motor_raw[i] = motor_goal[i];
