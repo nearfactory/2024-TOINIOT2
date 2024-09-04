@@ -49,13 +49,12 @@ enum DISPLAY_MODE : uint8_t{
   MOTOR,
   VARIABLES
 };
-enum class TEXT_ALIGN_X : uint8_t{
+enum class TEXT_ALIGN : uint8_t{
   LEFT = 0,
   CENTER,
-  RIGHT
-};
-enum class TEXT_ALIGN_Y : uint8_t{
-  TOP = 0,
+  RIGHT,
+  
+  TOP,
   MIDDLE,
   BOTTOM
 };
@@ -114,24 +113,24 @@ inline void bzUpdate(){
 }
 
 // display
-inline void printd(uint8_t x, uint8_t y, std::string str, TEXT_ALIGN_X align_x = TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y align_y = TEXT_ALIGN_Y::TOP){
+inline void printd(uint8_t x, uint8_t y, std::string str, TEXT_ALIGN align_x = TEXT_ALIGN::LEFT, TEXT_ALIGN align_y = TEXT_ALIGN::TOP){
   switch(align_x){
-    case TEXT_ALIGN_X::LEFT :
+    case TEXT_ALIGN::LEFT :
       break;
-    case TEXT_ALIGN_X::CENTER :
+    case TEXT_ALIGN::CENTER :
       x -= str.length()*8/2;
       break;
-    case TEXT_ALIGN_X::RIGHT :
+    case TEXT_ALIGN::RIGHT :
       x -= str.length()*8;
       break;
   }
   switch(align_y){
-    case TEXT_ALIGN_Y::TOP :
+    case TEXT_ALIGN::TOP :
       break;
-    case TEXT_ALIGN_Y::MIDDLE :
+    case TEXT_ALIGN::MIDDLE :
       y -= 8/2;
       break;
-    case TEXT_ALIGN_Y::BOTTOM :
+    case TEXT_ALIGN::BOTTOM :
       y -=8;
       break;
   }
@@ -159,7 +158,7 @@ inline void addVariables(std::string name, T variables){
 
 inline void debugDisplay(uint8_t mode){
   printd(8,8,DISPLAY_MODE_NAME[mode]);
-  // printd(120,32,"4.mode", TEXT_ALIGN_X::RIGHT, TEXT_ALIGN_Y::MIDDLE);
+  // printd(120,32,"4.mode", TEXT_ALIGN::RIGHT, TEXT_ALIGN::MIDDLE);
 
   switch(mode){
     case DISPLAY_MODE::BALL :{
@@ -170,7 +169,7 @@ inline void debugDisplay(uint8_t mode){
       str.erase(str.begin()+4,str.end());
       printd(8, 40, str);
 
-      // printd(8,24,"dist:",TEXT_ALIGN_X::LEFT,TEXT_ALIGN_Y::BOTTOM);
+      // printd(8,24,"dist:",TEXT_ALIGN::LEFT,TEXT_ALIGN::BOTTOM);
       printd(8,48,"exist:"+to_string(ball_exist));
       printd(8,56,"hold :"+to_string(ball_holding));
       
@@ -178,22 +177,22 @@ inline void debugDisplay(uint8_t mode){
       drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 0, 8);
 
       // double ball_small_angle = (ball_small_id*360.0/BALL_NUM+180.0)/180.0*3.14;
-      // printd(DISPLAY_W/2+text_r*cos(-ball_small_angle), DISPLAY_H/2+text_r*sin(-ball_small_angle), to_string(ball_small), TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      // printd(DISPLAY_W/2+text_r*cos(-ball_small_angle), DISPLAY_H/2+text_r*sin(-ball_small_angle), to_string(ball_small), TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
       // double ball_big_angle = (ball_big_id*360.0/BALL_NUM+180.0)/180.0*3.14;
-      // printd(DISPLAY_W/2+text_r*cos(-ball_big_angle), DISPLAY_H/2+text_r*sin(-ball_big_angle), to_string(ball_big), TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      // printd(DISPLAY_W/2+text_r*cos(-ball_big_angle), DISPLAY_H/2+text_r*sin(-ball_big_angle), to_string(ball_big), TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
 
-      printd(120,40,to_string(ball_small),    TEXT_ALIGN_X::RIGHT);
-      printd(120,48,to_string(ball_big),      TEXT_ALIGN_X::RIGHT);
-      printd(120,56,to_string(ball_distance), TEXT_ALIGN_X::RIGHT);
+      printd(120,40,to_string(ball_small),    TEXT_ALIGN::RIGHT);
+      printd(120,48,to_string(ball_big),      TEXT_ALIGN::RIGHT);
+      printd(120,56,to_string(ball_distance), TEXT_ALIGN::RIGHT);
       for(int i=0;i<BALL_NUM;i++){
         double angle = (i*360/BALL_NUM+180);
         // Serial.println(angle);
         angle = angle/180*3.14;
         uint8_t x = DISPLAY_W/2+(int16_t)(cos(angle)*circle_r);
         uint8_t y = DISPLAY_H/2+(int16_t)(sin(angle)*circle_r);
-        // printd(x, y, ".", TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::BOTTOM);
+        // printd(x, y, ".", TEXT_ALIGN::LEFT, TEXT_ALIGN::BOTTOM);
         display.drawPixel(x, y, WHITE);
-        // printd(DISPLAY_W/2+cos(angle)*circle_r, DISPLAY_H/2+sin(angle)*circle_r, to_string(ball[i]),TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+        // printd(DISPLAY_W/2+cos(angle)*circle_r, DISPLAY_H/2+sin(angle)*circle_r, to_string(ball[i]),TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
       }
       break;
     }
@@ -205,14 +204,14 @@ inline void debugDisplay(uint8_t mode){
     }
 
     case DISPLAY_MODE::CAMERA :{
-      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      printd(64,32,"no data", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
       break;
     }
 
     case DISPLAY_MODE::DIR :{
       string str = to_string(dir);
       str.erase(str.begin()+5,str.end());
-      printd(8, 32, str, TEXT_ALIGN_X::LEFT, TEXT_ALIGN_Y::MIDDLE);
+      printd(8, 32, str, TEXT_ALIGN::LEFT, TEXT_ALIGN::MIDDLE);
 
       display.drawPixel(DISPLAY_W/2+24*cos((180-prev_dir)*3.14/180.0),DISPLAY_H/2+24*sin((180-prev_dir)*3.14/180.0),WHITE);
       drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180-default_dir-dir_default_display, 24);
@@ -221,12 +220,12 @@ inline void debugDisplay(uint8_t mode){
     }
     
     case DISPLAY_MODE::DRIBBLER :{
-      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      printd(64,32,"no data", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
       break;
     }
 
     case DISPLAY_MODE::KICKER :{
-      // printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      // printd(64,32,"no data", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
       printd(8,24,"ball01k:"+to_string(ball01k));
       printd(8,32,"ball02k:"+to_string(ball02k));
       display.setCursor(8,40);
@@ -237,19 +236,19 @@ inline void debugDisplay(uint8_t mode){
     }
 
     case DISPLAY_MODE::LINE :{
-      printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      printd(64,32,"no data", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
       break;
     }
 
     case DISPLAY_MODE::MOTOR :{
       printd(8,   24, "m4:"+to_string((int)motor_raw[3]) );
-      printd(120, 24, "m3:"+to_string((int)motor_raw[2]), TEXT_ALIGN_X::RIGHT);
+      printd(120, 24, "m3:"+to_string((int)motor_raw[2]), TEXT_ALIGN::RIGHT);
       printd(8,   56, "m1:"+to_string((int)motor_raw[0]) );
-      printd(120, 56, "m2:"+to_string((int)motor_raw[1]), TEXT_ALIGN_X::RIGHT);
+      printd(120, 56, "m2:"+to_string((int)motor_raw[1]), TEXT_ALIGN::RIGHT);
 
       drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, move_dir, 24);
 
-      // printd(120,32,"stop",TEXT_ALIGN_X::RIGHT,TEXT_ALIGN_Y::MIDDLE);
+      // printd(120,32,"stop",TEXT_ALIGN::RIGHT,TEXT_ALIGN::MIDDLE);
       // if(buttonUp(3)){
       //   for(int i=0;i<100;i++){
       //     for(int j=0;j<MOTOR_NUM;j++){
@@ -274,7 +273,7 @@ inline void debugDisplay(uint8_t mode){
       printd(8,24+8*selector,">");
       selector -= buttonDOWN(2);
       */
-      // printd(64,32,"no data", TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::MIDDLE);
+      // printd(64,32,"no data", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
       for(int i=0;i<debug_variables.size();i++){
         printd(16,24+8*i,debug_variables[i]);
       }
