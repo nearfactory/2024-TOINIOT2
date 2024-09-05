@@ -9,6 +9,9 @@ double default_dir = 0.0;
 double dir = 0.0;
 double prev_dir = 0.0;
 double dir_default_display = 0.0;
+double accel_x = 0.0;
+double accel_y = 0.0;
+double accel_z = 0.0;
 double accel_sum = 0.0;
 
 inline void dirSetup(){
@@ -35,7 +38,11 @@ inline void dirUpdate(){
 
   sensors_event_t accel{};
   bno.getEvent(&accel, Adafruit_BNO055::VECTOR_ACCELEROMETER);
-  accel_sum = accel.acceleration.x + accel.acceleration.y + accel.acceleration.z;
+  accel_x = accel.acceleration.x;
+  accel_y = accel.acceleration.y;
+  accel_z = accel.acceleration.z;
+
+  accel_sum = accel_x+accel_y+accel_z;
 
   return;
 }

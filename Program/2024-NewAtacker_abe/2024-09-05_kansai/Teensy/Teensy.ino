@@ -87,25 +87,30 @@ void loop() {
     clearVariables();
   }
 
-  // ディスプレイ不使用時
-  if(!use_display){
-    if(buttonUp(3)){
-      previous_button[2] = 0;
-      // 再度ボタンを押すと再開
-      while(!buttonUp(3)){
-        motorRaw(0.0f,0.0f,0.0f,0.0f);
-        motorP();
-        motorRaw();
-        buttonUpdate();
-        delay(40);
-      }
-    }
-  }
   // データを更新
   ballUpdate(BALL::DIR);
   buttonUpdate();
   dirUpdate();
   // subUpdate();
+  
+  // ディスプレイ不使用時
+  if(!use_display){
+    if(buttonUp(3)){
+      previous_button[2] = 0;
+      printd(64, 32, "waiting...", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
+      display.display();
+      // 再度ボタンを押すと再開
+      while(!buttonUp(3)){
+        buttonUpdate();
+        motorRaw(0.0f,0.0f,0.0f,0.0f);
+        motorP();
+        motorRaw();
+        delay(40);
+      }
+      display.clearDisplay();
+      display.display();
+    }
+  }
   
   // 回り込み
 
