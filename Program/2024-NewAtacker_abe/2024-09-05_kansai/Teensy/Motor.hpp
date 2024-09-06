@@ -20,7 +20,7 @@ float motor         [MOTOR_NUM] = {0};  // プログラマ用
 float motor_prev    [MOTOR_NUM] = {0};  // 前ループのプログラマ用の値
 float motor_raw     [MOTOR_NUM] = {0};  // モーターに反映するやつ
 
-float motor_p_step              = 8;    // P制御のステップ数
+float motor_p_step              = 4;    // P制御のステップ数
 float motor_p_count [MOTOR_NUM] = {0};  // P制御のループ数カウント
 float motor_p_val   [MOTOR_NUM] = {0};  // P制御の1ステップに変化する値
 
@@ -79,21 +79,11 @@ inline void moveDir(double dir, short power, bool max_power){
 }
 
 inline void setDir(double dir, double goal_dir, uint8_t power, int blend){
-  short mpDir = 0;
-  dir -= goal_dir;
-  dir = dir < -180 ? dir + 360 : dir;
-  dir = dir > 180 ? dir - 360 : dir;
-
-  blend = blend<0?0:blend;
-  blend = blend>100?100:blend;
-  double P_GAIN_DIR = 0.95;
-  if(!(-10<dir && dir<10)){
-    mpDir = (dir * P_GAIN_DIR);
-    for(int i=0;i<4;i++){
-      // motor[i] = motor[i]*(100-blend)*0.01 + mpDir*blend*0.01;
-      motor_raw[i] += mpDir;
-    }
+  double dir_power = dir/1.8;
+  for(int i=0;i<MOTOR_NUM;i++){
+    motor[i] = (dir_power * power/100)*blend/100 + motor[i]*(100-blend)/100;
   }
+  Serial.printf("motor:%lf motor_raw:%lf, dir:%lf, def_dir:%lf\n", motor[0], motor_raw[0], dir, default_dir);
 
   return;
 }

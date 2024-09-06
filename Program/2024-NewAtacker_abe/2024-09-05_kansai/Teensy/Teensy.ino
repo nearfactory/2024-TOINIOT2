@@ -31,8 +31,9 @@ void setup() {
   ・ディスプレイに表示される角度が放置しても変わらなくなったらキャリブレーション完了
   */
 
-  // ディスプレイモードを方向センサ用に変更
   DISPLAY_MODE = DISPLAY_MODE::DIR;
+  /*
+  // ディスプレイモードを方向センサ用に変更
   // キャリブレーションの状況変数を初期化 
   uint8_t system = 0, gyro = 0, accel = 0, mag = 0;
   // キャリブレーション完了まで繰り返し
@@ -52,6 +53,7 @@ void setup() {
     display.display();
     delay(10);
   }
+  */
 
   // スタート画面を表示
   display.clearDisplay();
@@ -70,10 +72,12 @@ void setup() {
   display.clearDisplay();
   display.display();
 
-  
+  delay(1000);
   // 攻め方向を取得・更新
   dirUpdate();
-  default_dir = dir;
+  sensors_event_t d{};
+  bno.getEvent(&d, Adafruit_BNO055::VECTOR_EULER);
+  default_dir = d.orientation.x;
   dir_default_display = -dir;
   
 }
@@ -102,7 +106,7 @@ void loop() {
       // 再度ボタンを押すと再開
       while(!buttonUp(3)){
         buttonUpdate();
-        motorRaw(0.0f,0.0f,0.0f,0.0f);
+        motorSet(0.0f,0.0f,0.0f,0.0f);
         motorP();
         motorRaw();
         delay(40);
@@ -126,12 +130,11 @@ void loop() {
   if(!ball_exist) motorSet(0.0f,0.0f,0.0f,0.0f);
   
   // 姿勢制御
-  // setDir(dir,default_dir,60,40);
+  setDir(dir,0,100,100);
   
   // モーターに適用
   motorP();
   motorRaw();
-
 
   // UI (display)
   if(use_display){

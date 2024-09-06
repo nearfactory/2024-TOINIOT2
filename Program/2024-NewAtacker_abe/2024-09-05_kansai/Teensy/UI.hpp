@@ -216,13 +216,13 @@ inline void debugDisplay(uint8_t mode){
       printd(8, 32, str, TEXT_ALIGN::LEFT, TEXT_ALIGN::MIDDLE);
 
       // display.drawPixel(DISPLAY_W/2+24*cos((180-prev_dir)*3.14/180.0),DISPLAY_H/2+24*sin((180-prev_dir)*3.14/180.0),WHITE);
-      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180-default_dir-dir_default_display, 24);
-      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180-dir-dir_default_display, 16);
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180, 24);
+      drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180-dir, 16);
 
       display.drawPixel(DISPLAY_W/2+accel_x*6, DISPLAY_H/2+accel_y*6, WHITE);
 
       for(int i=0;i<8;i++){
-        double angle = (i*360/8+180);
+        double angle = i*360/8 -dir;
         angle = angle/180*3.14;
         uint8_t x = DISPLAY_W/2+(int16_t)(cos(angle)*circle_r);
         uint8_t y = DISPLAY_H/2+(int16_t)(sin(angle)*circle_r);
