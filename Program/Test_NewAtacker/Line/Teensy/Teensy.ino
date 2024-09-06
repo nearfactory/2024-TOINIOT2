@@ -1,6 +1,6 @@
 #include <string>
 
-char receive_str[7]="";
+char line[5]="";
 
 void setup() {
   Serial.begin(9600);
@@ -24,24 +24,27 @@ void setup() {
 
 }
 
+// 0b10101010, <>, <>, <>, <>, 0b01010101, \0
+// 開始コード 0b10101010
+// 終了コード 0b01010101
+
 void loop() {
   if(Serial1.available()){
-    while(Serial1.available()){
-      if(Serial1.read())
+    while(Serial11.available()){
+      if(Serial1.read()==0b10101010)
+        break;
     }
-    Serial1.println("T");
 
-    if(receive_str.length()!=4)
-      Serial.println("err!");
+    for(int i=0;i<6;i++){
+      if(i<4) line[i] = c;
+      while(!Serial1.available())
+    }
 
-    char send_str[7]={
-      0b10101010, 0, 0, 0, 0, 0b01010101, \0
-    };
   }
 
-  for(int i=0;i<receive_str.length();i++){
+  for(int i=0;i<4;i++){
     for(int j=0;j<8;j++){
-      char c = receive_str[i];
+      char c = line[i];
       // リトルエンディアン
       Serial.print(c<<j & 0b00000001);
     }
