@@ -117,6 +117,7 @@ void loop() {
   }
   
   // 回り込み
+  // moveDir(ball_dir, 20, 20);
 
 
   // ボールを保持している
@@ -130,7 +131,7 @@ void loop() {
   if(!ball_exist) motorSet(0.0f,0.0f,0.0f,0.0f);
   
   // 姿勢制御
-  setDir(dir,0,100,100);
+  setDir(dir,0,100.0,100);
   
   // モーターに適用
   motorP();
