@@ -2,7 +2,6 @@ constexpr uint8_t LINE_NUM = 32;
 const     uint8_t LINE_PIN[LINE_NUM] = {
   12,13,14,15,16,17,18,27, 19,20,21,22,23,24,25,26, 53,54,55,56,57,58,59,60, 63,64,65,66,67,68,69,79
 };
-bool line[LINE_NUM]{false};
 
 char receive_str[10];
 
@@ -41,12 +40,11 @@ void loop() {
     if(Serial1.read()=='T') break;
   }
 
-  char send_str[7]={
-    0b10101010, 0, 0, 0, 0, 0b01010101, \0
-  };
+  char send_str[5];
   for(int i=0;i<LINE_NUM;i++){
-    send_str[1+i/8] = send_str[1+i/8] | digitalRead(LINE_PIN[i]) << (i%8); 
+    send_str[i/8] = send_str[i/8] | digitalRead(LINE_PIN[i]) << (i%8); 
   }
+  send_str[4] = '\0';
 
   Serial1.println(send_str);
 }

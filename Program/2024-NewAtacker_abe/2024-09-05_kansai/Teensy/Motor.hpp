@@ -37,7 +37,7 @@ inline void motorSetup(){
   return;
 }
 
-inline void motorRaw(float m1, float m2, float m3, float m4){
+inline void motorSet(float m1, float m2, float m3, float m4){
   motor[0] = m1;
   motor[1] = m2;
   motor[2] = m3;

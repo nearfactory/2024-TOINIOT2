@@ -8,18 +8,12 @@
 std::string BLE_atk{};
 std::string BLE_def{};
 
-inline void connectSub(){
-  Serial2.begin(9600);  // sub
-  Serial2.println("T");
-  return;
-}
-
 inline void communicationSetup(){
   // UART
   Serial.begin(115200);   // pc
   Serial1.begin(115200);  // line
-  Serial2.begin(9600);
-  // Serial8.begin(115200);  // camera
+  Serial2.begin(115200);  // sub
+  Serial8.begin(115200);  // camera
   
 
   // I2C
@@ -37,7 +31,6 @@ inline void communicationSetup(){
   return;
 }
 
-inline void cameraUpdate();
 
 inline void subUpdate(){
   if(Serial2.available()){
@@ -51,4 +44,5 @@ inline void subUpdate(){
   return;
 }
 
-inline void lineUpdate();
+
+inline void cameraUpdate();

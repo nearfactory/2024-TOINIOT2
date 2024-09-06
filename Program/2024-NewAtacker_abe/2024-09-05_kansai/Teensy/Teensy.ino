@@ -119,14 +119,16 @@ void loop() {
   if(ball_holding) {
   }
 
+  // 白線避け
+
+
   // ボールが存在しない
-  if(!ball_exist) motorRaw(0.0f,0.0f,0.0f,0.0f);
+  if(!ball_exist) motorSet(0.0f,0.0f,0.0f,0.0f);
   
   // 姿勢制御
   // setDir(dir,default_dir,60,40);
   
   // モーターに適用
-  motorRaw(16.0f,16.0f,16.0f,16.0f);
   motorP();
   motorRaw();
 
