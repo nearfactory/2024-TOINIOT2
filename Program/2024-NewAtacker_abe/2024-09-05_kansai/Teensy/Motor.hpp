@@ -20,9 +20,10 @@ float motor         [MOTOR_NUM] = {0};  // プログラマ用
 float motor_prev    [MOTOR_NUM] = {0};  // 前ループのプログラマ用の値
 float motor_raw     [MOTOR_NUM] = {0};  // モーターに反映するやつ
 
-float motor_p_step              = 4;    // P制御のステップ数
-float motor_p_count [MOTOR_NUM] = {0};  // P制御のループ数カウント
-float motor_p_val   [MOTOR_NUM] = {0};  // P制御の1ステップに変化する値
+float motor_p_step_default      = 4;                    // デフォルトのP制御のステップ数
+float motor_p_step              = motor_p_step_default; // P制御のステップ数
+float motor_p_count [MOTOR_NUM] = {0};                  // P制御のループ数カウント
+float motor_p_val   [MOTOR_NUM] = {0};                  // P制御の1ステップに変化する値
 
 float move_dir                  = 0;
 
@@ -46,31 +47,29 @@ inline void motorSet(float m1, float m2, float m3, float m4){
   return;
 }
 
-inline void moveDir(double dir, short power, bool max_power){
-  short power_big = 0;
-  short power_big_id = 0;
-  // Serial.print("default ");
+inline void moveDir(double dir, int power, bool max_power, int blend){
+  int power_big = 0;
+  int power_big_id = 0;
+  
   for(int i=0;i<MOTOR_NUM;i++){
     double t = (dir-45-i*90)*3.14/180.0;
-    motor_raw[i] = sin(t)*power;
-    // Serial.printf("m%d:%d ", i+1, motor[i]);
+    motor[i] = sin(t)*power;
     if(max_power){
-      if(abs(motor_raw[i]>power_big)){
-        power_big = motor_raw[i];
+      if(abs(motor[i]>power_big)){
+        power_big = motor[i];
         power_big_id = i;
       }
     }
   }
-  double p = (double)power / abs(motor_raw[power_big_id]);
+  double p = (double)power / abs(motor[power_big_id]);
   if(!max_power) p = 1.0;
-  // Serial.println();
   // Serial.printf("big:%d\n",power_big);
   // Serial.printf("id:%d\n",power_big_id);
   // Serial.printf("p:%lf\n",p);
   
   // Serial.print("max ");
   for(int i=0;i<MOTOR_NUM;i++){
-    motor_raw[i] *= p;
+    motor[i] *= p;
     // Serial.printf("m%d:%d ", i+1, motor[i]);
   }
   // Serial.println();
@@ -78,11 +77,16 @@ inline void moveDir(double dir, short power, bool max_power){
   return;
 }
 
+inline void avoidLine(){
+
+
+  return;
+}
+
 inline void setDir(double dir, double goal_dir, double power, int blend){
   double dir_power = dir/1.8;
   for(int i=0;i<MOTOR_NUM;i++){
-    // motor[i] = (dir_power * power/100.0)*blend/100.0 + motor[i]*(100.0-blend)/100.0;
-    motor[i] = dir_power *power/100.0;
+    motor[i] = (dir_power * power/100.0)*blend/100.0 + motor[i]*(100.0-blend)/100.0;
   }
   // Serial.printf("motor:%lf motor_raw:%lf, dir:%lf, def_dir:%lf\n", motor[0], motor_raw[0], dir, default_dir);
 

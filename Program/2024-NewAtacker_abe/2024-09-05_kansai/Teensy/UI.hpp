@@ -248,7 +248,19 @@ inline void debugDisplay(uint8_t mode){
     }
 
     case DISPLAY_MODE::LINE :{
-      printd(64,32,"no data", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
+      uint8_t circle_r = 20;
+      uint8_t outside_r = 28;
+      
+      // エンジェル
+      for(int i=0;i<LINE_CENTRAL;i++){
+        double angle = (180+i)*360.0/LINE_CENTRAL*3.14/180.0;
+        if(line[i]) display.drawPixel(DISPLAY_W/2+cos(angle)*circle_r, DISPLAY_H/2+sin(angle)*circle_r, WHITE);
+      }
+      // エンジェル外側
+      for(int i=LINE_CENTRAL;i<LINE;i++){
+        double angle = ((i-LINE_CENTRAL)/4*90+180 + (i-LINE_CENTRAL)%4*10-15)*3.14/180.0;
+        if(line[i]) display.drawPixel(DISPLAY_W/2+cos(angle)*outside_r, DISPLAY_H/2+sin(angle)*outside_r, WHITE);
+      }
       break;
     }
 

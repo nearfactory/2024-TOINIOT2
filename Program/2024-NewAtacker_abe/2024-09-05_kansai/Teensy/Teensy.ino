@@ -8,6 +8,7 @@
 #include "Communication.hpp"
 #include "Dir.hpp"
 #include "Kicker.hpp"
+#include "Line.hpp"
 #include "Motor.hpp"
 #include "UI.hpp"
 
@@ -32,7 +33,6 @@ void setup() {
   */
 
   DISPLAY_MODE = DISPLAY_MODE::DIR;
-  /*
   // ディスプレイモードを方向センサ用に変更
   // キャリブレーションの状況変数を初期化 
   uint8_t system = 0, gyro = 0, accel = 0, mag = 0;
@@ -53,7 +53,6 @@ void setup() {
     display.display();
     delay(10);
   }
-  */
 
   // スタート画面を表示
   display.clearDisplay();
@@ -74,11 +73,9 @@ void setup() {
 
   delay(1000);
   // 攻め方向を取得・更新
-  dirUpdate();
   sensors_event_t d{};
   bno.getEvent(&d, Adafruit_BNO055::VECTOR_EULER);
   default_dir = d.orientation.x;
-  dir_default_display = -dir;
   
 }
 
@@ -97,13 +94,14 @@ void loop() {
   dirUpdate();
   // subUpdate();
   
-  // ディスプレイ不使用時
+  // 停止機能(ボタン3)
   if(!use_display){
     if(buttonUp(3)){
       previous_button[2] = 0;
       printd(64, 32, "waiting...", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
       display.display();
       // 再度ボタンを押すと再開
+      motor_p_step = 16;
       while(!buttonUp(3)){
         buttonUpdate();
         motorSet(0.0f,0.0f,0.0f,0.0f);
@@ -111,13 +109,14 @@ void loop() {
         motorRaw();
         delay(40);
       }
+      motor_p_step = motor_p_step_default;
       display.clearDisplay();
       display.display();
     }
   }
   
   // 回り込み
-  // moveDir(ball_dir, 20, 20);
+  moveDir(ball_dir, 20, true, 100);
 
 
   // ボールを保持している
@@ -126,12 +125,12 @@ void loop() {
 
   // 白線避け
 
+  // 姿勢制御
+  setDir(dir,0,100.0,20);
 
   // ボールが存在しない
-  if(!ball_exist) motorSet(0.0f,0.0f,0.0f,0.0f);
+  if(!ball_exist) setDir(dir,0,100.0,100);
   
-  // 姿勢制御
-  setDir(dir,0,100.0,100);
   
   // モーターに適用
   motorP();

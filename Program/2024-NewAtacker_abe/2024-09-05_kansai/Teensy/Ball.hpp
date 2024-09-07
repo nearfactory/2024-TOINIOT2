@@ -77,7 +77,7 @@ inline float ballDirection(){
   
   // atan2()を用いて角度を算出(rad)し、degに変換
   // 注意： atan2()の返り値は -π から π (rad)
-  return atan2(ball_y, ball_x) * (180.0 / PI);
+  return atan2(ball_y, ball_x) * (180.0 / PI)+90;
 }
 
 
@@ -116,7 +116,7 @@ inline float ballDirection2(){
 
   // atan2()を用いて角度を算出(rad)し、degに変換
   // 注意： atan2()の返り値は -π から π (rad)
-  return atan2(ball_y, ball_x) * (180.0 / PI);
+  return atan2(ball_y, ball_x) * (180.0 / PI)+90;
 }
 
 
@@ -155,7 +155,7 @@ inline float ballDirection3(){
 
   // atan2()を用いて角度を算出(rad)し、degに変換
   // 注意： atan2()の返り値は -π から π (rad)
-  return atan2(ball_y, ball_x) * (180.0 / PI);
+  return atan2(ball_y, ball_x) * (180.0 / PI)+90;
 }
 
 
