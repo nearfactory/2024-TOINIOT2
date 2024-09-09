@@ -27,6 +27,7 @@ void setup() {
 
   // 通信テスト
   // ********* countの処理をなんとかする
+  /*
   while(true){
     int count = 0;
     if(Serial1.available()){
@@ -45,6 +46,7 @@ void setup() {
 
     if(correct) break;
   }
+  */
 
   for(auto p:LINE_PIN) pinMode(p, INPUT);
   
