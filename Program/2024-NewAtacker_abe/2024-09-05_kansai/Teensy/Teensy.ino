@@ -1,6 +1,6 @@
 // new atacker main program
 // Teensy4.1
-// 2024-07-30
+// 2024-09-11
 
 #include <Wire.h>
 
@@ -20,6 +20,7 @@ void setup() {
   ballSetup();
   dirSetup();
   kickerSetup();
+  lineSetup();
   motorSetup();
   UISetup();
 
@@ -82,8 +83,8 @@ void setup() {
 void loop() {
 
   static auto begin_ms = millis();
+  digitalWrite(LED_BUILTIN, HIGH);
   if(use_display){
-    digitalWrite(LED_BUILTIN, HIGH);
     display.clearDisplay();
     clearVariables();
   }
@@ -92,45 +93,46 @@ void loop() {
   ballUpdate(BALL::DIR);
   buttonUpdate();
   dirUpdate();
+  lineUpdate();
   // subUpdate();
   
   // 停止機能(ボタン3)
-  if(!use_display){
-    if(buttonUp(3)){
-      previous_button[2] = 0;
-      printd(64, 32, "waiting...", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
-      display.display();
-      // 再度ボタンを押すと再開
-      motor_p_step = 16;
-      while(!buttonUp(3)){
-        buttonUpdate();
-        motorSet(0.0f,0.0f,0.0f,0.0f);
-        motorP();
-        motorRaw();
-        delay(40);
-      }
-      motor_p_step = motor_p_step_default;
-      display.clearDisplay();
-      display.display();
+  // if(!use_display){
+  // }
+  if(buttonUp(3)){
+    previous_button[2] = 0;
+    printd(64, 32, "waiting...", TEXT_ALIGN::CENTER, TEXT_ALIGN::MIDDLE);
+    display.display();
+    // 再度ボタンを押すと再開
+    motor_p_step = 16;
+    while(!buttonUp(3)){
+      buttonUpdate();
+      motorSet(0.0f,0.0f,0.0f,0.0f);
+      motorP();
+      motorRaw();
+      delay(40);
     }
+    motor_p_step = motor_p_step_default;
+    display.clearDisplay();
+    display.display();
   }
   
   // 回り込み
   moveDir(ball_dir, 20, true, 100);
 
-
   // ボールを保持している
   if(ball_holding) {
+    moveDir(0, 100, true, 100);
   }
 
   // 白線避け
+  avoidLine();
 
   // 姿勢制御
   setDir(dir,0,100.0,20);
 
   // ボールが存在しない
   if(!ball_exist) setDir(dir,0,100.0,100);
-  
   
   // モーターに適用
   motorP();

@@ -261,6 +261,9 @@ inline void debugDisplay(uint8_t mode){
         double angle = ((i-LINE_CENTRAL)/4*90+180 + (i-LINE_CENTRAL)%4*10-15)*3.14/180.0;
         if(line[i]) display.drawPixel(DISPLAY_W/2+cos(angle)*outside_r, DISPLAY_H/2+sin(angle)*outside_r, WHITE);
       }
+
+      printd(8, 60, "on:"+to_string(line_on), TEXT_ALIGN_LEFT, TEXT_ALIGN::MIDDLE);
+      printd(8, 68, "dir:"+to_string(line_dir), TEXT_ALIGN::LEFT, TEXT_ALIGN::MIDDLE);
       break;
     }
 
