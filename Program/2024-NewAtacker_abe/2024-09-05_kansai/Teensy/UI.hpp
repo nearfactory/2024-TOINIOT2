@@ -67,7 +67,6 @@ Adafruit_SSD1306    display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET);
 bool                use_display = false;
 uint8_t             DISPLAY_MODE = 0;
 vector<std::string> debug_variables(0);
-vector<void*>       debug_variables_addr(0);
 
 
 
