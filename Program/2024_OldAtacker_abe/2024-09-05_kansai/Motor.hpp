@@ -3,14 +3,14 @@
 constexpr uint8_t MOTOR_NUM = 4;
 constexpr uint8_t MOTOR_PWM_TYPE = 2;
 const uint8_t MOTOR_PIN[MOTOR_NUM][MOTOR_PWM_TYPE]{
-  {29, 28},
-  {9, 6},
-  {5, 4},
-  {3, 2}
+  {19, 3},
+  {17, 2},
+  {25, 5},
+  {23, 4}
 };
 enum MOTOR : uint8_t{
-  EN = 0,
-  PH,
+  EN,
+  PH = 0,
 };
 
 
@@ -31,7 +31,6 @@ inline void motorSetup(){
   for(int i=0;i<MOTOR_NUM;i++){
     pinMode(MOTOR_PIN[i][MOTOR::EN], OUTPUT);
     pinMode(MOTOR_PIN[i][MOTOR::PH], OUTPUT);
-    analogWriteFrequency(MOTOR_PIN[i][MOTOR::EN], 100000);
   }
   
   Serial.println("motor setup");
@@ -126,11 +125,11 @@ inline void motorP(){
 
 inline void motorRaw(){
   for(int i=0;i<MOTOR_NUM;i++){
-      motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
-      motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
+    motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
+    motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
 
-      digitalWrite(MOTOR_PIN[i][MOTOR::PH], motor_raw[i]>0);
-      analogWrite(MOTOR_PIN[i][MOTOR::EN], (uint8_t)abs(motor_raw[i]*255.0/100.0));
+    digitalWrite(MOTOR_PIN[i][MOTOR::PH], motor_raw[i]>0);
+    analogWrite(MOTOR_PIN[i][MOTOR::EN], (uint8_t)abs(motor_raw[i]*255.0/100.0));
   }
 
   return;

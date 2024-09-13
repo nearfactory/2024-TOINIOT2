@@ -3,7 +3,7 @@
 #include <Adafruit_BNO055.h>
 #include <Wire.h>
 
-Adafruit_BNO055 bno(55, 0x28, &Wire2);
+Adafruit_BNO055 bno(55, 0x28, &Wire);
 
 double default_dir = 0.0;
 double dir = 0.0;           // -180 - 180
@@ -20,6 +20,7 @@ double atk_y = 0.0;
 
 inline void dirSetup(){
   Wire.begin();
+  
   if(!bno.begin()){
     Serial.println("bno error!");
     while(true);

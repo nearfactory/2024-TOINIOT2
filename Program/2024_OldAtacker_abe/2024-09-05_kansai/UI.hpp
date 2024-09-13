@@ -1,36 +1,30 @@
 #pragma once
 
-#include <string>
-#include <vector>
-
 using namespace std;
 
 namespace{
   constexpr uint8_t BUTTON_NUM = 4;
-  const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 36,37,31,30 };
+  const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 7,8,9,10 };
 
-  constexpr uint8_t BZ_PIN = 33;
+  constexpr uint8_t LED_NUM = 3;
+  const     uint8_t LED_PIN[LED_NUM] = { 13,14,15 };
+
+  constexpr uint8_t BZ_PIN = 6;
 }
 
 
-bool                button[BUTTON_NUM] = {false};
-bool                previous_button[BUTTON_NUM] = {false};
-float               bz = -1.0f;
+bool  button[BUTTON_NUM] = {false};
+bool  previous_button[BUTTON_NUM] = {false};
+bool  LED[LED_NUM] = {false};
+float bz = -1.0f;
 
 
 // セットアップ関数（.inoのsetup()内で呼び出し）
 inline void UISetup(){
   // pinMode変更
-  for(auto p:BUTTON_PIN) pinMode(p, INPUT);
+  for(auto p:BUTTON_PIN)  pinMode(p, INPUT);
+  for(auto p:LED_PIN)     pinMode(p, OUTPUT);
   pinMode(BZ_PIN, OUTPUT);
-
-  // ディスプレイ初期化
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
-    Serial.println("Display error!");
-    while(true);
-  }
-  display.setTextColor(WHITE);
-  display.setTextSize(1);
   
   Serial.println("ui setup");
   return;
@@ -50,6 +44,11 @@ inline bool buttonUp(uint8_t num){
   num = num<1 ? 1 : num;
   num = num>5 ? 5 : num;
   return (!button[num-1]) && previous_button[num-1];
+}
+
+inline void LEDupdate(){
+  for(int i=0;i<LED_NUM;i++) digitalWrite(LED_PIN[i], LED[i]);
+  return;
 }
 
 // グローバル変数に格納されている周波数でブザーに出力
