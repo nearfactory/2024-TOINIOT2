@@ -6379,12 +6379,6 @@
 		(uuid "2fecfcb4-60d6-4638-9563-0ccdcf2bb89a")
 	)
 	(junction
-		(at 179.07 220.98)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "31756d00-d719-4471-b9d4-33e7a647a6d5")
-	)
-	(junction
 		(at 134.62 276.86)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6407,12 +6401,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "392bd635-055f-4fe2-bbfc-3deafd9f0620")
-	)
-	(junction
-		(at 179.07 231.14)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "39a5db97-224f-4b9d-aa2c-b9ab8321bccc")
 	)
 	(junction
 		(at 130.81 220.98)
@@ -6449,12 +6437,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "44181dbc-cdc7-40d8-ae99-49a63cb76934")
-	)
-	(junction
-		(at 179.07 289.56)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4828574b-742a-4cc1-bb90-df398d9f2445")
 	)
 	(junction
 		(at 132.08 312.42)
@@ -6521,12 +6503,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7a1b1e25-6b03-4c40-847b-c955ae0e336b")
-	)
-	(junction
-		(at 179.07 299.72)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "82a15b41-d80d-4999-acf6-0ac2836dc781")
 	)
 	(junction
 		(at 182.88 304.8)
@@ -6619,12 +6595,6 @@
 		(uuid "90c4e477-db27-4cdd-8239-554311f3f357")
 	)
 	(junction
-		(at 179.07 226.06)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "938dd71c-d790-4d55-a37b-b4a78ed6a127")
-	)
-	(junction
 		(at 180.34 266.7)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6707,12 +6677,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bb843ae3-607c-4d77-aeca-db402f461c48")
-	)
-	(junction
-		(at 179.07 294.64)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "bde59e9f-1c19-4e6f-a643-53bf7838341d")
 	)
 	(junction
 		(at 132.08 175.26)
@@ -6983,6 +6947,16 @@
 			(type default)
 		)
 		(uuid "039db8ee-61d4-4d77-8009-7d8b70737251")
+	)
+	(wire
+		(pts
+			(xy 77.47 83.82) (xy 74.93 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "040f0c11-655c-49c2-beb1-787de9c2ebc2")
 	)
 	(wire
 		(pts
@@ -7386,7 +7360,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 299.72) (xy 179.07 299.72)
+			(xy 177.8 299.72) (xy 182.88 299.72)
 		)
 		(stroke
 			(width 0)
@@ -7426,7 +7400,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 226.06) (xy 179.07 226.06)
+			(xy 177.8 226.06) (xy 181.61 226.06)
 		)
 		(stroke
 			(width 0)
@@ -8376,7 +8350,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 220.98) (xy 179.07 220.98)
+			(xy 177.8 220.98) (xy 180.34 220.98)
 		)
 		(stroke
 			(width 0)
@@ -8736,6 +8710,16 @@
 	)
 	(wire
 		(pts
+			(xy 77.47 81.28) (xy 74.93 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "758958c7-867e-48aa-9a37-402d97feea07")
+	)
+	(wire
+		(pts
 			(xy 135.89 125.73) (xy 135.89 128.27)
 		)
 		(stroke
@@ -9086,7 +9070,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 294.64) (xy 179.07 294.64)
+			(xy 177.8 294.64) (xy 181.61 294.64)
 		)
 		(stroke
 			(width 0)
@@ -9393,16 +9377,6 @@
 			(type default)
 		)
 		(uuid "9df1777b-04ab-4da3-a5e5-f6ac7a16e5fe")
-	)
-	(wire
-		(pts
-			(xy 179.07 231.14) (xy 182.88 231.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9eeb03b7-6cf1-43dc-8b5c-2c94e3e77697")
 	)
 	(wire
 		(pts
@@ -9976,16 +9950,6 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 299.72) (xy 182.88 299.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c5d25ed5-8c98-4f64-9d26-9092e3036169")
-	)
-	(wire
-		(pts
 			(xy 142.24 340.36) (xy 142.24 342.9)
 		)
 		(stroke
@@ -10056,7 +10020,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 231.14) (xy 179.07 231.14)
+			(xy 177.8 231.14) (xy 182.88 231.14)
 		)
 		(stroke
 			(width 0)
@@ -10286,16 +10250,6 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 226.06) (xy 181.61 226.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e503d2ea-e693-45aa-b7fe-faf0cd87b804")
-	)
-	(wire
-		(pts
 			(xy 36.83 262.89) (xy 34.29 262.89)
 		)
 		(stroke
@@ -10323,6 +10277,16 @@
 			(type default)
 		)
 		(uuid "e769b268-94f1-4403-ae54-0c7c4a1b55b7")
+	)
+	(wire
+		(pts
+			(xy 77.47 78.74) (xy 74.93 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e77fe6d4-6c4c-4946-888f-9c6dc668a452")
 	)
 	(wire
 		(pts
@@ -10383,16 +10347,6 @@
 			(type default)
 		)
 		(uuid "ea1c932e-c73a-4072-9058-24f9788fc23f")
-	)
-	(wire
-		(pts
-			(xy 179.07 289.56) (xy 180.34 289.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ea730ee2-511f-4dd6-9537-1870b1c56149")
 	)
 	(wire
 		(pts
@@ -10473,16 +10427,6 @@
 			(type default)
 		)
 		(uuid "eee88408-d92a-40c1-a270-1014af820c8a")
-	)
-	(wire
-		(pts
-			(xy 179.07 294.64) (xy 181.61 294.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ef16a6af-af96-4f7a-a487-04b69305341b")
 	)
 	(wire
 		(pts
@@ -10696,16 +10640,6 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 220.98) (xy 180.34 220.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f91ed2ef-5c76-454a-bbe0-2ff88a81157f")
-	)
-	(wire
-		(pts
 			(xy 132.08 175.26) (xy 132.08 198.12)
 		)
 		(stroke
@@ -10786,7 +10720,7 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 289.56) (xy 179.07 289.56)
+			(xy 177.8 289.56) (xy 180.34 289.56)
 		)
 		(stroke
 			(width 0)
@@ -12026,7 +11960,7 @@
 	)
 	(global_label "SW-TAC-1"
 		(shape input)
-		(at 74.93 81.28 0)
+		(at 77.47 78.74 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12036,7 +11970,7 @@
 		)
 		(uuid "4edd4a03-2d50-4f40-9483-9023be33df49")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 86.9996 81.28 0)
+			(at 89.5396 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12246,7 +12180,7 @@
 	)
 	(global_label "SW-TAC-2"
 		(shape input)
-		(at 74.93 78.74 0)
+		(at 77.47 81.28 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -12256,7 +12190,7 @@
 		)
 		(uuid "69ed4c70-f279-443d-ad69-677f5ba40d06")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 86.9996 78.74 0)
+			(at 89.5396 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13170,7 +13104,7 @@
 	)
 	(global_label "Cam_SS"
 		(shape bidirectional)
-		(at 74.93 83.82 0)
+		(at 77.47 83.82 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13180,7 +13114,7 @@
 		)
 		(uuid "b00008c4-cf21-4d8b-9043-bc17562fb81d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 87.7883 83.82 0)
+			(at 90.3283 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14579,7 +14513,7 @@
 	)
 	(symbol
 		(lib_id "@2024TOINIOT2-Main:TSSP4038")
-		(at 168.91 294.64 0)
+		(at 167.64 340.36 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14588,7 +14522,7 @@
 		(fields_autoplaced yes)
 		(uuid "1b46f5cf-c0f6-4c61-bad5-da819590315e")
 		(property "Reference" "U19"
-			(at 167.175 283.21 0)
+			(at 165.905 328.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14596,7 +14530,7 @@
 			)
 		)
 		(property "Value" "TSSP4038"
-			(at 167.175 285.75 0)
+			(at 165.905 331.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14604,7 +14538,7 @@
 			)
 		)
 		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
-			(at 167.64 304.165 0)
+			(at 166.37 349.885 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14613,7 +14547,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.vishay.com/docs/82476/tssp58p38.pdf"
-			(at 185.42 287.02 0)
+			(at 184.15 332.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14622,7 +14556,7 @@
 			)
 		)
 		(property "Description" "IR Detector for Mid Range Proximity Sensor"
-			(at 168.91 294.64 0)
+			(at 167.64 340.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15095,7 +15029,7 @@
 	)
 	(symbol
 		(lib_id "@2024TOINIOT2-Main:TSSP4038")
-		(at 167.64 340.36 0)
+		(at 167.64 294.64 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15104,7 +15038,7 @@
 		(fields_autoplaced yes)
 		(uuid "2485a0c3-ed58-46ef-aefb-b5c6589b33ab")
 		(property "Reference" "U17"
-			(at 165.905 328.93 0)
+			(at 165.905 283.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15112,7 +15046,7 @@
 			)
 		)
 		(property "Value" "TSSP4038"
-			(at 165.905 331.47 0)
+			(at 165.905 285.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15120,7 +15054,7 @@
 			)
 		)
 		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
-			(at 166.37 349.885 0)
+			(at 166.37 304.165 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15129,7 +15063,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.vishay.com/docs/82476/tssp58p38.pdf"
-			(at 184.15 332.74 0)
+			(at 184.15 287.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15138,7 +15072,7 @@
 			)
 		)
 		(property "Description" "IR Detector for Mid Range Proximity Sensor"
-			(at 167.64 340.36 0)
+			(at 167.64 294.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16688,7 +16622,7 @@
 	)
 	(symbol
 		(lib_id "@2024TOINIOT2-Main:TSSP4038")
-		(at 167.64 271.78 0)
+		(at 167.64 248.92 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -16697,7 +16631,7 @@
 		(fields_autoplaced yes)
 		(uuid "61bfb9f2-615b-4909-a1cc-e338d3407b47")
 		(property "Reference" "U15"
-			(at 165.905 260.35 0)
+			(at 165.905 237.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16705,7 +16639,7 @@
 			)
 		)
 		(property "Value" "TSSP4038"
-			(at 165.905 262.89 0)
+			(at 165.905 240.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16713,7 +16647,7 @@
 			)
 		)
 		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
-			(at 166.37 281.305 0)
+			(at 166.37 258.445 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16722,7 +16656,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.vishay.com/docs/82476/tssp58p38.pdf"
-			(at 184.15 264.16 0)
+			(at 184.15 241.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16731,7 +16665,7 @@
 			)
 		)
 		(property "Description" "IR Detector for Mid Range Proximity Sensor"
-			(at 167.64 271.78 0)
+			(at 167.64 248.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17574,7 +17508,7 @@
 	)
 	(symbol
 		(lib_id "@2024TOINIOT2-Main:TSSP4038")
-		(at 167.64 248.92 0)
+		(at 167.64 226.06 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -17583,7 +17517,7 @@
 		(fields_autoplaced yes)
 		(uuid "760368ea-fd77-4c49-92bf-2e21062f7a8f")
 		(property "Reference" "U14"
-			(at 165.905 237.49 0)
+			(at 165.905 214.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17591,7 +17525,7 @@
 			)
 		)
 		(property "Value" "TSSP4038"
-			(at 165.905 240.03 0)
+			(at 165.905 217.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17599,7 +17533,7 @@
 			)
 		)
 		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
-			(at 166.37 258.445 0)
+			(at 166.37 235.585 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17608,7 +17542,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.vishay.com/docs/82476/tssp58p38.pdf"
-			(at 184.15 241.3 0)
+			(at 184.15 218.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17617,7 +17551,7 @@
 			)
 		)
 		(property "Description" "IR Detector for Mid Range Proximity Sensor"
-			(at 167.64 248.92 0)
+			(at 167.64 226.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18533,7 +18467,7 @@
 	)
 	(symbol
 		(lib_id "@2024TOINIOT2-Main:TSSP4038")
-		(at 168.91 226.06 0)
+		(at 167.64 317.5 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18542,7 +18476,7 @@
 		(fields_autoplaced yes)
 		(uuid "851815c1-5e55-4845-9c67-2b3dd5ff2b2c")
 		(property "Reference" "U18"
-			(at 167.175 214.63 0)
+			(at 165.905 306.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18550,7 +18484,7 @@
 			)
 		)
 		(property "Value" "TSSP4038"
-			(at 167.175 217.17 0)
+			(at 165.905 308.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18558,7 +18492,7 @@
 			)
 		)
 		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
-			(at 167.64 235.585 0)
+			(at 166.37 327.025 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18567,7 +18501,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.vishay.com/docs/82476/tssp58p38.pdf"
-			(at 185.42 218.44 0)
+			(at 184.15 309.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18576,7 +18510,7 @@
 			)
 		)
 		(property "Description" "IR Detector for Mid Range Proximity Sensor"
-			(at 168.91 226.06 0)
+			(at 167.64 317.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19285,7 +19219,7 @@
 	)
 	(symbol
 		(lib_id "@2024TOINIOT2-Main:TSSP4038")
-		(at 167.64 317.5 0)
+		(at 167.64 271.78 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -19294,7 +19228,7 @@
 		(fields_autoplaced yes)
 		(uuid "a4737e5d-e250-4c50-b631-0708215aae53")
 		(property "Reference" "U16"
-			(at 165.905 306.07 0)
+			(at 165.905 260.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19302,7 +19236,7 @@
 			)
 		)
 		(property "Value" "TSSP4038"
-			(at 165.905 308.61 0)
+			(at 165.905 262.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19310,7 +19244,7 @@
 			)
 		)
 		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
-			(at 166.37 327.025 0)
+			(at 166.37 281.305 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19319,7 +19253,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.vishay.com/docs/82476/tssp58p38.pdf"
-			(at 184.15 309.88 0)
+			(at 184.15 264.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19328,7 +19262,7 @@
 			)
 		)
 		(property "Description" "IR Detector for Mid Range Proximity Sensor"
-			(at 167.64 317.5 0)
+			(at 167.64 271.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)

@@ -30,6 +30,7 @@ void setup() {
   ・キャリブレーション完了後に再度少し水平に回転・安定させる
   ・ディスプレイに表示される角度が放置しても変わらなくなったらキャリブレーション完了
   */
+
   // ディスプレイモードを方向センサ用に変更
   DISPLAY_MODE = DISPLAY_MODE::DIR;
   // キャリブレーションの状況変数を初期化 
@@ -68,9 +69,11 @@ void setup() {
   dirUpdate();
   default_dir = dir;
   dir_default_display = -dir;
+  
 }
 
 void loop() {
+
   static auto begin_ms = millis();
   digitalWrite(LED_BUILTIN, HIGH);
   display.clearDisplay();
@@ -114,6 +117,7 @@ void loop() {
   setDir(dir,default_dir,60,40);
   
   // モーターに適用
+  motorP();
   motorRaw();
 
 
@@ -124,5 +128,5 @@ void loop() {
   if(buttonUp(4)) DISPLAY_MODE = (DISPLAY_MODE+1)%DISPLAY_MODE_NUM;
   debugDisplay(DISPLAY_MODE);
   display.display();
-
+  
 }

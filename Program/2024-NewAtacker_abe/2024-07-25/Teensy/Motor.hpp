@@ -14,12 +14,17 @@ enum MOTOR : uint8_t{
 };
 
 
-// -100~100[%]
-int8_t motor[MOTOR_NUM] = { 100 };
-int8_t motor_raw[MOTOR_NUM] = {100};
-int8_t motor_now[MOTOR_NUM] = {0};
-short motor_sum = 0;
-double move_dir = 0;
+// -100~100[%] の範囲で指定する
+float motor         [MOTOR_NUM] = {0};  // プログラマ用
+
+float motor_prev    [MOTOR_NUM] = {0};  // 前ループのプログラマ用の値
+float motor_raw     [MOTOR_NUM] = {0};  // モーターに反映するやつ
+
+float motor_p_step              = 8;    // P制御のステップ数
+float motor_p_count [MOTOR_NUM] = {0};  // P制御のループ数カウント
+float motor_p_val   [MOTOR_NUM] = {0};  // P制御の1ステップに変化する値
+
+float move_dir                  = 0;
 
 inline void motorSetup(){
   for(int i=0;i<MOTOR_NUM;i++){
@@ -29,45 +34,6 @@ inline void motorSetup(){
   }
   
   Serial.println("motor setup");
-  return;
-}
-
-inline void motorRaw(){
-  // motor_sum = motor[0]+motor[1]+motor[2]+motor[3];
-  for(int i=0;i<MOTOR_NUM;i++){
-    // motor[i] = motor[i]<-100 ? -100 : motor[i];
-    // motor[i] = motor[i]>100  ? 100  : motor[i];
-      digitalWrite(MOTOR_PIN[i][MOTOR::PH], motor_raw[i]>0);
-      analogWrite(MOTOR_PIN[i][MOTOR::EN], abs(motor_raw[i]*255.0/100.0));
-    // if(!(motor_sum>80&&accel_sum<10.4)){
-    // }else{
-    //   analogWrite(MOTOR_PIN[i][MOTOR::EN], 0);
-    // }
-  }
-
-  return;
-}
-
-inline void motorRaw(int8_t m1, int8_t m2, int8_t m3, int8_t m4){
-  motor_raw[0] = m1;
-  motor_raw[1] = m2;
-  motor_raw[2] = m3;
-  motor_raw[3] = m4;
-
-  motorRaw();
-  return;
-}
-
-inline void motorP(int8_t m1, int8_t m2, int8_t m3, int8_t m4){
-  int step = 2;
-  for(int i=0;i<step;i++){
-    motor_now[0] += (motor[0]-motor_now[0])/(step-i);
-    motor_now[1] += (motor[1]-motor_now[1])/(step-i);
-    motor_now[2] += (motor[2]-motor_now[2])/(step-i);
-    motor_now[3] += (motor[3]-motor_now[3])/(step-i);
-    motorRaw(motor_now[0],motor_now[1],motor_now[2],motor_now[3]);
-    // Serial.printf("m1:%d m2:%d m3:%d m4:%d\n",motor_now[0],motor_now[1],motor_now[2],motor_now[3]);
-  }
   return;
 }
 
@@ -123,21 +89,35 @@ inline void setDir(double dir, double goal_dir, uint8_t power, int blend){
   return;
 }
 
-constexpr auto P_STEP = 4;
+inline void motorP(){
+  for(int i = 0; i < MOTOR_NUM; i++){
+    if(motor_prev[i] == motor[i]  &&  motor_p_count[i] < motor_p_step){
+      motor_raw[i] += motor_p_val[i];
+      motor_p_count[i]++;
+      // Serial.print("moving");
+    }else if(motor_prev[i] != motor[i]){
+      motor_p_val[i] = (motor[i] - motor_raw[i]) / motor_p_step;
 
-/*
-inline void motorRapidP(short m1,short m2,short m3,short m4){
-  for(int i=0;i<4;i++) prev_mp_goal[i] = mp_goal[i];
-
-  short p_mp_operation = 0.0f;
-
-  for(int i=0;i<MOTOR_NUM;i++){
-    if(motor[i]!=prev_mp_goal[i]){
-      p_mp_operation = (motor[i]-motor_raw[i]) / p_step;
+      motor_raw[i] += motor_p_val[i];
+      motor_p_count[i] = 1;
+      // Serial.print("differ");
+    }else{
+      // Serial.print("none");
     }
-    motor_raw[i] += p_mp_operation;
+
+    motor_prev[i] = motor[i];
+  }
+  return;
+}
+
+inline void motorRaw(){
+  for(int i=0;i<MOTOR_NUM;i++){
+      motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
+      motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
+
+      digitalWrite(MOTOR_PIN[i][MOTOR::PH], motor_raw[i]>0);
+      analogWrite(MOTOR_PIN[i][MOTOR::EN], (uint8_t)abs(motor_raw[i]*255.0/100.0));
   }
 
   return;
 }
-*/

@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"presentation": {
+	  "reveal": "always",
+	  "panel": "new"
+	},
+	"tasks": [
+	  {
+		"label": "Run",
+		"command": "C:\\Program Files\\Processing\\processing-4.3\\processing-java.exe",
+		"type": "process",
+		"args": ["--force", "--sketch=${fileDirname}", "--run"],
+		"problemMatcher": [],
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		}
+	  }
+	]
+  }
+  
