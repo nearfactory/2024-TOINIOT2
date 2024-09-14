@@ -77,16 +77,26 @@ inline void moveDir(double dir, int power, bool max_power, int blend){
 }
 
 inline void avoidLine(){
-  // line_dir
-
-  if(line_str[0] || line_str[1] || line_str[2]&0b00001111){
-    moveDir(line_dir, 100, true, 100);
-  }else if(line_str[2] & 0b11110000){
-    moveDir(90, 100, true, 40);
-  }else if(line_str[3] & 0b00001111){
-    moveDir(0,  100, true, 40);
-  }else if(line_str[3] & 0b11110000){
-    moveDir(-90,100, true, 40);
+  
+  for(int i=0;i<LINE_NUM;i++){
+    if(line[i]){
+      if(LINE::FRONT1<=i && i<=LINE::FRONT4){
+        moveDir(180,100,true,100);
+        break;
+      }
+      if(LINE::LEFT1<=i  && i<=LINE::LEFT6){
+        moveDir(90,100,true,100);
+        break;
+      }
+      if(LINE::RIGHT1<=i && i<=LINE::RIGHT6){
+        moveDir(-90,100,true,100);
+        break;
+      }
+      if(LINE::BACK1<=i  && i<=LINE::BACK6){
+        moveDir(0,100,true,100);
+        break;
+      }
+    }
   }
 
   return;

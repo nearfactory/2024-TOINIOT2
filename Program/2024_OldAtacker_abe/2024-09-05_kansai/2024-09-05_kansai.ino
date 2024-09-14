@@ -2,8 +2,6 @@
 // Teensy4.1
 // 2024-09-11
 
-#include <Wire.h>
-
 #include "Ball.hpp"
 #include "Dir.hpp"
 #include "Line.hpp"
@@ -13,8 +11,6 @@
 using namespace std;
 
 void setup() {
-  Serial.begin(9600);
-
   // 通信/ボールセンサ/方向センサ/キッカー/モーター/UIのセットアップ
   ballSetup();
   dirSetup();
@@ -39,15 +35,17 @@ void setup() {
     Serial.println("calibration...");
 
     // キャリブレーション状況を取得・ディスプレイバッファへ書き込み
-    bno.getCalibration(&system, &gyro, &accel, &mag);
 
+    // ディスプレイを更新
     delay(10);
   }
+
+  // スタート画面を表示
 
   // 3番ボタンが押された → ディスプレイなし
   // 4番ボタンが押された → ディスプレイあり
   // HIGH→LOWになったらループ脱出
-  while(!buttonUp(3) && !buttonUp(4)){
+  while(!buttonUp(0) && !buttonUp(1)){
     buttonUpdate();
   }
 
@@ -62,13 +60,13 @@ void setup() {
 void loop() {
 
   static auto begin_ms = millis();
-  digitalWrite(LED_BUILTIN, HIGH);
 
   // データを更新
   ballUpdate(BALL::DIR);
   buttonUpdate();
   dirUpdate();
   lineUpdate();
+  // subUpdate();
   
   // 停止機能(ボタン3)
   if(buttonUp(3)){
@@ -102,8 +100,10 @@ void loop() {
   // ボールが存在しない
   if(!ball_exist) setDir(dir,0,100.0,100);
   
+  ledUpdate();
+
   // モーターに適用
   motorP();
   motorRaw();
-  
+
 }
