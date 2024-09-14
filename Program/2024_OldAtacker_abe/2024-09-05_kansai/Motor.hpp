@@ -8,9 +8,10 @@ const uint8_t MOTOR_PIN[MOTOR_NUM][MOTOR_PWM_TYPE]{
   {25, 5},
   {23, 4}
 };
+const bool MOTOR_DEFAULT[MOTOR_NUM]={0,1,1,0};
 enum MOTOR : uint8_t{
-  EN,
   PH = 0,
+  EN,
 };
 
 
@@ -46,7 +47,7 @@ inline void motorSet(float m1, float m2, float m3, float m4){
   return;
 }
 
-inline void moveDir(double dir, int power, bool max_power, int blend){
+inline void moveDir(double dir, int power, bool max_power, int blend=100){
   int power_big = 0;
   int power_big_id = 0;
   
@@ -105,7 +106,7 @@ inline void avoidLine(){
 inline void setDir(double dir, double goal_dir, double power, int blend){
   double dir_power = dir/1.8;
   for(int i=0;i<MOTOR_NUM;i++){
-    motor[i] = (dir_power * power/100.0)*blend/100.0 + motor[i]*(100.0-blend)/100.0;
+    motor[i] = -(dir_power * power/100.0)*blend/100.0 + motor[i]*(100.0-blend)/100.0;
   }
   // Serial.printf("motor:%lf motor_raw:%lf, dir:%lf, def_dir:%lf\n", motor[0], motor_raw[0], dir, default_dir);
 
@@ -138,9 +139,29 @@ inline void motorRaw(){
     motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
     motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
 
-    digitalWrite(MOTOR_PIN[i][MOTOR::PH], motor_raw[i]>0);
+    digitalWrite(MOTOR_PIN[i][MOTOR::PH], (motor_raw[i]>0)^(MOTOR_DEFAULT[i]));
     analogWrite(MOTOR_PIN[i][MOTOR::EN], (uint8_t)abs(motor_raw[i]*255.0/100.0));
   }
+
+  return;
+}
+
+
+// 旧
+inline void motorRaw(short* motor, short v1, short v2, short v3, short v4){
+  motor[0] = v1;
+  motor[1] = v2;
+  motor[2] = v3;
+  motor[3] = v4;
+  
+  return;
+}
+
+inline void motorRaw(short* motor, short v1, short v2, short v3, short v4, short power){
+  motor[0] = v1*power;
+  motor[1] = v2*power;
+  motor[2] = v3*power;
+  motor[3] = v4*power;
 
   return;
 }

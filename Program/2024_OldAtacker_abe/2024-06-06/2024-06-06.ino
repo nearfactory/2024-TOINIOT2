@@ -98,7 +98,7 @@ void loop() {
       setMotor(motor);
       led[0] = true;
       led[1] = false;
-      led[2] = false;
+      led[2] = false; 
       setLED(led);
       setBuzzer();
 
@@ -139,7 +139,7 @@ void loop() {
       ball_dir = i;
     }
   }
-
+  
   int motor_power=80;
   switch(ball_dir){
     case 0:
