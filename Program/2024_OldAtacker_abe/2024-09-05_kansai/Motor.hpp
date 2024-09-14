@@ -9,8 +9,8 @@ const uint8_t MOTOR_PIN[MOTOR_NUM][MOTOR_PWM_TYPE]{
   {23, 4}
 };
 enum MOTOR : uint8_t{
-  EN,
   PH = 0,
+  EN,
 };
 
 
@@ -105,7 +105,7 @@ inline void avoidLine(){
 inline void setDir(double dir, double goal_dir, double power, int blend){
   double dir_power = dir/1.8;
   for(int i=0;i<MOTOR_NUM;i++){
-    motor[i] = (dir_power * power/100.0)*blend/100.0 + motor[i]*(100.0-blend)/100.0;
+    motor[i] = -(dir_power * power/100.0)*blend/100.0 + motor[i]*(100.0-blend)/100.0;
   }
   // Serial.printf("motor:%lf motor_raw:%lf, dir:%lf, def_dir:%lf\n", motor[0], motor_raw[0], dir, default_dir);
 

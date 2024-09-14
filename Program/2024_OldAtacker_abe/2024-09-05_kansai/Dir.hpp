@@ -40,7 +40,7 @@ inline void dirUpdate(){
   prev_dir = dir;
   sensors_event_t dir_data{};
   bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_EULER);
-  bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_ACCELEROMETER);
+  // bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_ACCELEROMETER);
   // bno.getEvent(&dir_data, Adafruit_BNO055::)
 
   // 角度を更新 [-180~180]

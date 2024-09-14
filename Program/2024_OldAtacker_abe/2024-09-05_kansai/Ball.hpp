@@ -68,14 +68,14 @@ inline float ballDirection(){
   // 各センサ値をx成分/y成分に分解し2軸の成分に加算
   for(int i=0;i<BALL_NUM;i++){
     // センサ角度 (rad)
-    double sensor_dir = PI*(i+4)/8;
+    double sensor_dir = PI*(i+4)/8+90;
     ball_x += ball[i] * cos(sensor_dir);
     ball_y += ball[i] * sin(sensor_dir);
   }
   
   // atan2()を用いて角度を算出(rad)し、degに変換
   // 注意： atan2()の返り値は -π から π (rad)
-  return atan2(ball_y, ball_x) * (180.0 / PI)+90;
+  return -atan2(ball_y, ball_x) * (180.0 / PI);
 }
 
 
@@ -107,14 +107,14 @@ inline float ballDirection2(){
     int j = (ball_big_index + BALL_NUM + i) % BALL_NUM;
 
     // ★寺田編集済み
-    double sensor_dir = PI*(j+4)/8;
+    double sensor_dir = PI*(j+4)/8+90;
     ball_x += ball[j] * cos(sensor_dir);
     ball_y += ball[j] * sin(sensor_dir);
   }
 
   // atan2()を用いて角度を算出(rad)し、degに変換
   // 注意： atan2()の返り値は -π から π (rad)
-  return atan2(ball_y, ball_x) * (180.0 / PI)+90;
+  return atan2(ball_y, ball_x) * (180.0 / PI);
 }
 
 
@@ -146,14 +146,14 @@ inline float ballDirection3(){
     int j = (ball_big_index + BALL_NUM + i) % BALL_NUM;
 
     // ★寺田編集済み
-    double sensor_dir = PI*(j+4)/8;
+    double sensor_dir = PI*(j+4)/8+90;
     ball_x += ball[j] * cos(sensor_dir);
     ball_y += ball[j] * sin(sensor_dir);
   }
 
   // atan2()を用いて角度を算出(rad)し、degに変換
   // 注意： atan2()の返り値は -π から π (rad)
-  return atan2(ball_y, ball_x) * (180.0 / PI)+90;
+  return atan2(ball_y, ball_x) * (180.0 / PI);
 }
 
 
