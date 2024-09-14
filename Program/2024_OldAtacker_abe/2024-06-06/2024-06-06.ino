@@ -25,6 +25,13 @@ void setup() {
   Serial.begin(115200);
   Serial.println("IOT2 2024-06-06 AtMega2560 Test");
 
+  uint8_t system=0, gyro=0, accel=0, mag=0;
+  while(system!=3 || gyro !=3){
+    bno.getCalibration(&system, &gyro, &accel, &mag);
+    tone(BUZZER_PIN, 440.0f);
+  }
+  tone(BUZZER_PIN, 0.0f);
+
   bool button[BTN_NUM]{false};
   while (true) {
     buttonUpdate(button);
@@ -139,7 +146,7 @@ void loop() {
       ball_dir = i;
     }
   }
-  
+
   int motor_power=80;
   switch(ball_dir){
     case 0:
