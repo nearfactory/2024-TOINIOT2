@@ -75,10 +75,7 @@ inline float ballDirection(){
   
   // atan2()を用いて角度を算出(rad)し、degに変換
   // 注意： atan2()の返り値は -π から π (rad)
-  float val = -atan2(ball_y, ball_x) * (180.0 / PI);
-  // if(val<-180) val += 360.0;
-  // if(val>180)  val -= 360.0;
-  return val;
+  return -atan2(ball_y, ball_x) * (180.0 / PI);
 }
 
 
