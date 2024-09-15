@@ -13,6 +13,9 @@ Adafruit_BNO055 bno(55, 0x28, &Wire);
 static double default_dir = 0.0;
 
 void setup() {
+  Serial.begin(115200);
+  Serial.println("IOT2 2024-06-06 AtMega2560 Test");
+
   if(!bno.begin()) while(true);
 
   ballSetup();
@@ -22,10 +25,8 @@ void setup() {
   lineSetup();
   motorSetup();
   
-  Serial.begin(115200);
-  Serial.println("IOT2 2024-06-06 AtMega2560 Test");
 
-  uint8_t system=0, gyro=0, accel=0, mag=0;
+  uint8_t system=3, gyro=3, accel=0, mag=3;
   while(system!=3 || gyro !=3){
     bno.getCalibration(&system, &gyro, &accel, &mag);
     tone(BUZZER_PIN, 440.0f);
@@ -210,7 +211,7 @@ void loop() {
   bno.getEvent(&orientationData, Adafruit_BNO055::VECTOR_EULER);
   double dir = orientationData.orientation.x - 180;
 
-  setDir(motor, dir, default_dir, 100, 40);
+  setDir(motor, dir, default_dir, 60, 40);
 
 
 
@@ -222,6 +223,9 @@ SKIP_ALL_PROCESSING:
   setMotor(motor);
   setLED(led);
   setBuzzer(buzzer);
+
+  // ballDebug();
+  lineDebug();
 
   //
   // button

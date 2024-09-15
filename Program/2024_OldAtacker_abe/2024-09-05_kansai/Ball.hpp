@@ -14,7 +14,8 @@ enum class BALL{
 
 // ボール距離判断しきい値
 constexpr short BALL_DISTANCE_MIN = 7000;
-constexpr short BALL_DISTANCE_MAX = 15800;
+constexpr short BALL_DISTANCE_MAX = 16240;
+constexpr short BALL_DISTANCE_THRESHOLD = 0;
 constexpr short BALL_DISTANCE_RANGE = BALL_DISTANCE_MAX-BALL_DISTANCE_MIN;
 
 

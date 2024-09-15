@@ -20,6 +20,7 @@ float motor         [MOTOR_NUM] = {0};  // プログラマ用
 
 float motor_prev    [MOTOR_NUM] = {0};  // 前ループのプログラマ用の値
 float motor_raw     [MOTOR_NUM] = {0};  // モーターに反映するやつ
+float motor_raw_prev[MOTOR_NUM] = {0};
 
 float motor_p_step_default      = 4;                    // デフォルトのP制御のステップ数
 float motor_p_step              = motor_p_step_default; // P制御のステップ数
@@ -136,11 +137,29 @@ inline void motorP(){
 
 inline void motorRaw(){
   for(int i=0;i<MOTOR_NUM;i++){
+    motor_raw_prev[i] = motor_raw[i];
+
+    // 範囲制限
     motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
     motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
 
+
+    // 回転方向
     digitalWrite(MOTOR_PIN[i][MOTOR::PH], (motor_raw[i]>0)^(MOTOR_DEFAULT[i]));
-    analogWrite(MOTOR_PIN[i][MOTOR::EN], (uint8_t)abs(motor_raw[i]*255.0/100.0));
+
+    // 出力値の決定
+    uint8_t power=(uint8_t)abs(motor_raw[i]*255.0/100.0);
+
+    // 最小値設定
+    // uint8_t minimum_plus = 40;
+    // uint8_t minimum_minus = 20;
+
+    // if(motor_raw[i]-motor_raw_prev[i]>0 && power < minimum_plus)       power = minimum_plus;
+    // else if(motor_raw[i]-motor_raw_prev[i]<0 && power < minimum_minus) power = minimum_minus;
+
+    if(power>2) power = power < 40 ? 40:power;
+
+    analogWrite(MOTOR_PIN[i][MOTOR::EN], power);
   }
 
   return;
