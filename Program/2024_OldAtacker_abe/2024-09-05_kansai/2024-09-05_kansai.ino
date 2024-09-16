@@ -54,6 +54,10 @@ void setup() {
   }
   bzUpdate(0.0f);
 
+  while(!buttonUp(2)){
+    buttonUpdate();
+  }
+
   // スタート画面を表示
   // delay(1000);
   // 攻め方向を取得・更新
