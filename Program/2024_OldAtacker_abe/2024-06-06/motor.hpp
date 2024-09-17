@@ -136,7 +136,7 @@ inline void setDir(short* motor, double dir, double goal_dir, uint8_t power, int
   blend = blend>100?100:blend;
   double P_GAIN_DIR = 0.95;
   if(!(-10<dir && dir<10)){
-    mpDir = (dir * P_GAIN_DIR) * (-1);
+    mpDir = (dir * P_GAIN_DIR) * (-1) * power / 100;
     for(int i=0;i<4;i++){
       motor[i] = motor[i]*(100-blend)*0.01 + mpDir*blend*0.01;
     }

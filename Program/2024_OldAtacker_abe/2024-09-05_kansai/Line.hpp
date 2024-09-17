@@ -38,6 +38,10 @@ inline void lineSetup(){
 }
 
 inline void lineUpdate(){
-  for(int i=0;i<LINE_NUM;i++) line[i] = digitalRead(LINE_PIN[i]);
+  line_on = false;
+  for(int i=0;i<LINE_NUM;i++){
+    line[i] = digitalRead(LINE_PIN[i]);
+    line_on |= line[i];
+  }
   return;
 }
