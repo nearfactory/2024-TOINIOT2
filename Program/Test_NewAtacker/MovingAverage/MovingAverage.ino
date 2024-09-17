@@ -5,6 +5,9 @@
 constexpr uint8_t BTN1_PIN = 36; // 出力値加算
 constexpr uint8_t BTN2_PIN = 37; // 出力値減算
 
+bool BTN1_prev = false;
+bool BTN2_prev = false;
+
 constexpr int SAMPLE_NUM = 5;   // 移動平均のサンプル数
 int motor = 0;                  // プログラム側から設定する用の出力値
 int motor_sum = 0;              // 出力値の合計
@@ -22,8 +25,11 @@ void setup() {
 
 void loop() {
   // 出力値を計算
-  motor += digitalRead(BTN1_PIN)*50;
-  motor -= digitalRead(BTN2_PIN)*50;
+  motor += (BTN1_prev & !digitalRead(BTN1_PIN)) * 50;
+  motor -= (BTN2_prev & !digitalRead(BTN2_PIN)) * 50;
+
+  BTN1_prev = digitalRead(BTN1_PIN);
+  BTN2_prev = digitalRead(BTN2_PIN);
 
   // 範囲制限
   motor = ( motor > 255 ? 255 : motor ) < 0 ? 0 : motor;
