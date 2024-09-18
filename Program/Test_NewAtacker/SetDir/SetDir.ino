@@ -29,13 +29,33 @@ void loop(){
   sensors_event_t orientation;
   bno.getEvent(&orientation, Adafruit_BNO055::VECTOR_EULER);
   double dir = orientation.orientation.x - default_dir;
+  static double prev_dir = dir;
+
+  if(dir>180)  dir = dir-360;
+  if(dir<-180) dir = dir+360;
 
   // モーター出力を計算
-  double dir_power = dir / 1.8;
-  Serial.println(dir_power);
+  double p_gain = 1;
+  double i_gain = 1;
+  double d_gain = 1;
 
-  for(int i=0;i<MOTOR_NUM;i++) motor[i] = dir_power;
-  motorP();
+  static double i = 0;
+  static double d = 0;
+
+  i += dir;
+  d = dir - prev_dir;
+
+  double power = p*p_gain + i*i_gain + d*d_gain;
+
+  prev_dir = dir;
+
+  // motor_raw[0] = power;
+  // motor_raw[1] = power;
+  // motor_raw[2] = power;
+  // motor_raw[3] = power;
+
+  Serial.printf("dir:%d power:%d\n", dir, power);
+  
   motorRaw();
 
 }
