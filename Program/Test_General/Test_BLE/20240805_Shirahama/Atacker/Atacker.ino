@@ -51,7 +51,7 @@ class CharacteristicCallbacks : public BLECharacteristicCallbacks{
     // _characteristic -> setValue();
     if(_D2A.length()>0){
       D2A_str = _D2A.c_str();
-      Serial1.println(D2A_str.c_str());
+      // Serial1.println(D2A_str.c_str());
     }
       // Serial.println("\n\n\n\nreceived!\n\n\n\n");
   }
@@ -61,8 +61,8 @@ void setup() {
   Serial.begin(9600);
   Serial.println("BLE central(atacker)");
 
-  Serial1.setPins(D7,D6);
-  Serial1.begin(9600);
+  // Serial1.setPins(D7,D6);
+  // Serial1.begin(9600);
 
   BLEDevice::init(CENTRAL_NAME);
 
