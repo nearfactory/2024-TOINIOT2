@@ -1,11 +1,12 @@
 Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
-R1,500,R_0603_1608Metric,-19.5,-12.0,0.0,bottom
-R10,10K,R_0603_1608Metric,19.5,-20.0,180.0,bottom
-R2,500,R_0603_1608Metric,-19.5,-22.0,0.0,bottom
-R3,500,R_0603_1608Metric,19.5,-12.0,180.0,bottom
-R4,500,R_0603_1608Metric,19.5,-17.0,180.0,bottom
-R5,500,R_0603_1608Metric,19.5,-22.0,180.0,bottom
-R6,10K,R_0603_1608Metric,-19.5,-10.0,0.0,bottom
-R7,10K,R_0603_1608Metric,-19.5,-20.0,0.0,bottom
-R8,10K,R_0603_1608Metric,19.5,-10.0,180.0,bottom
-R9,10K,R_0603_1608Metric,19.5,-15.0,180.0,bottom
+R1,1K,R_0603_1608Metric,-17.25,-13.5,270.0,bottom
+R10,330,R_0603_1608Metric,0.0,-29.5,180.0,bottom
+R11,10K,R_0603_1608Metric,19.5,-25.0,0.0,bottom
+R2,10K,R_0603_1608Metric,-21.75,-13.5,270.0,bottom
+R3,1K,R_0603_1608Metric,-19.5,-23.0,180.0,bottom
+R4,10K,R_0603_1608Metric,-19.5,-25.0,180.0,bottom
+R5,1K,R_0603_1608Metric,19.5,-9.0,0.0,bottom
+R6,10K,R_0603_1608Metric,19.5,-11.0,0.0,bottom
+R7,1K,R_0603_1608Metric,19.5,-16.0,0.0,bottom
+R8,10K,R_0603_1608Metric,19.5,-18.0,0.0,bottom
+R9,1K,R_0603_1608Metric,19.5,-23.0,0.0,bottom
