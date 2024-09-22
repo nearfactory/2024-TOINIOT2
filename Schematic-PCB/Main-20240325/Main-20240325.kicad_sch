@@ -7189,6 +7189,10 @@
 		(uuid "1463d6ed-ff24-4ca8-b2d9-81cef0215159")
 	)
 	(no_connect
+		(at 391.16 243.84)
+		(uuid "153dd06f-20e2-49d3-a34c-3baa38c792d5")
+	)
+	(no_connect
 		(at 372.11 217.17)
 		(uuid "15f01577-06a7-40ff-a49a-60a887194c00")
 	)
@@ -9649,6 +9653,16 @@
 			(type default)
 		)
 		(uuid "960ba81c-e918-4fd2-a8d0-df9d732ae358")
+	)
+	(wire
+		(pts
+			(xy 369.57 240.03) (xy 372.11 240.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "96402186-1b52-460f-a17e-97263635fa54")
 	)
 	(wire
 		(pts
@@ -12662,6 +12676,28 @@
 			)
 		)
 	)
+	(global_label "SW-TAC-5"
+		(shape input)
+		(at 77.47 73.66 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "49a5dd0c-2012-44f1-b8d8-f791c71c61c0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 90.7966 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "EN-3"
 		(shape input)
 		(at 36.83 251.46 0)
@@ -12684,7 +12720,7 @@
 			)
 		)
 	)
-	(global_label "SW-TAC-1"
+	(global_label "SW-TOG-1"
 		(shape input)
 		(at 77.47 78.74 0)
 		(fields_autoplaced yes)
@@ -12696,7 +12732,7 @@
 		)
 		(uuid "4edd4a03-2d50-4f40-9483-9023be33df49")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 89.5396 78.74 0)
+			(at 91.0385 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13170,22 +13206,22 @@
 	)
 	(global_label "KickerSignal-Main"
 		(shape output)
-		(at 77.47 73.66 0)
+		(at 369.57 240.03 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "83a77e7e-aa31-440b-af83-4d63e274ac53")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 98.1746 73.66 0)
+			(at 348.8654 240.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -14004,28 +14040,6 @@
 			)
 		)
 	)
-	(global_label "KickerSignal-UI"
-		(shape output)
-		(at 36.83 195.58 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "b6387cca-b475-46fc-89c0-12016dafff46")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 55.1157 195.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "ball07"
 		(shape output)
 		(at 144.78 317.5 0)
@@ -14070,7 +14084,7 @@
 			)
 		)
 	)
-	(global_label "SW-TAC-1"
+	(global_label "SW-TOG-1"
 		(shape output)
 		(at 36.83 185.42 0)
 		(fields_autoplaced yes)
@@ -14082,7 +14096,7 @@
 		)
 		(uuid "bc6930ce-52fc-41c4-9d86-1eb5e97ba07e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 50.1566 185.42 0)
+			(at 50.3985 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14171,6 +14185,28 @@
 		(uuid "cbae082b-c751-4c8c-b5d8-e971a551113d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 457.0027 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SW-TAC-5"
+		(shape output)
+		(at 36.83 195.58 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d255e59c-28e6-48be-b3b6-5436f6b154f7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 50.1566 195.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
