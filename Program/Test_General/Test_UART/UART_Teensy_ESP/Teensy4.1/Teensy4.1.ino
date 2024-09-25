@@ -1,6 +1,6 @@
 void setup(){
   // uart
-  Serial3.begin(9600);
+  Serial2.begin(9600);
 
   // test
   // pinMode(0,INPUT);
@@ -11,8 +11,8 @@ void setup(){
 
 void loop(){
   // uart
-  while(Serial3.available()){
-    char c = Serial3.read();
+  while(Serial2.available()){
+    char c = Serial2.read();
     //Serial.println(Serial1.read());
     Serial.print(c);
   }
@@ -21,7 +21,7 @@ void loop(){
     Serial1.print(Serial.read());
   }
   */
-  Serial3.println("Teensy4.1");
+  Serial2.println("Teensy4.1");
 
   // test
   // static bool val=false;
