@@ -3585,25 +3585,7 @@
 						)
 					)
 				)
-				(number "3V3_1"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 17.78 55.88 180)
-				(length 5.08)
-				(name "3V3"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "3V3_2"
+				(number "3V3"
 					(effects
 						(font
 							(size 1.016 1.016)
@@ -3621,43 +3603,7 @@
 						)
 					)
 				)
-				(number "5V_1"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 17.78 58.42 180)
-				(length 5.08)
-				(name "5V"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "5V_2"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 17.78 58.42 180)
-				(length 5.08)
-				(name "5V"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "5V_3"
+				(number "5V"
 					(effects
 						(font
 							(size 1.016 1.016)
@@ -4917,43 +4863,7 @@
 						)
 					)
 				)
-				(number "GND_1"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 17.78 -60.96 180)
-				(length 5.08)
-				(name "GND"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "GND_2"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 17.78 -60.96 180)
-				(length 5.08)
-				(name "GND"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "GND_3"
+				(number "GND"
 					(effects
 						(font
 							(size 1.016 1.016)
@@ -5097,25 +5007,7 @@
 						)
 					)
 				)
-				(number "VIN_1"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 17.78 60.96 180)
-				(length 5.08)
-				(name "VIN"
-					(effects
-						(font
-							(size 1.016 1.016)
-						)
-					)
-				)
-				(number "VIN_2"
+				(number "VIN"
 					(effects
 						(font
 							(size 1.016 1.016)
