@@ -622,4 +622,15 @@
 			(xyz -90 0 0)
 		)
 	)
+	(model "F:/main/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Line.pretty/Arduino Mega 2560 Pro.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )

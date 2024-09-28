@@ -185,7 +185,7 @@
 		(remove_unused_layers no)
 		(uuid "8e0e0ea3-2516-4fd0-8aea-12f875849f4a")
 	)
-	(model "${MYMODEL}/@2024-Line.pretty/OSWT3166B.step"
+	(model "F:/main/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Line.pretty/OSWT3166B.step"
 		(offset
 			(xyz 0 0 0)
 		)

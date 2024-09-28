@@ -139,7 +139,7 @@
 		(remove_unused_layers no)
 		(uuid "58b03686-a12d-49c8-9fde-90f670542baf")
 	)
-	(model "${MYMODEL}/@2024-Line.pretty/NJL7502L.step"
+	(model "F:/main/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Line.pretty/NJL7502L.step"
 		(offset
 			(xyz 0 0 0)
 		)
