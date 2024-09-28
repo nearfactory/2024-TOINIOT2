@@ -9,6 +9,17 @@ void setup() {
 }
 
 void loop() {
-  
+  while(mySerial1().available()){
+    Serial.print(mySerial1.read());
+  }
+  while(mySerial2().available()){
+    Serial.print(mySerial2.read());
+  }
+  while(mySerial3().available()){
+    Serial.print(mySerial3.read());
+  }
 
+  mySerial1.println("mySerial1");
+  mySerial2.println("mySerial2");
+  mySerial3.println("mySerial3");
 }
