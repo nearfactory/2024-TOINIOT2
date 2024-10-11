@@ -1,11 +1,15 @@
 #include <Arduino.h>
 #include <Adafruit_BNO055.h>
+#include <Adafruit_SSD1306.h>
+#include <Adafruit_GFX.h>
 #include <Wire.h>
 
 #include "Motor.hpp"
 
 Adafruit_BNO055 bno(55, 0x28, &Wire2);
 double default_dir = 0;
+
+Adafruit_SSD1306 display(128, 64, &Wire2, -1);
 
 void setup(){
   Serial.begin(9600);
@@ -14,8 +18,19 @@ void setup(){
   Wire2.begin();
 
   if(!bno.begin()){
+    Serial.println("bno err!");
     while(true);
   }
+
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
+    Serial.println("display err!");
+    while(true);
+  }
+
+  display.clearDisplay();
+  display.setTextSize(2);
+  display.setTextColor(SSD1306_WHITE);
+  display.display();
 
   Serial.println("setup()");
 
@@ -35,13 +50,15 @@ void loop(){
   if(dir<-180) dir = dir+360;
 
   // モーター出力を計算
-  double p_gain = 1;
-  double i_gain = 1;
-  double d_gain = 1;
+  static double p_gain = 1.4;
+  static double i_gain = 0.3;
+  static double d_gain = 0.8;
 
+  static double p = 0;
   static double i = 0;
   static double d = 0;
 
+  p = 0 - dir;
   i += dir;
   d = dir - prev_dir;
 
@@ -58,4 +75,11 @@ void loop(){
   
   motorRaw();
 
+  // display
+  display.clearDisplay();
+  display.println("val:");
+  display.printf("p:%lf\ni:%lf\nd:%lf\n", p, i, d);
+  display.println("gain:");
+  display.printf("p:%lf\ni:%lf\nd:%lf\n", p_gain, i_gain, d_gain);
+  display.display();
 }
