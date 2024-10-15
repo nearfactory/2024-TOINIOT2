@@ -145,12 +145,24 @@ void loop() {
     return;
   }
 
+  uint16_t main = Camera_fb->buf[76800]*0xFF + Camera_fb->buf[76801];
+  // main = 0b1111100000000000;
+  Serial.print(" Min:");
+  Serial.print(0);
+  Serial.print(" Max1:");
+  Serial.print(31);
+  Serial.print(" Max2:");
+  Serial.print(63);
+  Serial.print(" R:");
+  // Serial.print(((main & 0b0000011111100000) >> 5) / 2);
+  Serial.print((main & 0b1111100000000000) >> 11);
+  Serial.print(" G:");
+  Serial.print(main >> 11);
+  Serial.print(" B:");
+  Serial.print(main & 0b0000000000000000);
+
   // SoftSerial.println(Camera_fb->len);
-  Serial.print(Camera_fb->len);
-  
-  // SoftSerial.println(Camera_fb->buf[0]);
-  // Serial.print("R:");
-  // Serial.print((Camera_fb->buf[10001] & 0xFF) >> 3);
+  // Serial.print(Camera_fb->len);
   // SoftSerial.println(Camera_fb->buf[1]);
   // Serial.print(" G:");
   // Serial.print(((Camera_fb->buf[10001] & 0x07) << 3) | (Camera_fb->buf[10000] >> 5));
@@ -158,16 +170,10 @@ void loop() {
   // Serial.print(" B:");
   // Serial.println(Camera_fb->buf[10000] & 0x1F);
   // Serial.println((Camera_fb->buf[1] * 256) + Camera_fb->buf[0], HEX);
-  int tmp = (Camera_fb->buf[76800] * 256) + Camera_fb->buf[76801];
-  
-  // Serial.print(" ");
-  // Serial.print(tmp & 0x07);
-  // Serial.print(" ");
-  // Serial.print(0);
-  // Serial.print(" ");
-  // Serial.println(23);
   
   esp_camera_fb_return(Camera_fb);
 
-  delay(100);
+  // delay(250);
+
+  Serial.println();
 }
