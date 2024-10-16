@@ -169,8 +169,10 @@ void setup() {
   
 
 
-  Serial.println("\n\n\nmem\n\n\n");
+  Serial.println("\n\n\nmem");
   buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*320*240)); // しきい値を超えたピクセルのバッファ
+  Serial.println(buf);
+  Serial.println("\n\n");
   if(buf == NULL){
     Serial.println("buf err!");
     return;
@@ -216,6 +218,7 @@ void loop() {
     for(int x=0;x<320;x++){
       int i = x+320*y;
       if(buf[x+320*y] == -1){
+        obj.add(0);
         fill(x,y,next_id);
         next_id++;
       }
