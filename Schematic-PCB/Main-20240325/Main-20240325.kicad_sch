@@ -15668,7 +15668,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 124.46 155.575 0)
 			(effects
 				(font
@@ -15739,7 +15739,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 124.46 224.155 0)
 			(effects
 				(font
@@ -16220,7 +16220,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 172.72 292.735 0)
 			(effects
 				(font
@@ -16399,7 +16399,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 31.75 280.67 0)
 			(effects
 				(font
@@ -16467,7 +16467,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 172.72 155.575 0)
 			(effects
 				(font
@@ -16812,7 +16812,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 57.15 280.67 0)
 			(effects
 				(font
@@ -16946,7 +16946,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 172.72 247.015 0)
 			(effects
 				(font
@@ -17584,7 +17584,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 124.46 132.715 0)
 			(effects
 				(font
@@ -18196,7 +18196,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINIOT2-Line:ESP32-DEVKITC"
+		(property "Footprint" "@2024TOINIOT2-Main:ESP32-DEVKITC"
 			(at 445.77 62.23 0)
 			(effects
 				(font
@@ -18524,7 +18524,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 172.72 201.295 0)
 			(effects
 				(font
@@ -19430,7 +19430,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 172.72 178.435 0)
 			(effects
 				(font
@@ -19945,7 +19945,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 124.46 269.875 0)
 			(effects
 				(font
@@ -20380,7 +20380,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 172.72 132.715 0)
 			(effects
 				(font
@@ -20521,7 +20521,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 172.72 269.875 0)
 			(effects
 				(font
@@ -20792,7 +20792,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 124.46 292.735 0)
 			(effects
 				(font
@@ -21003,7 +21003,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 31.75 314.96 0)
 			(effects
 				(font
@@ -21484,7 +21484,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 172.72 224.155 0)
 			(effects
 				(font
@@ -22102,7 +22102,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector:NS-Tech_Grove_1x04_P2mm_Vertical"
 			(at 125.73 36.83 0)
 			(effects
 				(font
@@ -22397,7 +22397,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 44.45 280.67 0)
 			(effects
 				(font
@@ -22465,7 +22465,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 124.46 201.295 0)
 			(effects
 				(font
@@ -23256,7 +23256,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 125.73 178.435 0)
 			(effects
 				(font
@@ -23603,7 +23603,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 57.15 314.96 0)
 			(effects
 				(font
@@ -24071,7 +24071,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 44.45 314.96 0)
 			(effects
 				(font
@@ -24479,7 +24479,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OptoDevice:Vishay_MINICAST-3Pin"
+		(property "Footprint" "@2024TOINIOT2-Main:Vishay_MINICAST-3Pin"
 			(at 125.73 247.015 0)
 			(effects
 				(font
