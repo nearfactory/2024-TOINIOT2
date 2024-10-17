@@ -171,9 +171,14 @@ void setup() {
 
 
   Serial.println("\n\n\nmem");
+<<<<<<< HEAD
   buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*322*242)); // しきい値を超えたピクセルのバッファ
   memset(buf, 0, sizeof(int8_t));
   Serial.printf("%08d", buf);
+=======
+  buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*320*240)); // しきい値を超えたピクセルのバッファ
+  Serial.printf(buf);
+>>>>>>> origin/main
   Serial.println("\n\n");
   if(buf == NULL){
     Serial.println("buf err!");
