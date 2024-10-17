@@ -45,7 +45,7 @@ SoftwareSerial SoftSerial;
 camera_fb_t* Camera_fb;
 
 struct Obj{
-  int id=-1;
+  uint32_t id=-1;
   uint32_t x=-1, y=-1, count=1;
 };
 
@@ -53,19 +53,20 @@ int8_t* buf = NULL;
 
 // 塗りつぶす関数
 void fill(int x, int y, int id){
-  buf[x+y*320]=id; /* ー１を置く */
+  // Serial.printf("__x:%d  y:%d\n", x, y);
+  buf[x+y*322]=id;            /* ー１を置く */
 
-    if (buf[x+(y-1)*320]==-1) /* 上に自分と同じ色があるか */
-        fill(x,y-1, id);     /* あればその座標で再帰呼び出し */
+    if (buf[x+(y-1)*322]==1) /* 上に自分と同じ色があるか */  
+    //     fill(x,y-1, id);      /* あればその座標で再帰呼び出し */
 
-    if (buf[x+1+y*320]==-1) /* 右 */
-        fill(x+1,y, id);
+    if (buf[x+1+y*322]==1)   /* 右 */
+    //     fill(x+1,y, id);
 
-    if (buf[x+(y+1)*320]==-1) /* 下 */
-        fill(x,y+1, id);
+    if (buf[x+(y+1)*322]==1) /* 下 */
+    //     fill(x,y+1, id);
 
-    if (buf[x-1+y*320]==-1) /* 左 */
-        fill(x-1,y, id);
+    if (buf[x-1+y*322]==1)   /* 左 */
+    //     fill(x-1,y, id);
       
     return;
 }
@@ -170,8 +171,9 @@ void setup() {
 
 
   Serial.println("\n\n\nmem");
-  buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*320*240)); // しきい値を超えたピクセルのバッファ
-  Serial.println(buf);
+  buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*322*242)); // しきい値を超えたピクセルのバッファ
+  memset(buf, 0, sizeof(int8_t));
+  Serial.printf("%08d", buf);
   Serial.println("\n\n");
   if(buf == NULL){
     Serial.println("buf err!");
@@ -205,27 +207,28 @@ void loop() {
 
     // 仮でオブジェクトIDを-1に設定
     if(b > threshold){
-      buf[i] = -1;
+      buf[i+1+322] = 1;
     }else{
-      buf[i] = 0;
+      buf[i+1+322] = 0;
     }
   }
 
   // 物体認識
   // https://www.etcnotes.info/almath/algofill.html
-  int next_id = 1;
-  for(int y=0;y<240;y++){
-    for(int x=0;x<320;x++){
-      int i = x+320*y;
-      if(buf[x+320*y] == -1){
-        obj.add(0);
+  uint32_t next_id = 2;
+  for(int y=1;y<241;y++){
+    for(int x=1;x<321;x++){
+      int i = x+322*y;
+      if(buf[i] == 1){
+        // Serial.printf("fill x:%d  y:%d\n", x, y);
         fill(x,y,next_id);
+        // buf[i] = next_id;
         next_id++;
       }
     }
   }
   
-  Serial.printf("id:%d  ", next_id);
+  Serial.printf("id:%d  ", next_id-1);
 
   uint16_t main = (Camera_fb->buf[76800]<<8) + (Camera_fb->buf[76801]);
   Serial.print(" Min:");
@@ -237,6 +240,8 @@ void loop() {
   Serial.printf(" B:%02d", main & 0b0000000000011111);
   
   esp_camera_fb_return(Camera_fb);
+
+  delay(1000);
 
   Serial.println();
 }
