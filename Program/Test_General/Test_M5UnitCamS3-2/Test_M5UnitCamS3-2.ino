@@ -39,6 +39,12 @@ RGBが正しく取得できない原因
 
 #define WHITEBALANCE 16
 
+#define QVGA_X 320
+#define QVGA_Y 240
+
+#define BUF_SPACE 1
+#define BUF_X (QVGA_X + BUF_SPACE*2)
+#define BUF_Y (QVGA_Y + BUF_SPACE*2)
 
 SoftwareSerial SoftSerial;
 
@@ -47,28 +53,26 @@ camera_fb_t* Camera_fb;
 struct Obj{
   uint32_t id=-1;
   uint32_t x=-1, y=-1, count=1;
-};
+};  
 
 int8_t* buf = NULL;
 
-// 塗りつぶす関数
-void fill(int x, int y, int id){
-  // Serial.printf("__x:%d  y:%d\n", x, y);
-  buf[x+y*322]=id;            /* ー１を置く */
+void printBuf(){
+  Serial.println("\n\n\n");
 
-    if (buf[x+(y-1)*322]==1) /* 上に自分と同じ色があるか */  
-    //     fill(x,y-1, id);      /* あればその座標で再帰呼び出し */
+  for(int y=0;y<80;y++){
+    for(int x=1;x<=QVGA_X;x++){
+      if(buf[x+y*3*BUF_X]==0){
+        Serial.print(" ");
+      }else if(buf[x+y*3*BUF_X]==1){
+        Serial.print("B");
+      }
+      // Serial.print(buf[x+y*3*BUF_X]);
+    }
+    Serial.println();
+  }
 
-    if (buf[x+1+y*322]==1)   /* 右 */
-    //     fill(x+1,y, id);
-
-    if (buf[x+(y+1)*322]==1) /* 下 */
-    //     fill(x,y+1, id);
-
-    if (buf[x-1+y*322]==1)   /* 左 */
-    //     fill(x-1,y, id);
-      
-    return;
+  Serial.println("\n\n\n");
 }
 
 void setup() {
@@ -171,14 +175,10 @@ void setup() {
 
 
   Serial.println("\n\n\nmem");
-<<<<<<< HEAD
-  buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*322*242)); // しきい値を超えたピクセルのバッファ
-  memset(buf, 0, sizeof(int8_t));
+  buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
+  memset(buf, 1, sizeof(int8_t));
+  printBuf();
   Serial.printf("%08d", buf);
-=======
-  buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*320*240)); // しきい値を超えたピクセルのバッファ
-  Serial.printf(buf);
->>>>>>> origin/main
   Serial.println("\n\n");
   if(buf == NULL){
     Serial.println("buf err!");
@@ -190,6 +190,8 @@ void setup() {
 }
 
 void loop() {
+  while(!Serial.available()){}
+  while( Serial.available()) Serial.read();
 
   // カメラから画像を取得
   Camera_fb = esp_camera_fb_get();
@@ -212,21 +214,43 @@ void loop() {
 
     // 仮でオブジェクトIDを-1に設定
     if(b > threshold){
-      buf[i+1+322] = 1;
+      buf[i+1+BUF_X + BUF_SPACE*2*i/QVGA_X] = 1;
     }else{
-      buf[i+1+322] = 0;
+      buf[i+1+BUF_X + BUF_SPACE*2*i/QVGA_X] = 0;
     }
   }
 
+  printBuf();
+
+  // ノイズ除去 (膨張・収縮)
+  int REPEAT = 1;
+  for(int i=0;i<REPEAT;i++){
+    // 膨張
+    for(int y=1;y<=QVGA_Y;y++){
+      for(int x=1;x<=QVGA_X;x++){
+        int i=x+BUF_X*y;
+        if(!buf[i]){
+          // if(buf[i-BUF_X-1]||buf[i-BUF_X]||buf[i-BUF_X+1] || buf[i-1]||buf[i+1] || buf[i+BUF_X-1]||buf[i+BUF_X]||buf[i+BUF_X+1])
+          if(buf[i-1])
+          {
+            buf[i] = 1;
+          }
+        }
+      }
+    }
+  }
+
+  printBuf();
+
   // 物体認識
   // https://www.etcnotes.info/almath/algofill.html
-  uint32_t next_id = 2;
-  for(int y=1;y<241;y++){
-    for(int x=1;x<321;x++){
-      int i = x+322*y;
+  uint32_t next_id = 0;
+  for(int y=1;y<=QVGA_Y;y++){
+    for(int x=1;x<=QVGA_X;x++){
+      int i = x+BUF_X*y;
       if(buf[i] == 1){
         // Serial.printf("fill x:%d  y:%d\n", x, y);
-        fill(x,y,next_id);
+        // fill(x,y,next_id);
         // buf[i] = next_id;
         next_id++;
       }
@@ -245,8 +269,6 @@ void loop() {
   Serial.printf(" B:%02d", main & 0b0000000000011111);
   
   esp_camera_fb_return(Camera_fb);
-
-  delay(1000);
 
   Serial.println();
 }
