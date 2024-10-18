@@ -42,7 +42,7 @@ RGBが正しく取得できない原因
 #define QVGA_X 320
 #define QVGA_Y 240
 
-#define BUF_SPACE 1
+#define BUF_SPACE 10
 #define BUF_X (QVGA_X + BUF_SPACE*2)
 #define BUF_Y (QVGA_Y + BUF_SPACE*2)
 
@@ -61,7 +61,7 @@ void printBuf(){
   Serial.println("\n\n\n");
 
   for(int y=0;y<80;y++){
-    for(int x=1;x<=QVGA_X;x++){
+    for(int x=1;x<=BUF_X;x++){
       if(buf[x+y*3*BUF_X]==0){
         Serial.print(" ");
       }else if(buf[x+y*3*BUF_X]==1){
@@ -176,7 +176,10 @@ void setup() {
 
   Serial.println("\n\n\nmem");
   buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
-  memset(buf, 1, sizeof(int8_t));
+  // memset(buf, 0, sizeof(int8_t)*BUF_X*BUF_Y);
+  for(int i=0;i<BUF_X*BUF_Y;i++){
+    buf[i] = 0;
+  }
   printBuf();
   Serial.printf("%08d", buf);
   Serial.println("\n\n");
@@ -212,7 +215,7 @@ void loop() {
     uint8_t g = (pixel & 0b0000011111100000) >> 6;
     uint8_t b = (pixel & 0b0000000000011111);
 
-    // 仮でオブジェクトIDを-1に設定
+    // 二値化
     if(b > threshold){
       buf[i+1+BUF_X + BUF_SPACE*2*i/QVGA_X] = 1;
     }else{
