@@ -65,6 +65,9 @@ void printBuf(int8_t* buf_ptr){
     for(int x=1;x<=BUF_X;x++){
       if(buf_ptr[x+y*3*BUF_X]==0){
         Serial.print(" ");
+      // }else{
+      //   Serial.print(buf_ptr[x+y*3*BUF_X]);
+      // }
       }else if(buf_ptr[x+y*3*BUF_X]==1){
         Serial.print("B");
       }
@@ -198,8 +201,11 @@ void setup() {
 }
 
 void loop() {
+  // PCからの入力を待機
   while(!Serial.available()){}
   while( Serial.available()) Serial.read();
+
+
 
   // カメラから画像を取得
   Camera_fb = esp_camera_fb_get();
@@ -210,7 +216,6 @@ void loop() {
   }
 
 
-  std::vector<Obj> obj(0);
 
   // しきい値を超えたピクセルのバッファを作る
   uint8_t threshold = 24;
@@ -228,12 +233,14 @@ void loop() {
     }
   }
 
-  printBuf(buf);
+
 
   // ノイズ除去 (膨張・収縮)
+  // https://www.frontier.maxell.co.jp/blog/posts/22.html
   int8_t* read_buf = buf;
   int8_t* write_buf = buf2;
 
+  // 膨張 → 収縮 の流れしかしていないのに白いノイズも除去される不思議
   int REPEAT = 2;
   // 膨張
   for(int i=0;i<REPEAT;i++){
@@ -275,7 +282,7 @@ void loop() {
         {
           write_buf[i] = 0;
         }else{
-          write_buf[i] = 1;
+          write_buf[i] = 127;
         }
       }
     }
@@ -284,31 +291,51 @@ void loop() {
   printBuf(write_buf);
 
 
-  // 物体認識
-  // https://www.etcnotes.info/almath/algofill.html
-  uint32_t next_id = 0;
-  for(int y=1;y<=QVGA_Y;y++){
-    for(int x=1;x<=QVGA_X;x++){
-      int i = x+BUF_X*y;
-      if(buf[i] == 1){
-        // Serial.printf("fill x:%d  y:%d\n", x, y);
-        // fill(x,y,next_id);
-        // buf[i] = next_id;
-        next_id++;
-      }
-    }
-  }
-  
-  Serial.printf("id:%d  ", next_id-1);
 
-  uint16_t main = (Camera_fb->buf[76800]<<8) + (Camera_fb->buf[76801]);
-  Serial.print(" Min:");
-  Serial.print(0);
-  Serial.print(" Max:");
-  Serial.print(31);
-  Serial.printf(" R:%02d", (main >> 11));
-  Serial.printf(" G:%02d", (main & 0b0000011111100000) >> 6);
-  Serial.printf(" B:%02d", main & 0b0000000000011111);
+  // 物体認識
+  // https://imagingsolution.blog.fc2.com/blog-entry-193.html
+  // 物体認識用にポインタの入れ替え
+  // int8_t* buf_temp = read_buf;
+  // read_buf = write_buf;
+  // write_buf = read_buf;
+
+  // uint32_t next_id = 1;
+  // for(int y=1;y<=QVGA_Y;y++){
+  //   if(next_id>120) break;
+  //   for(int x=1;x<=QVGA_X;x++){
+  //     int i = x+BUF_X*y;
+  //     if(read_buf[i]){
+  //       // 上3・左1から最小のIDを探す
+  //       int small_id = 127;
+  //       if(write_buf[i-BUF_X-1]<small_id) small_id = write_buf[i-BUF_X-1];
+  //       if(write_buf[i-BUF_X]<small_id)   small_id = write_buf[i-BUF_X];
+  //       if(write_buf[i-BUF_X+1]<small_id) small_id = write_buf[i-BUF_X+1];
+  //       if(write_buf[i-1]<small_id)       small_id = write_buf[i-1];
+
+  //       // 周囲にIDがない
+  //       if(small_id == 127){
+  //         write_buf[i] = next_id;
+  //         next_id++;
+  //       }else{
+  //         write_buf[i] = small_id;
+  //       }
+  //     }
+    
+  //   }
+  // }
+  
+  // printBuf(write_buf);
+
+
+  // 中央ピクセルの色を表示
+  // uint16_t main = (Camera_fb->buf[76800]<<8) + (Camera_fb->buf[76801]);
+  // Serial.print(" Min:");
+  // Serial.print(0);
+  // Serial.print(" Max:");
+  // Serial.print(31);
+  // Serial.printf(" R:%02d", (main >> 11));
+  // Serial.printf(" G:%02d", (main & 0b0000011111100000) >> 6);
+  // Serial.printf(" B:%02d", main & 0b0000000000011111);
   
   esp_camera_fb_return(Camera_fb);
 
