@@ -56,15 +56,16 @@ struct Obj{
 };  
 
 int8_t* buf = NULL;
+int8_t* buf2 = NULL;
 
-void printBuf(){
+void printBuf(int8_t* buf_ptr){
   Serial.println("\n\n\n");
 
   for(int y=0;y<80;y++){
     for(int x=1;x<=BUF_X;x++){
-      if(buf[x+y*3*BUF_X]==0){
+      if(buf_ptr[x+y*3*BUF_X]==0){
         Serial.print(" ");
-      }else if(buf[x+y*3*BUF_X]==1){
+      }else if(buf_ptr[x+y*3*BUF_X]==1){
         Serial.print("B");
       }
       // Serial.print(buf[x+y*3*BUF_X]);
@@ -176,17 +177,21 @@ void setup() {
 
   Serial.println("\n\n\nmem");
   buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
-  // memset(buf, 0, sizeof(int8_t)*BUF_X*BUF_Y);
-  for(int i=0;i<BUF_X*BUF_Y;i++){
-    buf[i] = 0;
-  }
-  printBuf();
-  Serial.printf("%08d", buf);
-  Serial.println("\n\n");
-  if(buf == NULL){
+  buf2 = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
+  
+  if(buf == NULL || buf2 == NULL){
     Serial.println("buf err!");
     return;
   } 
+
+  for(int i=0;i<BUF_X*BUF_Y;i++){
+    buf[i] = 0;
+    buf2[i] = 0;
+  }
+  printBuf(buf);
+  printBuf(buf2);
+  Serial.printf("%08d", buf);
+  Serial.println("\n\n");
 
   delay(100);
 
@@ -223,27 +228,61 @@ void loop() {
     }
   }
 
-  printBuf();
+  printBuf(buf);
 
   // ノイズ除去 (膨張・収縮)
-  int REPEAT = 1;
+  int8_t* read_buf = buf;
+  int8_t* write_buf = buf2;
+
+  int REPEAT = 2;
+  // 膨張
   for(int i=0;i<REPEAT;i++){
-    // 膨張
+    if(i%2==0){
+      read_buf = buf;
+      write_buf = buf2;
+    }else{
+      read_buf = buf2;
+      write_buf = buf;
+    }
     for(int y=1;y<=QVGA_Y;y++){
       for(int x=1;x<=QVGA_X;x++){
         int i=x+BUF_X*y;
-        if(!buf[i]){
-          // if(buf[i-BUF_X-1]||buf[i-BUF_X]||buf[i-BUF_X+1] || buf[i-1]||buf[i+1] || buf[i+BUF_X-1]||buf[i+BUF_X]||buf[i+BUF_X+1])
-          if(buf[i-1])
-          {
-            buf[i] = 1;
-          }
+        // ピクセルの周囲8方向に1があるか調べる
+        if(read_buf[i-BUF_X-1]||read_buf[i-BUF_X]||read_buf[i-BUF_X+1] || read_buf[i-1]||read_buf[i]||read_buf[i+1] || read_buf[i+BUF_X-1]||read_buf[i+BUF_X]||read_buf[i+BUF_X+1])
+        {
+          write_buf[i] = 1;
+        }else{
+          write_buf[i] = 0;
         }
       }
     }
   }
 
-  printBuf();
+  // 収縮
+  for(int i=0;i<REPEAT;i++){
+    if(i%2==0){
+      read_buf = buf2;
+      write_buf = buf;
+    }else{
+      read_buf = buf;
+      write_buf = buf2;
+    }
+    for(int y=1;y<=QVGA_Y;y++){
+      for(int x=1;x<=QVGA_X;x++){
+        int i=x+BUF_X*y;
+        // ピクセルの周囲8方向に0があるか調べる
+        if(!(read_buf[i-BUF_X-1]&&read_buf[i-BUF_X]&&read_buf[i-BUF_X+1] && read_buf[i-1]&&read_buf[i]&&read_buf[i+1] && read_buf[i+BUF_X-1]&&read_buf[i+BUF_X]&&read_buf[i+BUF_X+1]))
+        {
+          write_buf[i] = 0;
+        }else{
+          write_buf[i] = 1;
+        }
+      }
+    }
+  }
+
+  printBuf(write_buf);
+
 
   // 物体認識
   // https://www.etcnotes.info/almath/algofill.html
