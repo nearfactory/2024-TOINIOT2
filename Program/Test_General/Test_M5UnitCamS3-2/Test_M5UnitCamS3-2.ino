@@ -57,9 +57,11 @@ struct Obj{
 
 int8_t* buf = NULL;
 int8_t* buf2 = NULL;
+// LUT(インデックスとIDを対応)
+int8_t* id_lut = NULL;
 
 void printBuf(int8_t* buf_ptr){
-  Serial.println("\n\n\n");
+  Serial.println("----------------\n\n\n");
 
   for(int y=0;y<80;y++){
     for(int x=1;x<=BUF_X;x++){
@@ -68,15 +70,17 @@ void printBuf(int8_t* buf_ptr){
       // }else{
       //   Serial.print(buf_ptr[x+y*3*BUF_X]);
       // }
-      }else if(buf_ptr[x+y*3*BUF_X]==1){
-        Serial.print("B");
+      }else if(buf_ptr[x+y*3*BUF_X]==127){
+        Serial.print("/");
+      }else{
+        Serial.printf("%c", (id_lut[buf_ptr[x+y*3*BUF_X]])%26+65);
       }
       // Serial.print(buf[x+y*3*BUF_X]);
     }
     Serial.println();
   }
 
-  Serial.println("\n\n\n");
+  Serial.print("\n\n\n----------------");
 }
 
 void setup() {
@@ -179,10 +183,11 @@ void setup() {
 
 
   Serial.println("\n\n\nmem");
-  buf = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
-  buf2 = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
+  buf    = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
+  buf2   = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
+  id_lut = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*127));         // LUT
   
-  if(buf == NULL || buf2 == NULL){
+  if(buf == NULL || buf2 == NULL || id_lut == NULL){
     Serial.println("buf err!");
     return;
   } 
@@ -288,54 +293,71 @@ void loop() {
     }
   }
 
-  printBuf(write_buf);
+  // printBuf(write_buf);
 
 
 
   // 物体認識
   // https://imagingsolution.blog.fc2.com/blog-entry-193.html
   // 物体認識用にポインタの入れ替え
-  // int8_t* buf_temp = read_buf;
-  // read_buf = write_buf;
-  // write_buf = read_buf;
+  int8_t* buf_temp = read_buf;
+  read_buf = write_buf; // 二値化画像
+  write_buf = read_buf; // IDの記録画像
 
-  // uint32_t next_id = 1;
-  // for(int y=1;y<=QVGA_Y;y++){
-  //   if(next_id>120) break;
-  //   for(int x=1;x<=QVGA_X;x++){
-  //     int i = x+BUF_X*y;
-  //     if(read_buf[i]){
-  //       // 上3・左1から最小のIDを探す
-  //       int small_id = 127;
-  //       if(write_buf[i-BUF_X-1]<small_id) small_id = write_buf[i-BUF_X-1];
-  //       if(write_buf[i-BUF_X]<small_id)   small_id = write_buf[i-BUF_X];
-  //       if(write_buf[i-BUF_X+1]<small_id) small_id = write_buf[i-BUF_X+1];
-  //       if(write_buf[i-1]<small_id)       small_id = write_buf[i-1];
+  // ラベリング
+  uint8_t next_id = 1;
+  for(int i=0;i<127;i++){
+    id_lut[i] = i;
+  }
 
-  //       // 周囲にIDがない
-  //       if(small_id == 127){
-  //         write_buf[i] = next_id;
-  //         next_id++;
-  //       }else{
-  //         write_buf[i] = small_id;
-  //       }
-  //     }
+  for(int y=1;y<=QVGA_Y;y++){
+    if(next_id>120) break;
+    for(int x=1;x<=QVGA_X;x++){
+      int i = x+BUF_X*y;
+      if(read_buf[i]){
+        // 上3・左1から最小のIDを探す
+        int minimum = 127;
+        int secondary = 0;  
+
+        int num1 = write_buf[i-BUF_X-1];
+        int num2 = write_buf[i-BUF_X];
+        int num3 = write_buf[i-BUF_X+1];
+        int num4 = write_buf[i-1];
+        if(num1<minimum && num1!=0) {secondary = minimum;  minimum = num1;}
+        if(num2<minimum && num2!=0) {secondary = minimum;  minimum = num2;}
+        if(num3<minimum && num3!=0) {secondary = minimum;  minimum = num3;}
+        if(num4<minimum && num4!=0) {secondary = minimum;  minimum = num4;}
+
+        // 周囲に最小のIDがない
+        if(minimum == 127){
+          write_buf[i] = next_id;
+          id_lut[minimum] = minimum;
+          next_id++;
+        }else{
+          write_buf[i] = minimum;
+          // LUTを更新
+          id_lut[secondary] = minimum;
+        }
+      }
     
-  //   }
-  // }
+    }
+  }
+
+  // LUTをもとにラベルを更新
+  for(int y=1;y<=QVGA_Y;y++){
+    if(next_id>120) break;
+    for(int x=1;x<=QVGA_X;x++){
+      int i = x+BUF_X*y;
+      while(id_lut[write_buf[i]] != write_buf[i]){
+        write_buf[i] = id_lut[write_buf[i]];
+      }
+    }
+  }
   
-  // printBuf(write_buf);
+  Serial.println();
+  for(int i=0;i<127;i++) printf("%d ", id_lut[i]);
+  printBuf(write_buf);
 
-
-  // 中央ピクセルの色を表示
-  // uint16_t main = (Camera_fb->buf[76800]<<8) + (Camera_fb->buf[76801]);
-  // Serial.print(" Min:");
-  // Serial.print(0);
-  // Serial.print(" Max:");
-  // Serial.print(31);
-  // Serial.printf(" R:%02d", (main >> 11));
-  // Serial.printf(" G:%02d", (main & 0b0000011111100000) >> 6);
-  // Serial.printf(" B:%02d", main & 0b0000000000011111);
   
   esp_camera_fb_return(Camera_fb);
 
