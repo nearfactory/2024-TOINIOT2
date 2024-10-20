@@ -240,8 +240,8 @@ void setup() {
 
 void loop() {
   // PCからの入力を待機
-  while(!Serial.available()){}
-  while( Serial.available()) Serial.read();
+  // while(!Serial.available()){}
+  // while( Serial.available()) Serial.read();
 
 
 
@@ -393,8 +393,8 @@ void loop() {
   // Serial.println();
   // for(int i=0;i<127;i++) printf("%d ", id_lut[i]);
 
-  Serial.printf("\n%d\n", next_id);
-  printBufFull(write_buf);
+  // Serial.printf("\n%d\n", next_id);
+  // printBufFull(write_buf);
 
 
   
@@ -421,8 +421,8 @@ void loop() {
     obj[i].obj_id = i;
     obj[i].x1 = 321;
     obj[i].y1 = 241;
-    obj[i].x2 = 0;
-    obj[i].y2 = -1;
+    obj[i].x2 = -1;
+    obj[i].y2 = -1;\
   }
    
   for(int y=1;y<=QVGA_Y;y++){
@@ -430,16 +430,29 @@ void loop() {
       int i = x+BUF_X*y;
       if(write_buf[i]){
         if(x < obj[obj_lut[write_buf[i]]].x1) obj[obj_lut[write_buf[i]]].x1 = x;
-        if(x > obj[obj_lut[write_buf[i]]].x1) obj[obj_lut[write_buf[i]]].x2 = x;
-        if(y < obj[obj_lut[write_buf[i]]].x1) obj[obj_lut[write_buf[i]]].y1 = y;
-        if(y > obj[obj_lut[write_buf[i]]].x1) obj[obj_lut[write_buf[i]]].y2 = y;
+        if(x > obj[obj_lut[write_buf[i]]].x2) obj[obj_lut[write_buf[i]]].x2 = x;
+        if(y < obj[obj_lut[write_buf[i]]].y1) obj[obj_lut[write_buf[i]]].y1 = y;
+        if(y > obj[obj_lut[write_buf[i]]].y2) obj[obj_lut[write_buf[i]]].y2 = y;
       }
     }
   }
 
+  // オブジェクト配列全部吐く
+  // for(int i=1;i<next_obj_id;i++){
+  //   Serial.printf("id:%02d    x1:%03d  y1:%03d   x2:%03d  y2:%03d\n", obj[i].obj_id, obj[i].x1, obj[i].y1, obj[i].x2, obj[i].y2);
+  // }
+
+  // 最大の面積のものを出力
+  int max_area = 0;
+  int max_area_id = 0;
   for(int i=1;i<next_obj_id;i++){
-    Serial.printf("id:%02d    x1:%03d  y1:%03d   x2:%03d  y2:%03d\n", obj[i].obj_id, obj[i].x1, obj[i].y1, obj[i].x2, obj[i].y2);
+    int area = (obj[i].x2 - obj[i].x1) * (obj[i].y2 - obj[i].y1);
+    if(area > max_area){
+      max_area = area;
+      max_area_id = i;
+    }
   }
+  Serial.printf("id:%02d    x1:%03d  y1:%03d   x2:%03d  y2:%03d\n", obj[max_area_id].obj_id, obj[max_area_id].x1, obj[max_area_id].y1, obj[max_area_id].x2, obj[max_area_id].y2);
   
   esp_camera_fb_return(Camera_fb);
 
