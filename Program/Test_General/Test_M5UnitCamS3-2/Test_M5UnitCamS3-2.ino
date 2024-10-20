@@ -51,14 +51,17 @@ SoftwareSerial SoftSerial;
 camera_fb_t* Camera_fb;
 
 struct Obj{
-  uint32_t id=-1;
-  uint32_t x=-1, y=-1, count=1;
+  int8_t lut_id = -1;       // LUT上でのID
+  int8_t obj_id = -1;       // オブジェクト識別用のID
+  int16_t x1 = 321, y1 = 241; // バウンディングボックスの左上座標
+  int16_t x2 = -1, y2 = -1; // バウンディングボックスの右下座標
 };  
 
-int8_t* buf = NULL;
+int8_t* buf  = NULL;
 int8_t* buf2 = NULL;
-// LUT(インデックスとIDを対応)
-int8_t* id_lut = NULL;
+int8_t* id_lut  = NULL; // LUT(インデックスとIDを対応)
+int8_t* obj_lut  = NULL; // LUT(インデックスとIDを対応)
+Obj* obj = NULL;
 
 void printBuf(int8_t* buf_ptr){
   Serial.println("----------------\n\n\n");
@@ -80,7 +83,30 @@ void printBuf(int8_t* buf_ptr){
     Serial.println();
   }
 
-  Serial.print("\n\n\n----------------");
+  Serial.print("\n\n\n----------------\n");
+}
+
+void printBufFull(int8_t* buf_ptr){
+  Serial.println("----------------\n\n\n");
+
+  for(int y=0;y<240;y++){
+    for(int x=1;x<=BUF_X;x++){
+      if(buf_ptr[x+y*BUF_X]==0){
+        Serial.print(" ");
+      // }else{
+      //   Serial.print(buf_ptr[x+y*3*BUF_X]);
+      // }
+      }else if(buf_ptr[x+y*BUF_X]==127){
+        Serial.print("/");
+      }else{
+        Serial.printf("%c", (id_lut[buf_ptr[x+y*BUF_X]])%26+65);
+      }
+      // Serial.print(buf[x+y*3*BUF_X]);
+    }
+    Serial.println();
+  }
+
+  Serial.print("\n\n\n----------------\n");
 }
 
 void setup() {
@@ -183,18 +209,25 @@ void setup() {
 
 
   Serial.println("\n\n\nmem");
-  buf    = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
-  buf2   = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
-  id_lut = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*127));         // LUT
+  buf     = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
+  buf2    = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*BUF_X*BUF_Y)); // しきい値を超えたピクセルのバッファ
+  id_lut  = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*127));         // 仮のID → 本当のID
+  obj_lut = reinterpret_cast<int8_t*>(malloc(sizeof(int8_t)*127));         // 本当のID → オブジェクトID
+  obj     = reinterpret_cast<Obj*>(malloc(sizeof(Obj)*127));               // オブジェクト
   
-  if(buf == NULL || buf2 == NULL || id_lut == NULL){
+  if(buf == NULL || buf2 == NULL || id_lut == NULL || obj_lut == NULL || obj == NULL){
     Serial.println("buf err!");
     return;
   } 
 
+  // 初期化をサボるな！
   for(int i=0;i<BUF_X*BUF_Y;i++){
     buf[i] = 0;
     buf2[i] = 0;
+  }
+  for(int i=0;i<127;i++){
+    id_lut[i] = i;
+    obj_lut[i] = i;
   }
   printBuf(buf);
   printBuf(buf2);
@@ -299,10 +332,13 @@ void loop() {
 
   // 物体認識
   // https://imagingsolution.blog.fc2.com/blog-entry-193.html
+  // https://qiita.com/IcchI1/items/102fec377f63c6c03d79
   // 物体認識用にポインタの入れ替え
   int8_t* buf_temp = read_buf;
   read_buf = write_buf; // 二値化画像
   write_buf = read_buf; // IDの記録画像
+
+
 
   // ラベリング
   uint8_t next_id = 1;
@@ -345,7 +381,6 @@ void loop() {
 
   // LUTをもとにラベルを更新
   for(int y=1;y<=QVGA_Y;y++){
-    if(next_id>120) break;
     for(int x=1;x<=QVGA_X;x++){
       int i = x+BUF_X*y;
       while(id_lut[write_buf[i]] != write_buf[i]){
@@ -354,10 +389,57 @@ void loop() {
     }
   }
   
-  Serial.println();
-  for(int i=0;i<127;i++) printf("%d ", id_lut[i]);
-  printBuf(write_buf);
+  // LUTの中身を表示
+  // Serial.println();
+  // for(int i=0;i<127;i++) printf("%d ", id_lut[i]);
 
+  Serial.printf("\n%d\n", next_id);
+  printBufFull(write_buf);
+
+
+  
+  // ラスタスキャン → ぶち当たったピクセルのLUT上のIDをオブジェクトのIDに変換し、obj内の各座標変数と位置を比較する
+  // LUT2, obj配列
+  // ！物体認識メイン！
+  for(int i=0;i<127;i++){
+    obj_lut[i] = 0;
+    obj[i].lut_id = 0;
+  } 
+
+  int8_t next_obj_id = 1;
+  // 余計な部分を圧縮して、本当のID→オブジェクトIDのテーブルを作る
+  for(int i=1;i<next_id;i++){
+    if(id_lut[i]==i){
+      obj_lut[next_obj_id] = i;
+      next_obj_id++;
+    }
+  }
+
+  // オブジェクト配列を初期化
+  for(int i=0;i<next_obj_id;i++){
+    obj[i].lut_id = 0;
+    obj[i].obj_id = i;
+    obj[i].x1 = 321;
+    obj[i].y1 = 241;
+    obj[i].x2 = 0;
+    obj[i].y2 = -1;
+  }
+   
+  for(int y=1;y<=QVGA_Y;y++){
+    for(int x=1;x<=QVGA_X;x++){
+      int i = x+BUF_X*y;
+      if(write_buf[i]){
+        if(x < obj[obj_lut[write_buf[i]]].x1) obj[obj_lut[write_buf[i]]].x1 = x;
+        if(x > obj[obj_lut[write_buf[i]]].x1) obj[obj_lut[write_buf[i]]].x2 = x;
+        if(y < obj[obj_lut[write_buf[i]]].x1) obj[obj_lut[write_buf[i]]].y1 = y;
+        if(y > obj[obj_lut[write_buf[i]]].x1) obj[obj_lut[write_buf[i]]].y2 = y;
+      }
+    }
+  }
+
+  for(int i=1;i<next_obj_id;i++){
+    Serial.printf("id:%02d    x1:%03d  y1:%03d   x2:%03d  y2:%03d\n", obj[i].obj_id, obj[i].x1, obj[i].y1, obj[i].x2, obj[i].y2);
+  }
   
   esp_camera_fb_return(Camera_fb);
 
