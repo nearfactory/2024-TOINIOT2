@@ -54,12 +54,12 @@ SoftwareSerial SoftSerial;
 camera_fb_t* Camera_fb;
 
 struct Obj{
-  int8_t lut_id = -1;       // LUT上でのID
-  int8_t obj_id = -1;       // オブジェクト識別用のID
+  uint8_t obj_id = 0;       // オブジェクト識別用のID
   int16_t x1 = 321; // バウンディングボックスの左座標
   int16_t x2 = -1;  // 右
   int16_t y1 = 241; // 上
   int16_t y2 = -1;  // 下
+  int32_t area = 0;
 };  
 
 uint8_t* buf  = NULL;
@@ -78,8 +78,8 @@ void printBuf(uint8_t* buf_ptr){
       }else if(buf_ptr[x+(y*3+BUF_SPACE)*BUF_X]==255){
         Serial.print("/");
       }else{
-        // Serial.printf("%c", (buf_ptr[x+y*3*BUF_X])%26+65);
-        Serial.print(buf_ptr[x+(y*3+BUF_SPACE)*BUF_X]);
+        Serial.printf("%c", (buf_ptr[x+(y*3+BUF_SPACE)*BUF_X]+25)%26+65);
+        // Serial.print(buf_ptr[x+(y*3+BUF_SPACE)*BUF_X]);
       }
     }
     Serial.println();
@@ -239,15 +239,17 @@ void setup() {
     id_lut[i] = i;
     obj_lut[i] = i;
   }
-  printBuf(buf);
-  printBuf(buf2);
-  Serial.printf("%08d", buf);
-  Serial.println("\n\n");
+  // printBuf(buf);
+  // printBuf(buf2);
+  // Serial.printf("%08d", buf);
+  // Serial.println("\n\n");
 
   delay(100);
 
 }
 
+uint32_t begin_ms = millis();
+uint32_t processing_begin = millis();
 void loop() {
   // PCからの入力を待機
   while(!Serial.available()){}
@@ -256,20 +258,23 @@ void loop() {
 
 
   // カメラから画像を取得
+  begin_ms = millis();
+  processing_begin = millis();
   Camera_fb = esp_camera_fb_get();
   if (!Camera_fb) {
     // SoftSerial.println("画像の取得に失敗しました");
     Serial.println("画像の取得に失敗しました");
     return;
   }
+  Serial.printf("Get Image\t\t\t:%d\n", millis()-begin_ms);
 
   int h_min = 180;
   int h_max = 300;
   int s_min = 25;
   int v_min = 50;
 
-  auto begin_ms = millis();
   // しきい値を超えたピクセルのバッファを作る
+  begin_ms = millis();
   for(int y=0;y<QVGA_Y;y++){
     for(int x=0;x<QVGA_X;x++){
       // for(int i=0;i<Camera_fb->len/2;i++){
@@ -280,6 +285,8 @@ void loop() {
       uint8_t b = ((pixel & 0b0000000000011111))       << 3;
 
       // RGB → HSV で色を識別
+      // アルゴリズム : https://qiita.com/jajagacchi/items/e64ff4b347eceafce5d3
+      // しきい値     : https://python.joho.info/opencv/opencv-color-detection/
       int h=0, s=0, v=0;
 
       int Max = std::max({ r, g, b });
@@ -302,12 +309,16 @@ void loop() {
     }
   }
   // printBuf(buf);
+  Serial.printf("Binarization\t\t\t:%d\n", millis()-begin_ms);
 
   // buf2のクリーン
+  begin_ms = millis();
   for(int i=0;i<BUF_X*BUF_Y;i++) buf2[i] = 0;
+  Serial.printf("Clean Buf2\t\t\t:%d\n", millis()-begin_ms);
 
   // ノイズ除去 (膨張・収縮)
   // https://www.frontier.maxell.co.jp/blog/posts/22.html
+  begin_ms = millis();
   int REPEAT = 3;
   uint8_t* read_buf = buf;
   uint8_t* write_buf = buf2;
@@ -401,7 +412,8 @@ void loop() {
     read_buf = write_buf; // 二値化画像
     write_buf = buf_temp; // IDの記録画像
   }
-  printBuf(read_buf);
+  // printBuf(read_buf);
+  Serial.printf("Denoise\t\t\t\t:%d\n", millis()-begin_ms);
 
 
 
@@ -409,14 +421,17 @@ void loop() {
   // https://imagingsolution.blog.fc2.com/blog-entry-193.html
   // https://qiita.com/IcchI1/items/102fec377f63c6c03d79
   // 物体認識用にポインタの入れ替え
-  //uint8_t* buf_temp = read_buf;
+  // uint8_t* buf_temp = read_buf;
   // read_buf = write_buf; // 二値化画像
   // write_buf = buf_temp; // IDの記録画像
 
   // バッファの初期化
-  for(int i=0;i<BUF_X*BUF_Y;i++) write_buf[i] = 0 ;
+  begin_ms = millis();
+  for(int i=0;i<BUF_X*BUF_Y;i++) write_buf[i] = 0;
+  Serial.printf("Initialize write_buf\t\t:%d\n", millis()-begin_ms);
 
   // ラベリング
+  begin_ms = millis();
   uint8_t next_id = 1;
   for(int i=0;i<256;i++){
     id_lut[i] = i;
@@ -445,7 +460,7 @@ void loop() {
           write_buf[i] = next_id;
           id_lut[minimum] = minimum;
           next_id++;
-          Serial.println("a");
+          // Serial.println("a");
         }else{
           write_buf[i] = minimum;
           // LUTを更新
@@ -455,9 +470,11 @@ void loop() {
     
     }
   }
-  printBuf(write_buf);
+  Serial.printf("Labeling\t\t\t:%d\n", millis()-begin_ms);
+  // printBuf(write_buf);
 
   // LUTをもとにラベルを更新
+  begin_ms = millis();
   for(int y=BUF_SPACE;y<QVGA_Y+BUF_SPACE;y++){
     for(int x=BUF_SPACE;x<QVGA_X+BUF_SPACE;x++){
       int i = x+BUF_X*y;
@@ -466,7 +483,8 @@ void loop() {
       }
     }
   }
-  // printBufFull(read_buf);
+  // printBuf(write_buf);
+  Serial.printf("Update Label\t\t\t:%d\n", millis()-begin_ms);
   
   // LUTの中身を表示
   // Serial.println();
@@ -477,46 +495,49 @@ void loop() {
 
 
 
-  /*  
   // ラスタスキャン → ぶち当たったピクセルのLUT上のIDをオブジェクトのIDに変換し、obj内の各座標変数と位置を比較する
   // LUT2, obj配列
   // ！物体認識メイン！
+  begin_ms = millis();
   for(int i=0;i<LUT_SIZE;i++){
     obj_lut[i] = 0;
-    obj[i].lut_id = 0;
   } 
 
   int8_t next_obj_id = 0;
   // 余計な部分を圧縮して、本当のID→オブジェクトIDのテーブルを作る
   for(int i=1;i<next_id;i++){
     if(id_lut[i]==i){
-      obj_lut[next_obj_id] = i;
+      obj_lut[i] = next_obj_id;
       next_obj_id++;
     }
   }
+  Serial.printf("Compression Lut\t\t\t:%d\n", millis()-begin_ms);
 
-  for(int i=0;i<LUT_SIZE;i++){
-    Serial.printf("%d ", id_lut[i]);
-  }
-  Serial.println();
-  for(int i=0;i<LUT_SIZE;i++){
-    Serial.printf("%d ", obj_lut[i]);
-  }
+  // for(int i=0;i<LUT_SIZE;i++){
+  //   Serial.printf("%d ", id_lut[i]);
+  // }
+  // Serial.println();
+  // for(int i=0;i<LUT_SIZE;i++){
+  //   Serial.printf("%d ", obj_lut[i]);
+  // }
+  // Serial.println();
+
+  // Serial.printf("ObjectNum:%d\n\n", next_obj_id);
 
   // オブジェクト配列を初期化
+  begin_ms = millis();
   for(int i=0;i<next_obj_id;i++){
-    obj[i].lut_id = 0;
     obj[i].obj_id = i;
-    obj[i].x1 = 319;
-    obj[i].y1 = 239;
-    obj[i].x2 = 1;
-    obj[i].y2 = 1;
+    obj[i].x1 = 321;
+    obj[i].y1 = 241;
+    obj[i].x2 = -1;
+    obj[i].y2 = -1;
   }
    
   // 物体の座標を求める
-  for(int y=1;y<=QVGA_Y;y++){
-    for(int x=1;x<=QVGA_X;x++){
-      int i = x+BUF_X*y;
+  for(int y=0;y<QVGA_Y;y++){
+    for(int x=0;x<QVGA_X;x++){
+      int i = (x+BUF_SPACE)+BUF_X*(y+BUF_SPACE);
       if(write_buf[i] != 0){
         if(x < obj[obj_lut[write_buf[i]]].x1) obj[obj_lut[write_buf[i]]].x1 = x; // 左
         if(x > obj[obj_lut[write_buf[i]]].x2) obj[obj_lut[write_buf[i]]].x2 = x; // 右
@@ -526,24 +547,29 @@ void loop() {
       }
     }
   }
+  Serial.printf("Caliculate Coordinate\t\t:%d\n", millis()-begin_ms);
 
-  // オブジェクト配列全部吐く
-  for(int i=0;i<next_obj_id;i++){
-    Serial.printf("id:%02d    x1:%03d  y1:%03d   x2:%03d  y2:%03d   area:%d\n", obj[i].obj_id, obj[i].x1, obj[i].y1, obj[i].x2, obj[i].y2, (obj[i].x2 - obj[i].x1) * (obj[i].y2 - obj[i].y1));
-  }
-
-  // 最大の面積のものを出力
+  // 面積を求める
+  begin_ms = millis();
   int max_area = 0;
   int max_area_id = 0;
   for(int i=0;i<next_obj_id;i++){
-    int area = (obj[i].x2 - obj[i].x1) * (obj[i].y2 - obj[i].y1);
-    if(area > max_area){
-      max_area = area;
+    obj[i].area = (obj[i].x2 - obj[i].x1) * (obj[i].y2 - obj[i].y1);
+    if(obj[i].area > max_area){
+      max_area = obj[i].area;
       max_area_id = i;
     }
   }
-  // Serial.printf("id:%02d    x1:%03d  y1:%03d   x2:%03d  y2:%03d   area:%d\n", obj[max_area_id].obj_id, obj[max_area_id].x1, obj[max_area_id].y1, obj[max_area_id].x2, obj[max_area_id].y2, (obj[max_area_id].x2 - obj[max_area_id].x1) * (obj[max_area_id].y2 - obj[max_area_id].y1));
-  */
+  Serial.printf("Caliculate Area\t\t\t:%d\n", millis()-begin_ms);
+  Serial.printf("Total\t\t\t\t:%d\n", millis()-processing_begin);
+
+  // オブジェクト配列全部吐く
+  // for(int i=0;i<next_obj_id;i++){
+  //   Serial.printf("id:%02d    x1:%03d  y1:%03d   x2:%03d  y2:%03d   area:%d\n", obj[i].obj_id, obj[i].x1, obj[i].y1, obj[i].x2, obj[i].y2, obj[i].area);
+  // }
+
+  // 最大の面積のものを出力
+  Serial.printf("id:%02d    x1:%03d  y1:%03d   x2:%03d  y2:%03d   area:%d\n\n\n", obj[max_area_id].obj_id, obj[max_area_id].x1, obj[max_area_id].y1, obj[max_area_id].x2, obj[max_area_id].y2, (obj[max_area_id].x2 - obj[max_area_id].x1) * (obj[max_area_id].y2 - obj[max_area_id].y1));
 
   esp_camera_fb_return(Camera_fb);
 }
