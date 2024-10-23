@@ -252,21 +252,21 @@ uint32_t begin_ms = millis();
 uint32_t processing_begin = millis();
 void loop() {
   // PCからの入力を待機
-  while(!Serial.available()){}
-  while( Serial.available()) Serial.read();
+  // while(!Serial.available()){}
+  // while( Serial.available()) Serial.read();
 
 
 
   // カメラから画像を取得
-  begin_ms = millis();
-  processing_begin = millis();
+  // begin_ms = millis();
+  // processing_begin = millis();
   Camera_fb = esp_camera_fb_get();
   if (!Camera_fb) {
     // SoftSerial.println("画像の取得に失敗しました");
     Serial.println("画像の取得に失敗しました");
     return;
   }
-  Serial.printf("Get Image\t\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Get Image\t\t\t:%d\n", millis()-begin_ms);
 
   int h_min = 180;
   int h_max = 300;
@@ -274,7 +274,7 @@ void loop() {
   int v_min = 50;
 
   // しきい値を超えたピクセルのバッファを作る
-  begin_ms = millis();
+  // begin_ms = millis();
   for(int y=0;y<QVGA_Y;y++){
     for(int x=0;x<QVGA_X;x++){
       // for(int i=0;i<Camera_fb->len/2;i++){
@@ -309,16 +309,16 @@ void loop() {
     }
   }
   // printBuf(buf);
-  Serial.printf("Binarization\t\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Binarization\t\t\t:%d\n", millis()-begin_ms);
 
   // buf2のクリーン
-  begin_ms = millis();
+  // begin_ms = millis();
   for(int i=0;i<BUF_X*BUF_Y;i++) buf2[i] = 0;
-  Serial.printf("Clean Buf2\t\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Clean Buf2\t\t\t:%d\n", millis()-begin_ms);
 
   // ノイズ除去 (膨張・収縮)
   // https://www.frontier.maxell.co.jp/blog/posts/22.html
-  begin_ms = millis();
+  // begin_ms = millis();
   int REPEAT = 3;
   uint8_t* read_buf = buf;
   uint8_t* write_buf = buf2;
@@ -326,6 +326,7 @@ void loop() {
 
   // 膨張 → 収縮
   // 膨張
+  // begin_ms = millis();
   for(int i=0;i<REPEAT;i++){
     for(int y=1;y<BUF_Y-1;y++){
       for(int x=1;x<BUF_X-1;x++){
@@ -346,8 +347,10 @@ void loop() {
     write_buf = buf_temp; // IDの記録画像
   }
   // printBuf(read_buf);
+  // Serial.printf("Denoise1\t\t\t:%d\n", millis()-begin_ms);
 
   // 収縮
+  // begin_ms = millis();
   for(int i=0;i<REPEAT;i++){
     for(int y=1;y<BUF_Y-1;y++){
       for(int x=1;x<BUF_X-1;x++){
@@ -369,10 +372,12 @@ void loop() {
     write_buf = buf_temp; // IDの記録画像
   }
   // printBuf(read_buf);
+  // Serial.printf("Denoise2\t\t\t:%d\n", millis()-begin_ms);
   
 
   // 収縮 → 膨張
   // 収縮
+  // begin_ms = millis();
   for(int i=0;i<REPEAT;i++){
     for(int y=1;y<BUF_Y-1;y++){
       for(int x=1;x<BUF_X-1;x++){
@@ -392,8 +397,10 @@ void loop() {
     write_buf = buf_temp; // IDの記録画像
   }
   // printBuf(read_buf);
+  // Serial.printf("Denoise3\t\t\t:%d\n", millis()-begin_ms);
 
   // 膨張
+  // begin_ms = millis();
   for(int i=0;i<REPEAT;i++){
     for(int y=1;y<BUF_Y-1;y++){
       for(int x=1;x<BUF_X-1;x++){
@@ -413,7 +420,8 @@ void loop() {
     write_buf = buf_temp; // IDの記録画像
   }
   // printBuf(read_buf);
-  Serial.printf("Denoise\t\t\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Denoise4\t\t\t:%d\n", millis()-begin_ms);
+  // printBufFull(write_buf);
 
 
 
@@ -426,12 +434,12 @@ void loop() {
   // write_buf = buf_temp; // IDの記録画像
 
   // バッファの初期化
-  begin_ms = millis();
+  // begin_ms = millis();
   for(int i=0;i<BUF_X*BUF_Y;i++) write_buf[i] = 0;
-  Serial.printf("Initialize write_buf\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Initialize write_buf\t\t:%d\n", millis()-begin_ms);
 
   // ラベリング
-  begin_ms = millis();
+  // begin_ms = millis();
   uint8_t next_id = 1;
   for(int i=0;i<256;i++){
     id_lut[i] = i;
@@ -470,11 +478,11 @@ void loop() {
     
     }
   }
-  Serial.printf("Labeling\t\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Labeling\t\t\t:%d\n", millis()-begin_ms);
   // printBuf(write_buf);
 
   // LUTをもとにラベルを更新
-  begin_ms = millis();
+  // begin_ms = millis();
   for(int y=BUF_SPACE;y<QVGA_Y+BUF_SPACE;y++){
     for(int x=BUF_SPACE;x<QVGA_X+BUF_SPACE;x++){
       int i = x+BUF_X*y;
@@ -484,7 +492,7 @@ void loop() {
     }
   }
   // printBuf(write_buf);
-  Serial.printf("Update Label\t\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Update Label\t\t\t:%d\n", millis()-begin_ms);
   
   // LUTの中身を表示
   // Serial.println();
@@ -498,7 +506,7 @@ void loop() {
   // ラスタスキャン → ぶち当たったピクセルのLUT上のIDをオブジェクトのIDに変換し、obj内の各座標変数と位置を比較する
   // LUT2, obj配列
   // ！物体認識メイン！
-  begin_ms = millis();
+  // begin_ms = millis();
   for(int i=0;i<LUT_SIZE;i++){
     obj_lut[i] = 0;
   } 
@@ -511,7 +519,7 @@ void loop() {
       next_obj_id++;
     }
   }
-  Serial.printf("Compression Lut\t\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Compression Lut\t\t\t:%d\n", millis()-begin_ms);
 
   // for(int i=0;i<LUT_SIZE;i++){
   //   Serial.printf("%d ", id_lut[i]);
@@ -525,7 +533,7 @@ void loop() {
   // Serial.printf("ObjectNum:%d\n\n", next_obj_id);
 
   // オブジェクト配列を初期化
-  begin_ms = millis();
+  // begin_ms = millis();
   for(int i=0;i<next_obj_id;i++){
     obj[i].obj_id = i;
     obj[i].x1 = 321;
@@ -547,10 +555,10 @@ void loop() {
       }
     }
   }
-  Serial.printf("Caliculate Coordinate\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Caliculate Coordinate\t\t:%d\n", millis()-begin_ms);
 
   // 面積を求める
-  begin_ms = millis();
+  // begin_ms = millis();
   int max_area = 0;
   int max_area_id = 0;
   for(int i=0;i<next_obj_id;i++){
@@ -560,8 +568,8 @@ void loop() {
       max_area_id = i;
     }
   }
-  Serial.printf("Caliculate Area\t\t\t:%d\n", millis()-begin_ms);
-  Serial.printf("Total\t\t\t\t:%d\n", millis()-processing_begin);
+  // Serial.printf("Caliculate Area\t\t\t:%d\n", millis()-begin_ms);
+  // Serial.printf("Total\t\t\t\t:%d\n", millis()-processing_begin);
 
   // オブジェクト配列全部吐く
   // for(int i=0;i<next_obj_id;i++){
