@@ -69,35 +69,35 @@ uint8_t* obj_lut  = NULL; // LUT(本当のIDとオブジェクトIDを対応)
 Obj* obj = NULL;
 
 void printBuf(uint8_t* buf_ptr){
-  Serial.println("----------------\n\n\n");
+  Serial.println("\n\n\n----------------");
 
-  for(int y=0;y<80;y++){
-    for(int x=1;x<=BUF_X;x++){
-      if(buf_ptr[x+y*3*BUF_X]==0){
+  for(int y=0;y<QVGA_Y/3;y++){
+    for(int x=BUF_SPACE;x<QVGA_X+BUF_SPACE;x++){
+      if(buf_ptr[x+(y*3+BUF_SPACE)*BUF_X]==0){
         Serial.print(" ");
-      }else if(buf_ptr[x+y*3*BUF_X]==255){
+      }else if(buf_ptr[x+(y*3+BUF_SPACE)*BUF_X]==255){
         Serial.print("/");
       }else{
         // Serial.printf("%c", (buf_ptr[x+y*3*BUF_X])%26+65);
-        Serial.print(buf_ptr[x+y*3*BUF_X]);
+        Serial.print(buf_ptr[x+(y*3+BUF_SPACE)*BUF_X]);
       }
     }
     Serial.println();
   }
 
-  Serial.print("\n\n\n----------------\n");
+  Serial.println("----------------\n\n\n");
 }
 
 void printBufFull(uint8_t* buf_ptr){
-  Serial.println("----------------\n\n\n");
+  Serial.println("\n\n\n----------------");
 
   // int aaa = 590;
   // while(true){
     
   // }
 
-  for(int y=0;y<240;y++){
-    for(int x=1;x<=BUF_X;x++){
+  for(int y=BUF_SPACE;y<QVGA_Y+BUF_SPACE;y++){
+    for(int x=BUF_SPACE;x<QVGA_X+BUF_SPACE;x++){
       if(buf_ptr[x+y*BUF_X]==0){
         Serial.print(" ");
       // }else{
@@ -106,16 +106,17 @@ void printBufFull(uint8_t* buf_ptr){
       }else if(buf_ptr[x+y*BUF_X]==255){
         Serial.print("/");
       }else{
-        // Serial.printf("%c", (id_lut[buf_ptr[x+y*BUF_X]]+1)%26+65);
+        Serial.printf("%c", (id_lut[buf_ptr[x+y*BUF_X]]+1)%26+65);
         // Serial.printf("%c", obj_lut[buf_ptr[x+y*BUF_X]]%26+65);
-        Serial.print(buf_ptr[x+y*3*BUF_X]);
+        // Serial.print(buf_ptr[x+y*BUF_X]);
+        // Serial.printf("%c", (buf_ptr[x+y*BUF_X]+25)%26+65);
       }
       // Serial.print(buf[x+y*3*BUF_X]);
     }
     Serial.println();
   }
 
-  Serial.print("\n\n\n----------------\n");
+  Serial.println("----------------\n\n\n");
 }
 
 void setup() {
@@ -269,32 +270,41 @@ void loop() {
 
   auto begin_ms = millis();
   // しきい値を超えたピクセルのバッファを作る
-  uint8_t threshold = 24;
-  for(int i=0;i<Camera_fb->len/2;i++){
-    uint16_t pixel = (Camera_fb->buf[i*2]<<8) + (Camera_fb->buf[i*2+1]);
-    uint8_t r = ((pixel & 0b1111100000000000) >> 11) << 3;
-    uint8_t g = ((pixel & 0b0000011111100000) >> 6)  << 3;
-    uint8_t b = ((pixel & 0b0000000000011111))       << 3;
+  for(int y=0;y<QVGA_Y;y++){
+    for(int x=0;x<QVGA_X;x++){
+      // for(int i=0;i<Camera_fb->len/2;i++){
+      // uint16_t pixel = (Camera_fb->buf[i*2]<<8) + (Camera_fb->buf[i*2+1]);
+      uint16_t pixel = (Camera_fb->buf[(x+y*QVGA_X)*2]<<8) + (Camera_fb->buf[(x+y*QVGA_X)*2+1]);
+      uint8_t r = ((pixel & 0b1111100000000000) >> 11) << 3;
+      uint8_t g = ((pixel & 0b0000011111100000) >> 6)  << 3;
+      uint8_t b = ((pixel & 0b0000000000011111))       << 3;
 
-    // RGB → HSV で色を識別
-    int h=0, s=0, v=0;
+      // RGB → HSV で色を識別
+      int h=0, s=0, v=0;
 
-    int Max = std::max({ r, g, b });
-    int Min = std::min({ r, g, b });
-    if (Min == Max) h = 0;
-    else if (Min == b) h = 60 * (g - r)  / (Max - Min) + 60;
-    else if (Min == r) h = 60 * (b - g)  / (Max - Min) + 180;
-    else if (Min == g) h = 60 * (r - b)  / (Max - Min) + 300;
-    v = Max;
-    s = Max - Min;
+      int Max = std::max({ r, g, b });
+      int Min = std::min({ r, g, b });
+      if (Min == Max) h = 0;
+      else if (Min == b) h = 60 * (g - r)  / (Max - Min) + 60;
+      else if (Min == r) h = 60 * (b - g)  / (Max - Min) + 180;
+      else if (Min == g) h = 60 * (r - b)  / (Max - Min) + 300;
+      v = Max;
+      s = Max - Min;
 
-    // 二値化
-    if(h_min < h && h < h_max  &&  s_min < s  &&  v_min < v){
-      buf[i+1+BUF_X + BUF_SPACE*2*i/QVGA_X] = 1;
-    }else{
-      buf[i+1+BUF_X + BUF_SPACE*2*i/QVGA_X] = 0;
+      // 二値化
+      if(h_min < h && h < h_max  &&  s_min < s  &&  v_min < v){
+        // buf[i+BUF_SPACE + BUF_SPACE*2*i/QVGA_X] = 1;
+        buf[x+BUF_SPACE + (y+BUF_SPACE)*BUF_X] = 1;
+      }else{
+        // buf[i+BUF_SPACE + BUF_SPACE*2*i/QVGA_X] = 0;
+        buf[x+BUF_SPACE + (y+BUF_SPACE)*BUF_X] = 0;
+      }
     }
   }
+  // printBuf(buf);
+
+  // buf2のクリーン
+  for(int i=0;i<BUF_X*BUF_Y;i++) buf2[i] = 0;
 
   // ノイズ除去 (膨張・収縮)
   // https://www.frontier.maxell.co.jp/blog/posts/22.html
@@ -306,8 +316,8 @@ void loop() {
   // 膨張 → 収縮
   // 膨張
   for(int i=0;i<REPEAT;i++){
-    for(int y=1;y<=QVGA_Y;y++){
-      for(int x=1;x<=QVGA_X;x++){
+    for(int y=1;y<BUF_Y-1;y++){
+      for(int x=1;x<BUF_X-1;x++){
         int i=x+BUF_X*y;
         // ピクセルの周囲8方向に1があるか調べる
         if(read_buf[i-BUF_X-1]||read_buf[i-BUF_X]||read_buf[i-BUF_X+1] || read_buf[i-1]||read_buf[i]||read_buf[i+1] || read_buf[i+BUF_X-1]||read_buf[i+BUF_X]||read_buf[i+BUF_X+1]) // 8近傍
@@ -324,15 +334,17 @@ void loop() {
     read_buf = write_buf; // 二値化画像
     write_buf = buf_temp; // IDの記録画像
   }
+  // printBuf(read_buf);
 
   // 収縮
   for(int i=0;i<REPEAT;i++){
-    for(int y=1;y<=QVGA_Y;y++){
-      for(int x=1;x<=QVGA_X;x++){
+    for(int y=1;y<BUF_Y-1;y++){
+      for(int x=1;x<BUF_X-1;x++){
         int i=x+BUF_X*y;
         // ピクセルの周囲8方向に0があるか調べる
-        // if(!(read_buf[i-BUF_X-1]&&read_buf[i-BUF_X]&&read_buf[i-BUF_X+1] && read_buf[i-1]&&read_buf[i]&&read_buf[i+1] && read_buf[i+BUF_X-1]&&read_buf[i+BUF_X]&&read_buf[i+BUF_X+1]))  // 8近傍
-        if(!(read_buf[i-BUF_X] && read_buf[i-1]&&read_buf[i+1] && read_buf[i+BUF_X])) // 4近傍
+        // if(read_buf[i-BUF_X-1]==0||read_buf[i-BUF_X]==0||read_buf[i-BUF_X+1]==0 || read_buf[i-1]==0||read_buf[i]==0||read_buf[i+1]==0 || read_buf[i+BUF_X-1]==0||read_buf[i+BUF_X]==0||read_buf[i+BUF_X+1]==0)  // 8近傍
+        if(!(read_buf[i-BUF_X-1]&&read_buf[i-BUF_X]&&read_buf[i-BUF_X+1] && read_buf[i-1]&&read_buf[i]&&read_buf[i+1] && read_buf[i+BUF_X-1]&&read_buf[i+BUF_X]&&read_buf[i+BUF_X+1]))  // 8近傍
+        // if(read_buf[i-BUF_X]==1 && read_buf[i-1]==1&&read_buf[i+1]==1 && read_buf[i+BUF_X]==1) // 4近傍
         {
           write_buf[i] = 0;
         }else{
@@ -345,15 +357,14 @@ void loop() {
     read_buf = write_buf; // 二値化画像
     write_buf = buf_temp; // IDの記録画像
   }
-
-  // printBufFull(read_buf);
+  // printBuf(read_buf);
   
 
   // 収縮 → 膨張
   // 収縮
-  for(int i=0;i<REPEAT+1;i++){
-    for(int y=1;y<=QVGA_Y;y++){
-      for(int x=1;x<=QVGA_X;x++){
+  for(int i=0;i<REPEAT;i++){
+    for(int y=1;y<BUF_Y-1;y++){
+      for(int x=1;x<BUF_X-1;x++){
         int i=x+BUF_X*y;
         // ピクセルの周囲8方向に0があるか調べる
         if(!(read_buf[i-BUF_X-1]&&read_buf[i-BUF_X]&&read_buf[i-BUF_X+1] && read_buf[i-1]&&read_buf[i]&&read_buf[i+1] && read_buf[i+BUF_X-1]&&read_buf[i+BUF_X]&&read_buf[i+BUF_X+1]))  // 8近傍
@@ -369,26 +380,28 @@ void loop() {
     read_buf = write_buf; // 二値化画像
     write_buf = buf_temp; // IDの記録画像
   }
+  // printBuf(read_buf);
 
   // 膨張
-  for(int i=0;i<REPEAT+1;i++){
-    for(int y=1;y<=QVGA_Y;y++){
-      for(int x=1;x<=QVGA_X;x++){
+  for(int i=0;i<REPEAT;i++){
+    for(int y=1;y<BUF_Y-1;y++){
+      for(int x=1;x<BUF_X-1;x++){
         int i=x+BUF_X*y;
         // ピクセルの周囲8方向に1があるか調べる
         if(read_buf[i-BUF_X-1]||read_buf[i-BUF_X]||read_buf[i-BUF_X+1] || read_buf[i-1]||read_buf[i]||read_buf[i+1] || read_buf[i+BUF_X-1]||read_buf[i+BUF_X]||read_buf[i+BUF_X+1]) // 8近傍
         // if(read_buf[i-BUF_X] || read_buf[i-1]||read_buf[i+1] || read_buf[i+BUF_X]) // 4近傍
         {
-          write_buf[i] = 1;
+          write_buf[i] = 255;
         }else{
           write_buf[i] = 0;
         }
       }
     }
-   uint8_t* buf_temp = read_buf;
+    uint8_t* buf_temp = read_buf;
     read_buf = write_buf; // 二値化画像
     write_buf = buf_temp; // IDの記録画像
   }
+  printBuf(read_buf);
 
 
 
@@ -401,7 +414,7 @@ void loop() {
   // write_buf = buf_temp; // IDの記録画像
 
   // バッファの初期化
-  for(int i=0;i<BUF_X*BUF_Y;i++) write_buf[i] = 0;
+  for(int i=0;i<BUF_X*BUF_Y;i++) write_buf[i] = 0 ;
 
   // ラベリング
   uint8_t next_id = 1;
@@ -409,9 +422,9 @@ void loop() {
     id_lut[i] = i;
   }
 
-  for(int y=1;y<=QVGA_Y;y++){
+  for(int y=BUF_SPACE;y<QVGA_Y+BUF_SPACE;y++){
     if(next_id>120) break;
-    for(int x=1;x<=QVGA_X;x++){
+    for(int x=BUF_SPACE;x<QVGA_X+BUF_SPACE;x++){
       int i = x+BUF_X*y;
       if(read_buf[i]){
         // 上3・左1から最小のIDを探す
@@ -442,19 +455,18 @@ void loop() {
     
     }
   }
-  printBufFull(write_buf);
+  printBuf(write_buf);
 
-  /*  
   // LUTをもとにラベルを更新
-  for(int y=1;y<=QVGA_Y;y++){
-    for(int x=1;x<=QVGA_X;x++){
+  for(int y=BUF_SPACE;y<QVGA_Y+BUF_SPACE;y++){
+    for(int x=BUF_SPACE;x<QVGA_X+BUF_SPACE;x++){
       int i = x+BUF_X*y;
       while(id_lut[write_buf[i]] != write_buf[i]){
         write_buf[i] = id_lut[write_buf[i]];
       }
     }
   }
-  // printBuf(read_buf);
+  // printBufFull(read_buf);
   
   // LUTの中身を表示
   // Serial.println();
@@ -465,6 +477,7 @@ void loop() {
 
 
 
+  /*  
   // ラスタスキャン → ぶち当たったピクセルのLUT上のIDをオブジェクトのIDに変換し、obj内の各座標変数と位置を比較する
   // LUT2, obj配列
   // ！物体認識メイン！
