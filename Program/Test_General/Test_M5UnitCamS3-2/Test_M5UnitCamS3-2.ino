@@ -83,6 +83,10 @@ void printBuf(uint8_t* buf_ptr){
       }
     }
     Serial.println();
+    if(y==39){
+      for(int i=0;i<QVGA_X;i++) Serial.print("-");
+      Serial.println();
+    }
   }
 
   Serial.println("----------------\n\n\n");
@@ -268,10 +272,23 @@ void loop() {
   }
   // Serial.printf("Get Image\t\t\t:%d\n", millis()-begin_ms);
 
-  int h_min = 180;
-  int h_max = 300;
-  int s_min = 25;
-  int v_min = 50;
+  // 青
+  // HSV : 214 73 86
+  int h_min_b = 184;
+  int h_max_b = 220;
+  int s_min_b = 64;
+  int v_min_b = 128;
+
+  // 黄色
+  // HSV : 49 62 76
+  int h_min_y = 40;
+  int h_max_y = 75;
+  int s_min_y = 50;
+  int v_min_y = 180;
+  h_min_y = 0;
+  h_max_y = 0;
+  s_min_y = 100;
+  v_min_y  = 255;
 
   // しきい値を超えたピクセルのバッファを作る
   // begin_ms = millis();
@@ -285,7 +302,10 @@ void loop() {
       uint8_t b = ((pixel & 0b0000000000011111))       << 3;
 
       // RGB → HSV で色を識別
-      // アルゴリズム : https://qiita.com/jajagacchi/items/e64ff4b347eceafce5d3
+      // H : 0 - 360
+      // S : 0 - 255
+      // V : 0 - 255
+      // アルゴリズム : https://qiita.com/jajagaccxhi/items/e64ff4b347eceafce5d3
       // しきい値     : https://python.joho.info/opencv/opencv-color-detection/
       int h=0, s=0, v=0;
 
@@ -299,7 +319,7 @@ void loop() {
       s = Max - Min;
 
       // 二値化
-      if(h_min < h && h < h_max  &&  s_min < s  &&  v_min < v){
+      if( (h_min_b < h && h < h_max_b  &&  s_min_b < s  &&  v_min_b < v)  ||  (h_min_y < h && h < h_max_y  &&  s_min_y < s  &&  v_min_y < v) ){
         // buf[i+BUF_SPACE + BUF_SPACE*2*i/QVGA_X] = 1;
         buf[x+BUF_SPACE + (y+BUF_SPACE)*BUF_X] = 1;
       }else{
@@ -308,6 +328,7 @@ void loop() {
       }
     }
   }
+
   // printBuf(buf);
   // Serial.printf("Binarization\t\t\t:%d\n", millis()-begin_ms);
 
@@ -322,6 +343,7 @@ void loop() {
   int REPEAT = 3;
   uint8_t* read_buf = buf;
   uint8_t* write_buf = buf2;
+
 
 
   // 膨張 → 収縮
@@ -422,6 +444,8 @@ void loop() {
   // printBuf(read_buf);
   // Serial.printf("Denoise4\t\t\t:%d\n", millis()-begin_ms);
   // printBufFull(write_buf);
+
+  // printBuf(buf);
 
 
 
@@ -577,7 +601,8 @@ void loop() {
   // }
 
   // 最大の面積のものを出力
-  Serial.printf("id:%02d    x1:%03d  y1:%03d   x2:%03d  y2:%03d   area:%d\n\n\n", obj[max_area_id].obj_id, obj[max_area_id].x1, obj[max_area_id].y1, obj[max_area_id].x2, obj[max_area_id].y2, (obj[max_area_id].x2 - obj[max_area_id].x1) * (obj[max_area_id].y2 - obj[max_area_id].y1));
+  Serial.printf("x1:%03d  y1:%03d   x2:%03d  y2:%03d   id:%02d    area:%d    processing:%d(ms)\n", obj[max_area_id].x1, obj[max_area_id].y1, obj[max_area_id].x2, obj[max_area_id].y2, obj[max_area_id].obj_id, (obj[max_area_id].x2 - obj[max_area_id].x1) * (obj[max_area_id].y2 - obj[max_area_id].y1), millis() - begin_ms);
 
   esp_camera_fb_return(Camera_fb);
+  begin_ms = millis();
 }
