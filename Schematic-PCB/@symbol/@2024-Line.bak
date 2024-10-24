@@ -18,7 +18,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "MEGA_PRO_EMBED_CH340G___ATMEGA2560"
+		(property "Value" "ATmega2560 Pro Board"
 			(at -12.7 -66.04 0)
 			(effects
 				(font
@@ -27,7 +27,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "MEGA_PRO_EMBED_CH340G___ATMEGA2560:MODULE_MEGA_PRO_EMBED_CH340G___ATMEGA2560"
+		(property "Footprint" "@2024TOINIOT2-Line:ATmega2560Pro Board"
 			(at 0 0 0)
 			(effects
 				(font
@@ -172,6 +172,15 @@
 					(size 1.27 1.27)
 				)
 				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "ATmega2560 Pro Board"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 				(hide yes)
 			)
 		)
@@ -4722,7 +4731,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINIOT2-Line:LM339"
+		(property "Footprint" ""
 			(at -7.62 -1.27 0)
 			(effects
 				(font

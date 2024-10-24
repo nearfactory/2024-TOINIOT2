@@ -4731,7 +4731,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINIOT2-Line:LM339"
+		(property "Footprint" ""
 			(at -7.62 -1.27 0)
 			(effects
 				(font
