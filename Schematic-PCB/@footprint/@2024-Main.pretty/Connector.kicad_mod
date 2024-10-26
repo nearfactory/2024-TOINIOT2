@@ -193,4 +193,15 @@
 		(layers "*.Mask" "F.Cu")
 		(uuid "12e88692-1fa2-4983-b743-6b467d3ae532")
 	)
+	(model "F:/main/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/NeoPixel-Board.step"
+		(offset
+			(xyz 0 -42.25 -1.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
 )

@@ -175,7 +175,7 @@
 			(xyz -90 0 90)
 		)
 	)
-	(model "${MYMODEL}/@2024-Main.pretty/BNO055.step"
+	(model "F:/main/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/BNO055.step"
 		(offset
 			(xyz 0 0 2.5)
 		)
