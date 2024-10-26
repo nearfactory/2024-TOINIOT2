@@ -2879,7 +2879,7 @@
 		(uuid "6417df35-1a45-4a14-a43e-1b9703305588")
 	)
 	(global_label "NeoPixel_PWM"
-		(shape input)
+		(shape output)
 		(at 91.44 43.18 0)
 		(fields_autoplaced yes)
 		(effects
