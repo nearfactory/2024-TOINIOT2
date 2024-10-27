@@ -64,6 +64,10 @@ struct Obj{
 
 uint8_t* buf  = NULL;
 uint8_t* buf2 = NULL;
+
+uint8_t* read_buf = buf;
+uint8_t* write_buf = buf2;
+
 uint8_t* id_lut  = NULL;  // LUT(仮のIDと本当のIDを対応)
 uint8_t* obj_lut  = NULL; // LUT(本当のIDとオブジェクトIDを対応)
 Obj* obj = NULL;
@@ -259,10 +263,12 @@ void loop() {
   while(!Serial.available()){}
   while( Serial.available()) Serial.read();
 
+  // printBuf(write_buf);
+
 
 
   // カメラから画像を取得
-  // begin_ms = millis();
+  begin_ms = millis();
   processing_begin = millis();
   Camera_fb = esp_camera_fb_get();
   if (!Camera_fb) {
@@ -341,8 +347,8 @@ void loop() {
   // https://www.frontier.maxell.co.jp/blog/posts/22.html
   // begin_ms = millis();
   int REPEAT = 3;
-  uint8_t* read_buf = buf;
-  uint8_t* write_buf = buf2;
+  read_buf = buf;
+  write_buf = buf2;
 
 
 
@@ -373,7 +379,7 @@ void loop() {
     write_buf = buf_temp; // IDの記録画像
   }
   // printBuf(read_buf);
-  Serial.printf("Denoise1\t\t\t:%d\n", millis()-begin_ms);
+  Serial.printf("\nDenoise1\t\t\t:%d\n", millis()-begin_ms);
 
   // 収縮
   begin_ms = millis();
@@ -381,7 +387,6 @@ void loop() {
     for(int y=BUF_SPACE;y<QVGA_Y+BUF_SPACE;y++){
       for(int x=BUF_SPACE;x<QVGA_X+BUF_SPACE;x++){
         int i=x+BUF_X*y;
-        /*
         // ピクセルの周囲8方向に0があるか調べる
         if(!(read_buf[i-BUF_X-1]&&read_buf[i-BUF_X]&&read_buf[i-BUF_X+1] && read_buf[i-1]&&read_buf[i]&&read_buf[i+1] && read_buf[i+BUF_X-1]&&read_buf[i+BUF_X]&&read_buf[i+BUF_X+1]))  // 8近傍
         // if(read_buf[i-BUF_X-1]==0||read_buf[i-BUF_X]==0||read_buf[i-BUF_X+1]==0 || read_buf[i-1]==0||read_buf[i]==0||read_buf[i+1]==0 || read_buf[i+BUF_X-1]==0||read_buf[i+BUF_X]==0||read_buf[i+BUF_X+1]==0)  // 8近傍
@@ -392,8 +397,7 @@ void loop() {
         }else{
           write_buf[i] = 1;
         }
-        */
-        write_buf[i] = read_buf[i-BUF_X-1] & read_buf[i-BUF_X] & read_buf[i-BUF_X+1]   &   read_buf[i-1] & read_buf[i] & read_buf[i+1]   &   read_buf[i+BUF_X-1] & read_buf[i+BUF_X] & read_buf[i+BUF_X+1];
+        // write_buf[i] = read_buf[i-BUF_X-1] & read_buf[i-BUF_X] & read_buf[i-BUF_X+1]   &   read_buf[i-1] & read_buf[i] & read_buf[i+1]   &   read_buf[i+BUF_X-1] & read_buf[i+BUF_X] & read_buf[i+BUF_X+1];
       }
     }
     // バッファの入れ替え
@@ -421,7 +425,9 @@ void loop() {
         }else{
           write_buf[i] = 1;
         }
+        // write_buf[i] = read_buf[i-BUF_X-1] & read_buf[i-BUF_X] & read_buf[i-BUF_X+1]   &   read_buf[i-1] & read_buf[i] & read_buf[i+1]   &   read_buf[i+BUF_X-1] & read_buf[i+BUF_X] & read_buf[i+BUF_X+1];
       }
+
     }
     uint8_t* buf_temp = read_buf;
     read_buf = write_buf; // 二値化画像
@@ -455,7 +461,7 @@ void loop() {
     write_buf = buf_temp; // IDの記録画像
   }
   // printBuf(read_buf);
-  Serial.printf("Denoise4\t\t\t:%d\n", millis()-begin_ms);
+  Serial.printf("Denoise4\t\t\t:%d\n\n", millis()-begin_ms);
   // printBufFull(write_buf);
 
   // printBuf(buf);
@@ -617,5 +623,4 @@ void loop() {
   // Serial.printf("x1:%03d  y1:%03d   x2:%03d  y2:%03d   id:%02d    area:%d    processing:%d(ms)\n", obj[max_area_id].x1, obj[max_area_id].y1, obj[max_area_id].x2, obj[max_area_id].y2, obj[max_area_id].obj_id, (obj[max_area_id].x2 - obj[max_area_id].x1) * (obj[max_area_id].y2 - obj[max_area_id].y1), millis() - begin_ms);
 
   esp_camera_fb_return(Camera_fb);
-  begin_ms = millis();
 }
