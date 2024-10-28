@@ -147,7 +147,7 @@ inline void drawAngleLine(uint8_t center_x, uint8_t center_y, float angle, uint8
 
 inline void clearVariables(){
   debug_variables.clear();
-  debug_variables_addr.clear();
+  // debug_variables_addr.clear();
 }
 
 template <typename T>
@@ -261,7 +261,7 @@ inline void debugDisplay(uint8_t mode){
         if(line[i]) display.drawPixel(DISPLAY_W/2+cos(angle)*outside_r, DISPLAY_H/2+sin(angle)*outside_r, WHITE);
       }
 
-      printd(8, 60, "on:"+to_string(line_on), TEXT_ALIGN_LEFT, TEXT_ALIGN::MIDDLE);
+      printd(8, 60, "on:"+to_string(line_on), TEXT_ALIGN::LEFT, TEXT_ALIGN::MIDDLE);
       printd(8, 68, "dir:"+to_string(line_dir), TEXT_ALIGN::LEFT, TEXT_ALIGN::MIDDLE);
       break;
     }
