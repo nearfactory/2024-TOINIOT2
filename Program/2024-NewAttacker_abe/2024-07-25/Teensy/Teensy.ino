@@ -55,7 +55,7 @@ void setup() {
 
   // スタート画面を表示
   display.clearDisplay();
-  printd(120,56,"start",TEXT_ALIGN_X::CENTER, TEXT_ALIGN_Y::BOTTOM);
+  printd(120,56,"start",TEXT_ALIGN::CENTER, TEXT_ALIGN::BOTTOM);
   display.display();
 
   // 4番ボタンが押されるまで待機
@@ -111,14 +111,14 @@ void loop() {
   }
 
   // ボールが存在しない
-  if(!ball_exist) motorRaw(0,0,0,0);
+  // if(!ball_exist) motorRaw(0,0,0,0);
   
   // 姿勢制御
   setDir(dir,default_dir,60,40);
   
   // モーターに適用
   motorP();
-  motorRaw();
+  // motorRaw();
 
 
   // UI (display)

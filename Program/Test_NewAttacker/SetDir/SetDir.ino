@@ -73,7 +73,7 @@ void loop(){
 
   Serial.printf("dir:%d power:%d\n", dir, power);
   
-  motorRaw();
+  // motorRaw();
 
   // display
   display.clearDisplay();

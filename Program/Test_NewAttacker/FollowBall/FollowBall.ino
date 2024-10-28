@@ -149,7 +149,7 @@ void loop() {
   
   // モーターに適用
   motorP();
-  motorRaw();
+  // motorRaw();
 
   // UI (display)
   if(use_display){
