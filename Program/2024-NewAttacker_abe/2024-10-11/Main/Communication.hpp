@@ -17,6 +17,8 @@ inline void communicationSetup(){
   
 
   // I2C
+  Wire2.setSDA(25);
+  Wire2.setSCL(24);
   Wire2.begin();
 
 
