@@ -14,30 +14,33 @@
 
 using namespace std;
 
-namespace{
-  constexpr uint8_t BUTTON_NUM = 4;
-  const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 36,37,31,30 };
+#define uint8_t BUTTON_NUM 4
+const   uint8_t BUTTON_PIN[BUTTON_NUM] = { 37,31,30,32 };
+        bool    button[BUTTON_NUM] = {false};
+        bool    previous_button[BUTTON_NUM] = {false};
 
-  constexpr uint8_t BZ_PIN = 33;
+#define TOGGLE_PIN (36)
 
-  constexpr uint8_t DISPLAY_W = 128;
-  constexpr uint8_t DISPLAY_H = 64;
-  constexpr uint8_t DISPLAY_RESET = -1;
-  constexpr uint8_t DISPLAY_ADDR = 0x3c;
-  constexpr uint8_t DISPLAY_MODE_NUM = 9;
-  const std::string DISPLAY_MODE_NAME[DISPLAY_MODE_NUM] = {
-    "ball",
-    "ble",
-    "camera",
-    "dir",
-    "dribbler",
-    "kicker",
-    "line",
-    "motor",
-    "variables"
-  };
+#define BZ_PIN (33)
+float               bz = -1.0f;
 
-}
+#define DISPLAY_W         (128)
+#define DISPLAY_H         (64)
+#define DISPLAY_RESET     (-1)
+#define DISPLAY_ADDR      (0x3c)
+#define DISPLAY_MODE_NUM  (9)
+const std::string DISPLAY_MODE_NAME[DISPLAY_MODE_NUM] = {
+  "ball",
+  "ble",
+  "camera",
+  "dir",
+  "dribbler",
+  "kicker",
+  "line",
+  "motor",
+  "variables"
+};
+
 enum DISPLAY_MODE : uint8_t{
   BALL = 0,
   BLE,
@@ -60,12 +63,9 @@ enum class TEXT_ALIGN : uint8_t{
 };
 
 
-bool                button[BUTTON_NUM] = {false};
-bool                previous_button[BUTTON_NUM] = {false};
-float               bz = -1.0f;
 Adafruit_SSD1306    display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET);
 bool                use_display = false;
-uint8_t             DISPLAY_MODE = 0;
+uint8_t             display_mode = 0;
 vector<std::string> debug_variables(0);
 
 
@@ -74,11 +74,12 @@ vector<std::string> debug_variables(0);
 inline void UISetup(){
   // pinMode変更
   for(auto p:BUTTON_PIN) pinMode(p, INPUT);
+  pinMode(TOGGLE, INPUT);
   pinMode(BZ_PIN, OUTPUT);
 
   // ディスプレイ初期化
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
-    Serial.println("Display error!");
+    Serial.println("Display err!");
     while(true);
   }
   display.setTextColor(WHITE);
@@ -89,7 +90,7 @@ inline void UISetup(){
 }
 
 // ボタンのH/Lを取得してグローバル変数を更新
-inline void buttonUpdate(){
+inline void buttonRead(){
   for(int i=0;i<BUTTON_NUM;i++){
     previous_button[i] = button[i];
     button[i] = digitalRead(BUTTON_PIN[i]);
@@ -99,13 +100,13 @@ inline void buttonUpdate(){
 
 // ボタンのH/Lの切り替わりをT/Fで返す
 inline bool buttonUp(uint8_t num){
-  num = num<1 ? 1 : num;
-  num = num>5 ? 5 : num;
-  return (!button[num-1]) && previous_button[num-1];
+  num = num<0 ? 0 : num;
+  num = num>4 ? 4 : num;
+  return (!button[num]) && previous_button[num];
 }
 
 // グローバル変数に格納されている周波数でブザーに出力
-inline void bzUpdate(){
+inline void bzWrite(){
   if(bz > -1.0f){
     tone(BZ_PIN, bz);
   }
@@ -140,14 +141,14 @@ inline void printd(uint8_t x, uint8_t y, std::string str, TEXT_ALIGN align_x = T
   return;
 }
 
-inline void drawAngleLine(uint8_t center_x, uint8_t center_y, float angle, uint8_t r){
-  display.drawLine(center_x, center_y, center_x+cos(angle*3.14/180)*r, center_y+sin(angle*3.14/180)*r, WHITE);
+inline void drawAngleLine(uint8_t center_x, uint8_t center_y, float angle, uint8_t radius){
+  display.drawLine(center_x, center_y, center_x+cos(radians(angle))*radius, center_y+sin(radians(angle))*radius, WHITE);
   return;
 }
 
 inline void clearVariables(){
   debug_variables.clear();
-  debug_variables_addr.clear();
+  // debug_variables_addr.clear();
 }
 
 template <typename T>
@@ -261,7 +262,7 @@ inline void debugDisplay(uint8_t mode){
         if(line[i]) display.drawPixel(DISPLAY_W/2+cos(angle)*outside_r, DISPLAY_H/2+sin(angle)*outside_r, WHITE);
       }
 
-      printd(8, 60, "on:"+to_string(line_on), TEXT_ALIGN_LEFT, TEXT_ALIGN::MIDDLE);
+      printd(8, 60, "on:"+to_string(line_on), TEXT_ALIGN::LEFT, TEXT_ALIGN::MIDDLE);
       printd(8, 68, "dir:"+to_string(line_dir), TEXT_ALIGN::LEFT, TEXT_ALIGN::MIDDLE);
       break;
     }

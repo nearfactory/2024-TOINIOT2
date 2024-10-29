@@ -1,3 +1,5 @@
+/*
+*/
 #include<stdlib.h>
 
 void setup() {
@@ -33,3 +35,35 @@ void loop() {
   // Serial.println(analogRead(A1));
   delay(50);
 }
+
+// 13 
+
+/*
+void setup(){
+  Serial.begin(9600);
+  pinMode(3,OUTPUT);
+  for(int i=7;i<=52;i++) pinMode(i, INPUT_PULLUP);
+}
+
+void loop(){
+  analogWrite(3,128);
+  for(int i=7;i<=52;i++){
+    if(!digitalRead(i)){
+      Serial.print(i);
+      Serial.print(" ");
+    }
+  }
+  Serial.println();
+}
+*/
+
+/*
+void setup(){
+  Serial.begin(9600);
+  pinMode(53, INPUT_PULLUP);
+}
+
+void loop(){
+  Serial.println(digitalRead(53));
+}
+*/
