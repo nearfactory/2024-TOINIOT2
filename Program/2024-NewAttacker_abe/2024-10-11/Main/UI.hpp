@@ -14,21 +14,21 @@
 
 using namespace std;
 
-#define uint8_t BUTTON_NUM 4
-const   uint8_t BUTTON_PIN[BUTTON_NUM] = { 37,31,30,32 };
-        bool    button[BUTTON_NUM] = {false};
-        bool    previous_button[BUTTON_NUM] = {false};
+constexpr uint8_t BUTTON_NUM = 4;
+const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 37,31,30,32 };
+          bool    button[BUTTON_NUM] = {false};
+          bool    previous_button[BUTTON_NUM] = {false};
 
-#define TOGGLE_PIN (36)
+constexpr uint8_t TOGGLE_PIN = 36;
 
-#define BZ_PIN (33)
+constexpr uint8_t BZ_PIN = 33;
 float               bz = -1.0f;
 
-#define DISPLAY_W         (128)
-#define DISPLAY_H         (64)
-#define DISPLAY_RESET     (-1)
-#define DISPLAY_ADDR      (0x3c)
-#define DISPLAY_MODE_NUM  (9)
+constexpr uint8_t DISPLAY_W = 128;
+constexpr uint8_t DISPLAY_H = 64;
+constexpr int8_t  DISPLAY_RESET = -1;
+constexpr uint8_t DISPLAY_ADDR = 0x3c;
+constexpr uint8_t DISPLAY_MODE_NUM = 9;
 const std::string DISPLAY_MODE_NAME[DISPLAY_MODE_NUM] = {
   "ball",
   "ble",
@@ -74,7 +74,7 @@ vector<std::string> debug_variables(0);
 inline void UISetup(){
   // pinMode変更
   for(auto p:BUTTON_PIN) pinMode(p, INPUT);
-  pinMode(TOGGLE, INPUT);
+  pinMode(TOGGLE_PIN, INPUT);
   pinMode(BZ_PIN, OUTPUT);
 
   // ディスプレイ初期化
@@ -101,7 +101,7 @@ inline void buttonRead(){
 // ボタンのH/Lの切り替わりをT/Fで返す
 inline bool buttonUp(uint8_t num){
   num = num<0 ? 0 : num;
-  num = num>4 ? 4 : num;
+  num = num>3 ? 3 : num;
   return (!button[num]) && previous_button[num];
 }
 
