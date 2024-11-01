@@ -82,12 +82,12 @@
 		(start -3.75 -4)
 		(end 3.75 4.005)
 		(stroke
-			(width 0.1)
+			(width 0.05)
 			(type default)
 		)
 		(fill none)
-		(layer "Margin")
-		(uuid "2859406d-9c4f-4108-a72d-98aedbe7299d")
+		(layer "F.CrtYd")
+		(uuid "5d0e837e-d8eb-43f4-8f37-cda7769cabaa")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 5.075 0)
