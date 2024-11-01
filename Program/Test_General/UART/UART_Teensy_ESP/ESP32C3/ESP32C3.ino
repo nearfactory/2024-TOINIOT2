@@ -38,9 +38,9 @@ Teensy4.1(COM側) <-> FT232RL(UART2側)
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial1.setPins(D7,D6);
-  Serial1.begin(115200);
+  Serial1.begin(9600);
 }
 
 void loop()

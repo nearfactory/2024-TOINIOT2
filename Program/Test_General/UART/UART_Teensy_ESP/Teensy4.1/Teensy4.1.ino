@@ -1,18 +1,18 @@
 void setup(){
   // uart
-  Serial2.begin(9600);
+  Serial7.begin(115200);
 
   // test
   // pinMode(0,INPUT);
   // pinMode(1,OUTPUT);
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop(){
   // uart
-  while(Serial2.available()){
-    char c = Serial2.read();
+  while(Serial7.available()){
+    char c = Serial7.read();
     //Serial.println(Serial1.read());
     Serial.print(c);
   }
@@ -21,7 +21,7 @@ void loop(){
     Serial1.print(Serial.read());
   }
   */
-  Serial2.println("Teensy4.1");
+  Serial7.println("Teensy4.1");
 
   // test
   // static bool val=false;
@@ -33,5 +33,5 @@ void loop(){
   // Serial.println(digitalRead(0));
   // digitalWrite(1,val);
   
-  delay(50);
+  delay(100);
 }
