@@ -1,12 +1,13 @@
 void setup(){
   // uart
-  Serial7.begin(115200);
+  Serial7.begin(9600);
 
   // test
   // pinMode(0,INPUT);
   // pinMode(1,OUTPUT);
 
   Serial.begin(115200);
+  Serial.println("a");
 }
 
 void loop(){
