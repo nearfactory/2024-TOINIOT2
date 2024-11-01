@@ -20,7 +20,7 @@ void setup() {
   // 通信/ボールセンサ/方向センサ/キッカー/モーター/UIのセットアップ
   communicationSetup();
   ballSetup();
-  dirSetup();
+  // dirSetup();
   kickerSetup();
   lineSetup();
   motorSetup();
@@ -65,10 +65,10 @@ void setup() {
   display.display();
 
   Serial.println("waiting...");
-  while(!digitalRead(TOGGLE_PIN));
-  while(digitalRead(TOGGLE_PIN));
+  while(!digitalRead(TOGGLE_PIN)){};
+  while(digitalRead(TOGGLE_PIN)){};
 
-  display.clearDisplay();
+  Serial.println("beging");
 
   // delay(500);
   // 攻め方向を取得・更新
@@ -77,20 +77,19 @@ void setup() {
   bno.getEvent(&d, Adafruit_BNO055::VECTOR_EULER);
   default_dir = d.orientation.x;
   */
-  display.clearDisplay();
-  display.setCursor(0,0);
-  display.print("aaa");
-  display.display();
   
   // delay(5000);
 }
 
 void loop() {
   if(!digitalRead(TOGGLE_PIN)){
+    display.clearDisplay();
+    display.display();
+
     Serial.println("move");    
       // データを更新
       ballUpdate(BALL::DIR);
-      dirUpdate();
+      // dirUpdate();
       lineUpdate();
       subUpdate();
       
@@ -120,8 +119,8 @@ void loop() {
    
     static auto begin_ms = millis();
     buttonRead();
-    for(auto b:button) Serial.print(b);
-    Serial.println();
+    // for(auto b:button) Serial.print(b);
+    // Serial.println();
     if(buttonUp(3)) display_mode = (display_mode+1)%DISPLAY_MODE_NUM;
     // display_mode = (display_mode+1)%DISPLAY_MODE_NUM;
 
@@ -132,6 +131,7 @@ void loop() {
     begin_ms = millis();
     clearVariables();
     display.display();
+
     delay(100);
   }
 }
