@@ -230,7 +230,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "@2024TOINIOT2-Main:MODULE_DEV-16771"
 			(at 6.35 -50.8 0)
 			(effects
 				(font
