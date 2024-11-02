@@ -1386,7 +1386,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 124.46) (xy 63.5 124.46)
+			(xy 57.15 123.19) (xy 60.96 123.19)
 		)
 		(stroke
 			(width 0)
@@ -1396,7 +1396,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 127) (xy 63.5 127)
+			(xy 57.15 125.73) (xy 60.96 125.73)
 		)
 		(stroke
 			(width 0)
@@ -1666,7 +1666,7 @@
 	)
 	(wire
 		(pts
-			(xy 36.83 121.92) (xy 36.83 124.46)
+			(xy 35.56 119.38) (xy 35.56 121.92)
 		)
 		(stroke
 			(width 0)
@@ -1676,7 +1676,7 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 124.46) (xy 36.83 124.46)
+			(xy 27.94 121.92) (xy 35.56 121.92)
 		)
 		(stroke
 			(width 0)
@@ -1706,7 +1706,7 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 127) (xy 31.75 129.54)
+			(xy 30.48 124.46) (xy 30.48 127)
 		)
 		(stroke
 			(width 0)
@@ -1716,7 +1716,7 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 127) (xy 31.75 127)
+			(xy 27.94 124.46) (xy 30.48 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1724,9 +1724,10 @@
 		)
 		(uuid "f6e6e75f-59a7-4508-bd2d-d35c1a2dc8c8")
 	)
-	(rectangle
-		(start 66.04 12.7)
-		(end 107.95 57.15)
+	(text_box "LED"
+		(exclude_from_sim no)
+		(at 66.04 12.7 0)
+		(size 41.91 44.45)
 		(stroke
 			(width 0)
 			(type default)
@@ -1734,11 +1735,18 @@
 		(fill
 			(type none)
 		)
-		(uuid 131bf83e-5c2a-4240-a5fd-00b9e9b87911)
+		(effects
+			(font
+				(size 3.175 3.175)
+			)
+			(justify left top)
+		)
+		(uuid "0f61ef14-f51b-44c2-be7b-76cfdb45b466")
 	)
-	(rectangle
-		(start 12.7 103.505)
-		(end 44.45 142.24)
+	(text_box "To MAIN"
+		(exclude_from_sim no)
+		(at 66.04 57.15 0)
+		(size 41.91 45.72)
 		(stroke
 			(width 0)
 			(type default)
@@ -1746,11 +1754,18 @@
 		(fill
 			(type none)
 		)
-		(uuid 1672abf6-913d-4a83-b322-adca37e6c473)
+		(effects
+			(font
+				(size 3.175 3.175)
+			)
+			(justify left top)
+		)
+		(uuid "3c5b8868-56fd-4577-92e6-980d51b2e211")
 	)
-	(rectangle
-		(start 66.04 57.15)
-		(end 107.95 103.505)
+	(text_box "Power"
+		(exclude_from_sim no)
+		(at 12.7 102.87 0)
+		(size 31.75 35.56)
 		(stroke
 			(width 0)
 			(type default)
@@ -1758,11 +1773,18 @@
 		(fill
 			(type none)
 		)
-		(uuid 17adf29d-b6b3-4e25-92da-e0fa75b0664b)
+		(effects
+			(font
+				(size 3.175 3.175)
+			)
+			(justify left top)
+		)
+		(uuid "4f1910eb-10c2-4ea7-83ab-916fa723e083")
 	)
-	(rectangle
-		(start 12.7 12.7)
-		(end 66.04 103.505)
+	(text_box "Driver"
+		(exclude_from_sim no)
+		(at 12.7 12.7 0)
+		(size 53.34 90.17)
 		(stroke
 			(width 0)
 			(type default)
@@ -1770,11 +1792,18 @@
 		(fill
 			(type none)
 		)
-		(uuid 815307d4-9bb1-40fd-b4d5-a9985f51ed5c)
+		(effects
+			(font
+				(size 3.175 3.175)
+			)
+			(justify left top)
+		)
+		(uuid "9af1ab78-ce9c-4ae8-80f2-106df1782d12")
 	)
-	(rectangle
-		(start 44.45 103.505)
-		(end 73.66 142.24)
+	(text_box "Output"
+		(exclude_from_sim no)
+		(at 44.45 102.87 0)
+		(size 27.94 35.56)
 		(stroke
 			(width 0)
 			(type default)
@@ -1782,62 +1811,13 @@
 		(fill
 			(type none)
 		)
-		(uuid 96b0c148-2afa-4980-a879-7b5cad13a586)
-	)
-	(text "LED"
-		(exclude_from_sim no)
-		(at 70.104 19.304 0)
 		(effects
 			(font
 				(size 3.175 3.175)
 			)
-			(justify left)
+			(justify left top)
 		)
-		(uuid "43463dc5-918d-4950-91cf-40a4416b8c62")
-	)
-	(text "MD"
-		(exclude_from_sim no)
-		(at 17.78 20.066 0)
-		(effects
-			(font
-				(size 3.175 3.175)
-			)
-			(justify left)
-		)
-		(uuid "8f6a93ef-8a57-4a16-995e-dcb312a0b909")
-	)
-	(text "OUTPUT"
-		(exclude_from_sim no)
-		(at 48.26 109.728 0)
-		(effects
-			(font
-				(size 3.175 3.175)
-			)
-			(justify left)
-		)
-		(uuid "908349dd-2606-4ef8-9072-9cdb44989ede")
-	)
-	(text "POWER"
-		(exclude_from_sim no)
-		(at 17.018 109.728 0)
-		(effects
-			(font
-				(size 3.175 3.175)
-			)
-			(justify left)
-		)
-		(uuid "9e87450b-777b-4a70-9f38-811d5fec9d29")
-	)
-	(text "MAIN"
-		(exclude_from_sim no)
-		(at 70.612 65.786 0)
-		(effects
-			(font
-				(size 3.175 3.175)
-			)
-			(justify left)
-		)
-		(uuid "cd5843d7-a228-424a-83c0-1c8733c62e39")
+		(uuid "c6658a1c-ea20-4e6b-b2d2-04d849a3e682")
 	)
 	(global_label "EN"
 		(shape output)
@@ -1907,7 +1887,7 @@
 	)
 	(global_label "OUT2"
 		(shape input)
-		(at 63.5 127 0)
+		(at 60.96 125.73 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1917,7 +1897,7 @@
 		)
 		(uuid "34df716f-fc83-4fea-bd0d-49b3ff7a0faf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 71.691 127 0)
+			(at 69.151 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1995,7 +1975,7 @@
 	)
 	(global_label "OUT1"
 		(shape input)
-		(at 63.5 124.46 0)
+		(at 60.96 123.19 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2005,7 +1985,7 @@
 		)
 		(uuid "fabd972e-4f37-4c4c-98ef-50400f004150")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 71.691 124.46 0)
+			(at 69.151 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2041,7 +2021,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024-Dribbler:DRV8874 module"
+		(property "Footprint" "@2024TOINIOT2-Dribbler:DRV8874 module"
 			(at 40.64 48.26 0)
 			(effects
 				(font
@@ -2146,7 +2126,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 91.44 39.37 90)
 			(effects
 				(font
@@ -2355,7 +2335,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 83.82 39.37 90)
 			(effects
 				(font
@@ -2531,7 +2511,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 24.13 124.46 0)
+		(at 22.86 121.92 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2539,16 +2519,16 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "59fd0110-d5f1-4551-8a9a-49adf440f4e3")
-		(property "Reference" "J2"
-			(at 24.765 119.38 0)
+		(property "Reference" "J1"
+			(at 23.495 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "Conn_01x02_Pin"
-			(at 24.765 121.92 0)
+		(property "Value" "Conn_PWR"
+			(at 23.495 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2556,7 +2536,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_XH_S2B-XH-A-1_1x02_P2.50mm_Horizontal"
-			(at 24.13 124.46 0)
+			(at 22.86 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2565,7 +2545,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 24.13 124.46 0)
+			(at 22.86 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2574,7 +2554,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 24.13 124.46 0)
+			(at 22.86 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2591,7 +2571,7 @@
 		(instances
 			(project "Dribbler-20240708"
 				(path "/0a3116e9-faad-4936-b617-c6a76f14ef35"
-					(reference "J2")
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -2607,7 +2587,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "66da3869-bdd1-45eb-8315-22c4cd904968")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR08"
 			(at 87.63 80.01 0)
 			(effects
 				(font
@@ -2657,7 +2637,7 @@
 		(instances
 			(project "Dribbler-20240708"
 				(path "/0a3116e9-faad-4936-b617-c6a76f14ef35"
-					(reference "#PWR04")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -2805,7 +2785,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9bbd71a4-aed4-47e1-9104-ef6ee24d80e6")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR07"
 			(at 83.82 30.48 0)
 			(effects
 				(font
@@ -2855,7 +2835,7 @@
 		(instances
 			(project "Dribbler-20240708"
 				(path "/0a3116e9-faad-4936-b617-c6a76f14ef35"
-					(reference "#PWR09")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -2863,7 +2843,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 54.61 124.46 0)
+		(at 52.07 123.19 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2871,16 +2851,16 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ca5c1694-9203-439e-98ce-808709d6d0a8")
-		(property "Reference" "J3"
-			(at 55.245 119.38 0)
+		(property "Reference" "J2"
+			(at 52.705 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "Conn_01x02_Pin"
-			(at 55.245 121.92 0)
+		(property "Value" "Conn_OUT"
+			(at 52.705 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2888,7 +2868,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_XH_S2B-XH-A-1_1x02_P2.50mm_Horizontal"
-			(at 54.61 124.46 0)
+			(at 52.07 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2897,7 +2877,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 54.61 124.46 0)
+			(at 52.07 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2906,7 +2886,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 54.61 124.46 0)
+			(at 52.07 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2923,7 +2903,7 @@
 		(instances
 			(project "Dribbler-20240708"
 				(path "/0a3116e9-faad-4936-b617-c6a76f14ef35"
-					(reference "J3")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -2931,7 +2911,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 31.75 129.54 0)
+		(at 30.48 127 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2939,8 +2919,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d8cafac8-76d1-4bc8-8ffd-e8c5dbd9c511")
-		(property "Reference" "#PWR07"
-			(at 31.75 135.89 0)
+		(property "Reference" "#PWR04"
+			(at 30.48 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2949,7 +2929,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 31.75 134.62 0)
+			(at 30.48 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2957,7 +2937,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 31.75 129.54 0)
+			(at 30.48 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2966,7 +2946,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 31.75 129.54 0)
+			(at 30.48 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2975,7 +2955,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 31.75 129.54 0)
+			(at 30.48 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2989,7 +2969,7 @@
 		(instances
 			(project "Dribbler-20240708"
 				(path "/0a3116e9-faad-4936-b617-c6a76f14ef35"
-					(reference "#PWR07")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -3129,7 +3109,7 @@
 	)
 	(symbol
 		(lib_id "power:VCC")
-		(at 36.83 121.92 0)
+		(at 35.56 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3137,8 +3117,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f01ae977-69f9-4b70-aba8-ad178d2b9233")
-		(property "Reference" "#PWR08"
-			(at 36.83 125.73 0)
+		(property "Reference" "#PWR05"
+			(at 35.56 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3147,7 +3127,7 @@
 			)
 		)
 		(property "Value" "VCC"
-			(at 36.83 116.84 0)
+			(at 35.56 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3155,7 +3135,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 36.83 121.92 0)
+			(at 35.56 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3164,7 +3144,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 36.83 121.92 0)
+			(at 35.56 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3173,7 +3153,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VCC\""
-			(at 36.83 121.92 0)
+			(at 35.56 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3187,7 +3167,7 @@
 		(instances
 			(project "Dribbler-20240708"
 				(path "/0a3116e9-faad-4936-b617-c6a76f14ef35"
-					(reference "#PWR08")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -3203,7 +3183,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f2078450-d503-44dd-be7c-dd2f75abca02")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR09"
 			(at 87.63 97.79 0)
 			(effects
 				(font
@@ -3253,7 +3233,7 @@
 		(instances
 			(project "Dribbler-20240708"
 				(path "/0a3116e9-faad-4936-b617-c6a76f14ef35"
-					(reference "#PWR05")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -3269,7 +3249,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ff3f9066-c0c1-49bc-a8a0-7d3ffd6e5ab6")
-		(property "Reference" "J4"
+		(property "Reference" "J3"
 			(at 80.645 76.2 0)
 			(effects
 				(font
@@ -3277,7 +3257,7 @@
 				)
 			)
 		)
-		(property "Value" "Conn_01x04_Pin"
+		(property "Value" "Conn_Main"
 			(at 80.645 78.74 0)
 			(effects
 				(font
@@ -3327,7 +3307,7 @@
 		(instances
 			(project "Dribbler-20240708"
 				(path "/0a3116e9-faad-4936-b617-c6a76f14ef35"
-					(reference "J4")
+					(reference "J3")
 					(unit 1)
 				)
 			)
