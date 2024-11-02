@@ -1,4 +1,4 @@
-23256804828723374
+23276164721444504
 @2023-2_MotorDriver
 DRV8874
 
@@ -252,6 +252,20 @@ GPS-54D-014
 8
 8
 @2024-cansat
+MODULE_DEV-16771
+
+
+0
+48
+48
+@2024-cansat
+PKM13EPYH4000-A0
+
+
+0
+2
+2
+@2024-cansat
 Pin-Extender
 
 
@@ -308,6 +322,13 @@ AL4BT
 2
 2
 @2024TOINIOT2-Line
+ATmega2560Pro Board
+
+
+0
+86
+80
+@2024TOINIOT2-Line
 JST_VH_B2P-VH-B_1x02_P3.96mm_Vertical
 JST VH PBT series connector, B2P-VH-B (http://www.jst-mfg.com/product/pdf/eng/eVH.pdf), generated with kicad-footprint-generator
 connector JST VH vertical
@@ -336,6 +357,13 @@ NJL7502L
 2
 2
 @2024TOINIOT2-Line
+PKM13EPYH4000-A0
+
+
+0
+2
+2
+@2024TOINIOT2-Line
 SOIC-14_3.9x8.7mm_P1.27mm
 SOIC, 14 Pin (JEDEC MS-012AB, https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/soic_narrow-r/r_14.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
 SOIC SO
@@ -343,6 +371,27 @@ SOIC SO
 14
 14
 @2024TOINIOT2-Line
+Tactile1
+
+
+0
+2
+2
+@2024TOINIOT2-Line-ATmega2560
+AL4BT
+
+
+0
+2
+2
+@2024TOINIOT2-Line-ATmega2560
+SS12D01G4
+
+
+0
+3
+3
+@2024TOINIOT2-Line-ATmega2560
 Tactile1
 
 
@@ -385,7 +434,21 @@ XT30U-M
 2
 2
 @2024TOINIOT2-Main
+2MD1T2B4M2QN
+
+
+0
+6
+6
+@2024TOINIOT2-Main
 2MS1-T1-B4-M2-Q-E
+
+
+0
+3
+3
+@2024TOINIOT2-Main
+3362P
 
 
 0
@@ -399,12 +462,26 @@ BNO055
 8
 8
 @2024TOINIOT2-Main
+Connector
+
+
+0
+5
+5
+@2024TOINIOT2-Main
+ESP32-DEVKITC
+
+
+0
+38
+38
+@2024TOINIOT2-Main
 MODULE_DEV-16771
 
 
 0
-48
-48
+50
+47
 @2024TOINIOT2-Main
 Vishay_MINICAST-3Pin
 IR Receiver Vishay TSOP-xxxx, MINICAST package, see https://www.vishay.com/docs/82669/tsop32s40f.pdf
