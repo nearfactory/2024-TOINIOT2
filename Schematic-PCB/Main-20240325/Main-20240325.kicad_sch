@@ -11917,8 +11917,8 @@
 		(uuid "fffbc679-602e-4c88-abb2-a52afdce46a2")
 	)
 	(rectangle
-		(start 425.958 43.18)
-		(end 516.89 186.69)
+		(start 427.228 12.7)
+		(end 515.62 186.69)
 		(stroke
 			(width 0)
 			(type default)
@@ -19059,7 +19059,7 @@
 			(uuid "3524c69c-fce7-406e-a441-dd9d54574381")
 		)
 		(instances
-			(project ""
+			(project "Main-20240325"
 				(path "/d42c2da0-c5d1-4e9e-abe5-6ac5f9ded35c"
 					(reference "R30")
 					(unit 1)
@@ -23628,7 +23628,7 @@
 			(uuid "d4060544-cea7-49ba-b2f2-492bccdf0684")
 		)
 		(instances
-			(project ""
+			(project "Main-20240325"
 				(path "/d42c2da0-c5d1-4e9e-abe5-6ac5f9ded35c"
 					(reference "#PWR045")
 					(unit 1)
