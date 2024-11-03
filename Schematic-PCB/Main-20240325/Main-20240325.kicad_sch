@@ -12671,7 +12671,7 @@
 	)
 	(text_box "[Serial-Communications]\nTeensy4.1-ESP32:      X SPI   O UART   O I2C\nTeensy4.1-ATmega2560: X SPI   O UART   X I2C\n\nTeensy4.1-BNO055:     X SPI   X UART   O I2C\n\nTeensy4.1-Pixy2.1:    O SPI   X UART   X I2C\nTeensy4.1-UnitCamS3:  X SPI   O UART   X I2C"
 		(exclude_from_sim no)
-		(at 289.56 356.87 0)
+		(at 275.59 303.53 0)
 		(size 148.59 76.2)
 		(stroke
 			(width 0)
@@ -14461,7 +14461,7 @@
 		)
 	)
 	(global_label "D-"
-		(shape input)
+		(shape bidirectional)
 		(at 72.39 44.45 0)
 		(fields_autoplaced yes)
 		(effects
@@ -14879,7 +14879,7 @@
 		)
 	)
 	(global_label "D+"
-		(shape input)
+		(shape bidirectional)
 		(at 72.39 41.91 0)
 		(fields_autoplaced yes)
 		(effects
@@ -22122,7 +22122,7 @@
 				)
 			)
 		)
-		(property "Value" "Conn_01x12_Pin"
+		(property "Value" "Conn_Sub"
 			(at 469.265 33.02 0)
 			(effects
 				(font
