@@ -4,7 +4,7 @@
 	(generator_version "8.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
-		(at 0 -7.665 0)
+		(at 0 0 0)
 		(layer "F.SilkS")
 		(uuid "b2eacc99-81a0-4edf-9ef7-f30e50d19a21")
 		(effects
@@ -14,7 +14,7 @@
 			)
 		)
 	)
-	(property "Value" "CERDIP-8_W7.62mm_SideBrazed"
+	(property "Value" ""
 		(at 0 -0.1 0)
 		(layer "F.Fab")
 		(hide yes)
@@ -67,8 +67,8 @@
 	)
 	(attr through_hole)
 	(fp_rect
-		(start -5.5 -9)
-		(end 5.5 9)
+		(start -5.08 -5.08)
+		(end -2.54 5.08)
 		(stroke
 			(width 0.1)
 			(type default)
@@ -77,9 +77,20 @@
 		(layer "F.SilkS")
 		(uuid "59c15011-f04f-49d4-890b-5f0cd9336358")
 	)
+	(fp_rect
+		(start 2.54 -5.08)
+		(end 5.08 5.08)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "93c82cb3-874e-4d7a-8449-1575d36e9a09")
+	)
 	(fp_poly
 		(pts
-			(xy -7 -4.2) (xy -6.2 -3.8) (xy -7 -3.4)
+			(xy -6.642 -4.21) (xy -5.842 -3.81) (xy -6.642 -3.41)
 		)
 		(stroke
 			(width 0.1)
@@ -90,17 +101,50 @@
 		(uuid "36709f98-ae50-41f7-b982-6d53421b68bf")
 	)
 	(fp_rect
-		(start -5.6 -9.1)
-		(end 5.6 9.1)
+		(start -5.334 -5.334)
+		(end -2.286 5.334)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "c53262a5-4c2e-4abf-8dd5-586c502eef49")
+	)
+	(fp_rect
+		(start 2.286 -5.334)
+		(end 5.334 5.334)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "B.CrtYd")
+		(uuid "a3184f1c-3797-4907-a43f-a2eb54dff623")
+	)
+	(fp_rect
+		(start -5.334 -5.334)
+		(end -2.286 5.334)
 		(stroke
 			(width 0.05)
 			(type default)
 		)
 		(fill none)
 		(layer "F.CrtYd")
-		(uuid "2594bacf-005a-42e5-911b-7c8b8d0cae65")
+		(uuid "fe7e2b51-f801-475a-a4bb-50c75e930ba7")
 	)
-	(pad "1" thru_hole rect
+	(fp_rect
+		(start 2.286 -5.334)
+		(end 5.334 5.334)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "eaa64271-1e1f-461f-b9d1-5a63c3fa640b")
+	)
+	(pad "1" thru_hole oval
 		(at -3.81 -3.81)
 		(size 1.6 1.6)
 		(drill 0.8)
@@ -108,12 +152,13 @@
 		(remove_unused_layers no)
 		(uuid "56b1d569-b1e6-4948-895d-c35e5b6e5c75")
 	)
-	(pad "2" thru_hole circle
+	(pad "2" thru_hole rect
 		(at -3.81 -1.27)
 		(size 1.6 1.6)
 		(drill 0.8)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
+		(thermal_bridge_angle 45)
 		(uuid "1c0a74f0-e26c-47e1-8239-3cc56c3dada2")
 	)
 	(pad "3" thru_hole circle
@@ -148,12 +193,13 @@
 		(remove_unused_layers no)
 		(uuid "24d1e1bf-9606-454d-90dc-2cfedc1fff07")
 	)
-	(pad "7" thru_hole circle
+	(pad "7" thru_hole rect
 		(at 3.81 -1.27)
 		(size 1.6 1.6)
 		(drill 0.8)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
+		(thermal_bridge_angle 45)
 		(uuid "c488a044-462d-4cba-a72e-18a736eddedf")
 	)
 	(pad "8" thru_hole circle
