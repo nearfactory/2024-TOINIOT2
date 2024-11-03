@@ -6608,7 +6608,7 @@
 		(uuid "498ec7ca-3370-45ac-a1fd-655c87218683")
 	)
 	(no_connect
-		(at 520.7 134.62)
+		(at 518.16 134.62)
 		(uuid "4c7a565e-e9b5-4641-bcbc-78e66e4b3a3e")
 	)
 	(no_connect
@@ -6632,7 +6632,7 @@
 		(uuid "c966365a-7b25-4a09-a4ae-59ffcfbf533a")
 	)
 	(no_connect
-		(at 520.7 132.08)
+		(at 518.16 132.08)
 		(uuid "ce549c7d-aef2-4bb6-8c18-7dd2be6803e9")
 	)
 	(wire
@@ -8667,16 +8667,6 @@
 	)
 	(wire
 		(pts
-			(xy 518.16 132.08) (xy 520.7 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7ea04464-1ddf-4b34-8d1a-3843f50efe1e")
-	)
-	(wire
-		(pts
 			(xy 314.96 50.8) (xy 320.04 50.8)
 		)
 		(stroke
@@ -10007,16 +9997,6 @@
 	)
 	(wire
 		(pts
-			(xy 518.16 134.62) (xy 520.7 134.62)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c8a1df04-34a7-438a-b693-0af77ad9d88f")
-	)
-	(wire
-		(pts
 			(xy 138.43 163.83) (xy 138.43 186.69)
 		)
 		(stroke
@@ -11137,7 +11117,7 @@
 		)
 		(uuid "71c6ab98-5ec4-4e18-840b-5b592f8c5bba")
 	)
-	(text_box "[Serial-Communications]\nTeensy4.1-ESP32:      X SPI   O UART   O I2C\nTeensy4.1-ATmega2560: X SPI   O UART   X I2C\n\nTeensy4.1-BNO055:     X SPI   X UART   O I2C\n\nTeensy4.1-Pixy2.1:    O SPI   X UART   X I2C\nTeensy4.1-UnitCamS3:  X SPI   O UART   X I2C"
+	(text_box "[Serial-Communications]\nTeensy4.1-ESP32:      X SPI   O UART   X I2C\nTeensy4.1-ATmega2560: X SPI   O UART   X I2C\n\nTeensy4.1-BNO055:     X SPI   X UART   O I2C\n\nTeensy4.1-Pixy2.1:    O SPI   X UART   X I2C\nTeensy4.1-UnitCamS3:  X SPI   O UART   X I2C"
 		(exclude_from_sim no)
 		(at 306.07 210.82 0)
 		(size 148.59 76.2)
@@ -11433,7 +11413,7 @@
 		)
 	)
 	(global_label "Cam_G0"
-		(shape bidirectional)
+		(shape input)
 		(at 502.92 83.82 180)
 		(fields_autoplaced yes)
 		(effects
@@ -12643,7 +12623,7 @@
 		)
 	)
 	(global_label "Cam_EN"
-		(shape input)
+		(shape output)
 		(at 186.69 39.37 0)
 		(fields_autoplaced yes)
 		(effects
@@ -13435,7 +13415,7 @@
 		)
 	)
 	(global_label "Cam_G0"
-		(shape bidirectional)
+		(shape output)
 		(at 186.69 62.23 0)
 		(fields_autoplaced yes)
 		(effects
