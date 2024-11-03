@@ -13546,7 +13546,7 @@
 	)
 	(global_label "Volume"
 		(shape input)
-		(at 289.56 45.72 180)
+		(at 289.56 43.18 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13556,7 +13556,7 @@
 		)
 		(uuid "bbdd4e83-d6d6-4215-8b0a-095152e12c8f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 279.5798 45.72 0)
+			(at 279.5798 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13898,7 +13898,7 @@
 	)
 	(global_label "KickerSignal"
 		(shape output)
-		(at 289.56 43.18 180)
+		(at 289.56 45.72 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -13908,7 +13908,7 @@
 		)
 		(uuid "df5436ac-6d31-4c80-909f-8d2503059daf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 268.8554 43.18 0)
+			(at 268.8554 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
