@@ -1,4 +1,4 @@
-23276165407540841
+23277898884907697
 @2023-2_MotorDriver
 DRV8874
 
@@ -434,7 +434,7 @@ XT30U-M
 2
 2
 @2024TOINIOT2-Main
-2MD1T2B4M2QN
+2MD1-T2-B4-M2-Q-N
 
 
 0
@@ -469,7 +469,7 @@ Connector
 5
 5
 @2024TOINIOT2-Main
-ESP32-DEVKITC
+ESP32-DevKitC
 
 
 0
@@ -483,9 +483,16 @@ MODULE_DEV-16771
 50
 47
 @2024TOINIOT2-Main
-Vishay_MINICAST-3Pin
-IR Receiver Vishay TSOP-xxxx, MINICAST package, see https://www.vishay.com/docs/82669/tsop32s40f.pdf
-IR Receiver Vishay TSOP-xxxx MINICAST
+TSSP4038
+
+
+0
+3
+3
+@2024TOINIOT2-Main
+TSSP58038
+
+
 0
 3
 3

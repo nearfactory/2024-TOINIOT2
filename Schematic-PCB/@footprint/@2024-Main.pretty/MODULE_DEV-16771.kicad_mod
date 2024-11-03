@@ -716,13 +716,35 @@
 	)
 	(model "F:/main/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/DEV-16771.step"
 		(offset
-			(xyz 0 0 2.5)
+			(xyz 0 0 9.54)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
 			(xyz -90 0 90)
+		)
+	)
+	(model "${KICAD8_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x24_P2.54mm_Vertical.step"
+		(offset
+			(xyz 7.62 29.21 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(model "${KICAD8_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x24_P2.54mm_Vertical.step"
+		(offset
+			(xyz -7.62 29.21 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
 		)
 	)
 )
