@@ -15435,7 +15435,7 @@
 		(fields_autoplaced yes)
 		(uuid "211488e8-3c3f-499a-b1e7-b737c63d90e0")
 		(property "Reference" "C1"
-			(at 22.86 336.5499 0)
+			(at 22.86 336.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15443,8 +15443,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1000uF"
-			(at 22.86 339.0899 0)
+		(property "Value" "470uF"
+			(at 22.86 339.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15452,7 +15452,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm"
 			(at 20.0152 341.63 0)
 			(effects
 				(font
@@ -20260,7 +20260,7 @@
 		(fields_autoplaced yes)
 		(uuid "aa7932ac-592f-47fb-ae6f-21294ada2456")
 		(property "Reference" "C2"
-			(at 22.86 370.8399 0)
+			(at 22.86 370.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20268,8 +20268,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1000uF"
-			(at 22.86 373.3799 0)
+		(property "Value" "470uF"
+			(at 22.86 373.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20277,7 +20277,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm"
 			(at 20.0152 375.92 0)
 			(effects
 				(font
