@@ -23,7 +23,7 @@ void loop() {
   led2[count] = analogRead(LED2_PIN);
   led3[count] = analogRead(LED3_PIN);
 
-  int led1_avr = 0, led2_avr = 0, led3_avr = 0;
+  uint32_t led1_avr = 0, led2_avr = 0, led3_avr = 0;
   for(auto l:led1) led1_avr += l;
   for(auto l:led2) led2_avr += l;
   for(auto l:led3) led3_avr += l;
@@ -31,7 +31,9 @@ void loop() {
   led2_avr /= SAMPLE;
   led3_avr /= SAMPLE;
 
-  Serial.print("min:0 max:1023");
+  Serial.print("count:");
+  Serial.print(count);
+  Serial.print(" min:0 max:1023");
 
   Serial.print(" LED1:");
   Serial.print(led1[count]);
@@ -40,11 +42,11 @@ void loop() {
   Serial.print(" LED3:");
   Serial.print(led3[count]);
 
-  Serial.print(" avr LED1:");
+  Serial.print(" LED1_avr:");
   Serial.print(led1_avr);
-  Serial.print(" LED2:");
+  Serial.print(" LED2_avr:");
   Serial.print(led2_avr);
-  Serial.print(" LED3:");
+  Serial.print(" LED3_avr:");
   Serial.println(led3_avr);
 
   count++;
