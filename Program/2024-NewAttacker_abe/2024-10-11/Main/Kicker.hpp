@@ -1,8 +1,6 @@
 #pragma once
 
-namespace{
-  constexpr uint8_t KICKER_PIN = 32;
-}
+#define KICKER_PIN 32
 
 uint32_t kicked_ms = 0;
 short ball01k = -1;

@@ -20,7 +20,7 @@ void setup() {
   // 通信/ボールセンサ/方向センサ/キッカー/モーター/UIのセットアップ
   communicationSetup();
   ballSetup();
-  // dirSetup();
+  dirSetup();
   kickerSetup();
   lineSetup();
   motorSetup();
@@ -35,13 +35,13 @@ void setup() {
   ・ディスプレイに表示される角度が放置しても変わらなくなったらキャリブレーション完了
   */
 
-  // display_mode = DISPLAY_MODE::DIR;
+  display_mode = DISPLAY_MODE::DIR;
   // ディスプレイモードを方向センサ用に変更
   // キャリブレーションの状況変数を初期化 
-  // uint8_t system = 0, gyro = 0, accel = 0, mag = 0;
+  uint8_t system = 0, gyro = 0, accel = 0, mag = 0;
+  system = 3; gyro = 3; mag = 3;
   // キャリブレーション完了まで繰り返し
-  /*
-  while(system!=3 || gyro!=3 || mag!=3){
+  while(system<3 || gyro<3 || mag<3){
     display.clearDisplay();
     printd(8,8,"calibration...");
     Serial.println("calibration...");
@@ -57,7 +57,6 @@ void setup() {
     display.display();
     delay(10);
   }
-  */
 
   // スタート画面を表示
   display.clearDisplay();
@@ -65,78 +64,68 @@ void setup() {
   display.display();
 
   Serial.println("waiting...");
-  while(!digitalRead(TOGGLE_PIN)){ Serial.println("off");}
-  while(digitalRead(TOGGLE_PIN)){  Serial.println("on");}
+  while(digitalRead(TOGGLE_PIN) == 0){ Serial.println("off"); delay(50);}
+  while(digitalRead(TOGGLE_PIN) == 1){ Serial.println("on");  delay(50);}
 
   Serial.println("beging");
 
   // delay(500);
   // 攻め方向を取得・更新
   /*
+  */
   sensors_event_t d{};
   bno.getEvent(&d, Adafruit_BNO055::VECTOR_EULER);
   default_dir = d.orientation.x;
-  */
   
   // delay(5000);
 }
 
 void loop() {
+
+  // データを更新
+  ballUpdate(BALL::DIR);
+  dirUpdate();
+  // lineUpdate();
+  // subUpdate();
+  
+  // 回り込み
+  // moveDir(ball_dir, 20, true, 100);
+
+  // ボールを保持している
+  if(ball_holding) {
+    moveDir(0, 100, true, 100);
+  }
+
+  // 白線避け
+  avoidLine();
+
+  // 姿勢制御
+  setDir(dir,0,100.0,20);
+
+  // ボールが存在しない
+  if(!ball_exist) setDir(dir,0,100.0,100);
+  
+  // display
   if(!digitalRead(TOGGLE_PIN)){
-    // display.clearDisplay();
-    // display.display();
-
-    // Serial.println("move");    
-    //   // データを更新
-    //   ballUpdate(BALL::DIR);
-    //   // dirUpdate();
-    //   lineUpdate();
-    //   subUpdate();
-      
-    //   // 回り込み
-    //   moveDir(ball_dir, 20, true, 100);
-
-    //   // ボールを保持している
-    //   if(ball_holding) {
-    //     moveDir(0, 100, true, 100);
-    //   }
-
-    //   // 白線避け
-    //   avoidLine();
-
-    //   // 姿勢制御
-    //   setDir(dir,0,100.0,20);
-
-    //   // ボールが存在しない
-    //   if(!ball_exist) setDir(dir,0,100.0,100);
-      
-    //   // モーターに適用
-    //   // motorP();
-    //   // motorRaw();
-    // // 停止
+    display.clearDisplay();
+    display.display();
+    // モーターに適用
+    // motorP();  
+    // motorRaw();
     Serial.println("move");    
   }else{
-    Serial.println("display");
-   
-    // static auto begin_ms = millis();
-    // buttonRead();
-    // // for(auto b:button) Serial.print(b);
-    // // Serial.println();
-    // if(buttonUp(3)) display_mode = (display_mode+1)%DISPLAY_MODE_NUM;
-    // // display_mode = (display_mode+1)%DISPLAY_MODE_NUM;
+    static auto begin_ms = millis();
+    buttonRead();
+    for(auto b:button) Serial.print(b);
+    if(buttonUp(0)) display_mode = (display_mode+1)%DISPLAY_MODE_NUM;
 
-    // addVariables("process", millis()-begin_ms);
-    // addVariables("ball_hold",millis()-ball_hold_begin);
-    // display.clearDisplay();
-    // debugDisplay(display_mode);
-    // begin_ms = millis();
-    // clearVariables();
-
-    // display.clearDisplay();
-    // display.setCursor(8, 8);
-    // display.print("waiting...");
-    // display.display();
-
-    // delay(100);
+    clearVariables();
+    addVariables("process", millis()-begin_ms);
+    addVariables("ball_hold",millis()-ball_hold_begin);
+    display.clearDisplay();
+    debugDisplay(display_mode);
+    display.display();
+    begin_ms = millis();
+    delay(25);
   }
 }
