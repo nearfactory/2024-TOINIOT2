@@ -1,3 +1,4 @@
+#include "core_pins.h"
 #pragma once
 
 #include <string>
@@ -74,7 +75,7 @@ vector<std::string> debug_variables(0);
 inline void UISetup(){
   // pinMode変更
   for(auto p:BUTTON_PIN) pinMode(p, INPUT);
-  pinMode(TOGGLE_PIN, INPUT);
+  pinMode(TOGGLE_PIN, INPUT_PULLUP);
   pinMode(BZ_PIN, OUTPUT);
 
   // ディスプレイ初期化

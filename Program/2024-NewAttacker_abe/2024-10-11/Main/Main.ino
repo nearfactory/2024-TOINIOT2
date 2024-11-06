@@ -65,8 +65,8 @@ void setup() {
   display.display();
 
   Serial.println("waiting...");
-  while(!digitalRead(TOGGLE_PIN)){};
-  while(digitalRead(TOGGLE_PIN)){};
+  while(!digitalRead(TOGGLE_PIN)){ Serial.println("off");}
+  while(digitalRead(TOGGLE_PIN)){  Serial.println("on");}
 
   Serial.println("beging");
 
@@ -83,55 +83,60 @@ void setup() {
 
 void loop() {
   if(!digitalRead(TOGGLE_PIN)){
-    display.clearDisplay();
-    display.display();
+    // display.clearDisplay();
+    // display.display();
 
+    // Serial.println("move");    
+    //   // データを更新
+    //   ballUpdate(BALL::DIR);
+    //   // dirUpdate();
+    //   lineUpdate();
+    //   subUpdate();
+      
+    //   // 回り込み
+    //   moveDir(ball_dir, 20, true, 100);
+
+    //   // ボールを保持している
+    //   if(ball_holding) {
+    //     moveDir(0, 100, true, 100);
+    //   }
+
+    //   // 白線避け
+    //   avoidLine();
+
+    //   // 姿勢制御
+    //   setDir(dir,0,100.0,20);
+
+    //   // ボールが存在しない
+    //   if(!ball_exist) setDir(dir,0,100.0,100);
+      
+    //   // モーターに適用
+    //   // motorP();
+    //   // motorRaw();
+    // // 停止
     Serial.println("move");    
-      // データを更新
-      ballUpdate(BALL::DIR);
-      // dirUpdate();
-      lineUpdate();
-      subUpdate();
-      
-      // 回り込み
-      moveDir(ball_dir, 20, true, 100);
-
-      // ボールを保持している
-      if(ball_holding) {
-        moveDir(0, 100, true, 100);
-      }
-
-      // 白線避け
-      avoidLine();
-
-      // 姿勢制御
-      setDir(dir,0,100.0,20);
-
-      // ボールが存在しない
-      if(!ball_exist) setDir(dir,0,100.0,100);
-      
-      // モーターに適用
-      // motorP();
-      // motorRaw();
-    // 停止
   }else{
     Serial.println("display");
    
-    static auto begin_ms = millis();
-    buttonRead();
-    // for(auto b:button) Serial.print(b);
-    // Serial.println();
-    if(buttonUp(3)) display_mode = (display_mode+1)%DISPLAY_MODE_NUM;
-    // display_mode = (display_mode+1)%DISPLAY_MODE_NUM;
+    // static auto begin_ms = millis();
+    // buttonRead();
+    // // for(auto b:button) Serial.print(b);
+    // // Serial.println();
+    // if(buttonUp(3)) display_mode = (display_mode+1)%DISPLAY_MODE_NUM;
+    // // display_mode = (display_mode+1)%DISPLAY_MODE_NUM;
 
-    addVariables("process", millis()-begin_ms);
-    addVariables("ball_hold",millis()-ball_hold_begin);
-    display.clearDisplay();
-    debugDisplay(display_mode);
-    begin_ms = millis();
-    clearVariables();
-    display.display();
+    // addVariables("process", millis()-begin_ms);
+    // addVariables("ball_hold",millis()-ball_hold_begin);
+    // display.clearDisplay();
+    // debugDisplay(display_mode);
+    // begin_ms = millis();
+    // clearVariables();
 
-    delay(100);
+    // display.clearDisplay();
+    // display.setCursor(8, 8);
+    // display.print("waiting...");
+    // display.display();
+
+    // delay(100);
   }
 }
