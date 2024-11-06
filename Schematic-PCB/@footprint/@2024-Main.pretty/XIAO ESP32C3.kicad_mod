@@ -268,9 +268,9 @@
 			(xyz 0 0 -90)
 		)
 	)
-	(model "C:/Users/寺田侑史/OneDrive/デスクトップ/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/XIAO ESP32C3.step"
+	(model "C:/Users/桐蔭高校科学部/Desktop/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/XIAO ESP32C3.step"
 		(offset
-			(xyz 0 0 2.5)
+			(xyz 0 0.075 9.54)
 		)
 		(scale
 			(xyz 1 1 1)

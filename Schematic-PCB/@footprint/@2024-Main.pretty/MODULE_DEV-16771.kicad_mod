@@ -706,9 +706,9 @@
 		(remove_unused_layers no)
 		(uuid "e9e42c90-db95-4e76-aa06-2fbb424cc6ff")
 	)
-	(model "C:/Users/h13-k/OneDrive/デスクトップ/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/DEV-16771.step"
+	(model "C:/Users/桐蔭高校科学部/Desktop/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/DEV-16771.step"
 		(offset
-			(xyz 0 0 0)
+			(xyz 0 0 9.54)
 		)
 		(scale
 			(xyz 1 1 1)
