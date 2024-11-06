@@ -95,14 +95,14 @@ void loop() {
       goto SKIP_ALL;
     }else if(line[4] || line[5] || line[6] || line[7] || line[8] || line[9]){
       motorSet(power,-power,-power,power);
-      goal_dir = 15;
+      goal_dir = 25;
       goto SKIP_ALL;
     }else if(line[10] || line[11] || line[12] || line[13] || line[14] || line[15]){
       motorSet(power,power,-power,-power);
       goto SKIP_ALL;
     }else if(line[16] || line[17] || line[18] || line[19] || line[20] || line[21]){
       motorSet(-power,power,power,-power);
-      goal_dir = -15;
+      goal_dir = -25;
       goto SKIP_ALL;
     }
     // Serial.print(" ");
@@ -125,8 +125,10 @@ void loop() {
     switch(ball_small_id){
       case 0:
         // Serial.println("0");
+        if(ball_distance < 8500){
+          atk_dir = goal_dir;
+        }
         motorSet(power2,power2,-power2,-power2);
-        atk_dir = goal_dir;
         break;
       case 1:
         // Serial.println("1");
@@ -184,6 +186,7 @@ void loop() {
 
     bzUpdate(0.0f);
     // Serial.println();
+    Serial.println(dir);
 
 SKIP_ALL:
     motorP();
