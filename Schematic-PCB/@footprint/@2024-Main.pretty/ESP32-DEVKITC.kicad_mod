@@ -1,4 +1,4 @@
-(footprint "ESP32-DEVKITC"
+(footprint "ESP32-DevKitC"
 	(version 20240108)
 	(generator "pcbnew")
 	(generator_version "8.0")
@@ -14,7 +14,7 @@
 			)
 		)
 	)
-	(property "Value" "ESP32-DEVKITC"
+	(property "Value" "ESP32-DevKitC"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(uuid "907ce49f-a006-4de5-97b8-b5d8940af0d3")

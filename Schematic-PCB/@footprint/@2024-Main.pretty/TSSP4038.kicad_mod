@@ -1,10 +1,8 @@
-(footprint "Vishay_MINICAST-3Pin"
+(footprint "TSSP4038"
 	(version 20240108)
 	(generator "pcbnew")
 	(generator_version "8.0")
 	(layer "F.Cu")
-	(descr "IR Receiver Vishay TSOP-xxxx, MINICAST package, see https://www.vishay.com/docs/82669/tsop32s40f.pdf")
-	(tags "IR Receiver Vishay TSOP-xxxx MINICAST")
 	(property "Reference" "REF**"
 		(at -0.04 -2.4 180)
 		(layer "F.SilkS")
@@ -16,7 +14,7 @@
 			)
 		)
 	)
-	(property "Value" "Vishay_MINICAST-3Pin"
+	(property "Value" "TSSP4038"
 		(at 0.01 4.6 180)
 		(layer "F.Fab")
 		(uuid "61ead3f4-8c18-416b-b87b-aa861cb216f1")
@@ -252,15 +250,15 @@
 		(remove_unused_layers no)
 		(uuid "794dd9a8-645c-48df-970a-dcc5ecf206a5")
 	)
-	(model "${KICAD8_3DMODEL_DIR}/OptoDevice.3dshapes/Vishay_MINICAST-3Pin.wrl"
+	(model "F:/main/GitHub/2024-TOINIOT2/Schematic-PCB/@footprint/@2024-Main.pretty/TSSP4038.step"
 		(offset
-			(xyz -2.5 0 -1.85)
+			(xyz 0 0 -3)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 0)
+			(xyz -90 0 180)
 		)
 	)
 )
