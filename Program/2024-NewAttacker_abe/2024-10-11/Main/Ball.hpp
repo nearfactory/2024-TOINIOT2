@@ -19,8 +19,6 @@ constexpr short BALL_DISTANCE_MIN = 7000;
 constexpr short BALL_DISTANCE_MAX = 15800;
 constexpr short BALL_DISTANCE_RANGE = BALL_DISTANCE_MAX-BALL_DISTANCE_MIN;
 
-
-
 // センサ値格納用配列（0で初期化）
 short ball[BALL_NUM] = { 0 };
 // 測定ボール角度
