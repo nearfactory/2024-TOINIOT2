@@ -4,6 +4,8 @@ String receivedMessage;
 void setup() {
   Serial.begin(9600);    // Initialize the Serial monitor for debugging
   Serial2.begin(9600);   // Initialize Serial2 for sending data
+
+  Serial.println("Start Debugging");
 }
 
 void loop() {
