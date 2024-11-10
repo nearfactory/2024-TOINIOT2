@@ -53,7 +53,7 @@ void loop(){
     analog[i] = analogRead(ANALOG_PIN[i]);
 
     if(i==7) Serial.print(" ");
-    // Serial.print(analog[i]);
+    Serial.print(analog[i]);
     Serial.print(" ");
   }
   Serial.print("        ");
@@ -65,10 +65,14 @@ void loop(){
     if(i==INNER_NUM+5)              Serial.print("  ");
     if(i==INNER_NUM+10)             Serial.print("  ");
     if(i==INNER_NUM+15)             Serial.print("  ");
-    // Serial.print(line[i]);
+
+    if(i==7-1 || i==5-1 || i==14-1 || i== 38-1 || i==39-1 || i==40-1)
+      Serial.print("_");
+    else
+      Serial.print(line[i]);
   }
   Serial.print("    ");
-  // Serial.print(threshold);
+  Serial.print(threshold*4);
   // Serial.println();
 
   // delay(25);
@@ -101,10 +105,14 @@ void loop(){
   if(line_dir > 180) line_dir = line_dir - 360;
   // if(line_dir > 180) line_dir = line_dir - 360;
 
-  Serial.print("x:");
+  Serial.print("   x:");
   Serial.print(x);
-  Serial.print("\ty:");
+  Serial.print("  y:");
   Serial.print(y);
-  Serial.print("\tdir:");
+  Serial.print("  dir:");
   Serial.println(line_dir);
 }
+
+// センサの値がズレている: 1(+200)
+// 常に1: 5 14 38 39 40
+// 常に0: 7 
