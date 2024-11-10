@@ -67,7 +67,7 @@
 			)
 		)
 	)
-	(attr smd exclude_from_bom)
+	(attr through_hole exclude_from_bom)
 	(fp_line
 		(start -5.08 -1.143)
 		(end 5.08 -1.143)
@@ -152,34 +152,44 @@
 		(layer "F.CrtYd")
 		(uuid "4b9ddcc1-7862-456f-83f9-befc1eec5737")
 	)
-	(pad "1" smd circle
+	(pad "1" thru_hole circle
 		(at -5.08 0)
 		(size 2 2)
-		(layers "F.Cu" "F.Paste" "F.Mask")
-		(uuid "26400b45-79a6-4590-b997-89679d0903fa")
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "5ecc4b8e-8976-4350-b5d7-a578f85e6985")
 	)
-	(pad "2" smd circle
+	(pad "2" thru_hole circle
 		(at -2.54 0)
 		(size 2 2)
-		(layers "F.Cu" "F.Paste" "F.Mask")
-		(uuid "a2b955fe-94d4-45f1-b881-174dce98ff71")
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "e5a63ffc-ac17-4494-bc2f-ecc3afa4d0b0")
 	)
-	(pad "3" smd circle
+	(pad "3" thru_hole circle
 		(at 0 0)
 		(size 2 2)
-		(layers "F.Cu" "F.Paste" "F.Mask")
-		(uuid "f727df0f-5a21-4d31-8792-2b9bd521c88a")
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "e36db07b-b13b-4730-907b-c3f5e2ba85f2")
 	)
-	(pad "4" smd circle
+	(pad "4" thru_hole circle
 		(at 2.54 0)
 		(size 2 2)
-		(layers "F.Cu" "F.Paste" "F.Mask")
-		(uuid "ef50df06-a4be-4c99-9de1-a6fbd5d1cafb")
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "82c473c0-f656-4d66-b9a5-30e47c7aa684")
 	)
-	(pad "5" smd circle
+	(pad "5" thru_hole circle
 		(at 5.08 0)
 		(size 2 2)
-		(layers "F.Cu" "F.Paste" "F.Mask")
-		(uuid "7d90e3b5-dab9-49f9-b8e6-06d20a8c1858")
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "23cf7130-3ff7-4c59-8f32-9f23f1238ee0")
 	)
 )
