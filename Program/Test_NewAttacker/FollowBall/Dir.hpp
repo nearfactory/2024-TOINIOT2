@@ -28,18 +28,10 @@ inline void dirSetup(){
   return;
 }
 
-inline void dirCalibration(uint8_t system, uint8_t gyro, uint8_t accel, uint8_t mag){
-  bno.getCalibration(&system, &gyro, &accel, &mag);
-
-  return;
-}
-
 inline void dirUpdate(){
   prev_dir = dir;
   sensors_event_t dir_data{};
   bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_EULER);
-  bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_ACCELEROMETER);
-  // bno.getEvent(&dir_data, Adafruit_BNO055::)
 
   // 角度を更新 [-180~180]
   dir = dir_data.orientation.x-default_dir;
@@ -47,6 +39,7 @@ inline void dirUpdate(){
   if(dir>180)  dir -= 360;
 
   // 加速度を更新
+  bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_ACCELEROMETER);
   accel_x = dir_data.acceleration.x;
   accel_y = dir_data.acceleration.y;
   accel_z = dir_data.acceleration.z;

@@ -8,10 +8,6 @@
 #include <Adafruit_GFX.h>
 #include <Wire.h>
 
-#include "Ball.hpp"
-#include "Communication.hpp"
-// #include "Dir.hpp"
-#include "Kicker.hpp"
 
 using namespace std;
 
@@ -20,12 +16,10 @@ const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 37,31,30,32 };
           bool    button[BUTTON_NUM] = {false};
           bool    previous_button[BUTTON_NUM] = {false};
 
-// constexpr uint8_t TOGGLE_PIN = 36;
+constexpr uint8_t TOGGLE_PIN = 36;
 
 constexpr uint8_t BZ_PIN = 33;
 float               bz = -1.0f;
-
-constexpr uint8_t TOGGLE_PIN = 36;
 
 constexpr uint8_t DISPLAY_W = 128;
 constexpr uint8_t DISPLAY_H = 64;
@@ -146,16 +140,5 @@ inline void printd(uint8_t x, uint8_t y, std::string str, TEXT_ALIGN align_x = T
 
 inline void drawAngleLine(uint8_t center_x, uint8_t center_y, float angle, uint8_t radius){
   display.drawLine(center_x, center_y, center_x+cos(radians(angle))*radius, center_y+sin(radians(angle))*radius, WHITE);
-  return;
-}
-
-inline void clearVariables(){
-  debug_variables.clear();
-  // debug_variables_addr.clear();
-}
-
-template <typename T>
-inline void addVariables(std::string name, T variables){
-  debug_variables.emplace_back(name+":"+to_string(variables));
   return;
 }

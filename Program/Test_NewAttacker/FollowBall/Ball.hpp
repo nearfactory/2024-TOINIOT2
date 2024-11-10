@@ -81,85 +81,6 @@ inline float ballDirection(){
 }
 
 
-
-// ボール角度測定関数（float型の角度を返り値として出す）
-// 最大のセンサ値を出すセンサの左右2つずつを活用して算出
-inline float ballDirection2(){
-  // センサの最大値と最大値を記録したセンサのインデックスを初期化
-  short ball_big = 0;
-  short ball_big_index = 0;
-
-  //各センサ値の値を最大値を比較・更新し最大値とインデックスを算出
-  for(int i=0;i<BALL_NUM;i++){
-    if(ball_big < ball[i]){
-      ball_big = ball[i];
-      ball_big_index = i;
-    }
-  }
-  
-  // センサ値のx成分/y成分を初期化
-  short ball_x = 0;
-  short ball_y = 0;
-
-  // 各センサ値をx成分/y成分に分解し2軸の成分に加算
-  // i は -2 から 2 まで回す
-  for(int i=-2;i<=2;i++){
-    // j が 実際のセンサインデックス
-    // BALL_NUMを加算している→割られる数が負になると剰余も負で出力されてしまうのを防ぐため
-    int j = (ball_big_index + BALL_NUM + i) % BALL_NUM;
-
-    // ★寺田編集済み
-    double sensor_dir = PI*(j+4)/8;
-    ball_x += ball[j] * cos(sensor_dir);
-    ball_y += ball[j] * sin(sensor_dir);
-  }
-
-  // atan2()を用いて角度を算出(rad)し、degに変換
-  // 注意： atan2()の返り値は -π から π (rad)
-  return atan2(ball_y, ball_x) * (180.0 / PI)+90;
-}
-
-
-
-// ボール角度測定関数（float型の角度を返り値として出す）
-// 最大のセンサ値を出すセンサの左右3つずつを活用して算出
-inline float ballDirection3(){
-  // センサの最大値と最大値を記録したセンサのインデックスを初期化
-  short ball_big = 0;
-  short ball_big_index = 0;
-  
-  //各センサ値の値を最大値を比較・更新し最大値とインデックスを算出
-  for(int i=0;i<BALL_NUM;i++){
-    if(ball_big < ball[i]){
-      ball_big = ball[i];
-      ball_big_index = i;
-    }
-  }
-
-  // センサ値のx成分/y成分を初期化
-  short ball_x = 0;
-  short ball_y = 0;
-
-  // 各センサ値をx成分/y成分に分解し2軸の成分に加算
-  // i は -2 から 2 まで回す
-  for(int i=-3;i<=3;i++){
-    // j が 実際のセンサインデックス
-    // BALL_NUMを加算している→割られる数が負になると剰余も負で出力されてしまうのを防ぐため
-    int j = (ball_big_index + BALL_NUM + i) % BALL_NUM;
-
-    // ★寺田編集済み
-    double sensor_dir = PI*(j+4)/8;
-    ball_x += ball[j] * cos(sensor_dir);
-    ball_y += ball[j] * sin(sensor_dir);
-  }
-
-  // atan2()を用いて角度を算出(rad)し、degに変換
-  // 注意： atan2()の返り値は -π から π (rad)
-  return atan2(ball_y, ball_x) * (180.0 / PI)+90;
-}
-
-
-
 // ボールセンサまわりを更新する関数
 // 引数には角度算出モードを指定（0:全センサ活用、1:最大センサ+左右2コ、2:最大センサ+左右3コ）
 inline void ballUpdate(BALL mode){
@@ -203,14 +124,15 @@ inline void ballUpdate(BALL mode){
       ball_dir = ballDirection();
       break;
     case BALL::DIR2 :
-      ball_dir = ballDirection2();
+      // ball_dir = ballDirection2();
       break;
     case BALL::DIR3 :
-      ball_dir = ballDirection3();
+      // ball_dir = ballDirection3();
       break;
   }
 
   // ボール座標を 0~360 -> -180~180
+  ball_dir += 180;
   ball_dir = -ball_dir;
   if(ball_dir>180.0) ball_dir = ball_dir-360 ;
 
