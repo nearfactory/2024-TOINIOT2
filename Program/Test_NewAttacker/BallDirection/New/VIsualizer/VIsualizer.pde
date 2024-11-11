@@ -30,6 +30,7 @@ void draw(){
   if(str.length()>80){
     for(int i=0;i<16;i++){
       ball[i] = 1023 - Integer.parseInt(str.substring(i*5+1,i*5+5));
+      ball[i] = int(sqrt(1023/ball[i])*1023.0);
       // print(ball[i] + " ");
       
       float sensor_dir = radians(i*360.0/16.0);
@@ -122,6 +123,16 @@ void draw(){
   // correct2
   stroke(230,32,32);
   line(0,0,cos(radians(ball_dir_correct2))*400, sin(radians(ball_dir_correct2))*400);
+  
+  
+  fill(180, 180, 180);
+  noStroke();
+  translate(0,-400);
+  rotate(radians(90));
+  int ofset = 0;
+  for(int i=0;i<16;i++){
+    rect((i+ofset)%16*width/16,(1023-ball[i])/2,(i+ofset+1)%16*width/16,800);
+  }
   
   /*
   for(int i=0;i<16;i++){
