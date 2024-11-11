@@ -1,7 +1,7 @@
 constexpr uint8_t LINE_NUM = 46;
 constexpr uint8_t INNER_NUM = 26;
 const     uint8_t LINE_PIN[LINE_NUM] = {
-  7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52
+  7,8,9,10,11, 12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52
 };
 
 constexpr uint8_t ANALOG_NUM = 12;
@@ -66,9 +66,9 @@ void loop(){
     if(i==INNER_NUM+10)             Serial.print("  ");
     if(i==INNER_NUM+15)             Serial.print("  ");
 
-    if(i==7-1 || i==5-1 || i==14-1 || i== 38-1 || i==39-1 || i==40-1)
-      Serial.print("_");
-    else
+    // if(i==7-1 || i==5-1 || i==14-1 || i== 38-1 || i==39-1 || i==40-1)
+    //   Serial.print("_");
+    // else
       Serial.print(line[i]);
   }
   Serial.print("    ");
