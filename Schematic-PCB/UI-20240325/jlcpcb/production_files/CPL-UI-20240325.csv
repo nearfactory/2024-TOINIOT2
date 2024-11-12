@@ -1,4 +1,8 @@
 Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
+C1,0.1uF,C_0603_1608Metric,-19.5,-27.0,0.0,bottom
+C2,0.1uF,C_0603_1608Metric,19.5,-13.0,180.0,bottom
+C3,0.1uF,C_0603_1608Metric,19.5,-20.0,180.0,bottom
+C4,0.1uF,C_0603_1608Metric,19.5,-27.0,180.0,bottom
 R1,1K,R_0603_1608Metric,-17.25,-13.5,270.0,bottom
 R10,330,R_0603_1608Metric,0.0,-29.5,180.0,bottom
 R11,10K,R_0603_1608Metric,19.5,-25.0,0.0,bottom
