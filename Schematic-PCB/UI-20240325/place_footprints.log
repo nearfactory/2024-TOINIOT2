@@ -1,0 +1,33 @@
+11-12 18:10:01 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 647:Plugin executed on: 'win32'
+11-12 18:10:01 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 648:Plugin executed with python version: '3.11.5 (main, May 10 2024, 05:24:12) [MSC v.1939 64 bit (AMD64)]'
+11-12 18:10:01 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 649:KiCad build version: 8.0.3
+11-12 18:10:01 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 650:Plugin version: 3.0.0
+11-12 18:10:01 com_github_MitjaNemec_PlaceFootprints.action_place_footprints 651:Frame repr: <wx._core.Frame object at 0x0000023EBA486E60>
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Top layer
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Silk top
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Mask top
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Paste top
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Bottom layer
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Silk top
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Mask bottom
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Paste bottom
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Edges
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted V score cut
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 226:Finished generating Excellon files
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 243:Finished generating ZIP file C:\Users\桐蔭高校科学部\Desktop\GitHub\2024-TOINIOT2\Schematic-PCB\UI-20240325\jlcpcb\production_files\GERBER-UI-20240325.zip
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 281:Finished generating CPL file C:\Users\桐蔭高校科学部\Desktop\GitHub\2024-TOINIOT2\Schematic-PCB\UI-20240325\jlcpcb\production_files\CPL-UI-20240325.csv
+11-12 18:15:58 com_github_bouni_kicad-jlcpcb-tools.fabrication 299:Finished generating BOM file C:\Users\桐蔭高校科学部\Desktop\GitHub\2024-TOINIOT2\Schematic-PCB\UI-20240325\jlcpcb\production_files\BOM-UI-20240325.csv
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Top layer
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Silk top
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Mask top
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Paste top
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Bottom layer
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Silk top
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Mask bottom
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Paste bottom
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted Edges
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 211:Successfully plotted V score cut
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 226:Finished generating Excellon files
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 243:Finished generating ZIP file C:\Users\桐蔭高校科学部\Desktop\GitHub\2024-TOINIOT2\Schematic-PCB\UI-20240325\jlcpcb\production_files\GERBER-UI-20240325.zip
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 281:Finished generating CPL file C:\Users\桐蔭高校科学部\Desktop\GitHub\2024-TOINIOT2\Schematic-PCB\UI-20240325\jlcpcb\production_files\CPL-UI-20240325.csv
+11-12 18:15:59 com_github_bouni_kicad-jlcpcb-tools.fabrication 299:Finished generating BOM file C:\Users\桐蔭高校科学部\Desktop\GitHub\2024-TOINIOT2\Schematic-PCB\UI-20240325\jlcpcb\production_files\BOM-UI-20240325.csv
