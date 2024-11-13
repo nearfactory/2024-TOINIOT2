@@ -19,6 +19,54 @@ void setup(){
   Serial.println("TOINIOT2 Line 2024-10-12");
 
   for(auto p:LINE_PIN) pinMode(p, INPUT_PULLUP);
+  for(auto p:ANALOG_PIN) pinMode(p, INPUT_PULLUP);
+  
+  pinMode(THRESHOLD_PIN, OUTPUT);
+}
+
+// U1
+// 常に1 U5 U14 U24 U38-40
+
+uint8_t threshold = 600/4;
+
+void loop(){
+  analogWrite(THRESHOLD_PIN, threshold);
+
+  // 白線を取得
+  Serial.print('B');
+  for(int i=0;i<LINE_NUM;i++){
+    line[i] = digitalRead(LINE_PIN[i]);
+    Serial.print(line[i]);
+  }
+  Serial.print('E');
+  Serial.println();
+
+  delay(20);
+}
+
+
+/*
+constexpr uint8_t LINE_NUM = 46;
+constexpr uint8_t INNER_NUM = 26;
+const     uint8_t LINE_PIN[LINE_NUM] = {
+  7,8,9,10,11, 12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52
+};
+
+constexpr uint8_t ANALOG_NUM = 12;
+const     uint8_t ANALOG_PIN[ANALOG_NUM] = {
+  A11, A10, A2, A3, A1, A9, A8, A6, A0, A7, A5, A4
+};
+
+constexpr uint8_t THRESHOLD_PIN = 2;
+
+bool line[LINE_NUM];
+int analog[ANALOG_NUM];
+
+void setup(){
+  Serial.begin(9600);
+  Serial.println("TOINIOT2 Line 2024-10-12");
+
+  for(auto p:LINE_PIN) pinMode(p, INPUT_PULLUP);
   // pinMode(6+2, INPUT);
   // pinMode(6+5, INPUT);
   // pinMode(6+14, INPUT);
@@ -80,8 +128,6 @@ void loop(){
   // 白線のベクトルを計算
   // しおからさんのアルゴリズムは複雑で実装がめんどくさい
   // → 反応したセンサのベクトルの平均値を白線のベクトルとする代替アルゴリズムを検証
-  /*
-  */
 
   line[0] = 0;
   line[4] = 0;
@@ -116,3 +162,4 @@ void loop(){
 // センサの値がズレている: 1(+200)
 // 常に1: 5 14 38 39 40
 // 常に0: 7 
+*/
