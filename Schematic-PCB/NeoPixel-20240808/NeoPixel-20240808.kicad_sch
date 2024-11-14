@@ -1027,6 +1027,12 @@
 		(uuid "4e3d1221-17de-4307-9462-27f26c4d699b")
 	)
 	(junction
+		(at 96.52 92.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "53fd148d-49b6-4c41-88fa-c4a62e6f01e2")
+	)
+	(junction
 		(at 50.8 308.61)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1045,10 +1051,22 @@
 		(uuid "65cef785-e04f-4d97-800e-bef1ece7971f")
 	)
 	(junction
+		(at 96.52 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "68a539e8-bbae-4976-8232-d7e79b8ea611")
+	)
+	(junction
 		(at 50.8 77.47)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6ecfb0f8-80b6-4520-8c69-e5dafede55fc")
+	)
+	(junction
+		(at 96.52 142.24)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6edaf72f-e996-44b9-ab51-abf42789fa54")
 	)
 	(junction
 		(at 30.48 184.15)
@@ -1213,6 +1231,18 @@
 		(uuid "c9bc84bc-fd00-4ca5-93b9-7a6954cbbcd0")
 	)
 	(junction
+		(at 96.52 139.7)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ca36837a-88d7-4d3c-8952-af55eb43ab91")
+	)
+	(junction
+		(at 96.52 132.08)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cbe8b0ee-4ed5-4312-80a9-aacc0795514c")
+	)
+	(junction
 		(at 96.52 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1223,6 +1253,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cf0668f8-d184-4dd3-8fe9-f88cf5fc1d0c")
+	)
+	(junction
+		(at 96.52 85.09)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d2f7b982-3be1-4cf5-bb63-a51ea9a895fe")
 	)
 	(junction
 		(at 50.8 281.94)
@@ -1364,6 +1400,16 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 95.25) (xy 96.52 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "11e86d89-dc16-4e82-bda1-b4bd9eadd3dc")
+	)
+	(wire
+		(pts
 			(xy 40.64 173.99) (xy 40.64 176.53)
 		)
 		(stroke
@@ -1381,6 +1427,16 @@
 			(type default)
 		)
 		(uuid "130fe34b-3732-40eb-b7e5-1ae8f6a7df98")
+	)
+	(wire
+		(pts
+			(xy 96.52 132.08) (xy 96.52 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "141c1d61-9031-446c-b7d6-02f00c6629c4")
 	)
 	(wire
 		(pts
@@ -1524,6 +1580,16 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 142.24) (xy 96.52 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2cc45658-7980-49dd-abd5-a251fba3545a")
+	)
+	(wire
+		(pts
 			(xy 43.18 299.72) (xy 50.8 299.72)
 		)
 		(stroke
@@ -1601,6 +1667,16 @@
 			(type default)
 		)
 		(uuid "34d00296-8a1c-4a6d-bfc2-9810a43048f5")
+	)
+	(wire
+		(pts
+			(xy 88.9 137.16) (xy 96.52 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "34def258-1596-4d78-b50a-2f53ab446136")
 	)
 	(wire
 		(pts
@@ -1714,6 +1790,26 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 139.7) (xy 96.52 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44bb5730-2cf5-45de-96d2-282a670e8cbd")
+	)
+	(wire
+		(pts
+			(xy 96.52 129.54) (xy 96.52 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4504a1ad-7208-4b5b-80f2-8e08164089f6")
+	)
+	(wire
+		(pts
 			(xy 30.48 166.37) (xy 30.48 175.26)
 		)
 		(stroke
@@ -1731,6 +1827,16 @@
 			(type default)
 		)
 		(uuid "45f0e334-9521-42cf-b787-f2b8cd80bf39")
+	)
+	(wire
+		(pts
+			(xy 96.52 95.25) (xy 96.52 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "45ffb197-7519-43e1-ba02-d601bcaae52e")
 	)
 	(wire
 		(pts
@@ -1814,6 +1920,16 @@
 	)
 	(wire
 		(pts
+			(xy 96.52 92.71) (xy 96.52 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50643e19-3f6d-46c8-b59c-20997c88efdc")
+	)
+	(wire
+		(pts
 			(xy 30.48 237.49) (xy 30.48 246.38)
 		)
 		(stroke
@@ -1821,6 +1937,16 @@
 			(type default)
 		)
 		(uuid "50fc3e48-f508-4856-ab89-534581783975")
+	)
+	(wire
+		(pts
+			(xy 96.52 142.24) (xy 96.52 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "512ff21a-6b16-47a2-9bf1-79d6f41257eb")
 	)
 	(wire
 		(pts
@@ -1881,6 +2007,16 @@
 			(type default)
 		)
 		(uuid "5a421e0d-1e8a-4045-be2a-f5148fb91857")
+	)
+	(wire
+		(pts
+			(xy 88.9 85.09) (xy 96.52 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ce08688-217a-4606-956b-57dbe5c86821")
 	)
 	(wire
 		(pts
@@ -2074,6 +2210,16 @@
 	)
 	(wire
 		(pts
+			(xy 96.52 82.55) (xy 96.52 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ac92dc1-6caf-4dd7-897f-70427e92569f")
+	)
+	(wire
+		(pts
 			(xy 50.8 193.04) (xy 50.8 184.15)
 		)
 		(stroke
@@ -2254,6 +2400,16 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 87.63) (xy 96.52 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ab577e3-023a-4df4-81dc-71c3b5c71b61")
+	)
+	(wire
+		(pts
 			(xy 30.48 290.83) (xy 30.48 299.72)
 		)
 		(stroke
@@ -2271,6 +2427,16 @@
 			(type default)
 		)
 		(uuid "9fad07e0-441b-462f-b8aa-263ae727fe62")
+	)
+	(wire
+		(pts
+			(xy 88.9 92.71) (xy 96.52 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a25d8e62-e978-40d5-82ad-0e7a0f09a83f")
 	)
 	(wire
 		(pts
@@ -2484,6 +2650,26 @@
 	)
 	(wire
 		(pts
+			(xy 96.52 90.17) (xy 96.52 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bfdc37e8-6ff8-4c66-ad55-08c648afb106")
+	)
+	(wire
+		(pts
+			(xy 88.9 90.17) (xy 96.52 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c2dcf49a-52e2-44d9-9b18-63421216fe4e")
+	)
+	(wire
+		(pts
 			(xy 50.8 228.6) (xy 50.8 219.71)
 		)
 		(stroke
@@ -2511,6 +2697,26 @@
 			(type default)
 		)
 		(uuid "c8449cbf-3ef8-485b-a75f-1efa11fe8cac")
+	)
+	(wire
+		(pts
+			(xy 96.52 85.09) (xy 96.52 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cad3bec7-c8ef-4105-9358-023324eb961c")
+	)
+	(wire
+		(pts
+			(xy 88.9 132.08) (xy 96.52 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d09efa14-b543-486c-8017-82e78a554884")
 	)
 	(wire
 		(pts
@@ -2684,6 +2890,16 @@
 	)
 	(wire
 		(pts
+			(xy 96.52 137.16) (xy 96.52 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec533172-d92b-4677-8fa6-4ae5ab0b890f")
+	)
+	(wire
+		(pts
 			(xy 50.8 59.69) (xy 50.8 50.8)
 		)
 		(stroke
@@ -2764,6 +2980,16 @@
 	)
 	(wire
 		(pts
+			(xy 96.52 139.7) (xy 96.52 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7e53acb-5522-4d69-8333-4cff324ca88f")
+	)
+	(wire
+		(pts
 			(xy 50.8 201.93) (xy 50.8 193.04)
 		)
 		(stroke
@@ -2791,6 +3017,16 @@
 			(type default)
 		)
 		(uuid "fbdef033-f63b-445f-82bb-58a67c3547c0")
+	)
+	(wire
+		(pts
+			(xy 88.9 134.62) (xy 96.52 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd7e7154-8028-41f5-8126-1a71e0aedde0")
 	)
 	(wire
 		(pts
@@ -2845,6 +3081,30 @@
 		(uuid 11687631-fe87-4f7c-b954-513779b4175d)
 	)
 	(rectangle
+		(start 71.12 60.96)
+		(end 113.03 107.95)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 6fdb20f4-eee6-4572-9c47-e63bf79e9039)
+	)
+	(rectangle
+		(start 71.12 107.95)
+		(end 113.03 154.94)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 95beab35-9f39-4c8f-ab33-8b046510f787)
+	)
+	(rectangle
 		(start 12.7 13.97)
 		(end 71.12 331.47)
 		(stroke
@@ -2877,6 +3137,28 @@
 			(justify left bottom)
 		)
 		(uuid "6417df35-1a45-4a14-a43e-1b9703305588")
+	)
+	(text "To Main"
+		(exclude_from_sim no)
+		(at 76.708 118.872 0)
+		(effects
+			(font
+				(size 4 4)
+			)
+			(justify left bottom)
+		)
+		(uuid "6ad7885a-6d3d-4605-b471-c40fe264427a")
+	)
+	(text "To Main"
+		(exclude_from_sim no)
+		(at 76.708 71.882 0)
+		(effects
+			(font
+				(size 4 4)
+			)
+			(justify left bottom)
+		)
+		(uuid "f5d441d0-245a-45e6-9aac-2c5c944c2f2c")
 	)
 	(global_label "NeoPixel_PWM"
 		(shape output)
@@ -2984,6 +3266,72 @@
 			(project "NeoPixel-20240808"
 				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
 					(reference "C10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 96.52 144.78 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "028e7f53-768f-4479-a9ce-82de09470797")
+		(property "Reference" "#PWR08"
+			(at 96.52 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 96.52 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 96.52 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 96.52 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 96.52 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d70e9b75-d2a9-4e5b-b14f-8358e1affb5f")
+		)
+		(instances
+			(project "NeoPixel-20240808"
+				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -3635,6 +3983,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+5V")
+		(at 96.52 129.54 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2ecbe68e-ff34-44f7-aab1-dc16bd8c34a4")
+		(property "Reference" "#PWR07"
+			(at 96.52 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 96.52 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 96.52 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 96.52 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 96.52 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "67adaff5-0ad5-4a16-af73-f7eab4e91b9d")
+		)
+		(instances
+			(project "NeoPixel-20240808"
+				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 40.64 175.26 90)
 		(unit 1)
@@ -3906,6 +4319,83 @@
 			(project "NeoPixel-20240808"
 				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
 					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x05_Pin")
+		(at 83.82 137.16 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4fa7179b-87ef-4847-a3e5-8f785fbd9445")
+		(property "Reference" "J3"
+			(at 84.455 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x05_Pin"
+			(at 84.455 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "@2024TOINIOT2-NeoPixel:Connector"
+			(at 83.82 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 83.82 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x05, script generated"
+			(at 83.82 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bcb010d3-5dc5-4a6f-9181-d7d31841d16b")
+		)
+		(pin "3"
+			(uuid "716dcfcb-995a-4b22-82c7-ca003e8863f1")
+		)
+		(pin "4"
+			(uuid "d67ae109-d9c6-48ca-91c9-9fec3fd0e0e6")
+		)
+		(pin "5"
+			(uuid "b1e90a82-272b-45bb-9d3f-91ae58fcc8e6")
+		)
+		(pin "2"
+			(uuid "8193e232-e052-4603-91f5-cf657efdc405")
+		)
+		(instances
+			(project "NeoPixel-20240808"
+				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -4325,6 +4815,72 @@
 			(project "NeoPixel-20240808"
 				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
 					(reference "C12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 96.52 97.79 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7c057bdf-406c-42c7-87c6-73ddbac3a561")
+		(property "Reference" "#PWR06"
+			(at 96.52 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 96.52 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 96.52 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 96.52 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 96.52 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cde94b74-a8a8-420c-861d-c3a4844fe7ea")
+		)
+		(instances
+			(project "NeoPixel-20240808"
+				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -5315,6 +5871,148 @@
 			(project "NeoPixel-20240808"
 				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
 					(reference "D13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 96.52 82.55 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "deb13c86-0ff1-43d9-a669-e09008eb258d")
+		(property "Reference" "#PWR05"
+			(at 96.52 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 96.52 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 96.52 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 96.52 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 96.52 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "77e98ffc-d658-48e7-a58d-3b10b3a5f30b")
+		)
+		(instances
+			(project "NeoPixel-20240808"
+				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x05_Pin")
+		(at 83.82 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f2aa667f-8890-4a93-a8e0-034c65e370d3")
+		(property "Reference" "J2"
+			(at 84.455 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x05_Pin"
+			(at 84.455 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "@2024TOINIOT2-NeoPixel:Connector"
+			(at 83.82 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 83.82 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x05, script generated"
+			(at 83.82 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f2a25495-3d2f-4838-9884-acaf3ada6556")
+		)
+		(pin "3"
+			(uuid "5b0a4e19-4121-4cb4-b853-a566394b4930")
+		)
+		(pin "4"
+			(uuid "554d353a-ac5c-4118-bb35-2402bcd14325")
+		)
+		(pin "5"
+			(uuid "60ef00dc-a761-4660-8ebb-9b1374a96a69")
+		)
+		(pin "2"
+			(uuid "c72bb81f-93d3-423d-92bf-41f3d62f7598")
+		)
+		(instances
+			(project "NeoPixel-20240808"
+				(path "/a2356a83-a81a-4da2-89cc-840aef523054"
+					(reference "J2")
 					(unit 1)
 				)
 			)
