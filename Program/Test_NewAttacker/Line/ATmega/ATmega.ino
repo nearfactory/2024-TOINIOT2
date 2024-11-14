@@ -30,23 +30,53 @@ void setup(){
 // 先頭3ビット
 // 30/5 = 6
 
-// 0b0000 0000  0b0001 xxxx  0b0010 xxxx  ...  0b0110 xxxx
+// 0b0001 1111  0
 
+// 0b001x xxxx  1
+// 0b010x xxxx  2
+// 0b011x xxxx  3
+// 0b100x xxxx  4
+// 0b101x xxxx  5
+// 0b110x xxxx  6
+
+// 0b0000 0000  7
+
+char send_str[8]{};
+constexpr uint8_t DATA_SIZE = 5;
 uint8_t threshold = 650/4;
 
 void loop(){
   analogWrite(THRESHOLD_PIN, threshold);
 
   // 白線を取得
-  // Serial.read();
-  Serial.print('B');
   for(int i=0;i<LINE_NUM;i++){
     line[i] = digitalRead(LINE_PIN[i]);
-    Serial.print(line[i]);
   }
-  Serial.println();
-  // Serial.print('E');
-  // Serial.println();
+
+  // 送信する文字列の準備
+  for(int i=0;i<7;i++){
+    send_str[i] = i << DATA_SIZE;
+  }
+  
+  // 圧縮
+  for(int i=0;i<INNER_NUM;i++){
+    send_str[i/DATA_SIZE + 1] |= line[i] << (DATA_SIZE - i%DATA_SIZE - 1);
+  }
+
+  line[37] = 0;
+  line[38] = 0;
+  line[39] = 0;
+
+  send_str[6] |= (line[INNER_NUM]   |line[INNER_NUM+1] |line[INNER_NUM+2] |line[INNER_NUM+3] |line[INNER_NUM+4])  << 3;  // 前
+  send_str[6] |= (line[INNER_NUM+5] |line[INNER_NUM+6] |line[INNER_NUM+7] |line[INNER_NUM+8] |line[INNER_NUM+9])  << 2;  // 左
+  send_str[6] |= (line[INNER_NUM+10]|line[INNER_NUM+11]|line[INNER_NUM+12]|line[INNER_NUM+13]|line[INNER_NUM+14]) << 1;  // 右
+  send_str[6] |= (line[INNER_NUM+15]|line[INNER_NUM+16]|line[INNER_NUM+17]|line[INNER_NUM+18]|line[INNER_NUM+19]) << 0;  // 後
+
+  send_str[0] = 0b00011111;
+  send_str[7] = '\0';
+
+  // 送信
+  Serial.print(send_str);
 
   delay(20);
 }
