@@ -16,7 +16,7 @@ int analog[ANALOG_NUM];
 
 void setup(){
   Serial.begin(9600);
-  Serial.println("TOINIOT2 Line 2024-10-12");
+  // Serial.println("TOINIOT2 Line 2024-10-12");
 
   for(auto p:LINE_PIN) pinMode(p, INPUT_PULLUP);
   for(auto p:ANALOG_PIN) pinMode(p, INPUT_PULLUP);
@@ -27,19 +27,26 @@ void setup(){
 // U1
 // 常に1 U5 U14 U24 U38-40
 
-uint8_t threshold = 600/4;
+// 先頭3ビット
+// 30/5 = 6
+
+// 0b0000 0000  0b0001 xxxx  0b0010 xxxx  ...  0b0110 xxxx
+
+uint8_t threshold = 650/4;
 
 void loop(){
   analogWrite(THRESHOLD_PIN, threshold);
 
   // 白線を取得
+  // Serial.read();
   Serial.print('B');
   for(int i=0;i<LINE_NUM;i++){
     line[i] = digitalRead(LINE_PIN[i]);
     Serial.print(line[i]);
   }
-  Serial.print('E');
   Serial.println();
+  // Serial.print('E');
+  // Serial.println();
 
   delay(20);
 }
