@@ -15,7 +15,7 @@ bool line[LINE_NUM];
 int analog[ANALOG_NUM];
 
 void setup(){
-  Serial.begin(9600);
+  Serial.begin(115200);
   // Serial.println("TOINIOT2 Line 2024-10-12");
 
   for(auto p:LINE_PIN) pinMode(p, INPUT_PULLUP);
