@@ -1,24 +1,32 @@
 #pragma once
 
+#include <Arduino.h>
+#include "Vec2.hpp"
+
 class Line{
 private:
-  static constexpr uint8_t LINE_INNER_NUM = 26;
-  static constexpr uint8_t LINE_NUM = LINE_INNNER_NUM+4;
+  static constexpr uint8_t INNER_NUM = 26;
+  static constexpr uint8_t LINE_NUM = INNER_NUM+4;
 
   uint32_t baudrate = 115200;
-  char receive[STR_SIZE] = "";
 
-  static constexpr uint8_t DATA_SIZE = 5;
-  static constexpr uint8_t STR_SIZE = 8;
+  static constexpr uint8_t DATA_SIZE = 5; // bit
+  static constexpr uint8_t STR_SIZE = 8;  // byte
+  char receive[STR_SIZE] = "";
 public:
-  bool  data[INNER_NUM+4]{0}; // センサの値
-  int   num = 0;              // 反応しているセンサの数
-  float dir = 0.0f;           // ロボットの中心点と白線の角度
-  bool  on = false;           // 白線上のフラグ
+  bool  line[INNER_NUM+4]; // センサの値
+  int   num;               // 反応しているセンサの数
+  Vec2  vec;               // 反応しているセンサのベクトルの合計
+
+  float distance;          // ロボットの中心点と白線の距離
+  float dir;               // ロボットの中心点と白線の角度
+  bool  on;                // 白線上のフラグ
   
-  Line(){};
+  Line() : num(0), vec(0,0), distance(0), dir(0), on(0) {}
   ~Line();
 
-  void Begin();
+  void Begin(int rate);
   void Read();
-}
+};
+
+Line line;

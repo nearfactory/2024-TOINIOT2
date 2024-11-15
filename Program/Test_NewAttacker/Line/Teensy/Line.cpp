@@ -1,7 +1,8 @@
 #include "Line.hpp"
+#include "Vec2.hpp"
 
 void Line::Begin(int rate){
-  this->baudrate = rate;
+  baudrate = rate;
   Serial1.begin(baudrate);
 
   return;
@@ -9,7 +10,7 @@ void Line::Begin(int rate){
 
 void Line::Read(){
   // 古い情報を読み飛ばす
-  while(Serial1.available()>str_size){
+  while(Serial1.available()>STR_SIZE){
     Serial1.read();
   }
   // 開始コードが来るまで読み飛ばす
@@ -18,7 +19,7 @@ void Line::Read(){
   }
 
   // 送信中の場合、完了するまで待つ
-  while(Serial1.available()<=str_size-3){int i=0;}
+  while(Serial1.available()<STR_SIZE-2){int i=0;}
 
   // 読み出して格納
   for(int i=0;i<6;i++){
@@ -29,18 +30,30 @@ void Line::Read(){
   }
 
   // 壊れたセンサを反応しいないように修正
-  line[0] = false;
+  line[0]    = false;
   line[14-1] = false;
   line[24-1] = false;
 
-  Vec2  vec(0.0f, 0.0f);
-  for(int i=0;i<LINE_INNER_NUM;i++){
+  // 角度算出
+  on = false;
+  for(int i=0;i<INNER_NUM;i++){
     if(line[i]){
-      float sensor_dir = radians(i*360/LINE_INNER_NUM);
+      float sensor_dir = radians(i*360/INNER_NUM);
+      
       vec.x += cos(sensor_dir);
       vec.y += sin(sensor_dir);
-      line_num++;
+
+      num++;
+      on = true;
     }
   }
-  line_dir = -atan2(line_vec.y, line_vec.x);
+  if(on){
+    dir = degrees(-atan2(vec.y, vec.x));
+    distance = vec.len() / num;
+  }else{
+    dir = 0;
+    distance = 0;
+  }
+
+  return;
 }
