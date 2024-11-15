@@ -875,7 +875,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINIOT2-FPC-FFC:FPC-FFC"
+		(property "Footprint" "@2024TOINIOT2-FPC-FCC:FPC-FFC"
 			(at 85.09 66.04 0)
 			(effects
 				(font
@@ -948,7 +948,7 @@
 			(uuid "b0da5945-b47d-4ab1-b507-7973c94f6e11")
 		)
 		(instances
-			(project ""
+			(project "FPC-MD-Main-20240719"
 				(path "/d35d1607-b1d6-4b70-8ad5-7c159f549b16"
 					(reference "J1")
 					(unit 1)
@@ -982,7 +982,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINIOT2-FPC-FFC:FPC-FFC"
+		(property "Footprint" "@2024TOINIOT2-FPC-FCC:FPC-FFC"
 			(at 105.41 66.04 0)
 			(effects
 				(font
