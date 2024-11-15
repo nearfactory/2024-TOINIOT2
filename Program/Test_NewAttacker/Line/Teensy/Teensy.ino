@@ -1,6 +1,6 @@
-#include "Line.hpp"
-#include "Motor.hpp"
-#include "UI.hpp"
+#include "../../../include/Line.hpp"
+#include "../../include/Motor.hpp"
+#include "../../include/UI.hpp"
 
 constexpr uint8_t LINE_NUM = 46;
 constexpr uint8_t INNER_NUM = 26;

@@ -63,21 +63,21 @@ inline void moveDir(double dir, int power, int blend){
   return;
 }
 
-// inline void avoidLine(){
-//   // line_dir
+inline void avoidLine(){
+  // line_dir
 
-//   if(line_str[0] || line_str[1] || line_str[2]&0b00001111){
-//     moveDir(line_dir, 100, true, 100);
-//   }else if(line_str[2] & 0b11110000){
-//     moveDir(90, 100, true, 40);
-//   }else if(line_str[3] & 0b00001111){
-//     moveDir(0,  100, true, 40);
-//   }else if(line_str[3] & 0b11110000){
-//     moveDir(-90,100, true, 40);
-//   }
+  if(line_str[0] || line_str[1] || line_str[2]&0b00001111){
+    moveDir(line_dir, 100, true, 100);
+  }else if(line_str[2] & 0b11110000){
+    moveDir(90, 100, true, 40);
+  }else if(line_str[3] & 0b00001111){
+    moveDir(0,  100, true, 40);
+  }else if(line_str[3] & 0b11110000){
+    moveDir(-90,100, true, 40);
+  }
 
-//   return;
-// }
+  return;
+}
 
 // inline void setDir(double dir, double goal_dir, double power, int blend){
 //   double dir_power = dir/1.8;
