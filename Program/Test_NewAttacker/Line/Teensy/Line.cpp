@@ -1,14 +1,13 @@
 #include "Line.hpp"
-#include "Vec2.hpp"
 
-void Line::Begin(int rate){
+void Line::begin(int rate){
   baudrate = rate;
   Serial1.begin(baudrate);
 
   return;
 }
 
-void Line::Read(){
+void Line::read(){
   // 古い情報を読み飛ばす
   while(Serial1.available()>STR_SIZE){
     Serial1.read();
