@@ -30,7 +30,8 @@ void draw(){
   if(str.length()>80){
     for(int i=0;i<16;i++){
       ball[i] = 1023 - Integer.parseInt(str.substring(i*5+1,i*5+5));
-      ball[i] = int(sqrt(1023/ball[i])*1023.0);
+      ball[i] = int(ball[i]*ball[i]/36000 * ball[i]*ball[i]/10000 );
+      // ball[i] = int(sqrt(1023/ball[i])*1023.0);
       // print(ball[i] + " ");
       
       float sensor_dir = radians(i*360.0/16.0);
@@ -90,12 +91,14 @@ void draw(){
   ellipse(0, 0, 512/1.25, 512/1.25);
   
   
+  // グラフ
   for(int i=0;i<16;i++){
     // ball
     // fill(230,16,16);
     fill(180, 180, 180);
     noStroke();
     rect(0, -20, ball[i]/2.5, 40);
+    print(ball[i], " ");
     
     // grid
     noFill();
@@ -115,24 +118,24 @@ void draw(){
   stroke(230,32,230);
   line(0,0,cos(radians(-big_id*360/16.0))*150,sin(radians(-big_id*360/16.0))*150);
   // raw
-  stroke(32,32,230);
+  stroke(32,230,32);
   line(0,0,cos(radians(ball_dir))*400, sin(radians(ball_dir))*400);
   // correct
-  stroke(32,230,32);
+  stroke(32,32,230);
   line(0,0,cos(radians(ball_dir_correct))*300, sin(radians(ball_dir_correct))*300);
   // correct2
-  stroke(230,32,32);
-  line(0,0,cos(radians(ball_dir_correct2))*400, sin(radians(ball_dir_correct2))*400);
+  // stroke(230,32,32);
+  // line(0,0,cos(radians(ball_dir_correct2))*400, sin(radians(ball_dir_correct2))*400);
   
   
   fill(180, 180, 180);
   noStroke();
   translate(0,-400);
   rotate(radians(90));
-  int ofset = 0;
-  for(int i=0;i<16;i++){
-    rect((i+ofset)%16*width/16,(1023-ball[i])/2,(i+ofset+1)%16*width/16,800);
-  }
+  // int ofset = 0;
+  // for(int i=0;i<16;i++){
+  //   rect((i+ofset)%16*width/16,(1023-ball[i])/2,(i+ofset+1)%16*width/16,800);
+  // }
   
   /*
   for(int i=0;i<16;i++){
