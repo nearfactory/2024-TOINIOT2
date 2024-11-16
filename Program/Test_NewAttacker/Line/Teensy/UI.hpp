@@ -4,8 +4,10 @@
 #include <Adafruit_GFX.h>
 #include <Wire.h>
 
-constexpr int SW_TAC_NUM = 5;
-const uint8_t SW_TAC_PIN[SW_TAC_NUM] = { 36,37,31,30,32 };
+constexpr uint8_t TOGGLE_PIN = 36;
+
+constexpr int SW_TAC_NUM = 4;
+const uint8_t SW_TAC_PIN[SW_TAC_NUM] = { 37,31,30,32 };
 enum SW : uint8_t{
   TAC_1 = 0,
   TAC_2,

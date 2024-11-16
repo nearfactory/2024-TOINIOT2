@@ -22,8 +22,12 @@ void loop() {
   
   // 白線避け
   line.read();
-  if(line.num){
+  if(digitalRead(TOGGLE_PIN)){
+    motor.set(0,0,0,0);
+  }else if(line.num){
     motor.moveDir(line.dir+180, 60);
+  }else{
+    motor.set(0,0,0,0);
   }
 
   motor.avr();

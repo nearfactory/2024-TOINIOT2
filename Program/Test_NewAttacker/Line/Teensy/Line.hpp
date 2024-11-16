@@ -23,7 +23,7 @@ public:
   bool  on;                // 白線上のフラグ
   
   Line() : num(0), vec(0,0), distance(0), dir(0), on(0) {}
-  ~Line();
+  // ~Line();
 
   void begin(int rate);
   void read();

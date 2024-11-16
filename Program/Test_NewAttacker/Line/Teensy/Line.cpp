@@ -35,6 +35,9 @@ void Line::read(){
 
   // 角度算出
   on = false;
+  num = 0;
+  vec.clear();
+  
   for(int i=0;i<INNER_NUM;i++){
     if(line[i]){
       float sensor_dir = radians(i*360/INNER_NUM);
