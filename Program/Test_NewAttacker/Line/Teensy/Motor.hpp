@@ -34,6 +34,7 @@ public:
 
   void begin();
   void set(float m1, float m2, float m3, float m4);
+  void add(float m1, float m2, float m3, float m4);
   void moveDir(float dir, uint8_t power);
   void p();
   void avr();

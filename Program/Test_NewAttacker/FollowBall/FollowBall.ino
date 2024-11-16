@@ -5,52 +5,84 @@
 #include <Wire.h>
 
 #include "Ball.hpp"
+#include "Dir.hpp"
+#include "Line.hpp"
 #include "Motor.hpp"
 #include "UI.hpp"
+
+Ball ball;
+Dir dir;
+Line line;
+Motor motor;
 
 using namespace std;
 
 void setup() {
   // 通信/ボールセンサ/方向センサ/キッカー/モーター/UIのセットアップ
-  UISetup();
-  ballSetup();
-  motorSetup();  
+  ball.begin();
+  dir.begin();
+  line.begin(115200);
+  motor.begin();
+  
+  uint8_t system=0, gyro=0, accel=0, mag=0;
+  // system = 3; gyro = 3; mag = 3;
+  while(system<3 || gyro<3 || mag<3){
+    dir.calibration(&system, &gyro, &accel, &mag);
+    digitalWrite(LED_BUILTIN, HIGH);
+  }
+
+
+  delay(1000);
+  dir.setDefault();
+  digitalWrite(LED_BUILTIN, LOW);
+  /*
+  */
 }
 
 void loop() {
-  ballUpdate(BALL::DIR);
-  if(!digitalRead(TOGGLE_PIN)){
-    // データを更新
-    
+  ball.read();
+  // Serial.print("min:-180 max:180 dir:");
+  // Serial.printf("dir:%f\n", ball.dir);
+
+  if(digitalRead(TOGGLE_PIN)){
+    motor.set(0,0,0,0);
+    delay(50);
+  }else{
     // 回り込み (方法4)
     // https://yuta.techblog.jp/archives/40889399.html
-    double r = 8000;  // 回り込み時の半径
-    double theta = 0.0;
-    if(abs(ball_dir)<15){
-      move_dir = ball_dir * 1.5;
-    }else if(ball_distance < r){
-      theta = 90 + (r-ball_distance) * 90 / r;
-      move_dir = ball_dir + (ball_dir>0?theta:-theta);
+    float r = 8000;  // 回り込み時の半径
+    float theta = 0.0;
+    float move_dir = 0.0f;
+
+    if(abs(ball.dir)<30){
+      move_dir = ball.dir * 1.5;
+    }else if(ball.distance < r){
+      theta = 90 + (r-ball.distance) * 90 / r;
+      move_dir = ball.dir + (ball.dir>0?theta:-theta);
     }else{
-      theta = asin(r/ball_distance);
-      move_dir = ball_dir + (ball_dir>0?theta:-theta);
-    } 
-    moveDir(move_dir, 40, true, 100);
-    
-    // モーターに適用
-    motorP();
-    motorRaw();
-  }else{
-    motor[0] = 0;
-    motor[1] = 0;
-    motor[2] = 0;
-    motor[3] = 0;
-    
-    motorP();
-    motorRaw();
-    delay(50);
+      theta = asin(r/ball.distance);
+      move_dir = ball.dir + (ball.dir>0?theta:-theta);
+    }
+    motor.moveDir(move_dir, 80);
+
+    // 姿勢制御を加算
+    dir.read();
+    // motor.setDir(dir.dir, 20.0);
+    float pow = dir.dir*60.0/180.0;
+    motor.add(pow, pow, pow, pow);
+
+    // 白線避け
+    line.read();
+    if(line.on) motor.moveDir(line.dir+180, 80);
+
+    Serial.printf("dir:%f line:%f\n", dir.dir, line.distance);
   }
-  display.clearDisplay();
-  drawAngleLine(64, 32, ball_dir, 30);
-  display.display();
+
+  motor.avr();
+  motor.write();
+
+  delay(20);
+  /*
+  delay(50);
+  */
 }

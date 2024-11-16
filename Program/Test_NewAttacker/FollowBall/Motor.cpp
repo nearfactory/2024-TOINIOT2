@@ -25,6 +25,19 @@ void Motor::add(float m1, float m2, float m3, float m4){
   motor[1] += m2;
   motor[2] += m3;
   motor[3] += m4;
+
+  return;
+}
+
+void Motor::setDir(float dir, float p_gain){
+  // P制御
+  float power = dir / 1.8;
+  p_gain /= 100;
+  
+  for(int i=0;i<NUM;i++){
+    motor[i] = motor[i]*(1-p_gain) + power*p_gain;
+  }
+  
   return;
 }
 
@@ -64,7 +77,7 @@ void Motor::avr(){
     // 出力値を計算
     float sum = 0.0f;
     for(int j=0;j<QUEUE_SIZE;j++) sum += queue[j][i];
-    motor_raw[i] = sum / QUEUE_SIZE;
+    motor_raw[i] = sum / (float)QUEUE_SIZE;
   }
 
 }
@@ -76,9 +89,9 @@ void Motor::write(){
 
       digitalWrite( PIN[i][PH], motor_raw[i]>0);
       analogWrite(  PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100));
-      Serial.printf("%f ", motor_raw[i]);
+      // Serial.printf("%f ", motor_raw[i]);
   }
-  Serial.println();
+  // Serial.println();
 
   return;
 }
