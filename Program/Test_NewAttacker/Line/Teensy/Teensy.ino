@@ -2,12 +2,14 @@
 // #include "C:\GitHub\2024-TOINIOT2\Program\@include\Motor.hpp"
 // #include "C:\GitHub\2024-TOINIOT2\Program\@include\UI.hpp"
 
+#include "Dir.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
 #include "UI.hpp"
 
 Line line;
 Motor motor;
+Dir dir;
 
 
 void setup() {
@@ -16,6 +18,11 @@ void setup() {
 
   line.begin(115200);
   motor.begin();
+  dir.begin();
+  // dir.calibration();
+
+  delay(1000);
+  dir.setDefault();
 }
 
 void loop() {
@@ -33,24 +40,8 @@ void loop() {
   motor.avr();
   motor.write();
 
-
-
-  // if(line_num == 0) {
-  //   motor[0] = 0;
-  //   motor[1] = 0;
-  //   motor[2] = 0;
-  //   motor[3] = 0;
-  // }else if(!digitalRead(SW_TAC_PIN[0])){
-  //   moveDir(degrees(line_dir)+180, 60, 100);
-  // }else{
-  //   motor[0] = 0;
-  //   motor[1] = 0;
-  //   motor[2] = 0;
-  //   motor[3] = 0;
-  // }
-
-  // motorP();
-  // motorRaw();
+  // dir.read();
+  // Serial.println(dir.dir);
 
   delay(50);
 }

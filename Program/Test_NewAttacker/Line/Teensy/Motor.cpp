@@ -68,7 +68,9 @@ void Motor::write(){
 
       digitalWrite( PIN[i][PH], motor_raw[i]>0);
       analogWrite(  PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100));
+      Serial.printf("%f ", motor_raw[i]);
   }
+  Serial.println();
 
   return;
 }
