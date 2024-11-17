@@ -18,7 +18,6 @@ Motor motor;
 using namespace std;
 
 void setup() {
-  // 通信/ボールセンサ/方向センサ/キッカー/モーター/UIのセットアップ
   ball.begin();
   dir.begin();
   line.begin(115200);
@@ -31,19 +30,18 @@ void setup() {
     digitalWrite(LED_BUILTIN, HIGH);
   }
 
-
   delay(1000);
   dir.setDefault();
   digitalWrite(LED_BUILTIN, LOW);
-  /*
-  */
 }
 
 void loop() {
   ball.read();
+  Serial.println(ball.dir);
   // Serial.print("min:-180 max:180 dir:");
   // Serial.printf("dir:%f\n", ball.dir);
 
+  /*
   if(digitalRead(TOGGLE_PIN)){
     motor.set(0,0,0,0);
     delay(50);
@@ -82,7 +80,7 @@ void loop() {
   motor.write();
 
   delay(20);
-  /*
-  delay(50);
+
   */
+  delay(50);
 }

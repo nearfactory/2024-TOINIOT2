@@ -49,6 +49,7 @@ void Line::read(){
       on = true;
     }
   }
+  
   if(on){
     dir = degrees(-atan2(vec.y, vec.x));
     distance = vec.len() / num;

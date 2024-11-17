@@ -7,7 +7,6 @@ void Ball::begin(){
   return;
 }
 
-
 void Ball::read(){
   float x=0, y=0;
   distance = 0;
@@ -17,8 +16,8 @@ void Ball::read(){
     distance += ball[i];
 
     float sensor_dir = radians(i*360/NUM);
-    x += ball[i] * cos(sensor_dir);
-    y += ball[i] * sin(sensor_dir);
+    x += (1023 - ball[i]) * cos(sensor_dir);
+    y += (1023 - ball[i]) * sin(sensor_dir);
   }
 
   // Serial.print("min:0 max:1023 ");
@@ -28,7 +27,7 @@ void Ball::read(){
   }
   Serial.println();
   
-  dir = -degrees(atan2(-y, -x));
+  dir = -degrees(atan2(y, x));
   is_exist = distance < DISTANCE_MAX;
   // hold_time = millis() - hold_begin;
 
