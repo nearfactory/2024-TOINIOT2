@@ -42,40 +42,9 @@ void Ball::read(){
   dir = -degrees(atan2(y, x));
   dir2 = -degrees(atan2(y2,x2));
 
-  int plus_v = 0;
-  int plus_num = 0;
-  int minus_v = 0;
-  int minus_num = 0;
-  float plus_avr  = 0;
-  float minus_avr = 0;
-
-  for(int i=0;i<16;i++){
-    float diff = ball[i] - ball[(i+1)%16];
-    if(diff>0){
-      plus_avr += diff;
-      plus_num++;
-    }else{
-      minus_avr += diff;
-      minus_num++;
-    }
-  }
-
-  plus_avr  = plus_avr / plus_num;
-  minus_avr = minus_avr / minus_num;
-
-  float avr_add = plus_avr + minus_avr;
-
-  float hosei = (v-90000)/2000.0;
-
-  // Serial.printf("%f ", hosei);
   Serial.printf("%f ", dir);
-  // Serial.printf("%f ", dir2);
-  // Serial.printf("%f ", dir2 - hosei);
-  Serial.printf("%f ", plus_avr);
-  Serial.printf("%f ", minus_avr);
-  Serial.printf("%f ", avr_add);
-  Serial.printf("%f ", dir-avr_add);
-  // Serial.printf("%f ", dir-)
+  Serial.printf("%f ", v/(float)distance);
+  Serial.printf("%f ", dir+v/(float)distance);
   Serial.println();
   
   is_exist = distance < DISTANCE_MAX;
