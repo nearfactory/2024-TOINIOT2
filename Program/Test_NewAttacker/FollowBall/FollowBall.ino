@@ -18,26 +18,27 @@ Motor motor;
 using namespace std;
 
 void setup() {
+  Serial.begin(115200);
   ball.begin();
-  dir.begin();
-  line.begin(115200);
-  motor.begin();
+  // dir.begin();
+  // line.begin(115200);
+  // motor.begin();
   
-  uint8_t system=0, gyro=0, accel=0, mag=0;
+  // uint8_t system=0, gyro=0, accel=0, mag=0;
   // system = 3; gyro = 3; mag = 3;
-  while(system<3 || gyro<3 || mag<3){
-    dir.calibration(&system, &gyro, &accel, &mag);
-    digitalWrite(LED_BUILTIN, HIGH);
-  }
+  // while(system<3 || gyro<3 || mag<3){
+  //   dir.calibration(&system, &gyro, &accel, &mag);
+  //   digitalWrite(LED_BUILTIN, HIGH);
+  // }
 
-  delay(1000);
-  dir.setDefault();
-  digitalWrite(LED_BUILTIN, LOW);
+  // delay(1000);
+  // dir.setDefault();
+  // digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop() {
   ball.read();
-  Serial.println(ball.dir);
+  // Serial.println(ball.dir);
   // Serial.print("min:-180 max:180 dir:");
   // Serial.printf("dir:%f\n", ball.dir);
 
