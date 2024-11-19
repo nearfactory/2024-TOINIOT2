@@ -1,24 +1,24 @@
 #pragma once
 
-#include <Adafruit_SSD1306.h>
-#include <Adafruit_GFX.h>
-#include <Wire.h>
+#include <Arduino.h>
 
-constexpr uint8_t TOGGLE_PIN = 36;
+class UI{
+private:
+  static constexpr uint8_t BUTTON_NUM = 4;
+  const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 37,31,30,32 };
+  
+  static constexpr uint8_t TOGGLE_PIN = 36;
 
-constexpr int SW_TAC_NUM = 4;
-const uint8_t SW_TAC_PIN[SW_TAC_NUM] = { 37,31,30,32 };
-enum SW : uint8_t{
-  TAC_1 = 0,
-  TAC_2,
-  TAC_3,
-  TAC_4,
-  TAC_5
+  static constexpr uint8_t BZ_PIN = 33;
+  float  bz = 0;
+  
+  bool button[BUTTON_NUM] = {false};
+  bool previous_button[BUTTON_NUM] = {false};
+public:
+  void begin();
+  void read();
+  bool buttonUp(uint8_t id);
+  void buzzer(float frequency);
 };
 
-constexpr uint8_t BUZZER_PIN = 33;
-
-constexpr uint8_t DISPLAY_W = 128;
-constexpr uint8_t DISPLAY_H = 64;
-constexpr uint8_t OLED_RESET = -1;
-Adafruit_SSD1306 display(DISPLAY_W, DISPLAY_H, &Wire2, OLED_RESET);
+extern UI ui;
