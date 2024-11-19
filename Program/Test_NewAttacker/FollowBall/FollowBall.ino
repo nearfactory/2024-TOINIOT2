@@ -6,14 +6,17 @@
 
 #include "Ball.hpp"
 #include "Dir.hpp"
+#include "Display.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
 #include "UI.hpp"
 
 Ball ball;
 Dir dir;
+Display display;
 Line line;
 Motor motor;
+UI ui;
 
 using namespace std;
 

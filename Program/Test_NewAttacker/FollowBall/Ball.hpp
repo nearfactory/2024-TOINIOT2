@@ -30,3 +30,5 @@ public:
   void begin();
   void read();
 };
+
+extern Ball ball;

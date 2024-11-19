@@ -41,3 +41,5 @@ public:
   void avr();
   void write();
 };
+
+extern Motor motor;

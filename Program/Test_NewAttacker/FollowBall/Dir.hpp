@@ -23,3 +23,5 @@ public:
   void setDefault();
   void read();
 };
+
+extern Dir dir;

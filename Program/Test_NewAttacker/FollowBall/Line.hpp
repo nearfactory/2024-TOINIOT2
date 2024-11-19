@@ -28,3 +28,5 @@ public:
   void begin(int rate);
   void read();
 };
+
+extern Line line;
