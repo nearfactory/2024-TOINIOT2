@@ -8,8 +8,9 @@ void Line::begin(int rate){
 }
 
 void Line::read(){
-  if(Serial.available()<STR_SIZE)
+  if(Serial1.available()<STR_SIZE){
     return;
+  }
 
     
   // 古い情報を読み飛ばす
@@ -51,6 +52,30 @@ void Line::read(){
 
       num++;
       on = true;
+    }
+  }
+
+  // 内側が反応していない場合、外側を見る
+  if(!on){
+    if(line[INNER_NUM]){
+      on = true;
+      dir = 0;
+      distance = 1;
+    }
+    else if(line[INNER_NUM]){
+      on = true;
+      dir = -90;
+      distance = 1;
+    }
+    else if(line[INNER_NUM]){
+      on = true;
+      dir = 180;
+      distance = 1;
+    }
+    else if(line[INNER_NUM]){
+      on = true;
+      dir = 90;
+      distance = 1;
     }
   }
   

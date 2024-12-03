@@ -81,7 +81,7 @@ void Display::add(std::string name, T variables){
 void Display::debug(uint8_t mode){
   switch(mode){
     case MODE::BALL :
-      this->ball();
+      this->Ball();
       break;
     case MODE::BLE :
       this->ble();
@@ -119,20 +119,21 @@ void Display::debug(uint8_t mode){
 }
 
 
-void Display::ball(){
+void Display::Ball(){
   /*
+  */
   uint8_t circle_r = 24;
   uint8_t text_r = circle_r + 4;
 
-  string str = to_string(ball_dir);
+  string str = to_string(ball.dir);
   str.erase(str.begin()+4,str.end());
   printd(8, 40, str);
 
   // printd(8,24,"dist:",ALIGN::LEFT,ALIGN::BOTTOM);
-  printd(8,48,"exist:"+to_string(ball_exist));
-  printd(8,56,"hold :"+to_string(ball_holding));
+  printd(8,48,"exist:"+to_string(ball.is_exist));
+  printd(8,56,"hold :"+to_string(ball.is_hold));
   
-  drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, -ball_dir-180, circle_r);
+  drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, ball.dir+180, circle_r);
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 0, 8);
 
   // double ball_small_angle = (ball_small_id*360.0/BALL_NUM+180.0)/180.0*3.14;
@@ -140,11 +141,11 @@ void Display::ball(){
   // double ball_big_angle = (ball_big_id*360.0/BALL_NUM+180.0)/180.0*3.14;
   // printd(DISPLAY_W/2+text_r*cos(-ball_big_angle), DISPLAY_H/2+text_r*sin(-ball_big_angle), to_string(ball_big), ALIGN::CENTER, ALIGN::MIDDLE);
 
-  printd(120,40,to_string(ball_small),    ALIGN::RIGHT);
-  printd(120,48,to_string(ball_big),      ALIGN::RIGHT);
-  printd(120,56,to_string(ball_distance), ALIGN::RIGHT);
-  for(int i=0;i<BALL_NUM;i++){
-    double angle = (i*360/BALL_NUM+180);
+  // printd(120,40,to_string(ball_small),    ALIGN::RIGHT);
+  // printd(120,48,to_string(ball_big),      ALIGN::RIGHT);
+  printd(120,56,to_string(ball.distance), ALIGN::RIGHT);
+  for(int i=0;i<16;i++){
+    double angle = (i*360/16+180);
     // Serial.println(angle);
     angle = angle/180*3.14;
     uint8_t x = DISPLAY_W/2+(int16_t)(cos(angle)*circle_r);
@@ -153,7 +154,6 @@ void Display::ball(){
     display.drawPixel(x, y, WHITE);
     // printd(DISPLAY_W/2+cos(angle)*circle_r, DISPLAY_H/2+sin(angle)*circle_r, to_string(ball[i]),ALIGN::CENTER, ALIGN::MIDDLE);
   }
-  */
 
   return;
 }

@@ -72,7 +72,7 @@ public:
 
 
   void debug(uint8_t mode);
-  void ball();
+  void Ball();
   void ble();
   void camera();
   void dir();

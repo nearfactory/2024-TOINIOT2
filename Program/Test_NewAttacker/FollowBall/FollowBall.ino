@@ -42,31 +42,39 @@ void setup() {
   digitalWrite(LED_BUILTIN, LOW);
 }
 
+int h = 45;
+
 void loop() {
   ball.read();
-  display.drawAngleLine(64, 32, ball.dir+180.0, 30);
-  display.draw();
 
   if(digitalRead(36)){
+    display.debug(0);
+    display.draw();
+    // display.drawAngleLine(64, 32, ball.dir+180.0, 30);
+    // display.draw();
+
     motor.set(0,0,0,0);
     delay(50);
   }else{
     // 回り込み (方法4)
     // https://yuta.techblog.jp/archives/40889399.html
-    float r = 8000;  // 回り込み時の半径
+    float r = 9000;  // 回り込み時の半径
     float theta = 0.0;
     float move_dir = 0.0f;
 
-    if(abs(ball.dir)<30){
+    if(abs(ball.dir)<h){
       move_dir = ball.dir * 1.5;
+      h = 60;
     }else if(ball.distance < r){
       theta = 90 + (r-ball.distance) * 90 / r;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      h = 45;
     }else{
       theta = asin(r/ball.distance);
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      h = 45;
     }
-    motor.moveDir(move_dir, 80);
+    motor.moveDir(move_dir, 90);
 
     // 姿勢制御を加算
     dir.read();
@@ -76,13 +84,13 @@ void loop() {
 
     // 白線避け
     line.read();
-    if(line.on) motor.moveDir(line.dir+180, 70);
+    if(line.on) motor.moveDir(line.dir+180, 100);
 
-    Serial.printf("dir:%f line:%f\n", dir.dir, line.distance);
+    // Serial.printf("dir:%f line:%f\n", dir.dir, line.distance);
   }
 
   motor.avr();
   motor.write();
 
-  delay(20);
+  delay(15);
 }

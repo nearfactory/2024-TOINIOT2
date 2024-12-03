@@ -78,7 +78,7 @@ void loop(){
   // 送信
   Serial.print(send_str);
 
-  delay(20);
+  delay(2);
 }
 
 
