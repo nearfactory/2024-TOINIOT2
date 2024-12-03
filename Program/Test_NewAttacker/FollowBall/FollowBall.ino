@@ -23,31 +23,31 @@ using namespace std;
 void setup() {
   Serial.begin(115200);
   Serial.println("begin");
-  ball.begin();
-  // dir.begin();
-  // line.begin(115200);
-  // motor.begin();
-  
-  // uint8_t system=0, gyro=0, accel=0, mag=0;
-  // system = 3; gyro = 3; mag = 3;
-  // while(system<3 || gyro<3 || mag<3){
-  //   dir.calibration(&system, &gyro, &accel, &mag);
-  //   digitalWrite(LED_BUILTIN, HIGH);
-  // }
 
-  // delay(1000);
-  // dir.setDefault();
-  // digitalWrite(LED_BUILTIN, LOW);
+  ball.begin();
+  display.begin();
+  dir.begin();
+  line.begin(115200);
+  motor.begin();
+  
+  uint8_t system=0, gyro=0, accel=0, mag=0;
+  // system = 3; gyro = 3; mag = 3;
+  while(system<3 || gyro<3 || mag<3){
+    dir.calibration(&system, &gyro, &accel, &mag);
+    digitalWrite(LED_BUILTIN, HIGH);
+  }
+
+  delay(1000);
+  dir.setDefault();
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop() {
   ball.read();
-  // Serial.println(ball.dir);
-  // Serial.print("min:-180 max:180 dir:");
-  // Serial.printf("dir:%f\n", ball.dir);
+  display.drawAngleLine(64, 32, ball.dir+180.0, 30);
+  display.draw();
 
-  /*
-  if(digitalRead(TOGGLE_PIN)){
+  if(digitalRead(36)){
     motor.set(0,0,0,0);
     delay(50);
   }else{
@@ -76,7 +76,7 @@ void loop() {
 
     // 白線避け
     line.read();
-    if(line.on) motor.moveDir(line.dir+180, 80);
+    if(line.on) motor.moveDir(line.dir+180, 70);
 
     Serial.printf("dir:%f line:%f\n", dir.dir, line.distance);
   }
@@ -85,7 +85,4 @@ void loop() {
   motor.write();
 
   delay(20);
-
-  */
-  delay(25);
 }

@@ -8,6 +8,10 @@ void Line::begin(int rate){
 }
 
 void Line::read(){
+  if(Serial.available()<STR_SIZE)
+    return;
+
+    
   // 古い情報を読み飛ばす
   while(Serial1.available()>STR_SIZE){
     Serial1.read();

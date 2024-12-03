@@ -15,6 +15,8 @@ private:
   bool button[BUTTON_NUM] = {false};
   bool previous_button[BUTTON_NUM] = {false};
 public:
+  const uint8_t TOGGLE = 36;
+
   void begin();
   void read();
   bool buttonUp(uint8_t id);
