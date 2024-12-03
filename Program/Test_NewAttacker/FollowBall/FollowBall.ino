@@ -22,6 +22,7 @@ using namespace std;
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("begin");
   ball.begin();
   // dir.begin();
   // line.begin(115200);
@@ -86,5 +87,5 @@ void loop() {
   delay(20);
 
   */
-  delay(50);
+  delay(25);
 }
