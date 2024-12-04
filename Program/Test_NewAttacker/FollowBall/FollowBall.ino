@@ -40,9 +40,11 @@ void setup() {
   delay(1000);
   dir.setDefault();
   digitalWrite(LED_BUILTIN, LOW);
+
+  ui.buzzer(440.0f);
 }
 
-int h = 45;
+int h = 10;
 
 void loop() {
   ball.read();
@@ -58,23 +60,26 @@ void loop() {
   }else{
     // 回り込み (方法4)
     // https://yuta.techblog.jp/archives/40889399.html
-    float r = 9000;  // 回り込み時の半径
+    float r = 14800;  // 回り込み時の半径
     float theta = 0.0;
     float move_dir = 0.0f;
 
     if(abs(ball.dir)<h){
-      move_dir = ball.dir * 1.5;
-      h = 60;
+      move_dir = ball.dir * 1.8;
+      h = 45;
+      ui.buzzer(440.0f);
     }else if(ball.distance < r){
       theta = 90 + (r-ball.distance) * 90 / r;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 45;
+      h = 20;
+      ui.buzzer(640.0f);
     }else{
-      theta = asin(r/ball.distance);
+      theta = degrees(atan2(r, ball.distance));
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 45;
+      h = 20;
+      // ui.buzzer(0.0f);
     }
-    motor.moveDir(move_dir, 90);
+    motor.moveDir(move_dir, 100);
 
     // 姿勢制御を加算
     dir.read();

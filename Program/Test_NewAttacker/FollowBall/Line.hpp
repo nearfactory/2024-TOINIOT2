@@ -20,6 +20,7 @@ public:
 
   float distance;          // ロボットの中心点と白線の距離
   float dir;               // ロボットの中心点と白線の角度
+  float dir_prev;
   bool  on;                // 白線上のフラグ
   
   Line() : num(0), vec(0,0), distance(0), dir(0), on(0) {}

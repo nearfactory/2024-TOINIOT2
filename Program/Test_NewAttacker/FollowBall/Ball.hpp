@@ -11,7 +11,7 @@ private:
   };
 
   static constexpr uint16_t DISTANCE_MIN = 7000;
-  static constexpr uint16_t DISTANCE_MAX = 16300;
+  static constexpr uint16_t DISTANCE_MAX = 16000;
 
   uint16_t ball[NUM]{0};
   uint32_t hold_begin;

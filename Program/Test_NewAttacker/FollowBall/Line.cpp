@@ -81,11 +81,21 @@ void Line::read(){
   
   if(on){
     dir = degrees(-atan2(vec.y, vec.x));
+
+    // 半分を超えても大丈夫なように
+    // if(30<abs(dir) && abs(dir)<150){
+    // }
+    // if(dir*dir_prev < 0){
+    //   dir += 180;
+    //   if(dir>180) dir -= 360;
+    // }
     distance = vec.len() / num;
   }else{
     dir = 0;
     distance = 0;
   }
+
+  dir_prev = dir;
 
   return;
 }

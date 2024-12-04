@@ -26,12 +26,15 @@ void Ball::read(){
       max = ball[i];
       max_id = i;
     }
+    // Serial.printf("%d\t", ball[i]);
   }
+  // Serial.println();
 
   // int left_val = 0;
   // int right_val = 0;
   // int center_val = 0;
 
+  /*
   for(int i=0;i<7;i++){
     int j=(max_id-3+i+16)%16;
 
@@ -40,10 +43,15 @@ void Ball::read(){
     // if(i==6) right_val = ball[j];
 
     float sensor_dir = radians(j*360/NUM);
-    x += (1023 - ball[j]) * cos(sensor_dir);
-    y += (1023 - ball[j]) * sin(sensor_dir);
+    x += (1023 - ball[i]) * cos(sensor_dir);
+    y += (1023 - ball[i]) * sin(sensor_dir);
+  }
+  */
 
-    // if(i==0||i==3||i==6) Serial.printf("%d\t", ball[j]);
+  for(int i=0;i<16;i++){
+    float sensor_dir = radians(i*360/NUM);
+    x += (1023 - ball[i]) * cos(sensor_dir);
+    y += (1023 - ball[i]) * sin(sensor_dir);
   }
 
   // double diff = (double)left_val - right_val;
@@ -51,6 +59,7 @@ void Ball::read(){
   // else       diff = diff/(right_val-center_val);
 
   dir = -degrees(atan2(y, x));
+  Serial.println(dir);
 
   // Serial.printf("%f\t%f\t%d\t", dir, diff*100, max_id);
   // Serial.println();
