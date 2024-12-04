@@ -14,12 +14,39 @@ constexpr uint8_t THRESHOLD_PIN = 2;
 bool line[LINE_NUM];
 int analog[ANALOG_NUM];
 
+uint32_t max = 0;
+uint32_t avr = 0;
+uint32_t count = 0;
+
+uint8_t threshold = 630/4;
+
 void setup(){
   Serial.begin(115200);
   // Serial.println("TOINIOT2 Line 2024-10-12");
 
   for(auto p:LINE_PIN) pinMode(p, INPUT_PULLUP);
   for(auto p:ANALOG_PIN) pinMode(p, INPUT_PULLUP);
+
+  auto begin_ms = millis();
+  while(millis()-begin_ms < 5000){
+    for(int i=0;i<ANALOG_NUM;i++){
+      int s = analogRead(ANALOG_PIN[i]);
+      if(s > max){
+        max = s;
+      }
+      else{
+        avr += s;
+        count++;
+      }
+    }
+    delay(50);
+  }
+
+  avr = avr / count;
+  threshold = (avr*3+max)/4/4;
+
+  // Serial.println(threshold);
+  // delay(10000000);
   
   pinMode(THRESHOLD_PIN, OUTPUT);
 }
@@ -43,7 +70,6 @@ void setup(){
 
 char send_str[8]{};
 constexpr uint8_t DATA_SIZE = 5;
-uint8_t threshold = 650/4;
 
 void loop(){
   analogWrite(THRESHOLD_PIN, threshold);
@@ -78,7 +104,7 @@ void loop(){
   // 送信
   Serial.print(send_str);
 
-  delay(2);
+  delay(5);
 }
 
 
