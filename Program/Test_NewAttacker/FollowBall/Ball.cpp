@@ -59,7 +59,8 @@ void Ball::read(){
   // else       diff = diff/(right_val-center_val);
 
   dir = -degrees(atan2(y, x));
-  Serial.println(dir);
+  // Serial.println(dir);
+  dir_prev = dir;
 
   // Serial.printf("%f\t%f\t%d\t", dir, diff*100, max_id);
   // Serial.println();

@@ -18,6 +18,7 @@ private:
 
 public:
   float    dir = 0;
+  float    dir_prev = 0;
   uint16_t distance = 0;
 
   bool     is_exist = true;

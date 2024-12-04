@@ -20,6 +20,16 @@ extern Line line;
 
 using namespace std;
 
+enum class ALIGN : uint8_t{
+  LEFT = 0,
+  CENTER,
+  RIGHT,
+  
+  TOP,
+  MIDDLE,
+  BOTTOM
+};
+
 class Display{
 private:
   // ディスプレイ本体
@@ -31,15 +41,6 @@ private:
   Adafruit_SSD1306 display;
 
   // 
-  enum class ALIGN : uint8_t{
-    LEFT = 0,
-    CENTER,
-    RIGHT,
-    
-    TOP,
-    MIDDLE,
-    BOTTOM
-  };
 
   // デバッグ用
   static constexpr uint8_t MODE_NUM = 9;
