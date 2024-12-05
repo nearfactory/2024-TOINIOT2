@@ -31,12 +31,12 @@ void setup() {
   motor.begin();
   
   uint8_t system=0, gyro=0, accel=0, mag=0;
-  // system = 3; gyro = 3; mag = 3;
+  system = 3; gyro = 3; mag = 3;
   while(system<3 || gyro<3 || mag<3){
     dir.calibration(&system, &gyro, &accel, &mag);
     digitalWrite(LED_BUILTIN, HIGH);
 
-    display.printd(32,16,"system: "+to_string(system));
+    display.printd(32,24,"system: "+to_string(system));
     display.printd(32,32,"gyro  : "+to_string(gyro));
     display.printd(32,40,"accel : "+to_string(accel));
     display.printd(32,48,"mag   : "+to_string(mag));
@@ -52,38 +52,27 @@ void setup() {
 }
 
 int h = 10;
-float p_gain = 1.4f;
-float d_gain = 0.0f;
+float p_gain = 1.5f;
+float d_gain = 3.5f;
 float* gain_select = &p_gain;
 
 void loop() {
   ball.read();
+  dir.read();
+  line.read();
 
   if(digitalRead(36)){
-    // display.debug(0);
     ui.read();
-    display.printd(16,8,"p:"+to_string(p_gain));
-    display.printd(16,16,"d:"+to_string(d_gain));
-    if(ui.buttonUp(1)){
-      *gain_select += 0.1;
-    }else if(ui.buttonUp(2)){
-      *gain_select -= 0.1;
-    }else if(ui.buttonUp(3)){
-      if(gain_select == &p_gain) gain_select = &d_gain;
-      else                       gain_select = &p_gain;
-    }
+    if(ui.buttonUp(0)) display.next();
 
-    if(gain_select == &p_gain) display.printd(8,8,">");
-    else display.printd(8,16,">");
+    display.addValiables("p:"+to_string(p_gain), &p_gain);
+    display.addValiables("d:"+to_string(d_gain), &d_gain);
 
-    display.printd(120,8,"+",ALIGN::RIGHT);
-    display.printd(120,24,"-",ALIGN::RIGHT);
-    display.printd(120,56,"gain",ALIGN::RIGHT);
-
+    display.debug();
     display.draw();
 
     motor.set(0,0,0,0);
-    delay(50);
+    // delay(100);
   }else{
     // 回り込み (方法4)
     // https://yuta.techblog.jp/archives/40889399.html
@@ -97,21 +86,19 @@ void loop() {
     }else if(ball.distance < r){
       theta = 90 + (r-ball.distance) * 90 / r;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 20;
+      h = 45;
     }else{
       theta = degrees(atan2(r, ball.distance));
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 20;
+      h = 45;
     }
     motor.moveDir(move_dir, 100);
 
     // 姿勢制御を加算
-    dir.read();
     float pow = dir.dir*60.0/180.0;
     motor.add(pow, pow, pow, pow);
 
     // 白線避け
-    line.read();
     if(line.on) motor.moveDir(line.dir+180, 100);
   }
 

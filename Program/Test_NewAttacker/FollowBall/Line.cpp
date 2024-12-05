@@ -57,26 +57,6 @@ void Line::read(){
 
   // 内側が反応していない場合、外側を見る
   if(!on){
-    if(line[INNER_NUM]){
-      on = true;
-      dir = 0;
-      distance = 1;
-    }
-    else if(line[INNER_NUM]){
-      on = true;
-      dir = -90;
-      distance = 1;
-    }
-    else if(line[INNER_NUM]){
-      on = true;
-      dir = 180;
-      distance = 1;
-    }
-    else if(line[INNER_NUM]){
-      on = true;
-      dir = 90;
-      distance = 1;
-    }
   }
   
   if(on){
@@ -91,8 +71,29 @@ void Line::read(){
     // }
     distance = vec.len() / num;
   }else{
-    dir = 0;
-    distance = 0;
+    dir = 0.0f;
+    distance = 0.0f;
+    
+    if(line[INNER_NUM]){
+      on = true;
+      dir = 0.0f;
+      distance = 1;
+    }
+    else if(line[INNER_NUM+1]){
+      on = true;
+      dir = -90.0f;
+      distance = 1;
+    }
+    else if(line[INNER_NUM+2]){
+      on = true;
+      dir = 180.0f;
+      distance = 1;
+    }
+    else if(line[INNER_NUM+3]){
+      on = true;
+      dir = 90.0f;
+      distance = 1;
+    }
   }
 
   dir_prev = dir;
