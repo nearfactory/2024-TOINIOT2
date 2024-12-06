@@ -15,6 +15,8 @@ extern Ball ball;
 extern Dir dir;
 #include "Line.hpp"
 extern Line line;
+#include "Motor.hpp"
+extern Motor motor;
 #include "UI.hpp"
 // extern UI ui;
 

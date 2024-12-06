@@ -31,7 +31,7 @@ void setup() {
   motor.begin();
   
   uint8_t system=0, gyro=0, accel=0, mag=0;
-  system = 3; gyro = 3; mag = 3;
+  // system = 3; gyro = 3; mag = 3;
   while(system<3 || gyro<3 || mag<3){
     dir.calibration(&system, &gyro, &accel, &mag);
     digitalWrite(LED_BUILTIN, HIGH);
@@ -74,6 +74,17 @@ void loop() {
     motor.set(0,0,0,0);
     // delay(100);
   }else{
+    ui.read();
+    if(ui.buttonUp(0)) display.next();
+
+    display.addValiables("p:"+to_string(p_gain), &p_gain);
+    display.addValiables("d:"+to_string(d_gain), &d_gain);
+
+    display.debug();
+    display.draw();
+
+    // motor.set(0,0,0,0);
+    // delay(100);
     // 回り込み (方法4)
     // https://yuta.techblog.jp/archives/40889399.html
     float r = 14200;  // 回り込み時の半径
@@ -92,7 +103,7 @@ void loop() {
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
       h = 45;
     }
-    motor.moveDir(move_dir, 100);
+    motor.moveDir(move_dir, 90);
 
     // 姿勢制御を加算
     float pow = dir.dir*60.0/180.0;
@@ -100,7 +111,10 @@ void loop() {
 
     // 白線避け
     if(line.on) motor.moveDir(line.dir+180, 100);
+
+    // motor.set(100.0f,100.0f,-100.0f,100.0f);
   }
+
 
   motor.avr();
   motor.write();
