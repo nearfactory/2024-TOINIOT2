@@ -243,13 +243,13 @@ void Display::Line(){
 void Display::Motor(){
   printd(8,8,"Motor");
   /*
-  printd(8,   24, "m4:"+to_string((int)motor_raw[3]) );
-  printd(120, 24, "m3:"+to_string((int)motor_raw[2]), ALIGN::RIGHT);
-  printd(8,   56, "m1:"+to_string((int)motor_raw[0]) );
-  printd(120, 56, "m2:"+to_string((int)motor_raw[1]), ALIGN::RIGHT);
-
-  drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, move_dir, 24);
   */
+  printd(8,   24, "m4:"+to_string((int)motor.motor_raw[3]) );
+  printd(120, 24, "m3:"+to_string((int)motor.motor_raw[2]), ALIGN::RIGHT);
+  printd(8,   56, "m1:"+to_string((int)motor.motor_raw[0]) );
+  printd(120, 56, "m2:"+to_string((int)motor.motor_raw[1]), ALIGN::RIGHT);
+
+  // drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, move_dir, 24);
 
   return;
 }

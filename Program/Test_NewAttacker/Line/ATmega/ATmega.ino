@@ -43,7 +43,7 @@ void setup(){
   }
 
   avr = avr / count;
-  threshold = (avr*3+max)/4/4;
+  threshold = (avr*4+max)/5/4;
 
   // Serial.println(threshold);
   // delay(10000000);

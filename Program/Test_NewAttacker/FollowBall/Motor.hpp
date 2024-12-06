@@ -21,7 +21,6 @@ private:
   
   float motor         [NUM] = {0};  // プログラマ用
   float motor_prev    [NUM] = {0};  // 前ループのプログラマ用の値
-  float motor_raw     [NUM] = {0};  // モーターに反映するやつ
   float move_dir                  = 0;
 
   static constexpr uint8_t p_step = 4;
@@ -30,6 +29,7 @@ private:
   static constexpr uint8_t QUEUE_SIZE = 5;   // 移動平均のサンプル数
   float queue[QUEUE_SIZE][NUM]{};  // 出力値のキュー
 public:
+  float motor_raw     [NUM] = {0};  // モーターに反映するやつ
   // Motor() : {}
 
   void begin();
