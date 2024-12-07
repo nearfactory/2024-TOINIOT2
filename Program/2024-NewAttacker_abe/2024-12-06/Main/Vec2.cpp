@@ -1,4 +1,5 @@
 #include <cmath>
+
 #include "Vec2.hpp"
 
 Vec2 operator+(const Vec2& v1, const Vec2& v2){
@@ -47,10 +48,23 @@ Vec2& Vec2::operator*=(const float f){
   return *this;
 }
 
+Vec2& Vec2::operator/=(const float f){
+  x /= f;
+  y /= f;
+  return *this;
+}
+
 Vec2& Vec2::operator=(const Vec2& v){
   x = v.x;
   y = v.y;
   return *this;
+}
+
+
+void Vec2::set(float vec_x, float vec_y){
+  x = vec_x;
+  y = vec_y;
+  return;
 }
 
 float Vec2::len(){
@@ -61,4 +75,10 @@ void Vec2::clear(){
   x = 0.0f;
   y = 0.0f;
   return;
+}
+
+
+
+float dotProduct(Vec2 a, Vec2 b){
+  return a.x * b.x + a.y * b.y;
 }

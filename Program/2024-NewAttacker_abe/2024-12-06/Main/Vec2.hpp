@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Arduino.h>
+
 class Vec2{
 public:
   float x, y;
@@ -9,8 +11,10 @@ public:
   Vec2& operator+=(const Vec2& v);
   Vec2& operator-=(const Vec2& v);
   Vec2& operator*=(const float f);
+  Vec2& operator/=(const float f);
   Vec2& operator=(const Vec2& v);
 
+  void set(float vec_x, float vec_y);
   void clear();
   float len();
 };
@@ -19,3 +23,5 @@ Vec2 operator+(const Vec2& v1, const Vec2& v2);
 Vec2 operator-(const Vec2& v1, const Vec2& v2);
 Vec2 operator*(const Vec2& v1, const float f);
 Vec2 operator*(const float f, const Vec2& v);
+
+float dotProduct(Vec2 a, Vec2 b);
