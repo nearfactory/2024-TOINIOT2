@@ -10,15 +10,18 @@
 #include <Wire.h>
 
 #include "Ball.hpp"
-extern Ball ball;
+#include "Camera.hpp"
 #include "Dir.hpp"
-extern Dir dir;
 #include "Line.hpp"
-extern Line line;
 #include "Motor.hpp"
-extern Motor motor;
 #include "UI.hpp"
-// extern UI ui;
+
+extern Ball ball;
+extern Camera camera;
+extern Dir dir;
+extern Line line;
+extern Motor motor;
+extern UI ui;
 
 using namespace std;
 

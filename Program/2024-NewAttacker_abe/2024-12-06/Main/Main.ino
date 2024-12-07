@@ -5,6 +5,7 @@
 #include <Wire.h>
 
 #include "Ball.hpp"
+#include "Camera.hpp"
 #include "Dir.hpp"
 #include "Display.hpp"
 #include "Line.hpp"
@@ -43,16 +44,18 @@ void setup() {
     display.draw();
   }
 
+  // 攻め方向が設定されるまで待機
+  digitalWrite(LED_BUILTIN, LOW);
   display.printd(8,56,"set dir");
   display.draw();
   while(!ui.buttonUp(0)){ ui.read(); }
   
   dir.setDefault();
-  digitalWrite(LED_BUILTIN, LOW);
 }
 
 bool display_on = true;
 
+float r = 14400.0f;  // 回り込み時の半径
 int h = 10;
 float p_gain = 1.5f;
 float d_gain = 3.5f;
@@ -67,18 +70,17 @@ void loop() {
     ui.read();
     if(ui.buttonUp(0)) display.next();
 
-    display.addValiables("p:"+to_string(p_gain), &p_gain);
-    display.addValiables("d:"+to_string(d_gain), &d_gain);
+    display.addValiables("p gain:"+to_string(p_gain), &p_gain);
+    display.addValiables("d gain:"+to_string(d_gain), &d_gain);
+    display.addValiables("radius:"+to_string(r), &r);
 
     display.debug();
     display.draw();
 
     motor.set(0,0,0,0);
-    // delay(100);
     display_on = true;
   }else{
-    // float p = 80.0f;
-    // motor.set(-p, -p, p, p);
+    // ディスプレイを消灯
     if(display_on){
       display.draw();
       display_on = false;
@@ -86,9 +88,8 @@ void loop() {
 
     // 回り込み (方法4)
     // https://yuta.techblog.jp/archives/40889399.html
-    float r = 14400;  // 回り込み時の半径
-    float theta = 0.0;
-    float move_dir = 0.0f;
+    float theta = 0;
+    float move_dir = 0;
 
     if(abs(ball.dir)<h){
       move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
@@ -111,7 +112,6 @@ void loop() {
     // 白線避け
     if(line.on) motor.moveDir(line.dir+180, 100);
   }
-
 
   motor.avr();
   motor.write();
