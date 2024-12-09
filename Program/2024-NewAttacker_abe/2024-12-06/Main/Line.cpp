@@ -99,29 +99,29 @@ void Line::read(){
   
   // 内側が反応していない場合、外側を見る
   }else{
-    dir = 0.0f;
-    distance = 0.0f;
+    vec.clear();
+    dir = 0;
+    distance = 0;
     
     if(line[INNER_NUM]){
       on = true;
-      dir = 0.0f;
-      distance = 1;
+      vec.x += 1.0f;
     }
-    else if(line[INNER_NUM+1]){
+    if(line[INNER_NUM+1]){
       on = true;
-      dir = -90.0f;
-      distance = 1;
+      vec.y += 1.0f;
     }
-    else if(line[INNER_NUM+2]){
+    if(line[INNER_NUM+2]){
       on = true;
-      dir = 180.0f;
-      distance = 1;
+      vec.x += -1.0f;
     }
-    else if(line[INNER_NUM+3]){
+    if(line[INNER_NUM+3]){
       on = true;
-      dir = 90.0f;
-      distance = 1;
+      vec.y += -1.0f;
     }
+
+    distance = vec.len();
+    dir = degrees(atan2(vec.y, vec.x));
   }
 
   queue[queue_i] = vec;

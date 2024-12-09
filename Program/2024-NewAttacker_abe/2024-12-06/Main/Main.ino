@@ -103,7 +103,12 @@ void loop() {
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
       h = 45;
     }
-    motor.moveDir(move_dir, 90);
+    motor.moveDir(move_dir, 100);
+
+    // ボールが見えない場合に後ろに下がる (デバッグ段階では手前に)
+    if(!ball.is_exist){
+      motor.moveDir(0, 60);
+    }
 
     // 姿勢制御を加算
     float pow = dir.dir*60.0/180.0;

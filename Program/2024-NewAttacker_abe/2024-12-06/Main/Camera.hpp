@@ -2,6 +2,8 @@
 
 #include <Arduino.h>
 
+#include "Vec2.hpp"
+
 // 機体の座標について
 // コートが158x219(cm)
 // → x:-1~1, y:-1.4~1.4
@@ -14,7 +16,7 @@ private:
 
   uint8_t blue_min;
   uint8_t blue_max;
-  uint8_t yellow_max;
+  uint8_t yellow_mix;
   uint8_t yellow_max;
 
 public:
