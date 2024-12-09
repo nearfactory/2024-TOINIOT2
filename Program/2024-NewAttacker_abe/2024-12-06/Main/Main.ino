@@ -103,7 +103,7 @@ void loop() {
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
       h = 45;
     }
-    motor.moveDir(move_dir, 100);
+    motor.moveDir(move_dir, 85);
 
     // ボールが見えない場合に後ろに下がる (デバッグ段階では手前に)
     if(!ball.is_exist){

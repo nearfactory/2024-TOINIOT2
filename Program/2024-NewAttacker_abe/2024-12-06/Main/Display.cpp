@@ -234,7 +234,8 @@ void Display::Line(){
     if(line.line[i+26]) display.drawPixel(DISPLAY_W/2+cos(angle)*outside_r, DISPLAY_H/2+sin(angle)*outside_r, WHITE);
   }
 
-  display.drawRect(64-1+line.vec.x*-13, 32-1+line.vec.y*13, 2, 2, WHITE);
+  // display.drawRect(64-1+line.vec.x*-13, 32-1+line.vec.y*13, 2, 2, WHITE);
+  display.drawRect(64-1-cos(radians(line.dir))*13, 32-1+sin(radians(line.dir))*13, 2, 2, WHITE);
 
   printd(8, 48, "on:"+to_string(line.on));
   printd(8, 56, "dir:"+to_string(line.dir));

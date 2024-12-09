@@ -1,6 +1,8 @@
 #pragma once
 
 #include <Arduino.h>
+
+#include "General.hpp"
 #include "Vec2.hpp"
 
 class Line{
@@ -10,12 +12,15 @@ private:
 
   uint32_t baudrate = 115200;
 
+  bool prev_on = false;
+
   Vec2  vec1;              // 反応しているセンサのベクトルの左上
   Vec2  vec2;              // 反応しているセンサのベクトルの右下
 
+  // 過去の角度のキュー
   static constexpr uint8_t QUEUE_SIZE = 3;
   int   queue_i = 0;
-  Vec2  queue[QUEUE_SIZE];
+  float  queue[QUEUE_SIZE];
 
   static constexpr uint8_t DATA_SIZE = 5; // bit
   static constexpr uint8_t STR_SIZE = 8;  // byte
