@@ -12,7 +12,11 @@ private:
 
   uint32_t baudrate = 115200;
 
-  bool prev_on = false;
+  bool prev_on1 = false;
+  bool prev_on2 = false;
+  bool prev_on3 = false;
+
+  uint32_t right_timer = 0;
 
   Vec2  vec1;              // 反応しているセンサのベクトルの左上
   Vec2  vec2;              // 反応しているセンサのベクトルの右下

@@ -67,20 +67,45 @@ void Motor::p(){
   return;
 }
 
-void Motor::avr(){
+
+
+void Motor::avr() {
   static int queue_index = 0;      // 出力値のキューのインデックス
+  static float queue_sum[NUM] = {0.0f}; // 各モーターのキュー内の合計値を記録
 
-  for(int i=0;i<NUM;i++){
+  for (int i = 0; i < NUM; i++) {
+    // キューの合計値から古い値を引き、新しい値を足す
+    queue_sum[i] -= queue[queue_index][i];
     queue[queue_index][i] = motor[i];
-    queue_index = (queue_index+1) % QUEUE_SIZE;
+    queue_sum[i] += motor[i];
 
-    // 出力値を計算
-    float sum = 0.0f;
-    for(int j=0;j<QUEUE_SIZE;j++) sum += queue[j][i];
-    motor_raw[i] = sum / (float)QUEUE_SIZE;
+    // 平均値を計算
+    motor_raw[i] = queue_sum[i] / (float)QUEUE_SIZE;
   }
 
+  // インデックスを更新
+  queue_index = (queue_index + 1) % QUEUE_SIZE;
+
+  return;
 }
+
+
+
+// void Motor::avr(){
+//   static int queue_index = 0;      // 出力値のキューのインデックス
+
+//   for(int i=0;i<NUM;i++){
+//     queue[queue_index][i] = motor[i];
+//     queue_index = (queue_index+1) % QUEUE_SIZE;
+
+//     // 出力値を計算
+//     float sum = 0.0f;
+//     for(int j=0;j<QUEUE_SIZE;j++) sum += queue[j][i];
+//     motor_raw[i] = sum / (float)QUEUE_SIZE;
+//   }
+
+//   return;
+// }
 
 void Motor::write(){
   for(int i=0;i<NUM;i++){

@@ -35,6 +35,11 @@ void Dir::read(){
   if(dir<-180) dir += 360;
   if(dir>180)  dir -= 360;
 
+  dir_y = dir_data.orientation.y;
+  dir_z = dir_data.orientation.z;
+
+  // Serial.printf("x:%f y:%f z:%f\n", dir_data.orientation.x, dir_data.orientation.y, dir_data.orientation.z);
+
   // 加速度を更新
   bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_ACCELEROMETER);
   accel.x = dir_data.acceleration.x;

@@ -237,7 +237,8 @@ void Display::Line(){
   // display.drawRect(64-1+line.vec.x*-13, 32-1+line.vec.y*13, 2, 2, WHITE);
   display.drawRect(64-1-cos(radians(line.dir))*13, 32-1+sin(radians(line.dir))*13, 2, 2, WHITE);
 
-  printd(8, 48, "on:"+to_string(line.on));
+  printd(8, 40, "on:"+to_string(line.on));
+  printd(8, 48, "num:"+to_string(line.num));
   printd(8, 56, "dir:"+to_string(line.dir));
 
   return;
@@ -264,14 +265,14 @@ void Display::Valiables(){
     selector++;
     selector %= variables.size();
   }
-  printd(8,24+selector*8,">");
 
   if(ui.buttonUp(1))      *valiables_addr[selector] += 0.1;
   else if(ui.buttonUp(2)) *valiables_addr[selector] -= 0.1;
 
   for(size_t i=0;i<variables.size();i++){
-    printd(16,24+8*i,variables[i]);
+    printd(16,16+8*i,variables[i]);
   }
+  printd(8,16+selector*8,">");
 
   printd(120,8,"+",ALIGN::RIGHT);
   printd(120,32,"-",ALIGN::RIGHT);

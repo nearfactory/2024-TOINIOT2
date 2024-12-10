@@ -26,7 +26,8 @@ private:
   static constexpr uint8_t p_step = 4;
   float p_count[NUM]{0};
   float p_val[NUM]{0};
-  static constexpr uint8_t QUEUE_SIZE = 5;   // 移動平均のサンプル数
+
+  static constexpr uint8_t QUEUE_SIZE = 20;   // 移動平均のサンプル数
   float queue[QUEUE_SIZE][NUM]{};  // 出力値のキュー
 public:
   float motor_raw     [NUM] = {0};  // モーターに反映するやつ

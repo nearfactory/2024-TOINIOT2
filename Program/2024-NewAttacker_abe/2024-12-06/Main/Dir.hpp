@@ -14,6 +14,8 @@ private:
 
 public:
   float dir;
+  float dir_y;
+  float dir_z;
   Vec2  accel;
 
   Dir() : bno(55, 0x28, &Wire2), default_dir(0), prev_dir(0), dir(0), accel(0,0) {};

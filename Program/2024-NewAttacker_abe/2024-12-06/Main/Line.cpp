@@ -33,6 +33,15 @@ void Line::read(){
     }
   }
 
+
+
+  // 左端が反応した場合、0;5秒間は反応したものとし続ける
+  // if(millis() - right_timer <= 500){
+  //   return;
+  // }
+
+
+
   // 壊れたセンサを反応しいないように修正
   line[0]    = false;
   line[14-1] = false;
@@ -40,6 +49,7 @@ void Line::read(){
 
   // 角度算出
   on = false;
+  dir = 0;
   num = 0;
   vec1.set(10.0f, 10.0f);   // ちいさいx, y
   vec2.set(-10.0f, -10.0f); // でかいx, y
@@ -97,33 +107,45 @@ void Line::read(){
   for(auto q:queue) avr += q;
   avr /= (float)QUEUE_SIZE;
 
+  bool prev_on = prev_on1 | prev_on2 | prev_on3;
+
   // 踏み始め
-  if(prev_on == false && on == true){
-    for(auto& q:queue) q = dir;
-  }
-  // 継続して踏んでいる場合
-  else if(prev_on == true && on == true){
-    // 平均値のプラスマイナス45°を有効な範囲とする
-    float range = 45.0f;
-    float range_start = normalizeAngle(avr-range);
-    float range_end   = normalizeAngle(avr+range);
+  // if(prev_on == false && on == true){
+  //   for(auto& q:queue) q = dir;
+  // }
+  // // 継続して踏んでいる場合
+  // else if(prev_on == true && on == true){
+  //   // 平均値のプラスマイナス45°を有効な範囲とする
+  //   float range = 40.0f;
+  //   float range_start = normalizeAngle(avr-range);
+  //   float range_end   = normalizeAngle(avr+range);
 
-    // 180°の壁をまたがない場合
-    if(range_start <= range_end){
-      if(dir <= range_start ||  range_end <= dir){
-        dir = avr;
-      }
-    }else{
-      if(range_end <= dir && dir <= range_start){
-        dir = avr;
-      }
-    }
-  // 踏み終わり
-  }else if(prev_on == true && on == false){
+  //   // 180°の壁をまたがない場合
+  //   if(range_start <= range_end){
+  //     if(dir <= range_start ||  range_end <= dir){
+  //       dir = avr;
+  //     }
+  //   }else{
+  //     if(range_end <= dir && dir <= range_start){
+  //       dir = avr;
+  //     }
+  //   }
+  // // 踏み終わり
+  // }else if(prev_on == true && on == false){
 
-  }
+  // }
 
-  prev_on = on;
+
+
+  // if(line[INNER_NUM+3]){
+  //   right_timer = millis();
+  // }
+
+
+
+  prev_on3 = prev_on2;
+  prev_on2 = prev_on1;
+  prev_on1 = on;
 
   // if(prev_on == true && on == false) dir = 0;
 

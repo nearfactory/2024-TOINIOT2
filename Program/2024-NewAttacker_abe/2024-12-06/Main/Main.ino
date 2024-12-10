@@ -61,6 +61,10 @@ float p_gain = 1.5f;
 float d_gain = 3.5f;
 float* gain_select = &p_gain;
 
+float p1 = 8.5f;
+
+float dir_threshold = 2.0f;
+
 void loop() {
   ball.read();
   dir.read();
@@ -72,7 +76,11 @@ void loop() {
 
     display.addValiables("p gain:"+to_string(p_gain), &p_gain);
     display.addValiables("d gain:"+to_string(d_gain), &d_gain);
-    display.addValiables("radius:"+to_string(r), &r);
+    // display.addValiables("p1:"+to_string(p1), &p1);
+    display.addValiables("dir   :"+to_string(dir_threshold), &dir_threshold);
+    display.addValiables("dir y :"+to_string(dir.dir_y), &dir.dir_y);
+    display.addValiables("dir z :"+to_string(dir.dir_z), &dir.dir_z);
+    // display.addValiables("radius:"+to_string(r), &r);
 
     display.debug();
     display.draw();
@@ -103,7 +111,7 @@ void loop() {
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
       h = 45;
     }
-    motor.moveDir(move_dir, 85);
+    motor.moveDir(move_dir, p1*10.0f);
 
     // ボールが見えない場合に後ろに下がる (デバッグ段階では手前に)
     if(!ball.is_exist){
@@ -116,10 +124,24 @@ void loop() {
 
     // 白線避け
     if(line.on) motor.moveDir(line.dir+180, 100);
+
+
+    // // // // // // // // memo: 物理の参考書
+
+    // コート橋の傾斜がある部分に乗り上げると反応しないため、地磁気を用いる
+    Vec2 dir_line_vec;
+    if(dir.dir_y > dir_threshold)  dir_line_vec.y += 1.0f;
+    if(dir.dir_y < dir_threshold)  dir_line_vec.y += -1.0f;
+
+    if(0 < dir.dir_z && dir.dir_z < 180.0f - dir_threshold)  dir_line_vec.x += 1.0f;
+    if(-180.0f + dir_threshold < dir.dir_z && dir.dir_z < 0) dir_line_vec.x -= 1.0f;
+
+    if(dir_line_vec.x != 0 && dir_line_vec.y != 0)
+      motor.moveDir(degrees(atan2(dir_line_vec.y, dir_line_vec.x)), 100);
   }
 
   motor.avr();
   motor.write();
 
-  delay(15);
+  delay(4);
 }
