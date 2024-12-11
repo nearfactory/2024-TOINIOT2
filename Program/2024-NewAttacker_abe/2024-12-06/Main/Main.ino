@@ -37,10 +37,10 @@ void setup() {
     dir.calibration(&system, &gyro, &accel, &mag);
     digitalWrite(LED_BUILTIN, HIGH);
 
-    display.printd(32,24,"system: "+to_string(system));
-    display.printd(32,32,"gyro  : "+to_string(gyro));
-    display.printd(32,40,"accel : "+to_string(accel));
-    display.printd(32,48,"mag   : "+to_string(mag));
+    display.printd(32,16,"system: "+to_string(system));
+    display.printd(32,24,"gyro  : "+to_string(gyro));
+    display.printd(32,32,"accel : "+to_string(accel));
+    display.printd(32,40,"mag   : "+to_string(mag));
     display.draw();
   }
 
@@ -74,9 +74,9 @@ void loop() {
     ui.read();
     if(ui.buttonUp(0)) display.next();
 
-    display.addValiables("p gain:"+to_string(p_gain), &p_gain);
-    display.addValiables("d gain:"+to_string(d_gain), &d_gain);
-    // display.addValiables("p1:"+to_string(p1), &p1);
+    // display.addValiables("p gain:"+to_string(p_gain), &p_gain);
+    // display.addValiables("d gain:"+to_string(d_gain), &d_gain);
+    display.addValiables("power :"+to_string(p1), &p1);
     display.addValiables("dir   :"+to_string(dir_threshold), &dir_threshold);
     display.addValiables("dir y :"+to_string(dir.dir_y), &dir.dir_y);
     display.addValiables("dir z :"+to_string(dir.dir_z), &dir.dir_z);
@@ -129,15 +129,15 @@ void loop() {
     // // // // // // // // memo: 物理の参考書
 
     // コート橋の傾斜がある部分に乗り上げると反応しないため、地磁気を用いる
-    Vec2 dir_line_vec;
-    if(dir.dir_y > dir_threshold)  dir_line_vec.y += 1.0f;
-    if(dir.dir_y < dir_threshold)  dir_line_vec.y += -1.0f;
+    // Vec2 dir_line_vec;
+    // if(dir.dir_y > dir_threshold)  dir_line_vec.y += 1.0f;
+    // if(dir.dir_y < dir_threshold)  dir_line_vec.y += -1.0f;
 
-    if(0 < dir.dir_z && dir.dir_z < 180.0f - dir_threshold)  dir_line_vec.x += 1.0f;
-    if(-180.0f + dir_threshold < dir.dir_z && dir.dir_z < 0) dir_line_vec.x -= 1.0f;
+    // if(0 < dir.dir_z && dir.dir_z < 180.0f - dir_threshold)  dir_line_vec.x += 1.0f;
+    // if(-180.0f + dir_threshold < dir.dir_z && dir.dir_z < 0) dir_line_vec.x -= 1.0f;
 
-    if(dir_line_vec.x != 0 && dir_line_vec.y != 0)
-      motor.moveDir(degrees(atan2(dir_line_vec.y, dir_line_vec.x)), 100);
+    // if(dir_line_vec.x != 0 && dir_line_vec.y != 0)
+    //   motor.moveDir(degrees(atan2(dir_line_vec.y, dir_line_vec.x)), 100);
   }
 
   motor.avr();

@@ -12,6 +12,13 @@ private:
   float default_dir;
   float prev_dir;
 
+  static constexpr uint8_t QUEUE_SIZE = 10000;
+  uint8_t queue_id = 0;
+  float queue_y[QUEUE_SIZE]{};
+  float queue_z[QUEUE_SIZE]{};
+  float avr_y = 0.0f;
+  float avr_z = 0.0f;
+
 public:
   float dir;
   float dir_y;
