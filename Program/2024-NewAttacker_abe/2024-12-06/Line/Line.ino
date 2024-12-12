@@ -15,6 +15,7 @@ bool line[LINE_NUM];
 int analog[ANALOG_NUM];
 
 uint32_t max = 0;
+uint32_t min = 1023;
 uint32_t avr = 0;
 uint32_t count = 0;
 
@@ -31,23 +32,34 @@ void setup(){
   while(millis()-begin_ms < 5000){
     for(int i=0;i<ANALOG_NUM;i++){
 
-      if(i != 4){
+      
+    // for(int i=0;i<ANALOG_NUM;i++){
+    //   Serial.print(analogRead(ANALOG_PIN[i]));
+    //   Serial.print("\t");
+    // }
+    // Serial.println();
+
+
+      if(i!=4){
         int s = analogRead(ANALOG_PIN[i]);
         if(s > max){
           max = s;
+        }else if(s<min){
+          min = s;
         }
         else{
           avr += s;
           count++;
         }
       }
-      
+
     }
-    delay(50);
+    delay(100);
   }
 
   avr = avr / count;
-  threshold = (avr*4+max)/5/4;
+  threshold = (avr*4+max-400)/5/4;
+  // threshold = (max + 50)/4;
 
 
 
@@ -81,6 +93,17 @@ char send_str[8]{};
 constexpr uint8_t DATA_SIZE = 5;
 
 void loop(){
+  // if(Serial.available()){
+  //   char str[10];
+  //   int i = 0;
+  //   while(Serial.available()){
+  //     str[i] = Serial.read();
+  //     count++;
+  //   }
+  //   threshold = atoi(str);
+  // }
+  // Serial.print(threshold*4);
+  // Serial.print("\t");
   analogWrite(THRESHOLD_PIN, threshold);
 
   // 白線を取得
@@ -114,7 +137,11 @@ void loop(){
   Serial.print(send_str);
 
 
-  // テスト
+  // // テスト
+  // for(auto l:line){
+  //   Serial.print(l);
+  // }
+  // Serial.print("\t");
   // for(int i=0;i<ANALOG_NUM;i++){
   //   Serial.print(analogRead(ANALOG_PIN[i]));
   //   Serial.print("\t");

@@ -110,30 +110,30 @@ void Line::read(){
   bool prev_on = prev_on1 | prev_on2 | prev_on3;
 
   // 踏み始め
-  // if(prev_on == false && on == true){
-  //   for(auto& q:queue) q = dir;
-  // }
-  // // 継続して踏んでいる場合
-  // else if(prev_on == true && on == true){
-  //   // 平均値のプラスマイナス45°を有効な範囲とする
-  //   float range = 40.0f;
-  //   float range_start = normalizeAngle(avr-range);
-  //   float range_end   = normalizeAngle(avr+range);
+  if(prev_on == false && on == true){
+    for(auto& q:queue) q = dir;
+  }
+  // 継続して踏んでいる場合
+  else if(prev_on == true && on == true){
+    // 平均値のプラスマイナス45°を有効な範囲とする
+    float range = 40.0f;
+    float range_start = normalizeAngle(avr-range);
+    float range_end   = normalizeAngle(avr+range);
 
-  //   // 180°の壁をまたがない場合
-  //   if(range_start <= range_end){
-  //     if(dir <= range_start ||  range_end <= dir){
-  //       dir = avr;
-  //     }
-  //   }else{
-  //     if(range_end <= dir && dir <= range_start){
-  //       dir = avr;
-  //     }
-  //   }
-  // // 踏み終わり
-  // }else if(prev_on == true && on == false){
+    // 180°の壁をまたがない場合
+    if(range_start <= range_end){
+      if(dir <= range_start ||  range_end <= dir){
+        dir = avr;
+      }
+    }else{
+      if(range_end <= dir && dir <= range_start){
+        dir = avr;
+      }
+    }
+  // 踏み終わり
+  }else if(prev_on == true && on == false){
 
-  // }
+  }
 
 
 

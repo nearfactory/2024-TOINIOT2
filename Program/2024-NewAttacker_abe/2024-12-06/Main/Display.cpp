@@ -246,12 +246,22 @@ void Display::Line(){
 
 void Display::Motor(){
   printd(8,8,"Motor");
-  /*
-  */
-  printd(8,   24, "m4:"+to_string((int)motor.motor_raw[3]) );
-  printd(120, 24, "m3:"+to_string((int)motor.motor_raw[2]), ALIGN::RIGHT);
-  printd(8,   56, "m1:"+to_string((int)motor.motor_raw[0]) );
-  printd(120, 56, "m2:"+to_string((int)motor.motor_raw[1]), ALIGN::RIGHT);
+
+  // printd(8,   24, "m4:"+to_string((int)motor.motor_raw[3]) );
+  // printd(120, 24, "m3:"+to_string((int)motor.motor_raw[2]), ALIGN::RIGHT);
+  // printd(8,   56, "m1:"+to_string((int)motor.motor_raw[0]) );
+  // printd(120, 56, "m2:"+to_string((int)motor.motor_raw[1]), ALIGN::RIGHT);
+
+  printd(16,16,"m1   m2   m3   m4");
+  int width = (128-8*2) / 4;
+  for(int i=0;i<4;i++){
+    display.drawRect(8+i*width, 24,width,32,WHITE);
+    int y1 = 40;
+    int y2 = abs(motor.motor_raw[i]) * 16 / 100.0f;
+    if(motor.motor_raw[i]<0) swap(y1,y2);
+    // else                     y1 = y2 + y1;
+    display.fillRect(8+i*width, y1, width, y2, WHITE);
+  }
 
   // drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, move_dir, 24);
 
