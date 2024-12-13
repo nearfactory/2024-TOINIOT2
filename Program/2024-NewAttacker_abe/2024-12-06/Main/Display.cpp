@@ -145,13 +145,6 @@ void Display::Ball(){
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, ball.dir+180, circle_r);
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 0, 8);
 
-  // double ball_small_angle = (ball_small_id*360.0/BALL_NUM+180.0)/180.0*3.14;
-  // printd(DISPLAY_W/2+text_r*cos(-ball_small_angle), DISPLAY_H/2+text_r*sin(-ball_small_angle), to_string(ball_small), ALIGN::CENTER, ALIGN::MIDDLE);
-  // double ball_big_angle = (ball_big_id*360.0/BALL_NUM+180.0)/180.0*3.14;
-  // printd(DISPLAY_W/2+text_r*cos(-ball_big_angle), DISPLAY_H/2+text_r*sin(-ball_big_angle), to_string(ball_big), ALIGN::CENTER, ALIGN::MIDDLE);
-
-  // printd(120,40,to_string(ball_small),    ALIGN::RIGHT);
-  // printd(120,48,to_string(ball_big),      ALIGN::RIGHT);
   printd(120,56,to_string(ball.distance), ALIGN::RIGHT);
   for(int i=0;i<16;i++){
     double angle = (i*360/16+180);
@@ -247,11 +240,6 @@ void Display::Line(){
 void Display::Motor(){
   printd(8,8,"Motor");
 
-  // printd(8,   24, "m4:"+to_string((int)motor.motor_raw[3]) );
-  // printd(120, 24, "m3:"+to_string((int)motor.motor_raw[2]), ALIGN::RIGHT);
-  // printd(8,   56, "m1:"+to_string((int)motor.motor_raw[0]) );
-  // printd(120, 56, "m2:"+to_string((int)motor.motor_raw[1]), ALIGN::RIGHT);
-
   printd(16,16,"m1   m2   m3   m4");
   int width = (128-8*2) / 4;
   for(int i=0;i<4;i++){
@@ -262,8 +250,6 @@ void Display::Motor(){
     // else                     y1 = y2 + y1;
     display.fillRect(8+i*width, y1, width, y2, WHITE);
   }
-
-  // drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, move_dir, 24);
 
   return;
 }

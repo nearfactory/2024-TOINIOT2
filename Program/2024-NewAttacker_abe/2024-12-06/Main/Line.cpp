@@ -8,10 +8,10 @@ void Line::begin(int rate){
 }
 
 void Line::read(){
+  // 必要な分のデータを受信していない場合処理を飛ばす
   if(Serial1.available()<STR_SIZE){
     return;
   }
-
     
   // 古い情報を読み飛ばす
   while(Serial1.available()>STR_SIZE){
@@ -35,17 +35,18 @@ void Line::read(){
 
 
 
-  // 左端が反応した場合、0;5秒間は反応したものとし続ける
-  // if(millis() - right_timer <= 500){
-  //   return;
-  // }
-
-
-
   // 壊れたセンサを反応しいないように修正
   line[0]    = false;
   line[14-1] = false;
   line[24-1] = false;
+
+
+
+  // キューにコピー
+  for(int i=0;i<LINE_NUM;i++){
+    binary_queue[binary_queue_id][i] = line[i];
+  }
+  binary_queue_id = ( binary_queue_id + 1 ) % BINARY_QUEUE_SIZE;
 
   // 角度算出
   on = false;
@@ -54,41 +55,43 @@ void Line::read(){
   vec1.set(10.0f, 10.0f);   // ちいさいx, y
   vec2.set(-10.0f, -10.0f); // でかいx, y
   
-  for(int i=0;i<INNER_NUM;i++){
-    if(line[i]){
-      float sensor_dir = radians(i*360/INNER_NUM);
+  // ベクトルのxy成分それぞれの最大値・最小値
+  for(int j=0;j<BINARY_QUEUE_SIZE;j++){
+    for(int i=0;i<INNER_NUM;i++){
+      if(binary_queue[j][i]){
+        float sensor_dir = radians(i*360/INNER_NUM);
 
-      float x = cos(sensor_dir);
-      float y = sin(sensor_dir);
-      
-      if(vec1.x > x) vec1.x = x;
-      if(vec2.x < x) vec2.x = x;
+        float x = cos(sensor_dir);
+        float y = sin(sensor_dir);
+        
+        if(vec1.x > x) vec1.x = x;
+        if(vec2.x < x) vec2.x = x;
 
-      if(vec1.y > y) vec1.y = y;
-      if(vec2.y < y) vec2.y = y;
+        if(vec1.y > y) vec1.y = y;
+        if(vec2.y < y) vec2.y = y;
 
-      // vec.x += cos(sensor_dir);
-      // vec.y += sin(sensor_dir);
-
-      num++;
+        num++;
+      }
     }
   }
 
-  if(line[INNER_NUM]){
-    vec2.x = 1.0f;
-    num++;
-  }
-  if(line[INNER_NUM+1]){
-    vec2.y = 1.0f;
-    num++;
-  }
-  if(line[INNER_NUM+2]){
-    vec1.x = -1.0f;
-    num++;
-  }
-  if(line[INNER_NUM+3]){
-    vec1.y = -1.0f;
-    num++;
+  for(int j=0;j<BINARY_QUEUE_SIZE;j++){
+    if(binary_queue[j][INNER_NUM]){
+      vec2.x = 1.0f;
+      num++;
+    }
+    if(binary_queue[j][INNER_NUM+1]){
+      vec2.y = 1.0f;
+      num++;
+    }
+    if(binary_queue[j][INNER_NUM+2]){
+      vec1.x = -1.0f;
+      num++;
+    }
+    if(binary_queue[j][INNER_NUM+3]){
+      vec1.y = -1.0f;
+      num++;
+    }
   }
 
   // ラインのベクトル
@@ -136,77 +139,12 @@ void Line::read(){
   }
 
 
-
-  // if(line[INNER_NUM+3]){
-  //   right_timer = millis();
-  // }
-
-
-
   prev_on3 = prev_on2;
   prev_on2 = prev_on1;
   prev_on1 = on;
 
-  // if(prev_on == true && on == false) dir = 0;
-
-
-
   queue[queue_i] = dir;
   queue_i = (queue_i+1) % QUEUE_SIZE;
-
-  // 過去のベクトルの平均
-
-
-  // float angle = 0;
-  // float len = vec.len()*avr.len();
-  // if(len!=0){
-  //   angle = dotProduct(vec,avr) / len;
-  //   angle = angle;
-  // }
-
-  // Serial.println(angle);
-
-  // if(on){
-  //   dir = degrees(-atan2(vec.y, vec.x));
-
-  //   // 半分を超えても大丈夫なように
-  //   // if(30<abs(dir) && abs(dir)<150){
-  //   // }
-  //   // if(dir*dir_prev < 0){
-  //   //   dir += 180;
-  //   //   if(dir>180) dir -= 360;
-  //   // }
-  //   distance = vec.len() / num;
-  
-  // // 内側が反応していない場合、外側を見る
-  // }else{
-  //   vec.clear();
-  //   dir = 0;
-  //   distance = 0;
-    
-  //   if(line[INNER_NUM]){
-  //     on = true;
-  //     vec.x += 1.0f;
-  //   }
-  //   if(line[INNER_NUM+1]){
-  //     on = true;
-  //     vec.y += 1.0f;
-  //   }
-  //   if(line[INNER_NUM+2]){
-  //     on = true;
-  //     vec.x += -1.0f;
-  //   }
-  //   if(line[INNER_NUM+3]){
-  //     on = true;
-  //     vec.y += -1.0f;
-  //   }
-
-  //   distance = vec.len();
-  //   dir = degrees(atan2(vec.y, vec.x));
-  // }
-
-  // for(auto v:queue) Serial.printf("%f\t%f\t\t", v.x, v.y);
-  // Serial.println();
 
   dir_prev = dir;
   vec_prev = vec;

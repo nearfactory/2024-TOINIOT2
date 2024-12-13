@@ -1,3 +1,4 @@
+#include <stdint.h>
 #pragma once
 
 #include <Arduino.h>
@@ -23,12 +24,16 @@ private:
 
   // 過去の角度のキュー
   static constexpr uint8_t QUEUE_SIZE = 3;
-  int   queue_i = 0;
-  float  queue[QUEUE_SIZE];
+  int    queue_i = 0;
+  float  queue[QUEUE_SIZE]{};
 
   static constexpr uint8_t DATA_SIZE = 5; // bit
   static constexpr uint8_t STR_SIZE = 8;  // byte
   char receive[STR_SIZE] = "";
+
+  static constexpr uint8_t BINARY_QUEUE_SIZE = 8;
+  uint8_t binary_queue_id = 0;
+  bool    binary_queue[BINARY_QUEUE_SIZE][LINE_NUM]{};
 public:
   bool  line[INNER_NUM+4]; // センサの値
   int   num;               // 反応しているセンサの数
