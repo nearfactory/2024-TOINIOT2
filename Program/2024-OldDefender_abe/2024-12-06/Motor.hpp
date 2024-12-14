@@ -11,10 +11,10 @@ private:
   static constexpr uint8_t PWM_TYPE = 2;
   static constexpr uint32_t FREQUENCY = 50000;
   const uint8_t PIN[NUM][PWM_TYPE]{
-    {2, 3},
-    {4, 5},
-    {6, 7},
-    {8, 9}
+    {19, 3},
+    {17, 2},
+    {25, 5},
+    {23, 4}
   };
   static constexpr uint8_t EN = 0;
   static constexpr uint8_t PH = 1;

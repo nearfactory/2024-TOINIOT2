@@ -10,4 +10,5 @@ void Line::read(){
   for(int i=0;i<NUM;i++){
     line[i] = digitalRead(PIN[i]);
   }
+  
 }
