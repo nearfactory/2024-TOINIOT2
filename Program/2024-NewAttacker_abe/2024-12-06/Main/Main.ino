@@ -126,7 +126,6 @@ void loop() {
     if(line.on) motor.moveDir(line.dir+180, 100);
 
 
-    // // // // // // // // memo: 物理の参考書
 
     // コート橋の傾斜がある部分に乗り上げると反応しないため、地磁気を用いる
     // Vec2 dir_line_vec;
