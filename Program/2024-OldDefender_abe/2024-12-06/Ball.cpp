@@ -1,4 +1,3 @@
-#include "wiring.h"
 #include "Ball.hpp"
 
 void Ball::begin(){
@@ -12,20 +11,9 @@ void Ball::read(){
   float x=0, y=0;
   distance = 0;
 
-  int max = 1023;
-  int max_id = 0;
-
-  float x2=0, y2=0;
-  double dir2 = 0.0;
-
   for(int i=0;i<NUM;i++){
     ball[i] = analogRead(PIN[i]);
     distance += ball[i];
-
-    if(max>ball[i]){
-      max = ball[i];
-      max_id = i;
-    }
   }
 
   for(int i=0;i<16;i++){

@@ -1,5 +1,3 @@
-#include <cmath>
-
 #include "Vec2.hpp"
 
 Vec2 operator+(const Vec2& v1, const Vec2& v2){
@@ -68,7 +66,7 @@ void Vec2::set(float vec_x, float vec_y){
 }
 
 float Vec2::len(){
-  return std::sqrt(x*x + y*y);
+  return sqrt(x*x + y*y);
 }
 
 void Vec2::clear(){

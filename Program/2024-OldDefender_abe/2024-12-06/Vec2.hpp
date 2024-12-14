@@ -1,5 +1,7 @@
 #pragma once
 
+#include <math.h>
+
 #include <Arduino.h>
 
 class Vec2{
