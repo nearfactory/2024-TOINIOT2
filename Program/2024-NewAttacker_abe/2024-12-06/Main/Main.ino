@@ -23,17 +23,19 @@ using namespace std;
 
 void setup() {
   Serial.begin(115200);
+  Serial7.begin(115200);
   /*
+  */
   Serial.println("begin");
 
   ball.begin();
   display.begin();
   dir.begin();
   line.begin(115200);
-  */
   motor.begin();
   
   /*
+  */
   uint8_t system=0, gyro=0, accel=0, mag=0;
   // system = 3; gyro = 3; mag = 3;
   while(system<3 || gyro<3 || mag<3){
@@ -54,7 +56,6 @@ void setup() {
   while(!ui.buttonUp(0)){ ui.read(); }
   
   dir.setDefault();
-  */
 }
 
 bool display_on = true;
@@ -71,11 +72,12 @@ float dir_threshold = 2.0f;
 
 void loop() {
   /*
+  */
   ball.read();
   dir.read();
   line.read();
 
-  if(digitalRead(36)){
+  if(digitalRead(37)){
     ui.read();
     if(ui.buttonUp(0)) display.next();
 
@@ -143,11 +145,17 @@ void loop() {
     // if(dir_line_vec.x != 0 && dir_line_vec.y != 0)
     //   motor.moveDir(degrees(atan2(dir_line_vec.y, dir_line_vec.x)), 100);
   }
-  */
 
-  motor.set(0, 0, 60.0f, 0);
-  motor.avr();
-  motor.write();
+  // motor.set(0, 0, 60.0f, 0);
+  // motor.avr();
+  // motor.write();
 
-  delay(100);
+  // Serial.println("a");
+  digitalWrite(LED_BUILTIN, LOW);
+  while(Serial7.available()){
+    digitalWrite(LED_BUILTIN, HIGH);
+    Serial.print((char)Serial7.read());
+  }
+
+  delay(10);
 }
