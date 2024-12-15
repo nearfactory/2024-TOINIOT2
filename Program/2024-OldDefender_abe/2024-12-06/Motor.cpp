@@ -4,7 +4,7 @@ void Motor::begin(){
   for(int i=0;i<NUM;i++){
     pinMode(PIN[i][EN], OUTPUT);
     pinMode(PIN[i][PH], OUTPUT);
-    analogWriteFrequency(PIN[i][EN], FREQUENCY);
+    // analogWriteFrequency(PIN[i][EN], FREQUENCY);
   }
   
   Serial.println("motor setup");
