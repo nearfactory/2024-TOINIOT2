@@ -1,8 +1,8 @@
-constexpr uint8_t BALL01K_PIN  = 0;
-constexpr uint8_t BALL02K_PIN  = 1;
-constexpr uint8_t VOLUME_PIN   = 2;
+constexpr uint8_t BALL01K_PIN  = A0;
+constexpr uint8_t BALL02K_PIN  = A1;
+constexpr uint8_t VOLUME_PIN   = A2;
 
-constexpr uint8_t KICKER_PIN   = 3;
+constexpr uint8_t KICKER_PIN   = D3;
 constexpr uint8_t PH_PIN       = 4;
 constexpr uint8_t EN_PIN       = 5;
 constexpr uint8_t NEOPIXEL_PIN = 10;
@@ -22,7 +22,7 @@ void setup() {
   pinMode(EN_PIN, OUTPUT);
   pinMode(NEOPIXEL_PIN, OUTPUT);
 
-  Serial1.setPins(6, 7);
+  Serial1.setPins(D7, D6);
   Serial1.begin(115200);
 }
 
@@ -52,9 +52,9 @@ void loop() {
   /*
   // 送信
   char send[4] = "";
-  send[0] = (analogRead(BALL01K_PIN) >> 2 + 1) & 0b11111111;
-  send[1] = (analogRead(BALL02K_PIN) >> 2 + 1) & 0b11111111;
-  send[2] = (analogRead(VOLUME_PIN)  >> 2 + 1) & 0b11111111;
+  send[0] = (analogRead(BALL01K_PIN) >> 4 + 1) & 0b11111111;
+  send[1] = (analogRead(BALL02K_PIN) >> 4 + 1) & 0b11111111;
+  send[2] = (analogRead(VOLUME_PIN)  >> 4 + 1) & 0b11111111;
   send[3] = '\0';
   Serial1.print(send);
 
@@ -70,6 +70,15 @@ void loop() {
 
   delay(1);
   */
+
+  Serial1.print("min:0 max:1023 ");
+  Serial1.printf("b1:%d\tb2:%d\tvol:%d\n",
+    analogRead(BALL01K_PIN),
+    analogRead(BALL02K_PIN),
+    analogRead(VOLUME_PIN)
+  );
+  // Serial1.println("fujiki");
+  delay(50);
 
   digitalWrite(KICKER_PIN, HIGH);
   delay(50);

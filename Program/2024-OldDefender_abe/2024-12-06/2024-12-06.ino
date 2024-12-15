@@ -39,10 +39,15 @@ void setup() {
     dir.calibration(&system, &gyro, &accel, &mag);
     digitalWrite(LED_BUILTIN, HIGH);
 
-    display.printd(32,16,"system: "+to_string(system));
-    display.printd(32,24,"gyro  : "+to_string(gyro));
-    display.printd(32,32,"accel : "+to_string(accel));
-    display.printd(32,40,"mag   : "+to_string(mag));
+    char str = "";
+    sprintf(str, "system: %d",system);
+    display.printd(32,16,str);
+    sprintf(str, "gyro  : %d",gyro);
+    display.printd(32,24,str);
+    sprintf(str, "accel : %d",accel);
+    display.printd(32,32,str);
+    sprintf(str, "mag   : %d",mag);
+    display.printd(32,40,str);
     display.draw();
   }
 
@@ -76,6 +81,13 @@ void loop() {
       display.draw();
       display_on = false;
     }
+
+    Serial.print(ball.dir);
+    Serial.print("\t");
+    Serial.print(line.front);
+    Serial.print(line.left);
+    Serial.print(line.back);
+    Serial.print(line.right);
 
   }
 
