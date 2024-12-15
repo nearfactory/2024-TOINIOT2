@@ -13,6 +13,7 @@
 #include "UI.hpp"
 
 Ball ball;
+Camera camera;
 Dir dir;
 Display display;
 Line line;
@@ -29,6 +30,7 @@ void setup() {
   Serial.println("begin");
 
   ball.begin();
+  camera.begin();
   display.begin();
   dir.begin();
   line.begin(115200);
@@ -74,6 +76,7 @@ void loop() {
   /*
   */
   ball.read();
+  camera.read();
   dir.read();
   line.read();
 
