@@ -58,21 +58,28 @@ void setup() {
 
 bool display_on = true;
 
+int h = 10; // ヒステリシス
 float r = 14400.0f;  // 回り込み時の半径
-int h = 10;
 float p_gain = 1.5f;
 float d_gain = 3.5f;
 float* gain_select = &p_gain;
 
 float p1 = 8.5f;
 
+float goal_dir = 0;
 float dir_threshold = 2.0f;
 
+uint8_t ball01k = 0;
+uint8_t ball02k = 0;
+uint8_t volume  = 0;
+
+uint32_t kicker_timer = 0;
+
 void loop() {
-  /*
-  */
   ball.read();
+  auto t = millis();
   camera.read();
+  Serial.printf("camera:%d ", millis()-t);
   dir.read();
   line.read();
 
@@ -80,13 +87,13 @@ void loop() {
     ui.read();
     if(ui.buttonUp(0)) display.next();
 
+    // display.addValiables("radius:"+to_string(r), &r);
     // display.addValiables("p gain:"+to_string(p_gain), &p_gain);
     // display.addValiables("d gain:"+to_string(d_gain), &d_gain);
     display.addValiables("power :"+to_string(p1), &p1);
     display.addValiables("dir   :"+to_string(dir_threshold), &dir_threshold);
     display.addValiables("dir y :"+to_string(dir.dir_y), &dir.dir_y);
     display.addValiables("dir z :"+to_string(dir.dir_z), &dir.dir_z);
-    // display.addValiables("radius:"+to_string(r), &r);
 
     display.debug();
     display.draw();
@@ -125,7 +132,7 @@ void loop() {
     }
 
     // 姿勢制御を加算
-    float pow = dir.dir*60.0/180.0;
+    float pow = (dir.dir - goal_dir)*60.0/180.0;
     motor.add(pow, pow, pow, pow);
 
     // 白線避け
@@ -145,16 +152,43 @@ void loop() {
     //   motor.moveDir(degrees(atan2(dir_line_vec.y, dir_line_vec.x)), 100);
   }
 
-  // motor.set(0, 0, 60.0f, 0);
-  // motor.avr();
+  motor.avr();
   // motor.write();
 
-  // Serial.println("a");
   digitalWrite(LED_BUILTIN, LOW);
   while(Serial7.available()){
     digitalWrite(LED_BUILTIN, HIGH);
     Serial.print((char)Serial7.read());
   }
+
+  /*
+  // シリアル
+  while(Serial7.available() >= 4){
+    ball01k = Serial7.read();
+    ball02k = Serial7.read();
+    volume  = Serial7.read();
+    Serial7.read();
+  }
+
+
+  // 機体の角度
+  if(ball.is_hold){
+    goal_dir = (camera.x - 160);
+  }else{
+    goal_dir = 0;
+  }
+
+  // キッカー
+  Serial7.print('k');
+  if(camera.w > 100 && millis()-kicker_timer > 5000){
+    kick();
+    kicker_timer = millis();
+  }
+
+  if(millis() - kicker_timer < 1000){
+    motor.moveDir(0,50);
+  }
+  */
 
   delay(10);
 }

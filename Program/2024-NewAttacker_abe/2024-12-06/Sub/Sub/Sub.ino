@@ -46,19 +46,11 @@ bool kicker = 0;
 uint32_t kicker_time = 0;
 int dribbler = 0;
 
+uint32_t kicker_timer = 0;
 
-void loop() {
 
+void loop() {  
   /*
-  // 送信
-  char send[4] = "";
-  send[0] = (analogRead(BALL01K_PIN) >> 4 + 1) & 0b11111111;
-  send[1] = (analogRead(BALL02K_PIN) >> 4 + 1) & 0b11111111;
-  send[2] = (analogRead(VOLUME_PIN)  >> 4 + 1) & 0b11111111;
-  send[3] = '\0';
-  Serial1.print(send);
-
-  
   // 受信
   if(Serial1.available()){
     // 最初の1byteを読み出す
@@ -71,17 +63,35 @@ void loop() {
   delay(1);
   */
 
+
+  while(Serial1.available()){
+    if(Serial1.read() == 'k'){
+      kicker_timer = millis();
+    }
+  }
+
+  if(millis()-kicker_timer < 50){
+    digitalWrite(KICKER_PIN, HIGH);
+  }else{
+    digitalWrite(KICKER_PIN, LOW);
+  }
+
   Serial1.print("min:0 max:1023 ");
-  Serial1.printf("b1:%d\tb2:%d\tvol:%d\n",
+  Serial1.printf("b1:%d b2:%d vol:%d \n",
     analogRead(BALL01K_PIN),
     analogRead(BALL02K_PIN),
     analogRead(VOLUME_PIN)
   );
-  // Serial1.println("fujiki");
-  delay(50);
 
-  digitalWrite(KICKER_PIN, HIGH);
+  /*
+  // 送信
+  char send[4] = "";
+  send[0] = (analogRead(BALL01K_PIN) >> 4 + 1) & 0b11111111;
+  send[1] = (analogRead(BALL02K_PIN) >> 4 + 1) & 0b11111111;
+  send[2] = (analogRead(VOLUME_PIN)  >> 4 + 1) & 0b11111111;
+  send[3] = '\0';
+  Serial1.print(send);
+  */
+  
   delay(50);
-  digitalWrite(KICKER_PIN, LOW);
-  delay(5000);
 }
