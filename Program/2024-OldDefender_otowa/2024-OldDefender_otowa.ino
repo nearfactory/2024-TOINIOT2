@@ -120,6 +120,10 @@ void loop() {
         //motorP(-100, 100, 100, -100, mpL);
         motorP(0, 100, 0, -100, mpL);
         delay(400);
+        motorP(0, 0, 0, 0, mpL);
+        delay(50);
+        motorP(-100, -100, 80, 80, mpL);
+        delay(100);
         break;
       }
       else{
@@ -147,6 +151,10 @@ void loop() {
         //motorP(100, -80, -100, 80, mpL);
         motorP(100, 0, -100, 0, mpL);
         delay(400);
+        motorP(0, 0, 0, 0, mpL);
+        delay(50);
+        motorP(-100, -100, 80, 80, mpL);
+        delay(100);
         break;
       }
       else{
