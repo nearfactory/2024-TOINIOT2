@@ -170,7 +170,20 @@ void Display::Ble(){
 
 void Display::Camera(){
   printd(8,8,"Camera");
-  printd(64,32,"no data", ALIGN::CENTER, ALIGN::MIDDLE);
+  
+  int width = 76;
+  int height = 48;
+  // display.drawRect(64-width/2, 16, width, height, WHITE);
+  display.fillRect(
+    26+(camera.x-camera.w/2)*width/320,
+    16+(camera.y-camera.h/2)*height/200,
+    camera.w*width/320,
+    camera.h*height/200,
+    WHITE
+  );
+  printd(8,24,"h:"+to_string(camera.h));
+  // printd(8,24,"y:"+to_string(camera.y));
+  printd(8,40,"d:"+to_string(dir.dir));
   return;
 }
 

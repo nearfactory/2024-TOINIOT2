@@ -24,10 +24,8 @@ using namespace std;
 
 void setup() {
   Serial.begin(115200);
-  Serial7.begin(115200);
-  /*
-  */
   Serial.println("begin");
+  Serial7.begin(115200);
 
   ball.begin();
   camera.begin();
@@ -36,10 +34,8 @@ void setup() {
   line.begin(115200);
   motor.begin();
   
-  /*
-  */
   uint8_t system=0, gyro=0, accel=0, mag=0;
-  // system = 3; gyro = 3; mag = 3;
+  system = 3; gyro = 3; mag = 3;
   while(system<3 || gyro<3 || mag<3){
     dir.calibration(&system, &gyro, &accel, &mag);
     digitalWrite(LED_BUILTIN, HIGH);
