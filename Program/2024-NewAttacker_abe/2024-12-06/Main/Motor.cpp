@@ -29,6 +29,15 @@ void Motor::add(float m1, float m2, float m3, float m4){
   return;
 }
 
+void Motor::addRaw(float m1, float m2, float m3, float m4){
+  motor_add[0] = m1;
+  motor_add[1] = m2;
+  motor_add[2] = m3;
+  motor_add[3] = m4;
+
+  return;
+}
+
 void Motor::setDir(float dir, float p_gain){
   // P制御
   float power = dir / 1.8;
@@ -89,8 +98,6 @@ void Motor::avr() {
   return;
 }
 
-
-
 // void Motor::avr(){
 //   static int queue_index = 0;      // 出力値のキューのインデックス
 
@@ -109,14 +116,15 @@ void Motor::avr() {
 
 void Motor::write(){
   for(int i=0;i<NUM;i++){
-      motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
-      motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
+    motor_raw[i] = motor_add[i];
+    motor_add[i] = 0;
 
-      digitalWrite( PIN[i][PH], motor_raw[i]>0);
-      analogWrite(  PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100));
-      // Serial.printf("%f ", motor_raw[i]);
+    motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
+    motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
+
+    digitalWrite( PIN[i][PH], motor_raw[i]>0);
+    analogWrite(  PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100));
   }
-  // Serial.println();
 
   return;
 }

@@ -21,6 +21,7 @@ private:
   
   float motor         [NUM] = {0};  // プログラマ用
   float motor_prev    [NUM] = {0};  // 前ループのプログラマ用の値
+  float motor_add     [NUM] = {0};  // Rawに加算(主に姿勢制御)
   float move_dir                  = 0;
 
   static constexpr uint8_t p_step = 4;
@@ -36,6 +37,7 @@ public:
   void begin();
   void set(float m1, float m2, float m3, float m4);
   void add(float m1, float m2, float m3, float m4);
+  void addRaw(float m1, float m2, float m3, float m4);
   void setDir(float dir, float p_gain);
   void moveDir(float dir, uint8_t power);
   void p();

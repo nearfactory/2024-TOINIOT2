@@ -10,7 +10,6 @@ private:
   Adafruit_BNO055 bno;
 
   float default_dir;
-  float prev_dir;
 
   static constexpr uint8_t QUEUE_SIZE = 10000;
   uint8_t queue_id = 0;
@@ -21,6 +20,8 @@ private:
 
 public:
   float dir;
+  float prev_dir;
+
   float dir_y;
   float dir_z;
   Vec2  accel;
