@@ -106,7 +106,7 @@ void loop() {
     }
 
 
-    if(ball.is_holding){
+    if(ball.is_hold){
       float power = 100.0;
       motor.set(power, power, -power, -power);
     }else{
