@@ -39,7 +39,7 @@ void Ball::read(){
 
   
   is_exist = distance < DISTANCE_MAX;
-  is_hold  = false;
+  // is_hold  = false;
   
   /*
   hold_time = millis() - hold_begin;

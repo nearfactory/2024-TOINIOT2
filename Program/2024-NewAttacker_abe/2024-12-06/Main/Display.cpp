@@ -1,3 +1,4 @@
+#include "HardwareSerial.h"
 #include "Display.hpp"
 
 using namespace std;
@@ -241,11 +242,28 @@ void Display::Line(){
   }
 
   // display.drawRect(64-1+line.vec.x*-13, 32-1+line.vec.y*13, 2, 2, WHITE);
+  // ベクトル
   display.drawRect(64-1-cos(radians(line.dir))*13, 32-1+sin(radians(line.dir))*13, 2, 2, WHITE);
 
   printd(8, 40, "on:"+to_string(line.on));
   printd(8, 48, "num:"+to_string(line.num));
   printd(8, 56, "dir:"+to_string(line.dir));
+
+
+  // 調整
+  printd(112,8, "+");
+  printd(112,32,"-");
+
+  if(ui.buttonUp(1)){
+    // line.send('u');
+    Serial1.print("u");
+    printd(96,8, "+");
+  } 
+  if(ui.buttonUp(2)){
+    // line.send('d');
+    Serial1.print("d");
+    printd(96,32,"-");
+  } 
 
   return;
 }

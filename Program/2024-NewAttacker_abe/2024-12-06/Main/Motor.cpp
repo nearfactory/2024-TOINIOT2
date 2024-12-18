@@ -116,14 +116,14 @@ void Motor::avr() {
 
 void Motor::write(){
   for(int i=0;i<NUM;i++){
-    motor_raw[i] = motor_add[i];
+    motor_raw[i] += motor_add[i];
     motor_add[i] = 0;
 
     motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
     motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
 
-    digitalWrite( PIN[i][PH], motor_raw[i]>0);
-    analogWrite(  PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100));
+    digitalWrite( PIN[i][PH], motor_raw[i]>0 );
+    analogWrite ( PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100) );
   }
 
   return;

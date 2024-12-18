@@ -31,7 +31,7 @@ private:
   static constexpr uint8_t STR_SIZE = 8;  // byte
   char receive[STR_SIZE] = "";
 
-  static constexpr uint8_t BINARY_QUEUE_SIZE = 8;
+  static constexpr uint8_t BINARY_QUEUE_SIZE = 5;
   uint8_t binary_queue_id = 0;
   bool    binary_queue[BINARY_QUEUE_SIZE][LINE_NUM]{};
 public:
@@ -51,6 +51,7 @@ public:
 
   void begin(int rate);
   void read();
+  void send(char command  );
 };
 
 extern Line line;

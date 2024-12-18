@@ -48,6 +48,12 @@ void Line::read(){
   }
   binary_queue_id = ( binary_queue_id + 1 ) % BINARY_QUEUE_SIZE;
 
+  for(int j=0;j<BINARY_QUEUE_SIZE;j++){
+    for(int i=0;i<LINE_NUM;i++){
+      line[i] |= binary_queue[j][i];
+    }
+  }
+
   // 角度算出
   on = false;
   dir = 0;
@@ -155,22 +161,26 @@ void Line::read(){
   // 踏み始め
   if(prev_on == false && on == true){
     for(auto& q:queue) q = dir;
+    dir_prev = dir;
   }
   // 継続して踏んでいる場合
   else if(prev_on == true && on == true){
     // 平均値のプラスマイナス45°を有効な範囲とする
-    float range = 40.0f;
-    float range_start = normalizeAngle(avr-range);
-    float range_end   = normalizeAngle(avr+range);
+    float range = 60.0;
+    // float range_start = normalizeAngle(avr-range);
+    // float range_end   = normalizeAngle(avr+range);
 
+    float range_start = normalizeAngle(prev_dir - range);
+    float range_end   = normalizeAngle(prev_dir + range);
+    
     // 180°の壁をまたがない場合
     if(range_start <= range_end){
       if(dir <= range_start ||  range_end <= dir){
-        dir = avr;
+        dir = dir_prev;
       }
     }else{
       if(range_end <= dir && dir <= range_start){
-        dir = avr;
+        dir = dir_prev;
       }
     }
   // 踏み終わり
@@ -189,5 +199,10 @@ void Line::read(){
   dir_prev = dir;
   vec_prev = vec;
 
+  return;
+}
+
+void Line::send(char command){
+  Serial1.print(command);
   return;
 }
