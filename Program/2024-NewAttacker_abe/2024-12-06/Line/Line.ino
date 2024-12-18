@@ -29,7 +29,7 @@ void setup(){
   for(auto p:ANALOG_PIN) pinMode(p, INPUT_PULLUP);
 
   auto begin_ms = millis();
-  while(millis()-begin_ms < 5000){
+  while(millis()-begin_ms < 3000){
     for(int i=0;i<ANALOG_NUM;i++){
 
       
@@ -104,6 +104,12 @@ void loop(){
   // }
   // Serial.print(threshold*4);
   // Serial.print("\t");
+  if(Serial.available()){
+    char c = Serial.read();
+    if(c == 'u') threshold += 5;
+    if(c == 'd') threshold -= 5;
+    // threshold -= 5;
+  }
   analogWrite(THRESHOLD_PIN, threshold);
 
   // 白線を取得
@@ -138,6 +144,8 @@ void loop(){
 
 
   // // テスト
+  // Serial.print(threshold);
+  // Serial.print("\t");
   // for(auto l:line){
   //   Serial.print(l);
   // }
@@ -148,7 +156,7 @@ void loop(){
   // }
   // Serial.println();
 
-  // delay(5);
+  delay(5);
 }
 
 // センサの値がズレている: 1(+200)
