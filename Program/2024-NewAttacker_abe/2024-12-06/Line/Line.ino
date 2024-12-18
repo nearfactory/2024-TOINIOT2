@@ -58,7 +58,7 @@ void setup(){
   }
 
   avr = avr / count;
-  threshold = (avr*4+max-400)/5/4;
+  threshold = (avr*4+max-600)/5/4;
   // threshold = (max + 50)/4;
 
 
@@ -156,7 +156,7 @@ void loop(){
   // }
   // Serial.println();
 
-  delay(5);
+  delay(4);
 }
 
 // センサの値がズレている: 1(+200)
