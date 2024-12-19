@@ -170,8 +170,8 @@ void Line::read(){
     // float range_start = normalizeAngle(avr-range);
     // float range_end   = normalizeAngle(avr+range);
 
-    float range_start = normalizeAngle(prev_dir - range);
-    float range_end   = normalizeAngle(prev_dir + range);
+    float range_start = normalizeAngle(dir_prev - range);
+    float range_end   = normalizeAngle(dir_prev + range);
     
     // 180°の壁をまたがない場合
     if(range_start <= range_end){

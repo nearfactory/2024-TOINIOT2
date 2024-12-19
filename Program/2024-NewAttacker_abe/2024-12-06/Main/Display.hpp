@@ -69,7 +69,7 @@ private:
   uint8_t selector = 0;
 
 public:
-  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::LINE) {}
+  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::BALL) {}
 
   void begin();
   void clear();

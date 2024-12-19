@@ -39,8 +39,18 @@ void Ball::read(){
 
   
   is_exist = distance < DISTANCE_MAX;
-  // is_hold  = false;
   
+  if(is_hold){
+    if(abs(dir) > 30){
+      is_hold = false;
+    }
+  }else{
+    if(distance < 14000 && abs(dir) < 15.0){
+    // distance_h = 15000;
+      is_hold = true;
+    }
+  }
+
   /*
   hold_time = millis() - hold_begin;
 

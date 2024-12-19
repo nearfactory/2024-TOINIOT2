@@ -66,7 +66,6 @@ void setup() {
 bool is_display_on = true;
 
 int h = 45; // ヒステリシス
-int distance_h = 13500;
 float r = 14400.0f;  // 回り込み時の半径
 float p_gain = 1.5f;
 float d_gain = 3.5f;
@@ -119,12 +118,9 @@ void loop() {
 
 
     if(ball.is_hold){
-      // float power = 100.0;
-      // motor.set(power, power, -power, -power);
-      motor.moveDir(0,0);
-      if(abs(ball.dir) > 30){
-        // ball.is_hold = false;
-      }
+      float power = 100.0;
+      motor.set(-power, -power, power, power);
+      // motor.moveDir(0,200.0);
     }else{
       // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
       float theta = 0;
@@ -133,11 +129,6 @@ void loop() {
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
         h = 45;
         
-        // 保持条件
-        if(ball.distance < distance_h){
-          // distance_h = 15000;
-          ball.is_hold = true;
-        }
       }else if(ball.distance < r){
         theta = 90 + (r-ball.distance) * 90 / r;
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
@@ -181,12 +172,6 @@ void loop() {
     // 白線避け
     if(line.on){
       motor.moveDir(line.dir+180, line_power*10.0);
-
-      ui.buzzer(440.0f);
-      digitalWrite(LED_BUILTIN, HIGH);
-    }else{
-      ui.buzzer(0);
-      digitalWrite(LED_BUILTIN, LOW);
     }
     // prev_on = line.on;
     
@@ -203,6 +188,14 @@ void loop() {
 
     // if(dir_line_vec.x != 0 && dir_line_vec.y != 0)
     //   motor.moveDir(degrees(atan2(dir_line_vec.y, dir_line_vec.x)), 100);
+  }
+
+  if(ball.is_hold){
+    digitalWrite(LED_BUILTIN, HIGH);
+    // ui.buzzer(500.0f);
+    // ui.buzzer(440.0f);
+  }else{
+    digitalWrite(LED_BUILTIN, LOW);
   }
 
   motor.avr();
