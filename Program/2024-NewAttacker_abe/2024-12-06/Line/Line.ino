@@ -156,7 +156,13 @@ void loop(){
   // }
   // Serial.println();
 
-  delay(4);
+  // delay(4);
+  delay(3);
+  // static uint32_t time = 0;
+  // uint32_t t = millis() - time;
+  // Serial.print(" ");
+  // Serial.println(t);
+  // time = millis();
 }
 
 // センサの値がズレている: 1(+200)
