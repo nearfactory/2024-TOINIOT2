@@ -1,5 +1,3 @@
-#include <Adafruit_BNO055.h>
-#include <Wire.h>
 #include "Dir.hpp"
 
 void Dir::begin(){
@@ -51,7 +49,7 @@ void Dir::read(){
   dir_y = dir_data.orientation.y - avr_y;
   dir_z = 180.0f - dir_data.orientation.z - avr_z;
   if(dir_z > 180.0f) dir_z = dir_z - 360.0f;
-  float threshold = 1.0f;
+  // float threshold = 1.0f;
   // if(abs(avr_y - dir_y) < 1.0f && abs(avr_z - dir_z) < 1.0f && abs(dir_y) < 4.0f && 180.0f - abs(dir_z) < 4.0f)
   // if(abs(dir_y) < 4.0f && 180.0f - abs(dir_z) < 4.0f)
     queue_id = (queue_id+1)%QUEUE_SIZE;

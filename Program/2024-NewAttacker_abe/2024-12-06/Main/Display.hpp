@@ -26,6 +26,7 @@ extern UI ui;
 using namespace std;
 
 
+
 enum class ALIGN : uint8_t{
   LEFT = 0,
   CENTER,
@@ -45,7 +46,8 @@ enum MODE : uint8_t{
   KICKER,
   LINE,
   MOTOR,
-  VARIABLES
+  VARIABLES,
+  GAME
 };
 
 
@@ -62,14 +64,14 @@ private:
   // 
 
   // デバッグ用
-  static constexpr uint8_t MODE_NUM = 9;
+  static constexpr uint8_t MODE_NUM = 10;
   vector<string> variables;
   vector<float*> valiables_addr;
   uint8_t mode = 0;
   uint8_t selector = 0;
 
 public:
-  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::BALL) {}
+  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::GAME) {}
 
   void begin();
   void clear();
@@ -93,6 +95,7 @@ public:
   void Line();
   void Motor();
   void Valiables();
+  void Game();
 };
 
 extern Display display;

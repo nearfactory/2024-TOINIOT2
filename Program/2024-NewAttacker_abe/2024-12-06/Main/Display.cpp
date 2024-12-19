@@ -119,6 +119,9 @@ void Display::debug(uint8_t mode){
     case MODE::VARIABLES :
       this->Valiables();
       break;
+    case MODE::GAME :
+      this->Game();
+      break;
     default:
       for(size_t i=0;i<variables.size();i++){
         printd(8,24+i*8,variables[i]);
@@ -134,7 +137,6 @@ void Display::debug(uint8_t mode){
 void Display::Ball(){
   printd(8,8,"Ball");
   uint8_t circle_r = 24;
-  uint8_t text_r = circle_r + 4;
 
   string str = to_string(ball.dir);
   str.erase(str.begin()+4,str.end());
@@ -172,19 +174,19 @@ void Display::Ble(){
 void Display::Camera(){
   printd(8,8,"Camera");
   
+  // 画像サイズを示す枠
   int width = 76;
   int height = 48;
-  // display.drawRect(64-width/2, 16, width, height, WHITE);
+  display.drawRect(64-width/2, 16, width, height, WHITE);
+
+  // 検出されたブロック全体のバウンディングボックス
   display.fillRect(
-    26+(camera.x-camera.w/2)*width/320,
-    16+(camera.y-camera.h/2)*height/200,
-    camera.w*width/320,
-    camera.h*height/200,
+    26+ camera.x1*width/320,
+    16+ camera.y1*height/200,
+    (camera.x2-camera.x1) *width/320,
+    (camera.y2-camera.y1) *height/200,
     WHITE
   );
-  printd(8,24,"h:"+to_string(camera.h));
-  // printd(8,24,"y:"+to_string(camera.y));
-  printd(8,40,"d:"+to_string(dir.dir));
   return;
 }
 
@@ -224,36 +226,37 @@ void Display::Kicker(){
 
 void Display::Line(){
   printd(8,8,"Line");
-  uint8_t circle_r = 16;
-  uint8_t outside_r = 20;
 
   display.drawCircle(64, 32, 24, WHITE);
   display.drawPixel(64, 32, WHITE);
 
   // エンジェル
+  uint8_t circle_r = 16;
   for(int i=0;i<26;i++){
     float angle = radians(-i*360/26.0 + 180);
     if(line.line[i]) display.drawPixel(DISPLAY_W/2+cos(angle)*circle_r, DISPLAY_H/2+sin(angle)*circle_r, WHITE);
   }
+
   // エンジェル外側
+  uint8_t outside_r = 20;
   for(int i=0;i<4;i++){
     float angle = radians(-i*90 + 180);
     if(line.line[i+26]) display.drawPixel(DISPLAY_W/2+cos(angle)*outside_r, DISPLAY_H/2+sin(angle)*outside_r, WHITE);
   }
 
-  // display.drawRect(64-1+line.vec.x*-13, 32-1+line.vec.y*13, 2, 2, WHITE);
   // ベクトル
   display.drawRect(64-1-cos(radians(line.dir))*13, 32-1+sin(radians(line.dir))*13, 2, 2, WHITE);
 
+  // 情報
   printd(8, 40, "on:"+to_string(line.on));
   printd(8, 48, "num:"+to_string(line.num));
   printd(8, 56, "dir:"+to_string(line.dir));
 
-
-  // 調整
+  // しきい値調整
   printd(112,8, "+");
   printd(112,32,"-");
 
+  // しきい値の加減算
   if(ui.buttonUp(1)){
     // line.send('u');
     Serial1.print("u");
@@ -287,17 +290,17 @@ void Display::Motor(){
 
 void Display::Valiables(){
   printd(8,8,"Valiables");
+
+  // 表示
+  for(size_t i=0;i<variables.size();i++){
+    printd(16,16+8*i,variables[i]);
+  }
+
   
+  // 変数のセレクタ
   if(ui.buttonUp(3)){
     selector++;
     selector %= variables.size();
-  }
-
-  if(ui.buttonUp(1))      *valiables_addr[selector] += 0.1;
-  else if(ui.buttonUp(2)) *valiables_addr[selector] -= 0.1;
-
-  for(size_t i=0;i<variables.size();i++){
-    printd(16,16+8*i,variables[i]);
   }
   printd(8,16+selector*8,">");
 
@@ -305,5 +308,17 @@ void Display::Valiables(){
   printd(120,32,"-",ALIGN::RIGHT);
   printd(128,56,"select",ALIGN::RIGHT);
 
+  // 加減算
+  if(ui.buttonUp(1))      *valiables_addr[selector] += 0.1;
+  else if(ui.buttonUp(2)) *valiables_addr[selector] -= 0.1;
+
   return;
+}
+
+void Display::Game(){
+  printd(8,8,"Game");
+
+  // 攻め方向をリセット
+  printd(120,8,"reset dir",ALIGN::RIGHT);
+  if(ui.buttonUp(1)) dir.setDefault();
 }

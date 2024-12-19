@@ -4,8 +4,11 @@
 
 class UI{
 private:
-  static constexpr uint8_t BUTTON_NUM = 4;
-  const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 37,31,30,32 };
+  // static constexpr uint8_t BUTTON_NUM = 4;
+  // const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 37,31,30,32 };
+  
+  static constexpr uint8_t BUTTON_NUM = 3;
+  const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 37,31,30 };
   
 
   float  bz = 0;

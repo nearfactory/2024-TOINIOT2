@@ -40,25 +40,27 @@ void Ball::read(){
   
   is_exist = distance < DISTANCE_MAX;
   
+  // 保持
   if(is_hold){
+    // 持ち終わり
     if(abs(dir) > 30){
       is_hold = false;
+    }else{
+      // 持ち続けている
+      hold_time = millis() - hold_begin;
     }
   }else{
+    // 持ち始め
     if(distance < 14000 && abs(dir) < 15.0){
-    // distance_h = 15000;
       is_hold = true;
+      hold_begin = millis();
+    }else{
+      // 持っていないのが継続している
+      hold_time = 0;
     }
   }
 
-  /*
-  hold_time = millis() - hold_begin;
+  is_prev_hold = is_hold;
 
-  is_holding = distance < BALL_DISTANCE_MIN && abs(ball_dir)<30;
-  ボールの保持有無が切り替わる or 保持していない時
-  if(!(ball_holding&&prev_ball_holding)){
-    hold_begin = millis();
-  }
-  */
   return;
 }

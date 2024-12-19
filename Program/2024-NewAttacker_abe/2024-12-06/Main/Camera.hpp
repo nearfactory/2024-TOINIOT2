@@ -6,6 +6,7 @@
 
 #include <Pixy2SPI_SS.h>
 
+using namespace std;
 
 // 機体の座標について
 // コートが158x219(cm)
@@ -28,14 +29,19 @@ private:
     uint8_t index=0;
     uint8_t age=0;
   };
-
-  int queue[10]{};
-  int queue_id = 0;
 public:
-  uint16_t x = 0;
-  uint16_t y = 0;
-  uint16_t w = 0;
-  uint16_t h = 0;
+  // Pixyからのデータ
+  vector<Block> block;
+  int           block_num = 0;
+
+  // 自己位置推測
+  float x = 0;
+  float y = 0;
+  float dir = 0;
+
+  // 画像上
+  int x1 = 0, y1 = 0;
+  int x2 = 0, y2 = 0;
 
   void begin();
   void read();

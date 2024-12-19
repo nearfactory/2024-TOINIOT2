@@ -11,7 +11,7 @@ private:
   };
 
   static constexpr uint16_t DISTANCE_MIN = 7000;
-  static constexpr uint16_t DISTANCE_MAX = 16000;
+  static constexpr uint16_t DISTANCE_MAX = 16200;
   uint16_t distance_h = 13200;
 
   uint16_t ball[NUM]{0};
@@ -25,6 +25,7 @@ public:
   bool     is_exist = true;
 
   bool     is_hold = false;
+  bool     is_prev_hold = false;
   uint32_t hold_time;
 
   Ball() : dir(0), distance(0), is_exist(true), is_hold(false), hold_time(0) {}

@@ -124,18 +124,22 @@ void Line::read(){
   if(num == 0){
     if(line[INNER_NUM]){
       vec2.x = 1.0f;
+      front = true;
       num++;
     }
     if(line[INNER_NUM+1]){
       vec2.y = 1.0f;
+      left = true;
       num++;
     }
     if(line[INNER_NUM+2]){
       vec1.x = -1.0f;
+      back = true;
       num++;
     }
     if(line[INNER_NUM+3]){
       vec1.y = -1.0f;
+      right = true;
       num++;
     }
   }
@@ -157,6 +161,9 @@ void Line::read(){
   avr /= (float)QUEUE_SIZE;
 
   bool prev_on = prev_on1 | prev_on2 | prev_on3;
+  prev_on3 = prev_on2;
+  prev_on2 = prev_on1;
+  prev_on1 = on;
 
   // 踏み始め
   if(prev_on == false && on == true){
@@ -166,7 +173,7 @@ void Line::read(){
   // 継続して踏んでいる場合
   else if(prev_on == true && on == true){
     // 平均値のプラスマイナス45°を有効な範囲とする
-    float range = 60.0;
+    float range = 30.0;
     // float range_start = normalizeAngle(avr-range);
     // float range_end   = normalizeAngle(avr+range);
 
@@ -185,13 +192,12 @@ void Line::read(){
     }
   // 踏み終わり
   }else if(prev_on == true && on == false){
-
+    on = true;
+    dir = dir_prev;
+  }else if(prev_on == false && on == false){
+    on = false;
+    dir = 0;
   }
-
-
-  prev_on3 = prev_on2;
-  prev_on2 = prev_on1;
-  prev_on1 = on;
 
   queue[queue_i] = dir;
   queue_i = (queue_i+1) % QUEUE_SIZE;

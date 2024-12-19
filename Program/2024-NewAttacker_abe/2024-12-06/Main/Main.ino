@@ -10,12 +10,14 @@
 #include "Display.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
+#include "Kicker.hpp"
 #include "UI.hpp"
 
 Ball ball;
 Camera camera;
 Dir dir;
 Display display;
+Kicker kicker;
 Line line;
 Motor motor;
 UI ui;
@@ -31,12 +33,12 @@ void setup() {
   // camera.begin();
   display.begin();
   dir.begin();
+  kicker.begin();
   line.begin(115200);
   motor.begin();
   
   // calibration
   uint8_t system=0, gyro=0, accel=0, mag=0;
-  // system = 3; gyro = 3; mag = 3;
   while(system<3 || gyro<3 || mag<3){
     dir.calibration(&system, &gyro, &accel, &mag);
     digitalWrite(LED_BUILTIN, HIGH);
@@ -80,28 +82,31 @@ float dir_p_gain = 0.4f;
 float avoid_dir = 0;
 bool  prev_on = false;
 
+uint32_t left_timer = 0;
+uint32_t right_timer = 0;
+
 
 void loop() {
   ball.read();
 
-  auto t = millis();
+  // auto t = millis();
   // camera.read();
-  Serial.printf("camera:%d ", millis()-t);
+  // Serial.printf("camera:%d ", millis()-t);
 
   dir.read();
   line.read();
 
   if(digitalRead(ui.TOGGLE_PIN)){
-
+    // 25(ms)
     ui.read();
     if(ui.buttonUp(0)) display.next();
 
-    display.addValiables("pow   :"+to_string(p1), &p1);
-    display.addValiables("pow_li:"+to_string(line_power), &line_power);
-    // display.addValiables("dir_p :"+to_string(dir_p_gain), &dir_p_gain);
+    // display.addValiables("pow   :"+to_string(p1), &p1);
+    // display.addValiables("pow_li:"+to_string(line_power), &line_power);
+    display.addValiables("dir_p :"+to_string(dir_p_gain), &dir_p_gain);
     // display.addValiables("dir_th:"+to_string(dir_threshold), &dir_threshold);
-    display.addValiables("dir y :"+to_string(dir.dir_y), &dir.dir_y);
-    display.addValiables("dir z :"+to_string(dir.dir_z), &dir.dir_z);
+    // display.addValiables("dir y :"+to_string(dir.dir_y), &dir.dir_y);
+    // display.addValiables("dir z :"+to_string(dir.dir_z), &dir.dir_z);
 
     display.debug();
     display.draw();
@@ -118,9 +123,11 @@ void loop() {
 
 
     if(ball.is_hold){
-      float power = 100.0;
-      motor.set(-power, -power, power, power);
-      // motor.moveDir(0,200.0);
+      // float power = 100.0;
+      // motor.set(-power, -power, power, power);
+
+      motor.moveDir(0,0);
+      kicker.kick();
     }else{
       // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
       float theta = 0;
@@ -154,9 +161,12 @@ void loop() {
 
     // 機体をゴールに向ける
     if(ball.is_hold){
-      float goal_dir = (camera.x - 160);
-      dir_power = (dir.dir - goal_dir) * dir_p_gain;
+      // float goal_dir = (camera.x - 160);
+      // dir_power = (dir.dir - goal_dir) * dir_p_gain;
       // motor.add(dir_power, dir_power, dir_power, dir_power);
+
+      dir_power = dir.dir * dir_p_gain;
+      motor.addRaw(dir_power, dir_power, dir_power, dir_power);
     }else if(abs(dir.dir) > 30){
       float p_gain = 0.67f;
       float d_gain = 0.45f;
@@ -164,6 +174,9 @@ void loop() {
       motor.set(dir_power, dir_power, dir_power, dir_power);
     }else{
       dir_power = dir.dir * dir_p_gain;
+      float p_gain = 0.67f;
+      float d_gain = 0.45f;
+      dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
       motor.addRaw(dir_power, dir_power, dir_power, dir_power);
     }
 
@@ -172,7 +185,31 @@ void loop() {
     // 白線避け
     if(line.on){
       motor.moveDir(line.dir+180, line_power*10.0);
+      // motor.moveDir(0,0);
     }
+
+    if(line.left){
+      left_timer = millis();
+    }
+    if(millis()-left_timer < 100){
+      motor.moveDir(90, line_power*10.0);
+    }
+
+    if(line.right){
+      right_timer = millis();
+    }
+    if(millis()-right_timer < 100){
+      motor.moveDir(-90, line_power*10.0);
+    }
+    // if(line.left){
+    //   while(!ui.buttonUp(0)){
+    //     ui.read();
+    //     motor.moveDir(0, 0);
+    //     motor.avr();
+    //     motor.write();
+    //     delay(50);
+    //   }
+    // }
     // prev_on = line.on;
     
 
@@ -192,16 +229,17 @@ void loop() {
 
   if(ball.is_hold){
     digitalWrite(LED_BUILTIN, HIGH);
-    // ui.buzzer(500.0f);
-    // ui.buzzer(440.0f);
   }else{
     digitalWrite(LED_BUILTIN, LOW);
   }
 
   motor.avr();
   motor.write();
+  
+  kicker.write();
 
-  delay(10);
+  // delay(10);
+  // delayなしで3(ms)
 
   /*
   ToDo:
@@ -216,9 +254,9 @@ void loop() {
     2.キッカー基板が使えないため、現状の情報でボールを保持したか否か判断するアルゴリズムを書く
       ・ng: ボールとの距離を用いる
       ・ng: 距離に対する角度のブレ
-      ・ヒステリシス
+      ・done: ヒステリシス
     3.ボールを保持した場合の動作を書く
-      ・キッカーがないため突進する速度を上げる
+      ・done: キッカーがないため突進する速度を上げる
       ・敵を避けてプッシングを取られないようにする
     4.両側のゴールに対して攻められるように対応する
   */

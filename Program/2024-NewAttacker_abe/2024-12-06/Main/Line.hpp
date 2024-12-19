@@ -38,6 +38,11 @@ public:
   bool  line[INNER_NUM+4]; // センサの値
   int   num;               // 反応しているセンサの数
 
+  bool front = false;
+  bool left = false;
+  bool back = false;
+  bool right = false;
+
   Vec2  vec;               // ラインのベクトル
   Vec2  vec_prev;
 
