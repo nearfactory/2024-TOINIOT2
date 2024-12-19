@@ -6,7 +6,7 @@ void setup() {
 
 void loop() {
   digitalWrite(pin, 1);
-  delay(5000);
+  delay(50);
   digitalWrite(pin, 0);
   delay(5000);
 }
