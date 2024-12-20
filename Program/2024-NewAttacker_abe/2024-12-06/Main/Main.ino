@@ -48,11 +48,11 @@ void setup() {
     display.printd(32,32,"accel : "+to_string(accel));
     display.printd(32,40,"mag   : "+to_string(mag));
 
-    display.printd(120, 56, "skip", ALIGN::RIGHT);
+    display.printd(120, 8, "skip", ALIGN::RIGHT);
     display.draw();
 
     ui.read();
-    if(ui.buttonUp(3)) break;
+    if(ui.buttonUp(1)) break;
 
   }
 
@@ -123,11 +123,14 @@ void loop() {
 
 
     if(ball.is_hold){
-      // float power = 100.0;
-      // motor.set(-power, -power, power, power);
+      float power = 100.0;
+      motor.set(-power, -power, power, power);
+      
+      // キッカー
+      if(ball.hold_time > 200){
+        kicker.kick();
+      }
 
-      motor.moveDir(0,0);
-      kicker.kick();
     }else{
       // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
       float theta = 0;
@@ -191,14 +194,14 @@ void loop() {
     if(line.left){
       left_timer = millis();
     }
-    if(millis()-left_timer < 100){
+    if(millis()-left_timer < 160){
       motor.moveDir(90, line_power*10.0);
     }
 
     if(line.right){
       right_timer = millis();
     }
-    if(millis()-right_timer < 100){
+    if(millis()-right_timer < 160){
       motor.moveDir(-90, line_power*10.0);
     }
     // if(line.left){

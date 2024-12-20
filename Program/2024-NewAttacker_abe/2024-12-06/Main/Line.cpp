@@ -121,6 +121,11 @@ void Line::read(){
   }
 
 
+  front = false;
+  left  = false;
+  back  = false;
+  right = false;
+  
   if(num == 0){
     if(line[INNER_NUM]){
       vec2.x = 1.0f;

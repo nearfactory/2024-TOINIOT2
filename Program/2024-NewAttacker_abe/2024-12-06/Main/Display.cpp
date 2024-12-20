@@ -149,6 +149,7 @@ void Display::Ball(){
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 0, 8);
 
   printd(120,56,to_string(ball.distance), ALIGN::RIGHT);
+  printd(80, 48,to_string(ball.hold_time));
   for(int i=0;i<16;i++){
     double angle = (i*360/16+180);
 
