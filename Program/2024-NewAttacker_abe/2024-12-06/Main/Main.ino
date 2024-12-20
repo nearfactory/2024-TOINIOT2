@@ -173,24 +173,30 @@ void loop() {
     float dir_power = 0;
 
     // 機体をゴールに向ける
-    if(ball.is_hold){
+    // if(ball.is_hold){
+    if(true){
+      // ボール保持
+
       float goal_dir = camera.goal_dir;
-      dir_power = (dir.dir - goal_dir) * dir_p_gain;
+      dir_power = goal_dir;
       motor.add(dir_power, dir_power, dir_power, dir_power);
 
-      // dir_power = dir.dir * dir_p_gain;
-      motor.addRaw(dir_power, dir_power, dir_power, dir_power);
-    }else if(abs(dir.dir) > 30){
-      float p_gain = 0.64f;
-      float d_gain = 0.45f;
-      dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
-      motor.set(dir_power, dir_power, dir_power, dir_power);
     }else{
-      dir_power = dir.dir * dir_p_gain;
+      // ボール非保持
+
       float p_gain = 0.64f;
       float d_gain = 0.45f;
       dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
-      motor.addRaw(dir_power, dir_power, dir_power, dir_power);
+
+      // 反時計回りの場合に少し弱める
+      if(dir_power > 0) dir_power *= 0.95;
+
+      if(abs(dir.dir) > 30) {
+        // 姿勢制御のみ
+        motor.set(dir_power, dir_power, dir_power, dir_power);
+      }else{
+        motor.addRaw(dir_power, dir_power, dir_power, dir_power);
+      }
     }
 
 
@@ -198,54 +204,30 @@ void loop() {
     // 白線避け
     if(line.on){
       motor.moveDir(line.dir+180, line_power*10.0);
-      // motor.moveDir(0,0);
     }
 
+    // 左右の白線避け(力技)
     if(line.left){
       left_timer = millis();
     }
     if(millis()-left_timer < 160){
-      motor.moveDir(90, line_power*10.0);
+      // motor.moveDir(90, line_power*10.0);
     }
 
     if(line.right){
       right_timer = millis();
     }
     if(millis()-right_timer < 160){
-      motor.moveDir(-90, line_power*10.0);
+      // motor.moveDir(-90, line_power*10.0);
     }
-    // if(line.left){
-    //   while(!ui.buttonUp(0)){
-    //     ui.read();
-    //     motor.moveDir(0, 0);
-    //     motor.avr();
-    //     motor.write();
-    //     delay(50);
-    //   }
-    // }
-    // prev_on = line.on;
-    
-
-
-
-    // コート橋の傾斜がある部分に乗り上げるとラインセンサが反応しないため、地磁気を用いる
-    // Vec2 dir_line_vec;
-    // if(dir.dir_y > dir_threshold)  dir_line_vec.y += 1.0f;
-    // if(dir.dir_y < dir_threshold)  dir_line_vec.y += -1.0f;
-
-    // if(0 < dir.dir_z && dir.dir_z < 180.0f - dir_threshold)  dir_line_vec.x += 1.0f;
-    // if(-180.0f + dir_threshold < dir.dir_z && dir.dir_z < 0) dir_line_vec.x -= 1.0f;
-
-    // if(dir_line_vec.x != 0 && dir_line_vec.y != 0)
-    //   motor.moveDir(degrees(atan2(dir_line_vec.y, dir_line_vec.x)), 100);
   }
 
   if(ball.is_hold){
     digitalWrite(LED_BUILTIN, HIGH);
-    ui.buzzer(880.0f);
+    // ui.buzzer(880.0f);
   }else{
     digitalWrite(LED_BUILTIN, LOW);
-    ui.buzzer(440.0f);
+    // ui.buzzer(440.0f);
   }
 
   motor.avr();
@@ -253,12 +235,11 @@ void loop() {
   
   kicker.write();
 
-  // delay(10);
   // delayなしで3(ms)
 
-  static uint32_t s = 0;
-  Serial.println(millis() - s);
-  s = millis();
+  // static uint32_t s = 0;
+  // Serial.println(millis() - s);
+  // s = millis();
 
   /*
   ToDo:

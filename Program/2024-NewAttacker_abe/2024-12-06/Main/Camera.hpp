@@ -19,6 +19,10 @@ class Camera{
 private:
   Pixy2SPI_SS pixy;
 
+  static constexpr uint8_t  DIR_QUEUE_SIZE = 10;
+  uint8_t                   dir_queue_id = 0;
+  float                     dir_queue[DIR_QUEUE_SIZE]{};
+
   struct Block{
     uint16_t sig=0;
     uint16_t x=0;
