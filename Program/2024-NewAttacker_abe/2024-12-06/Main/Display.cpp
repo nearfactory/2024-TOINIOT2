@@ -179,8 +179,11 @@ void Display::Camera(){
   // 画像サイズを示す枠
   int width = 76;
   int height = 48;
-  printd(80,  8,  to_string(camera.goal_dir));
-  printd(120, 16, to_string(camera.block_num), ALIGN::RIGHT);
+  printd(104, 8,  to_string(camera.atk_x));
+  printd(104, 16, to_string(camera.atk_y));
+  printd(104, 24, to_string(camera.atk_w));
+  printd(104, 32, to_string(camera.atk_h));
+
   display.drawRect(64-width/2, 16, width, height, WHITE);
 
   // 検出されたブロック全体のバウンディングボックス

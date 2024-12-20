@@ -42,6 +42,11 @@ public:
   float x = 0;
   float y = 0;
   float dir = 0;
+
+  int atk_x = 0;
+  int atk_y = 0;
+  int atk_w = 0;
+  int atk_h = 0;
   
   float goal_dir = 0;
 

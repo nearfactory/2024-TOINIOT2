@@ -97,6 +97,8 @@ void loop() {
   dir.read();
   line.read();
 
+  bool face_to_ball = false;
+
   if(digitalRead(ui.TOGGLE_PIN)){
     // 25(ms)
     ui.read();
@@ -124,13 +126,13 @@ void loop() {
     }
 
 
-    if(ball.hold_time > 120){
+    if(ball.hold_time > 300){
     // if(false){
       float power = 100.0;
       motor.set(-power, -power, power, power);
       
       // キッカー
-      if(ball.hold_time > 150){
+      if(camera.atk_w > 120){
         kicker.kick();
       }
 
@@ -142,11 +144,15 @@ void loop() {
         // PD
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
         h = 45;
+
+        face_to_ball = true;
         
-        // if(ball.hold_time > 300){
-        //   kicker.kick();
-        // }
-        // 円周
+        // if(ball.hold_time > 150){
+        if(camera.atk_w > 140){
+          kicker.kick();
+        }
+
+        // 円周上
       }else if(ball.distance < r){
         theta = 90 + (r-ball.distance) * 90 / r;
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
@@ -157,7 +163,8 @@ void loop() {
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
         h = 45;
       }
-      motor.moveDir(move_dir, p1*10.0);
+      // motor.moveDir(move_dir, p1*10.0);
+      motor.moveDir(move_dir, 80.0);
     }
 
 
@@ -168,19 +175,21 @@ void loop() {
     }
 
 
-    motor.moveDir(0,0);
     // 姿勢制御
     float dir_power = 0;
 
     // 機体をゴールに向ける
-    // if(ball.is_hold){
-    if(true){
+    if(camera.atk_w > 100 && ball.hold_time > 300){
+    // if(false){
       // ボール保持
 
-      float goal_dir = camera.goal_dir;
-      dir_power = goal_dir;
+      float goal_dir = dir.dir + camera.goal_dir;
+      dir_power = goal_dir * 2.0;
       motor.add(dir_power, dir_power, dir_power, dir_power);
 
+    }else if(face_to_ball){
+      dir_power = -ball.dir * 0.3;
+      motor.addRaw(dir_power, dir_power, dir_power, dir_power);
     }else{
       // ボール非保持
 
@@ -197,6 +206,7 @@ void loop() {
       }else{
         motor.addRaw(dir_power, dir_power, dir_power, dir_power);
       }
+
     }
 
 
@@ -211,23 +221,25 @@ void loop() {
       left_timer = millis();
     }
     if(millis()-left_timer < 160){
-      // motor.moveDir(90, line_power*10.0);
+      motor.moveDir(90, line_power*10.0);
     }
 
     if(line.right){
       right_timer = millis();
     }
     if(millis()-right_timer < 160){
-      // motor.moveDir(-90, line_power*10.0);
+      motor.moveDir(-90, line_power*10.0);
     }
   }
 
+  // ui
   if(ball.is_hold){
     digitalWrite(LED_BUILTIN, HIGH);
-    // ui.buzzer(880.0f);
+    ui.buzzer(880.0f);
   }else{
     digitalWrite(LED_BUILTIN, LOW);
     // ui.buzzer(440.0f);
+    ui.buzzer(440.0f);
   }
 
   motor.avr();
@@ -259,6 +271,10 @@ void loop() {
       ・done: キッカーがないため突進する速度を上げる
       ・敵を避けてプッシングを取られないようにする
     4.両側のゴールに対して攻められるように対応する
+    5.ゴールを向けるやつをPD
+    done: 6.動きながらゴールを向ける
+    7.キッカーのタイミングをカメラによって決定する
+    8.
   */
 
 }

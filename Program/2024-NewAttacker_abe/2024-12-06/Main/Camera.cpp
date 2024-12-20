@@ -20,8 +20,8 @@ void Camera::read(){
 
     for (int i=0; i<pixy.ccc.numBlocks; i++) {
       block[i].sig    = pixy.ccc.blocks[i].m_signature;
-      block[i].x      = pixy.ccc.blocks[i].m_x;
-      block[i].y      = pixy.ccc.blocks[i].m_y;
+      block[i].x      = pixy.ccc.blocks[i].m_x - pixy.ccc.blocks[i].m_width/2;
+      block[i].y      = pixy.ccc.blocks[i].m_y - pixy.ccc.blocks[i].m_height/2;
       block[i].width  = pixy.ccc.blocks[i].m_width;
       block[i].height = pixy.ccc.blocks[i].m_height;
       block[i].angle  = pixy.ccc.blocks[i].m_angle;
@@ -37,15 +37,23 @@ void Camera::read(){
     for(int i=0;i<pixy.ccc.numBlocks;i++){
       // 黄色のみ処理を行う
       if(block[i].sig == 1){
-        if(x1 > block[i].x) x1 = block[i].x;
-        if(y1 > block[i].y) y1 = block[i].y;
-        if(x2 < block[i].x) x2 = block[i].x;
-        if(y2 < block[i].y) y2 = block[i].y;
+        int _x1 = block[i].x;
+        int _y1 = block[i].y;
+        int _x2 = block[i].x+block[i].width;
+        int _y2 = block[i].y+block[i].height;
+        if(x1 > _x1) x1 = _x1;
+        if(y1 > _y1) y1 = _y1;
+        if(x2 < _x2) x2 = _x2;
+        if(y2 < _y2) y2 = _y2;
       }
     }
 
-    goal_dir = (x1+x2)/2.0 - 160.0;
-    goal_dir = goal_dir / 4.0;
+    atk_x = (x1+x2) / 2 - 160;
+    atk_y = (y1+y2) / 2;
+    atk_w = x2-x1;
+    atk_h = y2-y1;
+
+    goal_dir = (float)atk_x / 4.0;
     dir_queue[dir_queue_id] = goal_dir;
     dir_queue_id = (dir_queue_id+1)%DIR_QUEUE_SIZE;
   }else{
