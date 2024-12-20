@@ -38,6 +38,8 @@ public:
   float x = 0;
   float y = 0;
   float dir = 0;
+  
+  float goal_dir = 0;
 
   // 画像上
   int x1 = 0, y1 = 0;

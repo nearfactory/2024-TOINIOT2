@@ -30,7 +30,7 @@ void setup() {
   Serial7.begin(115200);
 
   ball.begin();
-  // camera.begin();
+  camera.begin();
   display.begin();
   dir.begin();
   kicker.begin();
@@ -68,7 +68,7 @@ void setup() {
 bool is_display_on = true;
 
 int h = 45; // ヒステリシス
-float r = 14400.0f;  // 回り込み時の半径
+float r = 14450.0f;  // 回り込み時の半径
 float p_gain = 1.5f;
 float d_gain = 3.5f;
 float* gain_select = &p_gain;
@@ -89,9 +89,10 @@ uint32_t right_timer = 0;
 void loop() {
   ball.read();
 
-  // auto t = millis();
-  // camera.read();
-  // Serial.printf("camera:%d ", millis()-t);
+  auto t = millis();
+  camera.read();
+  Serial.printf("camera:%d(ms)  num:%d  ", millis()-t, camera.block_num);
+  // 13(ms)
 
   dir.read();
   line.read();
@@ -123,7 +124,7 @@ void loop() {
     }
 
 
-    if(ball.hold_time > 80){
+    if(ball.hold_time > 120){
     // if(false){
       float power = 100.0;
       motor.set(-power, -power, power, power);
@@ -167,25 +168,26 @@ void loop() {
     }
 
 
+    motor.moveDir(0,0);
     // 姿勢制御
     float dir_power = 0;
 
     // 機体をゴールに向ける
     if(ball.is_hold){
-      // float goal_dir = (camera.x - 160);
-      // dir_power = (dir.dir - goal_dir) * dir_p_gain;
-      // motor.add(dir_power, dir_power, dir_power, dir_power);
+      float goal_dir = camera.goal_dir;
+      dir_power = (dir.dir - goal_dir) * dir_p_gain;
+      motor.add(dir_power, dir_power, dir_power, dir_power);
 
-      dir_power = dir.dir * dir_p_gain;
+      // dir_power = dir.dir * dir_p_gain;
       motor.addRaw(dir_power, dir_power, dir_power, dir_power);
     }else if(abs(dir.dir) > 30){
-      float p_gain = 0.67f;
+      float p_gain = 0.64f;
       float d_gain = 0.45f;
       dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
       motor.set(dir_power, dir_power, dir_power, dir_power);
     }else{
       dir_power = dir.dir * dir_p_gain;
-      float p_gain = 0.67f;
+      float p_gain = 0.64f;
       float d_gain = 0.45f;
       dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
       motor.addRaw(dir_power, dir_power, dir_power, dir_power);
@@ -253,6 +255,10 @@ void loop() {
 
   // delay(10);
   // delayなしで3(ms)
+
+  static uint32_t s = 0;
+  Serial.println(millis() - s);
+  s = millis();
 
   /*
   ToDo:

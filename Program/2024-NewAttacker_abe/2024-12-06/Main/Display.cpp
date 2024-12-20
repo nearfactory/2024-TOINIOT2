@@ -1,3 +1,4 @@
+#include <string>
 #include "HardwareSerial.h"
 #include "Display.hpp"
 
@@ -178,16 +179,20 @@ void Display::Camera(){
   // 画像サイズを示す枠
   int width = 76;
   int height = 48;
+  printd(80,  8,  to_string(camera.goal_dir));
+  printd(120, 16, to_string(camera.block_num), ALIGN::RIGHT);
   display.drawRect(64-width/2, 16, width, height, WHITE);
 
   // 検出されたブロック全体のバウンディングボックス
-  display.fillRect(
-    26+ camera.x1*width/320,
-    16+ camera.y1*height/200,
-    (camera.x2-camera.x1) *width/320,
-    (camera.y2-camera.y1) *height/200,
-    WHITE
-  );
+  for(int i=0;i<camera.block_num;i++){
+    display.fillRect(
+      26+ camera.block[i].x *width/320.0,
+      16+ camera.block[i].y *height/200.0,
+      camera.block[i].width  *width/320.0,
+      camera.block[i].height *height/200.0,
+      WHITE
+    );
+  }
   return;
 }
 
