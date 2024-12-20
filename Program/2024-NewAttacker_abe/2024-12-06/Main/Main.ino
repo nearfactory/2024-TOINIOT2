@@ -103,7 +103,8 @@ void loop() {
 
     // display.addValiables("pow   :"+to_string(p1), &p1);
     // display.addValiables("pow_li:"+to_string(line_power), &line_power);
-    display.addValiables("dir_p :"+to_string(dir_p_gain), &dir_p_gain);
+    display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    // display.addValiables("dir_p :"+to_string(dir_p_gain), &dir_p_gain);
     // display.addValiables("dir_th:"+to_string(dir_threshold), &dir_threshold);
     // display.addValiables("dir y :"+to_string(dir.dir_y), &dir.dir_y);
     // display.addValiables("dir z :"+to_string(dir.dir_z), &dir.dir_z);
@@ -122,12 +123,13 @@ void loop() {
     }
 
 
-    if(ball.is_hold){
+    if(ball.hold_time > 80){
+    // if(false){
       float power = 100.0;
       motor.set(-power, -power, power, power);
       
       // キッカー
-      if(ball.hold_time > 200){
+      if(ball.hold_time > 150){
         kicker.kick();
       }
 
@@ -136,14 +138,20 @@ void loop() {
       float theta = 0;
       float move_dir = 0;
       if(abs(ball.dir)<h){
+        // PD
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
         h = 45;
         
+        // if(ball.hold_time > 300){
+        //   kicker.kick();
+        // }
+        // 円周
       }else if(ball.distance < r){
         theta = 90 + (r-ball.distance) * 90 / r;
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
         h = 45;
       }else{
+        //接線
         theta = degrees(atan2(r, ball.distance));
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
         h = 45;
@@ -232,8 +240,10 @@ void loop() {
 
   if(ball.is_hold){
     digitalWrite(LED_BUILTIN, HIGH);
+    ui.buzzer(880.0f);
   }else{
     digitalWrite(LED_BUILTIN, LOW);
+    ui.buzzer(440.0f);
   }
 
   motor.avr();
@@ -247,14 +257,14 @@ void loop() {
   /*
   ToDo:
     done: 0.dir<-30, 30<dir の範囲では姿勢制御のみを行うようにする
-    1.確実に白線を避ける
+    done: 1.確実に白線を避ける
       idea:
-      ・ラインセンサのしきい値を下げる
-      ・ng: 移動平均のサンプル数を減らす・ループの速度を上げる
+      ・ng: ラインセンサのしきい値を下げる
+      ・done: 移動平均のサンプル数を減らす・ループの速度を上げる
       ・ng: 地磁気を用いる
-      ・カメラを用いた自己位置推測
+      ・? : カメラを用いた自己位置推測
       ・ng: 反応しないセンサを補完する
-    2.キッカー基板が使えないため、現状の情報でボールを保持したか否か判断するアルゴリズムを書く
+    done: 2.キッカー基板が使えないため、現状の情報でボールを保持したか否か判断するアルゴリズムを書く
       ・ng: ボールとの距離を用いる
       ・ng: 距離に対する角度のブレ
       ・done: ヒステリシス

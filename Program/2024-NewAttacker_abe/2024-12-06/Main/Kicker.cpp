@@ -6,7 +6,7 @@ void Kicker::begin(){
 }
 
 void Kicker::kick(){
-  if(millis()-kicked_timer > 5000){
+  if(millis()-kicked_timer > 3000){
     kicked_timer = millis();
   }
   return;
