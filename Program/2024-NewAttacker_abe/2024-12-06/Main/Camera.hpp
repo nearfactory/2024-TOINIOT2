@@ -48,6 +48,7 @@ public:
   int atk_y = 0;
   int atk_w = 0;
   int atk_h = 0;
+  int atk_num = 0;
   
   float goal_dir = 0;
 

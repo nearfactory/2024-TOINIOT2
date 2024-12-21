@@ -85,7 +85,8 @@ uint32_t  shoot_timer = 0;
 float     shoot_dir_begin = 0;
 
 // ボールのキック動作
-uint32_t kicker_timer = 0;
+bool     kick = false;
+uint32_t kick_timer = 0;
 
 void loop() {
   ball.read();
@@ -138,21 +139,34 @@ void loop() {
       // motor.moveDirFast(shoot_dir, 100);
       motor.moveDirFast(camera.goal_dir* 1.2, 100);
 
-      // if(millis()-shoot_timer > 200 && camera.atk_w > 90){
-      //   kicker_timer = millis();
-      // }
+      // シュート終了
+      if(!ball.is_hold) shoot = false;
 
-      // // キック動作
-      // if(millis() - kicker_timer < 40){
-      //   float dir_power = (dir.dir + camera.goal_dir) * 6.0;
-      //   motor.add(dir_power, dir_power, dir_power, dir_power);
-      // }else if(!ball.is_hold){
-      //   shoot = false;
-      // } 
-      // if(millis()-kicker_timer > 5){
-      //   kicker.kick();
-      //   shoot = false;
-      // }
+      // ゴール前がガラ空きの場合にボールをキックする
+      if(camera.atk_num == 1 && camera.atk_w > 100){
+        kick = true;
+        kick_timer = millis();
+      }
+
+      // キック動作
+      if(kick){
+        // ゴールに向ける
+        if(50 < millis() - kick_timer && millis() - kick_timer < 150){
+          float dir_power = camera.goal_dir * 6.0;
+          motor.add(dir_power, dir_power, dir_power, dir_power);
+        }
+        // キック
+        if(100 < millis() - kick_timer){
+          kicker.kick();
+        }
+
+        // キック終了
+        if(150 < millis() - kick_timer){
+          shoot = false;
+          kick = false;
+        }
+      }
+        
 
     }else{
       // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html

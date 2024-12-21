@@ -13,8 +13,7 @@ void Camera::read(){
   dir = 0;
 
   block_num = pixy.ccc.numBlocks;
-  if (block_num)
-  {
+  if(block_num){
     // 取得
     block.resize(pixy.ccc.numBlocks);
 
@@ -30,12 +29,14 @@ void Camera::read(){
 
     }
 
+    atk_num = 0;
+
     x1 = 320;
     y1 = 200;
     x2 = 0;
     y2 = 0;
     for(int i=0;i<pixy.ccc.numBlocks;i++){
-      // 黄色のみ処理を行う
+      // 黄色(sig=1)のみ処理を行う
       if(block[i].sig == 1){
         int _x1 = block[i].x;
         int _y1 = block[i].y;
@@ -45,6 +46,8 @@ void Camera::read(){
         if(y1 > _y1) y1 = _y1;
         if(x2 < _x2) x2 = _x2;
         if(y2 < _y2) y2 = _y2;
+
+        atk_num++;
       }
     }
 
