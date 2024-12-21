@@ -4,9 +4,11 @@
 
 class Kicker{
 private:
-  static constexpr uint8_t KICKER_PIN = 32;
-  uint32_t kicked_timer = 0;
+  static constexpr uint8_t PIN = 32;
+  uint32_t timer = 0;
+  uint32_t interval = 10000;
 public:
+  uint32_t is_ready = false;
   void begin();
   void kick();
   void write();

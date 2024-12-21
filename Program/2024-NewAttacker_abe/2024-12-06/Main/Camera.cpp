@@ -54,6 +54,7 @@ void Camera::read(){
     atk_h = y2-y1;
 
     goal_dir = (float)atk_x / 4.0;
+    prev_dir = goal_dir;
     dir_queue[dir_queue_id] = goal_dir;
     dir_queue_id = (dir_queue_id+1)%DIR_QUEUE_SIZE;
   }else{

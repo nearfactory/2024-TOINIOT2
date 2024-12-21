@@ -8,9 +8,10 @@
 #include "Camera.hpp"
 #include "Dir.hpp"
 #include "Display.hpp"
+#include "Kicker.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
-#include "Kicker.hpp"
+#include "Sub.hpp"
 #include "UI.hpp"
 
 Ball ball;
@@ -20,6 +21,7 @@ Display display;
 Kicker kicker;
 Line line;
 Motor motor;
+Sub sub;
 UI ui;
 
 using namespace std;
@@ -36,6 +38,8 @@ void setup() {
   kicker.begin();
   line.begin(115200);
   motor.begin();
+  sub.begin();
+  ui.begin();
   
   // calibration
   uint8_t system=0, gyro=0, accel=0, mag=0;
@@ -85,17 +89,21 @@ bool  prev_on = false;
 uint32_t left_timer = 0;
 uint32_t right_timer = 0;
 
+uint32_t kicker_timer = 0;
+uint32_t shoot_timer = 0;
+
+float shoot_begin_dir = 0;
+int line_count = 0;
+uint32_t straight_timer = 0;
+float goal_dir_power = 0;
+bool shoot = false;
 
 void loop() {
   ball.read();
-
-  auto t = millis();
   camera.read();
-  Serial.printf("camera:%d(ms)  num:%d  ", millis()-t, camera.block_num);
-  // 13(ms)
-
   dir.read();
   line.read();
+  sub.read();
 
   bool face_to_ball = false;
 
@@ -104,13 +112,9 @@ void loop() {
     ui.read();
     if(ui.buttonUp(0)) display.next();
 
-    // display.addValiables("pow   :"+to_string(p1), &p1);
-    // display.addValiables("pow_li:"+to_string(line_power), &line_power);
     display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    display.addValiables("count  :"+to_string(line_count), &p_gain);
     // display.addValiables("dir_p :"+to_string(dir_p_gain), &dir_p_gain);
-    // display.addValiables("dir_th:"+to_string(dir_threshold), &dir_threshold);
-    // display.addValiables("dir y :"+to_string(dir.dir_y), &dir.dir_y);
-    // display.addValiables("dir z :"+to_string(dir.dir_z), &dir.dir_z);
 
     display.debug();
     display.draw();
@@ -126,16 +130,23 @@ void loop() {
     }
 
 
-    if(ball.hold_time > 300){
-    // if(false){
-      float power = 100.0;
-      motor.set(-power, -power, power, power);
-      
-      // キッカー
-      if(camera.atk_w > 120){
-        kicker.kick();
-      }
+    // シュート
+    if(shoot){
+      // float power = 100.0;
+      // motor.set(-power, -power, power, power);
+      motor.moveDirFast(-camera.goal_dir, 100);
 
+      if(ball.not_hold_time > 300) shoot = false;
+      // // 機体をゴールに向ける
+      // if(50 < millis() - shoot_timer && millis() - shoot_timer < 150){
+      //   float dir_power = (dir.dir + camera.goal_dir) * goal_dir_power;
+      //   motor.add(dir_power, dir_power, dir_power, dir_power);
+      //   goal_dir_power += 0.2;
+      // }
+      // //キック
+      // if(millis() - shoot_timer > 170){
+      //   kicker.kick();
+      // }
     }else{
       // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
       float theta = 0;
@@ -145,15 +156,20 @@ void loop() {
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
         h = 45;
 
-        face_to_ball = true;
-        
-        // if(ball.hold_time > 150){
-        if(camera.atk_w > 140){
-          kicker.kick();
-        }
+        // if(ball.hold_time > 50){
+        //   shoot = true;
+        // }
+        if(sub.is_hold) shoot = true;
 
-        // 円周上
+        // シュート動作に入る条件
+        // if(ball.is_hold && camera.atk_w > 90){
+        //   shoot_timer = millis();
+        //   // shoot_begin_dir = camera.goal_dir;
+        //   // goal_dir_power = 0;
+        // }
+
       }else if(ball.distance < r){
+        // 円周上
         theta = 90 + (r-ball.distance) * 90 / r;
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
         h = 45;
@@ -163,8 +179,7 @@ void loop() {
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
         h = 45;
       }
-      // motor.moveDir(move_dir, p1*10.0);
-      motor.moveDir(move_dir, 80.0);
+      motor.moveDir(move_dir, 100);
     }
 
 
@@ -178,27 +193,23 @@ void loop() {
     // 姿勢制御
     float dir_power = 0;
 
-    // 機体をゴールに向ける
-    if(camera.atk_w > 100 && ball.hold_time > 300){
+    // if(camera.atk_w > 100 && ball.hold_time > 300){
     // if(false){
-      // ボール保持
+    if(50 < millis() - shoot_timer && millis() - shoot_timer < 150){
+      // 機体をゴールに向ける
+      // float goal_dir = dir.dir + camera.goal_dir;
+      // dir_power = goal_dir * 2.0;
+      // motor.add(dir_power, dir_power, dir_power, dir_power);
 
-      float goal_dir = dir.dir + camera.goal_dir;
-      dir_power = goal_dir * 2.0;
-      motor.add(dir_power, dir_power, dir_power, dir_power);
-
-    }else if(face_to_ball){
-      dir_power = -ball.dir * 0.3;
-      motor.addRaw(dir_power, dir_power, dir_power, dir_power);
     }else{
-      // ボール非保持
+      // フツーの姿勢制御
 
       float p_gain = 0.64f;
       float d_gain = 0.45f;
       dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
 
       // 反時計回りの場合に少し弱める
-      if(dir_power > 0) dir_power *= 0.95;
+      if(dir_power > 0) dir_power *= 0.9;
 
       if(abs(dir.dir) > 30) {
         // 姿勢制御のみ
@@ -233,13 +244,13 @@ void loop() {
   }
 
   // ui
-  if(ball.is_hold){
+  if(sub.is_hold){
     digitalWrite(LED_BUILTIN, HIGH);
     ui.buzzer(880.0f);
   }else{
     digitalWrite(LED_BUILTIN, LOW);
-    // ui.buzzer(440.0f);
     ui.buzzer(440.0f);
+    // digitalWrite(ui.BZ_PIN, 0);
   }
 
   motor.avr();
@@ -248,10 +259,6 @@ void loop() {
   kicker.write();
 
   // delayなしで3(ms)
-
-  // static uint32_t s = 0;
-  // Serial.println(millis() - s);
-  // s = millis();
 
   /*
   ToDo:
@@ -273,7 +280,7 @@ void loop() {
     4.両側のゴールに対して攻められるように対応する
     5.ゴールを向けるやつをPD
     done: 6.動きながらゴールを向ける
-    7.キッカーのタイミングをカメラによって決定する
+    done: 7.キッカーのタイミングをカメラによって決定する
     8.
   */
 

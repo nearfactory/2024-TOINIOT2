@@ -4,6 +4,8 @@
 
 using namespace std;
 
+extern float r;
+
 void Display::begin(){
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
     Serial.println("Display err!");
@@ -149,8 +151,9 @@ void Display::Ball(){
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, ball.dir+180, circle_r);
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 0, 8);
 
+  printd(80, 32,to_string(ball.hold_time));
+  printd(80, 40,to_string(ball.not_hold_time));
   printd(120,56,to_string(ball.distance), ALIGN::RIGHT);
-  printd(80, 48,to_string(ball.hold_time));
   for(int i=0;i<16;i++){
     double angle = (i*360/16+180);
 
@@ -179,6 +182,9 @@ void Display::Camera(){
   // 画像サイズを示す枠
   int width = 76;
   int height = 48;
+
+  printd(8,16,to_string(camera.goal_dir));
+
   printd(104, 8,  to_string(camera.atk_x));
   printd(104, 16, to_string(camera.atk_y));
   printd(104, 24, to_string(camera.atk_w));
@@ -330,4 +336,6 @@ void Display::Game(){
   // 攻め方向をリセット
   printd(120,8,"reset dir",ALIGN::RIGHT);
   if(ui.buttonUp(1)) dir.setDefault();
+  printd(120,32,"set radius",ALIGN::RIGHT);
+  if(ui.buttonUp(2)) r = ball.distance;
 }

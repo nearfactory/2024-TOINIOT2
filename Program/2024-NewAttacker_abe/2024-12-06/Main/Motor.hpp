@@ -40,6 +40,7 @@ public:
   void addRaw(float m1, float m2, float m3, float m4);
   void setDir(float dir, float p_gain);
   void moveDir(float dir, uint8_t power);
+  void moveDirFast(float dir, uint8_t power);
   void p();
   void avr();
   void write();

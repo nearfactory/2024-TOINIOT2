@@ -42,6 +42,7 @@ public:
   float x = 0;
   float y = 0;
   float dir = 0;
+  float prev_dir = 0;
 
   int atk_x = 0;
   int atk_y = 0;
