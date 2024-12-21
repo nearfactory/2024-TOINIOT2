@@ -69,34 +69,23 @@ void setup() {
   dir.setDefault();
 }
 
+
 bool is_display_on = true;
 
+// 回り込み
 int h = 45; // ヒステリシス
-float r = 14450.0f;  // 回り込み時の半径
+float r = 14400.0f;  // 回り込み時の半径
 float p_gain = 1.5f;
 float d_gain = 3.5f;
 float* gain_select = &p_gain;
 
-float p1 = 10.5;
-float line_power = 12.0;
+// ボールの運搬
+bool      shoot = false;
+uint32_t  shoot_timer = 0;
+float     shoot_begin_dir = 0;
 
-float dir_threshold = 2.0f;
-float dir_p_gain = 0.4f;
-
-float avoid_dir = 0;
-bool  prev_on = false;
-
-uint32_t left_timer = 0;
-uint32_t right_timer = 0;
-
+// ボールのキック動作
 uint32_t kicker_timer = 0;
-uint32_t shoot_timer = 0;
-
-float shoot_begin_dir = 0;
-int line_count = 0;
-uint32_t straight_timer = 0;
-float goal_dir_power = 0;
-bool shoot = false;
 
 void loop() {
   ball.read();
@@ -113,8 +102,6 @@ void loop() {
     if(ui.buttonUp(0)) display.next();
 
     display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
-    display.addValiables("count  :"+to_string(line_count), &p_gain);
-    // display.addValiables("dir_p :"+to_string(dir_p_gain), &dir_p_gain);
 
     display.debug();
     display.draw();
@@ -130,10 +117,10 @@ void loop() {
     }
 
 
+
+
     // シュート
     if(shoot){
-      // float power = 100.0;
-      // motor.set(-power, -power, power, power);
       motor.moveDirFast(-camera.goal_dir, 100);
       if(millis()-shoot_timer > 200 && camera.atk_w > 90){
         kicker_timer = millis();
@@ -150,18 +137,6 @@ void loop() {
         shoot = false;
       }
 
-
-      // if(ball.not_hold_time > 300) shoot = false;
-      // // 機体をゴールに向ける
-      // if(50 < millis() - shoot_timer && millis() - shoot_timer < 150){
-      //   float dir_power = (dir.dir + camera.goal_dir) * goal_dir_power;
-      //   motor.add(dir_power, dir_power, dir_power, dir_power);
-      //   goal_dir_power += 0.2;
-      // }
-      // //キック
-      // if(millis() - shoot_timer > 170){
-      //   kicker.kick();
-      // }
     }else{
       // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
       float theta = 0;
@@ -175,17 +150,6 @@ void loop() {
           shoot = true;
           shoot_timer = millis();
         } 
-        // if(ball.hold_time > 50){
-        //   shoot = true;
-        // }
-
-        // シュート動作に入る条件
-        // if(ball.is_hold && camera.atk_w > 90){
-        //   shoot_timer = millis();
-        //   // shoot_begin_dir = camera.goal_dir;
-        //   // goal_dir_power = 0;
-        // }
-
       }else if(ball.distance < r){
         // 円周上
         theta = 90 + (r-ball.distance) * 90 / r;
@@ -202,63 +166,61 @@ void loop() {
 
 
 
+
     // ボールが見えない場合に後ろに下がる (デバッグ段階では手前に)
     if(!ball.is_exist){
-      motor.moveDir(0, 60);
+      motor.moveDir(180, 60);
     }
 
-
-    // 姿勢制御
-    float dir_power = 0;
-
-    // if(camera.atk_w > 100 && ball.hold_time > 300){
-    if(false){
-    // if(50 < millis() - shoot_timer && millis() - shoot_timer < 150){
-      // 機体をゴールに向ける
-      // float goal_dir = dir.dir + camera.goal_dir;
-      // dir_power = goal_dir * 2.0;
-      // motor.add(dir_power, dir_power, dir_power, dir_power);
-
-    }else{
-      // フツーの姿勢制御
-
-      float p_gain = 0.64f;
-      float d_gain = 0.45f;
-      dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
-
-      // 反時計回りの場合に少し弱める
-      if(dir_power > 0) dir_power *= 0.9;
-
-      if(abs(dir.dir) > 30) {
-        // 姿勢制御のみ
-        motor.set(dir_power, dir_power, dir_power, dir_power);
-      }else{
-        motor.addRaw(dir_power, dir_power, dir_power, dir_power);
-      }
-
-    }
-
+    
 
 
     // 白線避け
     if(line.on){
-      motor.moveDir(line.dir+180, line_power*10.0);
+      motor.moveDir(line.dir+180, 100);
     }
 
-    // 左右の白線避け(力技)
-    if(line.left){
-      left_timer = millis();
-    }
-    if(millis()-left_timer < 160){
-      motor.moveDir(90, line_power*10.0);
+
+    // 外側の白線避け(力技)
+    static uint32_t front_timer = 0;
+    static uint32_t left_timer  = 0;
+    static uint32_t back_timer  = 0;
+    static uint32_t right_timer = 0;
+
+    if(line.front) front_timer = millis();
+    if(line.left)  left_timer  = millis();
+    if(line.back)  back_timer  = millis();
+    if(line.right) right_timer = millis();
+
+    Vec2 avoid_vec(0, 0);
+
+    if(millis()-front_timer < 160) avoid_vec.y = -1.0;
+    if(millis()-left_timer  < 160) avoid_vec.x =  1.0;
+    if(millis()-back_timer  < 160) avoid_vec.y =  1.0;
+    if(millis()-right_timer < 160) avoid_vec.x = -1.0;
+
+    float avoid_dir = degrees(atan2(avoid_vec.y, avoid_vec.x));
+    motor.moveDir(avoid_dir, 100);
+
+
+
+
+    // 姿勢制御
+    float p_gain = 0.64f;
+    float d_gain = 0.45f;
+
+    float dir_power = dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
+
+    // 反時計回りの場合に少し弱める
+    if(dir_power > 0) dir_power *= 0.9;
+
+    if(abs(dir.dir) > 45) {
+      // 故障復帰用
+      motor.set(dir_power, dir_power, dir_power, dir_power);
+    }else{
+      motor.addRaw(dir_power, dir_power, dir_power, dir_power);
     }
 
-    if(line.right){
-      right_timer = millis();
-    }
-    if(millis()-right_timer < 160){
-      motor.moveDir(-90, line_power*10.0);
-    }
   }
 
   // ui
@@ -268,7 +230,6 @@ void loop() {
   }else{
     digitalWrite(LED_BUILTIN, LOW);
     ui.buzzer(440.0f);
-    // digitalWrite(ui.BZ_PIN, 0);
   }
 
   motor.avr();

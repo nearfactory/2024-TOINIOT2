@@ -336,6 +336,4 @@ void Display::Game(){
   // 攻め方向をリセット
   printd(120,8,"reset dir",ALIGN::RIGHT);
   if(ui.buttonUp(1)) dir.setDefault();
-  printd(120,32,"set radius",ALIGN::RIGHT);
-  if(ui.buttonUp(2)) r = ball.distance;
 }
