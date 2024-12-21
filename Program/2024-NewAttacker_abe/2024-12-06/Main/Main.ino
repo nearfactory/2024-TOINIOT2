@@ -82,7 +82,7 @@ float* gain_select = &p_gain;
 // ボールの運搬
 bool      shoot = false;
 uint32_t  shoot_timer = 0;
-float     shoot_begin_dir = 0;
+float     shoot_dir_begin = 0;
 
 // ボールのキック動作
 uint32_t kicker_timer = 0;
@@ -126,21 +126,33 @@ void loop() {
 
     // シュート
     if(shoot){
-      motor.moveDirFast(-camera.goal_dir, 100);
-      if(millis()-shoot_timer > 200 && camera.atk_w > 90){
-        kicker_timer = millis();
-      }
+      // ゴールに向かって移動
+      // float shoot_dir = 0;
+      // if(shoot_dir_begin < -15){
+      //   shoot_dir = 15;
+      // }else if(shoot_dir_begin < 15){
+      //   shoot_dir = 0;
+      // }else{
+      //   shoot_dir = -15;
+      // }
+      // motor.moveDirFast(shoot_dir, 100);
+      motor.moveDirFast(camera.goal_dir* 1.2, 100);
 
-      if(millis() - kicker_timer < 40){
-        float dir_power = (dir.dir + camera.goal_dir) * 6.0;
-        motor.add(dir_power, dir_power, dir_power, dir_power);
-      }else if(!ball.is_hold){
-        shoot = false;
-      } 
-      if(millis()-kicker_timer > 5){
-        kicker.kick();
-        shoot = false;
-      }
+      // if(millis()-shoot_timer > 200 && camera.atk_w > 90){
+      //   kicker_timer = millis();
+      // }
+
+      // // キック動作
+      // if(millis() - kicker_timer < 40){
+      //   float dir_power = (dir.dir + camera.goal_dir) * 6.0;
+      //   motor.add(dir_power, dir_power, dir_power, dir_power);
+      // }else if(!ball.is_hold){
+      //   shoot = false;
+      // } 
+      // if(millis()-kicker_timer > 5){
+      //   kicker.kick();
+      //   shoot = false;
+      // }
 
     }else{
       // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
@@ -151,8 +163,10 @@ void loop() {
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
         h = 45;
 
+        // シュート動作に入る
         if(ball.is_hold){
           shoot = true;
+          shoot_dir_begin = camera.goal_dir;
           shoot_timer = millis();
         } 
       }else if(ball.distance < r){

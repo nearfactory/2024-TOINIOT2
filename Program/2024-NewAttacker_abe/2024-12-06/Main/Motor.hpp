@@ -39,8 +39,8 @@ public:
   void add(float m1, float m2, float m3, float m4);
   void addRaw(float m1, float m2, float m3, float m4);
   void setDir(float dir, float p_gain);
-  void moveDir(float dir, uint8_t power);
-  void moveDirFast(float dir, uint8_t power);
+  void moveDir(float dir, uint8_t power);     // 全方位に対して同じ速度で移動
+  void moveDirFast(float dir, uint8_t power); // 常にどれかのモーターの絶対値が100%の状態で動くように移動
   void p();
   void avr();
   void write();
