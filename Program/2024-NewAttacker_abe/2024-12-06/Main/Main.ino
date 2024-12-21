@@ -88,6 +88,11 @@ float     shoot_dir_begin = 0;
 bool     kick = false;
 uint32_t kick_timer = 0;
 
+// 白線に阻まれた場合、ボールに直進
+int      line_count = 0;  // 回り込み中に白線を踏んだ回数
+uint32_t line_begin = 0;  // 白線を踏み始めた時間
+uint32_t straight_begin = 0;
+
 void loop() {
   ball.read();
   camera.read();
@@ -168,12 +173,13 @@ void loop() {
       }
         
 
-    }else{
-      // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
+    }
+    // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
+    else{
       float theta = 0;
       float move_dir = 0;
+      // PD
       if(abs(ball.dir)<h){
-        // PD
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
         h = 45;
 
@@ -183,18 +189,37 @@ void loop() {
           shoot_dir_begin = camera.goal_dir;
           shoot_timer = millis();
         } 
-      }else if(ball.distance < r){
-        // 円周上
+      }
+      // 円周上
+      else if(ball.distance < r){
         theta = 90 + (r-ball.distance) * 90 / r;
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
         h = 45;
-      }else{
-        //接線
+      }
+      //接線
+      else{
         theta = degrees(atan2(r, ball.distance));
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
         h = 45;
       }
       motor.moveDir(move_dir, 100);
+
+      // 白線に繰り返し触れた場合、ボールに向かって直進する
+      if(line.prev_on == false && line.on == true && millis()-line_begin < 400){
+        line_begin = millis();
+        line_count++;
+      }
+      // 3回以上触れた場合、
+      if(line.count >= 3){
+        line.count = 0;
+        line_begin = 0;
+        straight_begin = millis();
+      }
+      // 直進
+      if(millis() - straight_begin > 800){
+        motor.moveDir(ball.dir, 100);
+      }
+
     }
 
 
