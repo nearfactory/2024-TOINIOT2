@@ -313,7 +313,7 @@ void Display::Valiables(){
 
   
   // 変数のセレクタ
-  if(ui.buttonUp(3)){
+  if(ui.buttonUp(0)){
     selector++;
     selector %= variables.size();
   }

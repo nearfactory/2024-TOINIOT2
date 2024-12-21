@@ -99,9 +99,10 @@ void loop() {
   if(digitalRead(ui.TOGGLE_PIN)){
     // 25(ms)
     ui.read();
-    if(ui.buttonUp(0)) display.next();
+    if(ui.buttonUp(0) && display.mode != MODE::VARIABLES) display.next();
 
     display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
 
     display.debug();
     display.draw();
@@ -112,6 +113,10 @@ void loop() {
   }else{
     // ディスプレイを消灯
     if(is_display_on){
+      // ボタンが足りないため、変数の表示時のみトグルスイッチをモード切替用に使用する
+      if(display.mode == MODE::VARIABLES){
+        display.next();
+      }
       display.draw();
       is_display_on = false;
     }

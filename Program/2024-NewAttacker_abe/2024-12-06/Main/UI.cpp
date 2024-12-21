@@ -19,8 +19,8 @@ void UI::read(){
 }
 
 bool UI::buttonUp(uint8_t id){
-  id = id<0 ? 0 : id;
-  id = id>2 ? 2 : id;
+  id = id<0            ? 0            : id;
+  id = id>BUTTON_NUM-1 ? BUTTON_NUM-1 : id;
 
   return (!button[id]) && previous_button[id];
 }
