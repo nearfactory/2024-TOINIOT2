@@ -7,6 +7,7 @@ void setup(){
 
 void loop(){
   while(Serial2.available() > 0){
+<<<<<<< Updated upstream
     char val = Serial2.read();       // 受信したデータを読み込む
     Serial.println(val);
     if(val == '1'){                // "1"ならLEDを消灯、"0"ならLEDを点灯
@@ -19,4 +20,14 @@ void loop(){
   }
   // Serial.println("aaa");
   delay(50);
+=======
+    int val = Serial2.read();       // 受信したデータを読み込む
+    Serial.println(val);
+    if(val == '1'){                // "1"ならLEDを消灯、"0"ならLEDを点灯
+      digitalWrite(13, HIGH);
+    } else if(val == '0'){
+      digitalWrite(13, LOW);
+    }
+  }
+>>>>>>> Stashed changes
 }
