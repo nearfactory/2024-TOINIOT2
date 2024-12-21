@@ -2,6 +2,8 @@
 
 #include <Arduino.h>
 
+#include "Sub.hpp"
+
 class Ball{
 private:
   static constexpr uint8_t NUM = 16;

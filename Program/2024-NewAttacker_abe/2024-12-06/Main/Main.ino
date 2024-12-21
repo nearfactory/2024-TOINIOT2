@@ -135,8 +135,23 @@ void loop() {
       // float power = 100.0;
       // motor.set(-power, -power, power, power);
       motor.moveDirFast(-camera.goal_dir, 100);
+      if(millis()-shoot_timer > 200 && camera.atk_w > 90){
+        kicker_timer = millis();
+      }
 
-      if(ball.not_hold_time > 300) shoot = false;
+      if(millis() - kicker_timer < 40){
+        float dir_power = (dir.dir + camera.goal_dir) * 6.0;
+        motor.add(dir_power, dir_power, dir_power, dir_power);
+      }else if(!ball.is_hold){
+        shoot = false;
+      } 
+      if(millis()-kicker_timer > 5){
+        kicker.kick();
+        shoot = false;
+      }
+
+
+      // if(ball.not_hold_time > 300) shoot = false;
       // // 機体をゴールに向ける
       // if(50 < millis() - shoot_timer && millis() - shoot_timer < 150){
       //   float dir_power = (dir.dir + camera.goal_dir) * goal_dir_power;
@@ -156,10 +171,13 @@ void loop() {
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
         h = 45;
 
+        if(ball.is_hold){
+          shoot = true;
+          shoot_timer = millis();
+        } 
         // if(ball.hold_time > 50){
         //   shoot = true;
         // }
-        if(sub.is_hold) shoot = true;
 
         // シュート動作に入る条件
         // if(ball.is_hold && camera.atk_w > 90){
@@ -194,8 +212,8 @@ void loop() {
     float dir_power = 0;
 
     // if(camera.atk_w > 100 && ball.hold_time > 300){
-    // if(false){
-    if(50 < millis() - shoot_timer && millis() - shoot_timer < 150){
+    if(false){
+    // if(50 < millis() - shoot_timer && millis() - shoot_timer < 150){
       // 機体をゴールに向ける
       // float goal_dir = dir.dir + camera.goal_dir;
       // dir_power = goal_dir * 2.0;
@@ -244,7 +262,7 @@ void loop() {
   }
 
   // ui
-  if(sub.is_hold){
+  if(ball.is_hold){
     digitalWrite(LED_BUILTIN, HIGH);
     ui.buzzer(880.0f);
   }else{

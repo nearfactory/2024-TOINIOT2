@@ -1,9 +1,11 @@
 #pragma once
 
+#include <Arduino.h>
+
 class Sub{
   int count = 0;
   
-  constexpr uint8_t QUEUE_SIZE = 4;
+  static constexpr uint8_t QUEUE_SIZE = 4;
   uint8_t queue[QUEUE_SIZE][2];
   uint8_t queue_id = 0;
 public:
@@ -14,7 +16,7 @@ public:
 
   void begin();
   void read();
-}
+};
 
 extern Sub sub;
 

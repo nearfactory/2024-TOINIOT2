@@ -67,5 +67,15 @@ void Ball::read(){
 
   is_prev_hold = is_hold;
 
+  if(is_hold){
+    if(!sub.is_hold || abs(dir) > 35.0){
+      is_hold = false;
+    }
+  }else{
+    if(sub.is_hold && abs(dir) < 15.0){
+      is_hold = true;
+    }
+  }
+
   return;
 }
