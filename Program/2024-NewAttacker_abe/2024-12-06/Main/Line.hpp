@@ -51,6 +51,8 @@ public:
   float dir_prev;
   bool  on;                // 白線上のフラグ
   bool  prev_on;
+
+  bool outside = false;
   
   Line() : num(0), vec(0,0), vec_prev(0,0), distance(0), dir(0), on(0) {}
   // ~Line();

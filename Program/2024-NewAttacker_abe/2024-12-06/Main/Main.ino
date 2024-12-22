@@ -210,8 +210,8 @@ void loop() {
         line_count++;
       }
       // 3回以上触れた場合、
-      if(line.count >= 3){
-        line.count = 0;
+      if(line_count >= 3){
+        line_count = 0;
         line_begin = 0;
         straight_begin = millis();
       }
@@ -238,27 +238,29 @@ void loop() {
       motor.moveDir(line.dir+180, 100);
     }
 
-
     // 外側の白線避け(力技)
-    static uint32_t front_timer = 0;
-    static uint32_t left_timer  = 0;
-    static uint32_t back_timer  = 0;
-    static uint32_t right_timer = 0;
+    if(line.outside){
+      static uint32_t front_timer = 0;
+      static uint32_t left_timer  = 0;
+      static uint32_t back_timer  = 0;
+      static uint32_t right_timer = 0;
 
-    if(line.front) front_timer = millis();
-    if(line.left)  left_timer  = millis();
-    if(line.back)  back_timer  = millis();
-    if(line.right) right_timer = millis();
+      if(line.front) front_timer = millis();
+      if(line.left)  left_timer  = millis();
+      if(line.back)  back_timer  = millis();
+      if(line.right) right_timer = millis();
 
-    Vec2 avoid_vec(0, 0);
+      Vec2 avoid_vec(0, 0);
 
-    if(millis()-front_timer < 160) avoid_vec.y = -1.0;
-    if(millis()-left_timer  < 160) avoid_vec.x =  1.0;
-    if(millis()-back_timer  < 160) avoid_vec.y =  1.0;
-    if(millis()-right_timer < 160) avoid_vec.x = -1.0;
+      if(millis()-front_timer < 160) avoid_vec.y = -1.0;
+      if(millis()-left_timer  < 160) avoid_vec.x =  1.0;
+      if(millis()-back_timer  < 160) avoid_vec.y =  1.0;
+      if(millis()-right_timer < 160) avoid_vec.x = -1.0;
 
-    float avoid_dir = degrees(atan2(avoid_vec.y, avoid_vec.x));
-    motor.moveDir(avoid_dir, 100);
+      float avoid_dir = degrees(atan2(avoid_vec.y, avoid_vec.x));
+      motor.moveDir(avoid_dir, 100);
+
+    }
 
 
 
@@ -282,7 +284,8 @@ void loop() {
   }
 
   // ui
-  if(ball.is_hold){
+  // if(ball.is_hold){
+  if(line.outside){
     digitalWrite(LED_BUILTIN, HIGH);
     ui.buzzer(880.0f);
   }else{

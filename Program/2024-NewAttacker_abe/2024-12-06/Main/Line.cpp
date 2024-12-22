@@ -148,6 +148,7 @@ void Line::read(){
       num++;
     }
   }
+  outside = front | left | back | right;
 
   // ラインのベクトル
   float x = (vec1.x + vec2.x) / 2;
