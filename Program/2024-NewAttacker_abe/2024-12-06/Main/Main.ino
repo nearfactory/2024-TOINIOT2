@@ -75,7 +75,7 @@ bool is_display_on = true;
 // 回り込み
 int h = 45; // ヒステリシス
 float r = 14400.0f;  // 回り込み時の半径
-float p_gain = 1.5f;
+float p_gain = 2.0f;
 float d_gain = 3.5f;
 float* gain_select = &p_gain;
 
@@ -93,6 +93,8 @@ int      line_count = 0;  // 回り込み中に白線を踏んだ回数
 uint32_t line_begin = 0;  // 白線を踏み始めた時間
 uint32_t straight_begin = 0;
 
+float goal_dir = 0;
+
 void loop() {
   ball.read();
   camera.read();
@@ -105,9 +107,10 @@ void loop() {
   if(digitalRead(ui.TOGGLE_PIN)){
     // 25(ms)
     ui.read();
-    if(ui.buttonUp(0) && display.mode != MODE::VARIABLES) display.next();
+    // if(ui.buttonUp(0) && display.mode != MODE::VARIABLES) display.next();
+    if(ui.buttonUp(0)) display.next();
 
-    display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
     display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
 
     display.debug();
@@ -120,9 +123,9 @@ void loop() {
     // ディスプレイを消灯
     if(is_display_on){
       // ボタンが足りないため、変数の表示時のみトグルスイッチをモード切替用に使用する
-      if(display.mode == MODE::VARIABLES){
-        display.next();
-      }
+      // if(display.mode == MODE::VARIABLES){
+      //   display.next();
+      // }
       display.draw();
       is_display_on = false;
     }
@@ -132,28 +135,17 @@ void loop() {
 
     // シュート
     if(shoot){
-      // ゴールに向かって移動
-      // float shoot_dir = 0;
-      // if(shoot_dir_begin < -15){
-      //   shoot_dir = 15;
-      // }else if(shoot_dir_begin < 15){
-      //   shoot_dir = 0;
-      // }else{
-      //   shoot_dir = -15;
-      // }
-      // motor.moveDirFast(shoot_dir, 100);
       motor.moveDirFast(-camera.goal_dir* 1.2, 100);
       
-      if(abs(camera.goal_dir) > 30){
-        float dir_power = camera.goal_dir;
-        motor.add(dir_power, dir_power, dir_power, dir_power);
-      }
+      // if(abs(camera.goal_dir) > 10){
+      //   goal_dir = camera.goal_dir;
+      // }
 
       // シュート終了
-      if(!ball.is_hold) shoot = false;
+      if(ball.not_hold_time > 200) shoot = false;
 
       // ゴール前がガラ空きの場合にボールをキックする
-      if(camera.atk_num == 1 && camera.atk_w > 100){
+      if(camera.atk_num == 1 && 80 < camera.atk_w && camera.atk_w < 120 && millis() - shoot_timer > 200){
         kick = true;
         kick_timer = millis();
       }
@@ -161,20 +153,21 @@ void loop() {
       // キック動作
       if(kick){
         // ゴールに向ける
-        if(50 < millis() - kick_timer && millis() - kick_timer < 150){
+        if(millis() - kick_timer < 100){
           float dir_power = camera.goal_dir * 6.0;
           motor.add(dir_power, dir_power, dir_power, dir_power);
         }
         // キック
-        if(100 < millis() - kick_timer){
-          kicker.kick();
-        }
+        kicker.kick();
+        // if( millis() - kick_timer){
+        // }
 
         // キック終了
-        if(150 < millis() - kick_timer){
+        if(100 < millis() - kick_timer){
           shoot = false;
           kick = false;
         }
+
       }
         
 
@@ -183,6 +176,9 @@ void loop() {
     else{
       float theta = 0;
       float move_dir = 0;
+      
+      goal_dir = 0;
+
       // PD
       if(abs(ball.dir)<h){
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
@@ -210,20 +206,20 @@ void loop() {
       motor.moveDir(move_dir, 100);
 
       // 白線に繰り返し触れた場合、ボールに向かって直進する
-      if(line.prev_on == false && line.on == true && millis()-line_begin < 400){
-        line_begin = millis();
-        line_count++;
-      }
+      // if(line.prev_on == false && line.on == true && millis()-line_begin < 400){
+      //   line_begin = millis();
+      //   line_count++;
+      // }
       // 3回以上触れた場合、
-      if(line_count >= 3){
-        line_count = 0;
-        line_begin = 0;
-        straight_begin = millis();
-      }
-      // 直進
-      if(millis() - straight_begin > 800){
-        motor.moveDir(ball.dir, 100);
-      }
+      // if(line_count >= 3){
+      //   line_count = 0;
+      //   line_begin = 0;
+      //   straight_begin = millis();
+      // }
+      // // 直進
+      // if(millis() - straight_begin > 800){
+      //   motor.moveDir(ball.dir, 100);
+      // }
 
     }
 
@@ -232,7 +228,8 @@ void loop() {
 
     // ボールが見えない場合に後ろに下がる (デバッグ段階では手前に)
     if(!ball.is_exist){
-      motor.moveDir(180, 60);
+      // motor.moveDir(180, 60);
+      motor.moveDir(0, 0);
     }
 
     
@@ -244,30 +241,40 @@ void loop() {
     }
 
     // 外側の白線避け(力技)
-    if(line.outside){
-      static uint32_t front_timer = 0;
-      static uint32_t left_timer  = 0;
-      static uint32_t back_timer  = 0;
-      static uint32_t right_timer = 0;
+    static uint32_t front_timer = 0;
+    static uint32_t left_timer  = 0;
+    static uint32_t back_timer  = 0;
+    static uint32_t right_timer = 0;
 
-      if(line.front) front_timer = millis();
-      if(line.left)  left_timer  = millis();
-      if(line.back)  back_timer  = millis();
-      if(line.right) right_timer = millis();
+    if(line.front) front_timer = millis();
+    if(line.left)  left_timer  = millis();
+    if(line.back)  back_timer  = millis();
+    if(line.right) right_timer = millis();
 
-      Vec2 avoid_vec(0, 0);
 
-    if(millis()-front_timer < 160) avoid_vec.y =  1.0;
-    if(millis()-left_timer  < 160) avoid_vec.x = -1.0;
-    if(millis()-back_timer  < 160) avoid_vec.y = -1.0;
-    if(millis()-right_timer < 160) avoid_vec.x =  1.0;
-
-    bool front = millis()-front_timer < 160;
-    bool left  = millis()-left_timer  < 160;
-    bool back  = millis()-back_timer  < 160;
-    bool right = millis()-right_timer < 160;
+    bool front = millis()-front_timer < 200;
+    bool left  = millis()-left_timer  < 200;
+    bool back  = millis()-back_timer  < 200;
+    bool right = millis()-right_timer < 200;
 
     int num = front + left + back + right;
+
+    // 競合処理
+    if(front && back){
+      if(front_timer > back_timer){
+        back = false;
+      }else if(front_timer < back_timer){
+        front = false;
+      }
+    }
+    if(left && right){
+      if(left_timer > right_timer){
+        right = false;
+      }else if(left_timer < right_timer){
+        left = false;
+      }
+    }
+
     float avoid_dir = 0;
     if(num == 2){
       if(front && left)   avoid_dir = 135;
@@ -290,7 +297,14 @@ void loop() {
     float p_gain = 0.64f;
     float d_gain = 0.45f;
 
-    float dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
+    float dir_power = 0;
+    // dir_power = (dir.dir + goal_dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
+    // dir_power = (goal_dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
+    if(goal_dir != 0){
+      dir_power = goal_dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
+    }else{
+      dir_power = (dir.dir + goal_dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
+    }
 
     // 反時計回りの場合に少し弱める
     if(dir_power > 0) dir_power *= 0.9;
@@ -306,9 +320,9 @@ void loop() {
 
   // ui
   if(line.outside){
-    digitalWrite(LED_BUILTIN, HIGH);
+    // digitalWrite(LED_BUILTIN, HIGH);
   }else{
-    digitalWrite(LED_BUILTIN, LOW);
+    // digitalWrite(LED_BUILTIN, LOW);
   }
 
   motor.avr();

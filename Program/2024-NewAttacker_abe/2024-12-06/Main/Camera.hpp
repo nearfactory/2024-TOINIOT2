@@ -38,12 +38,14 @@ public:
   vector<Block> block;
   int           block_num = 0;
 
+
   // 自己位置推測
   float x = 0;
   float y = 0;
   float dir = 0;
   float prev_dir = 0;
 
+  int atk_sig = 1;
   int atk_x = 0;
   int atk_y = 0;
   int atk_w = 0;
@@ -58,6 +60,7 @@ public:
 
   void begin();
   void read();
+  void changeAtk();
 };
 
 extern Camera camera;

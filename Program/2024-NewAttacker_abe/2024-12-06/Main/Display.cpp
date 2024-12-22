@@ -235,7 +235,11 @@ void Display::Dribbler(){
 
 void Display::Kicker(){
   printd(8,8,"Kicker");
-  printd(64,32,"no data", ALIGN::CENTER, ALIGN::MIDDLE);
+  // printd(64,32,"no data", ALIGN::CENTER, ALIGN::MIDDLE);
+
+  printd(120,16,"test kick",ALIGN::RIGHT);
+  if(ui.buttonUp(1)) kicker.kick();
+  
   return;
 }
 
@@ -313,10 +317,10 @@ void Display::Valiables(){
 
   
   // 変数のセレクタ
-  if(ui.buttonUp(0)){
-    selector++;
-    selector %= variables.size();
-  }
+  // if(ui.buttonUp(0)){
+  //   selector++;
+  //   selector %= variables.size();
+  // }
   printd(8,16+selector*8,">");
 
   printd(120,8,"+",ALIGN::RIGHT);
@@ -336,4 +340,8 @@ void Display::Game(){
   // 攻め方向をリセット
   printd(120,8,"reset dir",ALIGN::RIGHT);
   if(ui.buttonUp(1)) dir.setDefault();
+
+  printd(120,32,"change atk",ALIGN::RIGHT);
+  printd(120,40,"sig="+to_string(camera.atk_sig),ALIGN::RIGHT);
+  if(ui.buttonUp(2)) camera.changeAtk();
 }

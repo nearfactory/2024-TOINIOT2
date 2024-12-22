@@ -37,7 +37,7 @@ void Camera::read(){
     y2 = 0;
     for(int i=0;i<pixy.ccc.numBlocks;i++){
       // 黄色(sig=1)のみ処理を行う
-      if(block[i].sig == 1){
+      if(block[i].sig == atk_sig){
         int _x1 = block[i].x;
         int _y1 = block[i].y;
         int _x2 = block[i].x+block[i].width;
@@ -75,5 +75,20 @@ void Camera::read(){
   goal_dir = buf / (float)DIR_QUEUE_SIZE;
   
 
+  return;
+}
+
+void Camera::changeAtk(){
+  switch(atk_sig){
+  case 1:
+    atk_sig = 2;
+    break;
+  case 2:
+    atk_sig = 1;
+    break;
+  default:
+    atk_sig = 1;
+    break;
+  }
   return;
 }

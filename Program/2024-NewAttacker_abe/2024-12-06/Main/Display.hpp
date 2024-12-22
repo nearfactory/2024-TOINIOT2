@@ -12,6 +12,7 @@
 #include "Ball.hpp"
 #include "Camera.hpp"
 #include "Dir.hpp"
+#include "Kicker.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
 #include "UI.hpp"
@@ -19,6 +20,7 @@
 extern Ball ball;
 extern Camera camera;
 extern Dir dir;
+extern Kicker kicker;
 extern Line line;
 extern Motor motor;
 extern UI ui;
