@@ -257,14 +257,30 @@ void loop() {
 
       Vec2 avoid_vec(0, 0);
 
-      if(millis()-front_timer < 160) avoid_vec.y = -1.0;
-      if(millis()-left_timer  < 160) avoid_vec.x =  1.0;
-      if(millis()-back_timer  < 160) avoid_vec.y =  1.0;
-      if(millis()-right_timer < 160) avoid_vec.x = -1.0;
+    if(millis()-front_timer < 160) avoid_vec.y =  1.0;
+    if(millis()-left_timer  < 160) avoid_vec.x = -1.0;
+    if(millis()-back_timer  < 160) avoid_vec.y = -1.0;
+    if(millis()-right_timer < 160) avoid_vec.x =  1.0;
 
-      float avoid_dir = degrees(atan2(avoid_vec.y, avoid_vec.x));
+    bool front = millis()-front_timer < 160;
+    bool left  = millis()-left_timer  < 160;
+    bool back  = millis()-back_timer  < 160;
+    bool right = millis()-right_timer < 160;
+
+    int num = front + left + back + right;
+    float avoid_dir = 0;
+    if(num == 2){
+      if(front && left)   avoid_dir = 135;
+      if(left && back)    avoid_dir = 45;
+      if(back && right)   avoid_dir = -45;
+      if(right && front)  avoid_dir = -135;
       motor.moveDir(avoid_dir, 100);
-
+    }else if(num == 1){
+      if(front) avoid_dir = 180;
+      if(left)  avoid_dir = 90;
+      if(back)  avoid_dir = 0;
+      if(right) avoid_dir = -90;
+      motor.moveDir(avoid_dir, 100);
     }
 
 
