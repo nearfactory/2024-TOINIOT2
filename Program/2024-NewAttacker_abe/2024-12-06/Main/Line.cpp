@@ -150,6 +150,8 @@ void Line::read(){
   }
   outside = front | left | back | right;
 
+  outside = front | left | back | right;
+
   // ラインのベクトル
   float x = (vec1.x + vec2.x) / 2;
   float y = (vec1.y + vec2.y) / 2;

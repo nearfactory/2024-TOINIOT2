@@ -289,13 +289,10 @@ void loop() {
   }
 
   // ui
-  // if(ball.is_hold){
   if(line.outside){
     digitalWrite(LED_BUILTIN, HIGH);
-    ui.buzzer(880.0f);
   }else{
     digitalWrite(LED_BUILTIN, LOW);
-    ui.buzzer(440.0f);
   }
 
   motor.avr();
