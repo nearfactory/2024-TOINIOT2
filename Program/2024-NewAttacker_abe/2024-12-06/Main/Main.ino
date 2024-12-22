@@ -142,7 +142,12 @@ void loop() {
       //   shoot_dir = -15;
       // }
       // motor.moveDirFast(shoot_dir, 100);
-      motor.moveDirFast(camera.goal_dir* 1.2, 100);
+      motor.moveDirFast(-camera.goal_dir* 1.2, 100);
+      
+      if(abs(camera.goal_dir) > 30){
+        float dir_power = camera.goal_dir;
+        motor.add(dir_power, dir_power, dir_power, dir_power);
+      }
 
       // シュート終了
       if(!ball.is_hold) shoot = false;
