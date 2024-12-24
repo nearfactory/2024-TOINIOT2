@@ -8,6 +8,7 @@ void loop() {
   while(Serial.available()){
     Serial.print((char)Serial.read());
   }
+  Serial.println();
 
-  delay(5);
+  delay(20);
 }
