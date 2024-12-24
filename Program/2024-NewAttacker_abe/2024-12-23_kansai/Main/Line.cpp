@@ -61,48 +61,6 @@ void Line::read(){
   vec1.set(10.0f, 10.0f);   // ちいさいx, y
   vec2.set(-10.0f, -10.0f); // でかいx, y
   
-  /*
-  // ベクトルのxy成分それぞれの最大値・最小値
-  for(int j=0;j<BINARY_QUEUE_SIZE;j++){
-    for(int i=0;i<INNER_NUM;i++){
-      if(binary_queue[j][i]){
-        float sensor_dir = radians(i*360/INNER_NUM);
-
-        float x = cos(sensor_dir);
-        float y = sin(sensor_dir);
-        
-        if(vec1.x > x) vec1.x = x;
-        if(vec2.x < x) vec2.x = x;
-
-        if(vec1.y > y) vec1.y = y;
-        if(vec2.y < y) vec2.y = y;
-
-        num++;
-      }
-    }
-  }
-
-  for(int j=0;j<BINARY_QUEUE_SIZE;j++){
-    if(binary_queue[j][INNER_NUM]){
-      vec2.x = 1.0f;
-      num++;
-    }
-    if(binary_queue[j][INNER_NUM+1]){
-      vec2.y = 1.0f;
-      num++;
-    }
-    if(binary_queue[j][INNER_NUM+2]){
-      vec1.x = -1.0f;
-      num++;
-    }
-    if(binary_queue[j][INNER_NUM+3]){
-      vec1.y = -1.0f;
-      num++;
-    }
-  }
-  */
-
-  
   for(int i=0;i<INNER_NUM;i++){
     if(line[i]){
       float sensor_dir = radians(i*360/INNER_NUM);
@@ -182,8 +140,6 @@ void Line::read(){
   else if(prev_on == true && on == true){
     // 平均値のプラスマイナス45°を有効な範囲とする
     float range = 30.0;
-    // float range_start = normalizeAngle(avr-range);
-    // float range_end   = normalizeAngle(avr+range);
 
     float range_start = normalizeAngle(dir_prev - range);
     float range_end   = normalizeAngle(dir_prev + range);
@@ -206,9 +162,6 @@ void Line::read(){
     on = false;
     dir = 0;
   }
-
-  queue[queue_i] = dir;
-  queue_i = (queue_i+1) % QUEUE_SIZE;
 
   dir_prev = dir;
   vec_prev = vec;

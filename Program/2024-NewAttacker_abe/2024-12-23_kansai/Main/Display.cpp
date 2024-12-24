@@ -30,8 +30,7 @@ void Display::draw(){
 
   variables.clear();
   valiables_addr.clear();
-  // debug_variables_addr.clear();
-  
+    
   return;
 }
 
