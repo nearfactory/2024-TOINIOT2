@@ -69,12 +69,6 @@ void setup() {
 
 bool is_display_on = true;
 
-// 回り込み
-int h = 45; // ヒステリシス
-float r = 14400.0f;  // 回り込み時の半径
-float p_gain = 2.0f;
-float d_gain = 3.5f;
-float* gain_select = &p_gain;
 
 // ボールの運搬
 bool      shoot = false;
@@ -155,12 +149,19 @@ void loop() {
     }
     // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
     else{
-      float theta = 0;
+      static int h = 45;   // ヒステリシス
+      float r = 14400.0f;  // 回り込みの半径
+      float p_gain = 2.0f;
+      float d_gain = 3.5f;
+
       float move_dir = 0;
 
+      float goal_dir = camera.goal_dir;
+
       // PD
-      if(abs(ball.dir)<h){
-        move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
+      float wrap_around_dir = ball.dir-5;
+      if(abs(wrap_around_dir)<h){
+        move_dir = wrap_around_dir * p_gain - d_gain*(wrap_around_dir - ball.dir_prev);
         h = 45;
 
         // シュート動作に入る
@@ -172,16 +173,40 @@ void loop() {
       }
       // 円周上
       else if(ball.distance < r){
-        theta = 90 + (r-ball.distance) * 90 / r;
-        move_dir = ball.dir + (ball.dir>0?theta:-theta);
-        h = 45;
+        float theta = 90 + (r-ball.distance) * 90 / r;
+        move_dir = wrap_around_dir + (wrap_around_dir>0?theta:-theta);
+        h = 30;
       }
       //接線
       else{
-        theta = degrees(atan2(r, ball.distance));
-        move_dir = ball.dir + (ball.dir>0?theta:-theta);
-        h = 45;
+        float theta = degrees(atan2(r, ball.distance));
+        move_dir = wrap_around_dir + (wrap_around_dir>0?theta:-theta);
+        h = 30;
       }
+
+      // if(abs(ball.dir)<h){
+      //   move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
+      //   h = 45;
+
+      //   // シュート動作に入る
+      //   if(ball.is_hold){
+      //     shoot = true;
+      //     shoot_dir_begin = camera.goal_dir;
+      //     shoot_timer = millis();
+      //   } 
+      // }
+      // // 円周上
+      // else if(ball.distance < r){
+      //   float theta = 90 + (r-ball.distance) * 90 / r;
+      //   move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      //   h = 30;
+      // }
+      // //接線
+      // else{
+      //   float theta = degrees(atan2(r, ball.distance));
+      //   move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      //   h = 30;
+      // }
       motor.moveDir(move_dir, 100);
     }
 
@@ -203,7 +228,7 @@ void loop() {
 
 
     // 姿勢制御
-    
+
     float p_gain = 0.64f;
     float d_gain = 0.45f;
     dir_power = dir.dir * p_gain - (dir.prev_dir - dir.dir) * d_gain;
