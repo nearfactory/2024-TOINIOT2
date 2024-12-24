@@ -1,3 +1,25 @@
+#pragma once
+
+#include <Arduino.h>
+
+class Sub{
+  int count = 0;
+  
+  static constexpr uint8_t QUEUE_SIZE = 4;
+  uint8_t queue[QUEUE_SIZE][2];
+  uint8_t queue_id = 0;
+public:
+  uint8_t ball01k = 0;
+  uint8_t ball02k = 0;
+
+  bool is_hold = false;
+
+  void begin();
+  void read();
+};
+
+extern Sub sub;
+
 /*
 uint8_t ball01k = 0;
 uint8_t ball02k = 0;

@@ -1,22 +1,23 @@
 #include "Kicker.hpp"
 
 void Kicker::begin(){
-  pinMode(KICKER_PIN, OUTPUT);
+  pinMode(PIN, OUTPUT);
   return;
 }
 
 void Kicker::kick(){
-  if(millis()-kicked_timer > 3000){
-    kicked_timer = millis();
+  if(millis()-timer > interval){
+    timer = millis();
   }
   return;
 }
 
 void Kicker::write(){
-  if(millis()-kicked_timer < 50){
-    digitalWrite(KICKER_PIN, HIGH);
+  is_ready = millis() - timer > interval;
+  if(millis()-timer < 40){
+    digitalWrite(PIN, HIGH);
   }else{
-    digitalWrite(KICKER_PIN, LOW);
+    digitalWrite(PIN, LOW);
   }
   return;
 }

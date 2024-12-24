@@ -12,6 +12,7 @@
 #include "Ball.hpp"
 #include "Camera.hpp"
 #include "Dir.hpp"
+#include "Kicker.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
 #include "UI.hpp"
@@ -19,6 +20,7 @@
 extern Ball ball;
 extern Camera camera;
 extern Dir dir;
+extern Kicker kicker;
 extern Line line;
 extern Motor motor;
 extern UI ui;
@@ -59,18 +61,17 @@ private:
   static constexpr int8_t  DISPLAY_RESET = -1;
   static constexpr uint8_t DISPLAY_ADDR = 0x3c;
   
-  Adafruit_SSD1306 display;
-
-  // 
+  Adafruit_SSD1306 display; 
 
   // デバッグ用
   static constexpr uint8_t MODE_NUM = 10;
   vector<string> variables;
   vector<float*> valiables_addr;
-  uint8_t mode = 0;
   uint8_t selector = 0;
 
 public:
+  uint8_t mode = 0;
+
   Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::GAME) {}
 
   void begin();

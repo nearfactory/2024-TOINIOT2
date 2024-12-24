@@ -59,6 +59,24 @@ void Motor::moveDir(float dir, uint8_t power){
   return;
 }
 
+void Motor::moveDirFast(float dir, uint8_t power){
+  moveDir(dir, power);
+
+  float max = 0;
+  for(int i=0;i<NUM;i++){
+    if(abs(motor[i]) > max){
+      max = abs(motor[i]);
+    }
+  }
+
+  float rate = 0;
+  for(int i=0;i<NUM;i++){
+    motor[i] = motor[i] * 100 / max;
+  }
+
+  return;
+}
+
 void Motor::p(){
   for(int i = 0; i < NUM; i++){
     if(motor_prev[i] == motor[i]  &&  p_count[i] < p_step){

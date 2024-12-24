@@ -1,7 +1,10 @@
+#include <string>
 #include "HardwareSerial.h"
 #include "Display.hpp"
 
 using namespace std;
+
+extern float r;
 
 void Display::begin(){
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
@@ -148,8 +151,9 @@ void Display::Ball(){
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, ball.dir+180, circle_r);
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 0, 8);
 
+  printd(80, 32,to_string(ball.hold_time));
+  printd(80, 40,to_string(ball.not_hold_time));
   printd(120,56,to_string(ball.distance), ALIGN::RIGHT);
-  printd(80, 48,to_string(ball.hold_time));
   for(int i=0;i<16;i++){
     double angle = (i*360/16+180);
 
@@ -178,16 +182,26 @@ void Display::Camera(){
   // 画像サイズを示す枠
   int width = 76;
   int height = 48;
+
+  printd(8,16,to_string(camera.goal_dir));
+
+  printd(104, 8,  to_string(camera.atk_x));
+  printd(104, 16, to_string(camera.atk_y));
+  printd(104, 24, to_string(camera.atk_w));
+  printd(104, 32, to_string(camera.atk_h));
+
   display.drawRect(64-width/2, 16, width, height, WHITE);
 
   // 検出されたブロック全体のバウンディングボックス
-  display.fillRect(
-    26+ camera.x1*width/320,
-    16+ camera.y1*height/200,
-    (camera.x2-camera.x1) *width/320,
-    (camera.y2-camera.y1) *height/200,
-    WHITE
-  );
+  for(int i=0;i<camera.block_num;i++){
+    display.fillRect(
+      26+ camera.block[i].x *width/320.0,
+      16+ camera.block[i].y *height/200.0,
+      camera.block[i].width  *width/320.0,
+      camera.block[i].height *height/200.0,
+      WHITE
+    );
+  }
   return;
 }
 
@@ -221,7 +235,11 @@ void Display::Dribbler(){
 
 void Display::Kicker(){
   printd(8,8,"Kicker");
-  printd(64,32,"no data", ALIGN::CENTER, ALIGN::MIDDLE);
+  // printd(64,32,"no data", ALIGN::CENTER, ALIGN::MIDDLE);
+
+  printd(120,16,"test kick",ALIGN::RIGHT);
+  if(ui.buttonUp(1)) kicker.kick();
+  
   return;
 }
 
@@ -299,10 +317,10 @@ void Display::Valiables(){
 
   
   // 変数のセレクタ
-  if(ui.buttonUp(3)){
-    selector++;
-    selector %= variables.size();
-  }
+  // if(ui.buttonUp(0)){
+  //   selector++;
+  //   selector %= variables.size();
+  // }
   printd(8,16+selector*8,">");
 
   printd(120,8,"+",ALIGN::RIGHT);
@@ -322,4 +340,8 @@ void Display::Game(){
   // 攻め方向をリセット
   printd(120,8,"reset dir",ALIGN::RIGHT);
   if(ui.buttonUp(1)) dir.setDefault();
+
+  printd(120,32,"change atk",ALIGN::RIGHT);
+  printd(120,40,"sig="+to_string(camera.atk_sig),ALIGN::RIGHT);
+  if(ui.buttonUp(2)) camera.changeAtk();
 }

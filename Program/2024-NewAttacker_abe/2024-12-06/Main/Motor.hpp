@@ -28,7 +28,7 @@ private:
   float p_count[NUM]{0};
   float p_val[NUM]{0};
 
-  static constexpr uint8_t QUEUE_SIZE = 20;   // 移動平均のサンプル数
+  static constexpr uint8_t QUEUE_SIZE = 15;   // 移動平均のサンプル数
   float queue[QUEUE_SIZE][NUM]{};  // 出力値のキュー
 public:
   float motor_raw     [NUM] = {0};  // モーターに反映するやつ
@@ -39,7 +39,8 @@ public:
   void add(float m1, float m2, float m3, float m4);
   void addRaw(float m1, float m2, float m3, float m4);
   void setDir(float dir, float p_gain);
-  void moveDir(float dir, uint8_t power);
+  void moveDir(float dir, uint8_t power);     // 全方位に対して同じ速度で移動
+  void moveDirFast(float dir, uint8_t power); // 常にどれかのモーターの絶対値が100%の状態で動くように移動
   void p();
   void avr();
   void write();

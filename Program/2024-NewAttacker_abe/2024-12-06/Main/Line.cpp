@@ -148,6 +148,9 @@ void Line::read(){
       num++;
     }
   }
+  outside = front | left | back | right;
+
+  outside = front | left | back | right;
 
   // ラインのベクトル
   float x = (vec1.x + vec2.x) / 2;
@@ -165,7 +168,7 @@ void Line::read(){
   for(auto q:queue) avr += q;
   avr /= (float)QUEUE_SIZE;
 
-  bool prev_on = prev_on1 | prev_on2 | prev_on3;
+  prev_on = prev_on1 | prev_on2 | prev_on3;
   prev_on3 = prev_on2;
   prev_on2 = prev_on1;
   prev_on1 = on;

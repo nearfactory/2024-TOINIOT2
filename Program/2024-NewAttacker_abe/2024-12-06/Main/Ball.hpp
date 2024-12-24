@@ -2,6 +2,8 @@
 
 #include <Arduino.h>
 
+#include "Sub.hpp"
+
 class Ball{
 private:
   static constexpr uint8_t NUM = 16;
@@ -15,7 +17,8 @@ private:
   uint16_t distance_h = 13200;
 
   uint16_t ball[NUM]{0};
-  uint32_t hold_begin;
+  uint32_t hold_begin = 0;
+  uint32_t not_hold_begin = 0;
 
 public:
   float    dir = 0;
@@ -26,7 +29,8 @@ public:
 
   bool     is_hold = false;
   bool     is_prev_hold = false;
-  uint32_t hold_time;
+  uint32_t hold_time = 0;
+  uint32_t not_hold_time = 0;
 
   Ball() : dir(0), distance(0), is_exist(true), is_hold(false), hold_time(0) {}
 

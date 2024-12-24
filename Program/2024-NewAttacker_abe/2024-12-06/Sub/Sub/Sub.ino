@@ -1,11 +1,11 @@
 constexpr uint8_t BALL01K_PIN  = A0;
 constexpr uint8_t BALL02K_PIN  = A1;
-constexpr uint8_t VOLUME_PIN   = A2;
+// constexpr uint8_t VOLUME_PIN   = A2;
 
-constexpr uint8_t KICKER_PIN   = D3;
-constexpr uint8_t PH_PIN       = 4;
-constexpr uint8_t EN_PIN       = 5;
-constexpr uint8_t NEOPIXEL_PIN = 10;
+// constexpr uint8_t KICKER_PIN   = D3;
+// constexpr uint8_t PH_PIN       = 4;
+// constexpr uint8_t EN_PIN       = 5;
+// constexpr uint8_t NEOPIXEL_PIN = 10;
 
 
 
@@ -15,12 +15,12 @@ void setup() {
 
   pinMode(BALL01K_PIN, INPUT);
   pinMode(BALL02K_PIN, INPUT);
-  pinMode(VOLUME_PIN, INPUT);
+  // pinMode(VOLUME_PIN, INPUT);
 
-  pinMode(KICKER_PIN, OUTPUT);
-  pinMode(PH_PIN, OUTPUT);
-  pinMode(EN_PIN, OUTPUT);
-  pinMode(NEOPIXEL_PIN, OUTPUT);
+  // pinMode(KICKER_PIN, OUTPUT);
+  // pinMode(PH_PIN, OUTPUT);
+  // pinMode(EN_PIN, OUTPUT);
+  // pinMode(NEOPIXEL_PIN, OUTPUT);
 
   Serial1.setPins(D7, D6);
   Serial1.begin(115200);
@@ -64,24 +64,24 @@ void loop() {
   */
 
 
-  while(Serial1.available()){
-    if(Serial1.read() == 'k'){
-      kicker_timer = millis();
-    }
-  }
+  // while(Serial1.available()){
+  //   if(Serial1.read() == 'k'){
+  //     kicker_timer = millis();
+  //   }
+  // }
 
-  if(millis()-kicker_timer < 50){
-    digitalWrite(KICKER_PIN, HIGH);
-  }else{
-    digitalWrite(KICKER_PIN, LOW);
-  }
+  // if(millis()-kicker_timer < 50){
+  //   digitalWrite(KICKER_PIN, HIGH);
+  // }else{
+  //   digitalWrite(KICKER_PIN, LOW);
+  // }
 
-  Serial1.print("min:0 max:1023 ");
-  Serial1.printf("b1:%d b2:%d vol:%d \n",
-    analogRead(BALL01K_PIN),
-    analogRead(BALL02K_PIN),
-    analogRead(VOLUME_PIN)
-  );
+  // Serial1.print("min:0 max:1023 ");
+  // Serial1.printf("b1:%d b2:%d \n",
+  //   analogRead(BALL01K_PIN),
+  //   analogRead(BALL02K_PIN)
+  //   // analogRead(VOLUME_PIN)
+  // );
 
   /*
   // 送信
@@ -93,5 +93,12 @@ void loop() {
   Serial1.print(send);
   */
   
-  delay(50);
+  // 送信
+  char send[3] = "";
+  send[0] = (analogRead(BALL01K_PIN) >> 3 + 1) & 0b11111111;
+  send[1] = (analogRead(BALL02K_PIN) >> 3 + 1) & 0b11111111;
+  send[3] = '\0';
+  Serial1.print(send);
+  
+  delay(4);
 }
