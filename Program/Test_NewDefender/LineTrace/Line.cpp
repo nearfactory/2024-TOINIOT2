@@ -117,37 +117,37 @@ void Line::read(){
   prev_on2 = prev_on1;
   prev_on1 = on;
 
-  // 踏み始め
-  if(prev_on == false && on == true){
-    // for(auto& q:queue) q = dir;
-    dir_prev = dir;
-  }
-  // 継続して踏んでいる場合
-  else if(prev_on == true && on == true){
-    // 平均値のプラスマイナス45°を有効な範囲とする
-    float range = 30.0;
+  // // 踏み始め
+  // if(prev_on == false && on == true){
+  //   // for(auto& q:queue) q = dir;
+  //   dir_prev = dir;
+  // }
+  // // 継続して踏んでいる場合
+  // else if(prev_on == true && on == true){
+  //   // 平均値のプラスマイナス45°を有効な範囲とする
+  //   float range = 30.0;
 
-    float range_start = normalizeAngle(dir_prev - range);
-    float range_end   = normalizeAngle(dir_prev + range);
+  //   float range_start = normalizeAngle(dir_prev - range);
+  //   float range_end   = normalizeAngle(dir_prev + range);
     
-    // 180°の壁をまたがない場合
-    if(range_start <= range_end){
-      if(dir <= range_start ||  range_end <= dir){
-        dir = dir_prev;
-      }
-    }else{
-      if(range_end <= dir && dir <= range_start){
-        dir = dir_prev;
-      }
-    }
-  // 踏み終わり
-  }else if(prev_on == true && on == false){
-    on = true;
-    dir = dir_prev;
-  }else if(prev_on == false && on == false){
-    on = false;
-    dir = 0;
-  }
+  //   // 180°の壁をまたがない場合
+  //   if(range_start <= range_end){
+  //     if(dir <= range_start ||  range_end <= dir){
+  //       dir = dir_prev;
+  //     }
+  //   }else{
+  //     if(range_end <= dir && dir <= range_start){
+  //       dir = dir_prev;
+  //     }
+  //   }
+  // // 踏み終わり
+  // }else if(prev_on == true && on == false){
+  //   on = true;
+  //   dir = dir_prev;
+  // }else if(prev_on == false && on == false){
+  //   on = false;
+  //   dir = 0;
+  // }
 
   dir_prev = dir;
   vec_prev = vec;

@@ -70,6 +70,10 @@ void setup() {
 bool is_display_on = true;
 
 
+float move_p_gain = 0;
+float move_d_gain = 0;
+
+
 void loop() {
   // delayなしで3(ms)
 
@@ -82,10 +86,10 @@ void loop() {
 
 
   if(digitalRead(ui.TOGGLE_PIN)){
-    if(ui.buttonUp(0)) display.next();
+    // if(ui.buttonUp(0)) display.next();
 
-    // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
-    // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    display.addValiables("p_gain :"+to_string(move_p_gain), &move_p_gain);
+    display.addValiables("d_gain :"+to_string(move_d_gain), &move_d_gain);
 
     display.debug();
     display.draw();
@@ -101,13 +105,15 @@ void loop() {
     }
 
 
-    float dir = 0;
-    if(ball.dir > 0)  dir = 90.0;
-    else              dir = -90.0;
+    float move_dir = 0;
+    if(ball.dir > 0)  move_dir = 90.0;
+    else              move_dir = -90.0;
 
-    int power = (int) abs(sin(radians(ball.dir))) * 150.0;
+    float move_p = abs(sin(radians(ball.dir)))*100.0;
+    float move_d = abs(sin(radians(ball.dir)))*100.0 - abs(sin(radians(ball.dir_prev)))*100.0;
 
-    moveDir(dir, power);
+    int power = move_p * move_p_gain + move_d * move_d_gain;
+    motor.moveDir(move_dir, power);
 
 
 
@@ -115,7 +121,7 @@ void loop() {
 
     float p_gain = 0.64f;
     float d_gain = 0.45f;
-    float dir_power = dir_power = (dir.dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
+    float dir_power = (dir.dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
 
     if(abs(dir.dir) > 45) {
       // 故障復帰

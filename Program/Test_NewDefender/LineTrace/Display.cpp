@@ -4,8 +4,6 @@
 
 using namespace std;
 
-extern float r;
-
 void Display::begin(){
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
     Serial.println("Display err!");
