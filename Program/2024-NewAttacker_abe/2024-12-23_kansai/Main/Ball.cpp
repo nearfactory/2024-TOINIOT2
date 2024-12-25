@@ -42,10 +42,12 @@ void Ball::read(){
   
   is_exist = distance < DISTANCE_MAX;
   
+  is_prev_hold = is_hold;
+
   // 保持
   if(is_hold){
     // 持ち終わり
-    if(abs(dir) > 30.0 || distance > r + 200){
+    if(abs(dir) > 30.0 || distance > r + 200 || !sub.is_hold){
       is_hold = false;
       not_hold_begin = millis();
     }else{
@@ -55,25 +57,13 @@ void Ball::read(){
     }
   }else{
     // 持ち始め
-    if(distance < r - 450 && abs(dir) < 2.5){
+    if(abs(dir) <= 30.0 && sub.is_hold){
       is_hold = true;
       hold_begin = millis();
     }else{
       // 持っていないのが継続している
       hold_time = 0;
       not_hold_time = millis() - not_hold_begin;
-    }
-  }
-
-  is_prev_hold = is_hold;
-
-  if(is_hold){
-    if(!sub.is_hold || abs(dir) > 35.0){
-      is_hold = false;
-    }
-  }else{
-    if(sub.is_hold && abs(dir) < 15.0){
-      is_hold = true;
     }
   }
 

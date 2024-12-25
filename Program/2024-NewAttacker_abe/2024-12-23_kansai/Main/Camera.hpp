@@ -53,6 +53,7 @@ public:
   int atk_num = 0;
   
   float goal_dir = 0;
+  float prev_goal_dir = 0;
 
   // 画像上
   int x1 = 0, y1 = 0;

@@ -42,18 +42,6 @@ void Line::read(){
 
 
 
-  // キューにコピー
-  for(int i=0;i<LINE_NUM;i++){
-    binary_queue[binary_queue_id][i] = line[i];
-  }
-  binary_queue_id = ( binary_queue_id + 1 ) % BINARY_QUEUE_SIZE;
-
-  for(int j=0;j<BINARY_QUEUE_SIZE;j++){
-    for(int i=0;i<LINE_NUM;i++){
-      line[i] |= binary_queue[j][i];
-    }
-  }
-
   // 角度算出
   on = false;
   dir = 0;
@@ -123,8 +111,8 @@ void Line::read(){
 
   // 過去の角度と比較し、45度以上の差があれば無効とする
   float avr = 0;
-  for(auto q:queue) avr += q;
-  avr /= (float)QUEUE_SIZE;
+  // for(auto q:queue) avr += q;
+  // avr /= (float)QUEUE_SIZE;
 
   prev_on = prev_on1 | prev_on2 | prev_on3;
   prev_on3 = prev_on2;
@@ -133,7 +121,7 @@ void Line::read(){
 
   // 踏み始め
   if(prev_on == false && on == true){
-    for(auto& q:queue) q = dir;
+    // for(auto& q:queue) q = dir;
     dir_prev = dir;
   }
   // 継続して踏んでいる場合
