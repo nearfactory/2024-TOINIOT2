@@ -58,7 +58,7 @@ void setup(){
   }
 
   avr = avr / count;
-  threshold = (avr*4+max-600)/5/4;
+  threshold = (avr*4+max-625)/5/4;
   // threshold = (avr*2+max)/3/4;
   // threshold = (max + 50)/4;
 

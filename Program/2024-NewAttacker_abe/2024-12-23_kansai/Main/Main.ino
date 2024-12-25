@@ -97,9 +97,10 @@ void loop() {
 
 
   if(digitalRead(ui.TOGGLE_PIN)){
-    if(display.mode != MODE::VARIABLES){
-      if(ui.buttonUp(0)) display.next();
-    }
+    if(ui.buttonUp(0)) display.next();
+    // if(display.mode != MODE::VARIABLES){
+    //   if(ui.buttonUp(0)) display.next();
+    // }
 
     display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
     display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
