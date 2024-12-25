@@ -324,10 +324,10 @@ void Display::Valiables(){
 
   
   // 変数のセレクタ
-  // if(ui.buttonUp(0)){
-  //   selector++;
-  //   selector %= variables.size();
-  // }
+  if(ui.buttonUp(0)){
+    selector++;
+    selector %= variables.size();
+  }
   printd(8,16+selector*8,">");
 
   printd(120,8,"+",ALIGN::RIGHT);
