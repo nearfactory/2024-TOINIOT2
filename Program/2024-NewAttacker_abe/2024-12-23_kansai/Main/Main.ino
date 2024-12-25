@@ -71,9 +71,9 @@ bool is_display_on = true;
 
 // 周り込み
 float h = 45;       // ヒステリシス
-float r = 14400.0f; // 回り込みの半径
-float p_gain = 2.0f;
-float d_gain = 3.5f;
+float r = 14400.0; // 回り込みの半径
+float p_gain = 1.6;
+float d_gain = 3.5;
 
 // ボールの運搬
 bool      shoot = false;
@@ -97,10 +97,12 @@ void loop() {
 
 
   if(digitalRead(ui.TOGGLE_PIN)){
-    if(ui.buttonUp(0)) display.next();
+    if(display.mode != MODE::VARIABLES){
+      if(ui.buttonUp(0)) display.next();
+    }
 
-    // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
-    // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
 
     display.debug();
     display.draw();
@@ -151,6 +153,15 @@ void loop() {
       }
         
 
+    }
+    else if(ball.not_hold_time < 100){
+      motor.moveDir(-camera.goal_dir*1.5, 100);
+
+      if(ball.hold_time > 100 && abs(camera.prev_goal_dir) > 15.0){
+        float dir_power = camera.goal_dir * 8.0;
+        motor.add(dir_power, dir_power, dir_power, dir_power);
+
+      }
     }
     // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
     else{
@@ -217,17 +228,6 @@ void loop() {
     }
 
 
-    if(ball.is_hold){
-      while(!ui.buttonUp(1)){
-        ui.read();
-        motor.moveDir(0, 0);
-        motor.avr();
-        motor.write();
-        delay(3);
-      }
-    } 
-
-
 
     // ボールが見えない場合に後ろに下がる (デバッグ段階では手前に)
     if(!ball.is_exist){
@@ -236,24 +236,23 @@ void loop() {
 
     
 
-
     // 白線避け
     if(line.on){
       motor.moveDir(line.dir+180, 100);
     }
 
 
+
     // 姿勢制御
 
     float p_gain = 0.64f;
     float d_gain = 0.45f;
-    // float dir_power = (dir.dir+camera.goal_dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
     float dir_power = 0;
-    if(camera.atk_num && abs(dir.dir) < 90){
-      dir_power = (camera.goal_dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
-    }else{
+    // if(camera.atk_num && abs(dir.dir) < 90){
+    //   dir_power = (camera.goal_dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
+    // }else{
+    // }
       dir_power = (dir.dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
-    }
 
     if(abs(dir.dir) > 45) {
       // 故障復帰
@@ -266,7 +265,6 @@ void loop() {
     if(ball.is_hold){
       ui.buzzer(880.0f);
     }else{
-      // ui.buzzer(440.0f);
       digitalWrite(ui.BZ_PIN, 0);
     }
 
