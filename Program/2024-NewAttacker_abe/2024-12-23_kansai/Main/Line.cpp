@@ -72,30 +72,28 @@ void Line::read(){
   back  = false;
   right = false;
   
-  if(num == 0){
-    if(line[INNER_NUM]){
-      vec2.x = 1.0f;
-      front = true;
-      num++;
-    }
-    if(line[INNER_NUM+1]){
-      vec2.y = 1.0f;
-      left = true;
-      num++;
-    }
-    if(line[INNER_NUM+2]){
-      vec1.x = -1.0f;
-      back = true;
-      num++;
-    }
-    if(line[INNER_NUM+3]){
-      vec1.y = -1.0f;
-      right = true;
-      num++;
-    }
-  }
-  outside = front | left | back | right;
-
+  // if(num == 0){
+  //   if(line[INNER_NUM]){
+  //     vec2.x = 1.0f;
+  //     front = true;
+  //     num++;
+  //   }
+  //   if(line[INNER_NUM+1]){
+  //     vec2.y = 1.0f;
+  //     left = true;
+  //     num++;
+  //   }
+  //   if(line[INNER_NUM+2]){
+  //     vec1.x = -1.0f;
+  //     back = true;
+  //     num++;
+  //   }
+  //   if(line[INNER_NUM+3]){
+  //     vec1.y = -1.0f;
+  //     right = true;
+  //     num++;
+  //   }
+  // }
   outside = front | left | back | right;
 
   // ラインのベクトル
