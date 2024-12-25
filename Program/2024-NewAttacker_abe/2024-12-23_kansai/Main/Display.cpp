@@ -236,6 +236,14 @@ void Display::Kicker(){
   printd(8,8,"Kicker");
   // printd(64,32,"no data", ALIGN::CENTER, ALIGN::MIDDLE);
 
+  int width = 24;
+  int height = 48;
+  display.drawRect(8, 8, width, height, WHITE);
+  display.drawRect(96, 8, width, height, WHITE);
+
+  display.fillRect(8,  8+(255-sub.ball01k)*height/255, width, (sub.ball01k)*height/255, WHITE);
+  display.fillRect(96, 8+(255-sub.ball02k)*height/255, width, (sub.ball02k)*height/255, WHITE);
+
   printd(120,16,"test kick",ALIGN::RIGHT);
   if(ui.buttonUp(1)) kicker.kick();
   
