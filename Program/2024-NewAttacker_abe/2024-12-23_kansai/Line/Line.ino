@@ -40,7 +40,7 @@ void setup(){
     // Serial.println();
 
 
-      if(i!=4){
+      if(i!=4 &&    i!=9 && i!=10 && i!= 11 && i!=8 && i!= 7){
         int s = analogRead(ANALOG_PIN[i]);
         if(s > max){
           max = s;
@@ -59,6 +59,7 @@ void setup(){
 
   avr = avr / count;
   threshold = (avr*4+max-600)/5/4;
+  // threshold = (avr*2+max)/3/4;
   // threshold = (max + 50)/4;
 
 
