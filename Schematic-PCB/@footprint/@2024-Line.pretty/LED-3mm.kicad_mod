@@ -169,6 +169,28 @@
 		(layer "F.Fab")
 		(uuid "85d57102-4dac-4412-b5f5-9e74a336e1af")
 	)
+	(fp_text user "+"
+		(at 1.27 2.794 0)
+		(unlocked yes)
+		(layer "F.SilkS" knockout)
+		(uuid "901257d0-3ef9-4436-b769-603d2dbbea80")
+		(effects
+			(font
+				(face "Arial Black")
+				(size 1 1)
+				(thickness 0.125)
+			)
+		)
+		(render_cache "+" 0
+			(polygon
+				(pts
+					(xy 0.895087 2.599369) (xy 1.158137 2.599369) (xy 1.158137 2.333633) (xy 1.380153 2.333633) (xy 1.380153 2.599369)
+					(xy 1.644668 2.599369) (xy 1.644668 2.818211) (xy 1.380153 2.818211) (xy 1.380153 3.083947) (xy 1.158137 3.083947)
+					(xy 1.158137 2.818211) (xy 0.895087 2.818211)
+				)
+			)
+		)
+	)
 	(pad "1" thru_hole rect
 		(at -1.27 0)
 		(size 1.8 1.8)
