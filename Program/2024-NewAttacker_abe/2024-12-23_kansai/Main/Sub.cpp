@@ -41,7 +41,7 @@ void Sub::read(){
       is_hold = false;
     }
   }else{
-    if(ball01k < 75 || ball02k < 75){
+    if(ball01k < 80 || ball02k < 80){
       is_hold = true;
     }
   }

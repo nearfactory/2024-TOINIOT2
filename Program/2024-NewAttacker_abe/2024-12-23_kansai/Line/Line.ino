@@ -147,10 +147,11 @@ void loop(){
   // // テスト
   // Serial.print(threshold);
   // Serial.print("\t");
-  // for(auto l:line){
-  //   Serial.print(l);
+  // for(int i=0;i<LINE_NUM;i++){
+  //   Serial.print(line[i]);
+  //   if((i+1)%5==0) Serial.print(" ");
   // }
-  // Serial.print("\t");
+  // Serial.print("\t\t");
   // for(int i=0;i<ANALOG_NUM;i++){
   //   Serial.print(analogRead(ANALOG_PIN[i]));
   //   Serial.print("\t");

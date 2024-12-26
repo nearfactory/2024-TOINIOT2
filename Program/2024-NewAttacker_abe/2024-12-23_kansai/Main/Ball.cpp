@@ -47,7 +47,7 @@ void Ball::read(){
   // 保持
   if(is_hold){
     // 持ち終わり
-    if(abs(dir) > 30.0 || distance > r + 200 || !sub.is_hold){
+    if(abs(dir) > 30.0 || distance > r + 400 || !sub.is_hold){
       is_hold = false;
       not_hold_begin = millis();
     }else{

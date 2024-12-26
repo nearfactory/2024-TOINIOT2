@@ -42,6 +42,8 @@ void Dir::read(){
   bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_ACCELEROMETER);
   accel.x = dir_data.acceleration.x;
   accel.y = dir_data.acceleration.y;
+
+  accel_sum = abs(accel.x) + abs(accel.y);
   
   return;
 }

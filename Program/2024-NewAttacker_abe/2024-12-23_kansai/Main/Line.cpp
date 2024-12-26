@@ -40,6 +40,8 @@ void Line::read(){
   line[14-1] = false;
   line[24-1] = false;
 
+  line[24]   = false;   // 不安定
+
 
 
   // 角度算出
@@ -125,7 +127,7 @@ void Line::read(){
   // 継続して踏んでいる場合
   else if(prev_on == true && on == true){
     // 平均値のプラスマイナス45°を有効な範囲とする
-    float range = 30.0;
+    float range = 15.0;
 
     float range_start = normalizeAngle(dir_prev - range);
     float range_end   = normalizeAngle(dir_prev + range);

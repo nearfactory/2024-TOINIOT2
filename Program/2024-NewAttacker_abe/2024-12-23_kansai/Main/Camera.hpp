@@ -54,6 +54,7 @@ public:
   
   float goal_dir = 0;
   float prev_goal_dir = 0;
+  float prev_goal_dir2 = 0;
 
   // 画像上
   int x1 = 0, y1 = 0;

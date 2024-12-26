@@ -32,6 +32,7 @@ private:
   float queue[QUEUE_SIZE][NUM]{};  // 出力値のキュー
 public:
   float motor_raw     [NUM] = {0};  // モーターに反映するやつ
+  float raw_sum = 0;
   // Motor() : {}
 
   void begin();
