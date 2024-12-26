@@ -29,6 +29,7 @@ void Camera::read(){
 
     }
 
+    prev_goal_dir = goal_dir;
     atk_num = 0;
 
     x1 = 320;
@@ -56,10 +57,16 @@ void Camera::read(){
     atk_w = x2-x1;
     atk_h = y2-y1;
 
+
     goal_dir = (float)atk_x / 4.0;
-    prev_goal_dir = goal_dir;
+
     dir_queue[dir_queue_id] = goal_dir;
     dir_queue_id = (dir_queue_id+1)%DIR_QUEUE_SIZE;
+
+    // ゴールの角度を算出
+    float buf = 0;
+    for(auto q:dir_queue) buf += q;
+    goal_dir = buf / (float)DIR_QUEUE_SIZE;
   }else{
     block.resize(0);
     x1 = 0;
@@ -69,10 +76,6 @@ void Camera::read(){
   }
 
 
-  // ゴールの角度を算出
-  float buf = 0;
-  for(auto q:dir_queue) buf += q;
-  goal_dir = buf / (float)DIR_QUEUE_SIZE;
   
 
   return;

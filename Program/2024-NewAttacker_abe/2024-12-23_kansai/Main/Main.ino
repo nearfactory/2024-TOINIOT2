@@ -72,8 +72,8 @@ bool is_display_on = true;
 // 周り込み
 float h = 45;       // ヒステリシス
 float r = 14400.0; // 回り込みの半径
-float p_gain = 1.6;
-float d_gain = 3.5;
+float p_gain = 1.5;
+float d_gain = 4.2;
 
 // ボールの運搬
 bool      shoot = false;
@@ -156,9 +156,11 @@ void loop() {
 
     }
     else if(ball.not_hold_time < 100){
-      motor.moveDir(-camera.goal_dir*1.5, 100);
+      motor.moveDirFast(-camera.goal_dir*1.5, 100);
 
-      if(ball.hold_time > 100 && abs(camera.prev_goal_dir) > 15.0){
+      if(ball.hold_time > 50 && abs(camera.prev_goal_dir) > 15.0 && camera.atk_h > 25){
+        motor.moveDirFast(0, 100);
+
         float dir_power = camera.goal_dir * 8.0;
         motor.add(dir_power, dir_power, dir_power, dir_power);
 
@@ -169,60 +171,21 @@ void loop() {
       float move_dir = 0;
 
       // PD
-      // static float goal_dir = 0;
-
-      // float wrap_around_dir = ball.dir + goal_dir;
-      // float wrap_around_dir = ball.dir;
-
-      // if(abs(wrap_around_dir)<h){
-      //   move_dir = wrap_around_dir * p_gain - d_gain*(wrap_around_dir - ball.dir_prev);
-      //   h = 45.0;
-      // }
-      // // 円周上
-      // else if(ball.distance < r){
-      //   float theta = 90 + (r-ball.distance) * 90 / r;
-      //   move_dir = wrap_around_dir + (wrap_around_dir>0?theta:-theta);
-      //   h = 30.0;
-
-      //   float threshold = 20.0;
-      //   if(camera.prev_goal_dir < -threshold){
-      //     goal_dir = threshold;
-      //   }else if(-threshold <= camera.prev_goal_dir && camera.prev_goal_dir <= threshold){
-      //     goal_dir = 0;
-      //   }else if(threshold < camera.prev_goal_dir){
-      //     goal_dir = -threshold;
-      //   }
-
-      // }
-      // //接線
-      // else{
-      //   float theta = degrees(atan2(r, ball.distance));
-      //   move_dir = wrap_around_dir + (wrap_around_dir>0?theta:-theta);
-      //   h = 30.0;
-      // }
-
       if(abs(ball.dir)<h){
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
         h = 45;
-
-        // シュート動作に入る
-        if(ball.is_hold){
-          shoot = true;
-          shoot_dir_begin = camera.goal_dir;
-          shoot_timer = millis();
-        } 
       }
       // 円周上
       else if(ball.distance < r){
         float theta = 90 + (r-ball.distance) * 90 / r;
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
-        h = 30;
+        h = 20;
       }
       //接線
       else{
         float theta = degrees(atan2(r, ball.distance));
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
-        h = 30;
+        h = 20;
       }
 
       motor.moveDir(move_dir, 100);
@@ -232,7 +195,7 @@ void loop() {
 
     // ボールが見えない場合に後ろに下がる (デバッグ段階では手前に)
     if(!ball.is_exist){
-      motor.moveDir(0, 60);
+      motor.moveDir(180, 60);
     }
 
     
@@ -249,13 +212,13 @@ void loop() {
     float p_gain = 0.64f;
     float d_gain = 0.45f;
     float dir_power = 0;
-    // if(camera.atk_num && abs(dir.dir) < 90){
-    //   dir_power = (camera.goal_dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
-    // }else{
-    // }
-      dir_power = (dir.dir) * p_gain - (dir.prev_dir - dir.dir) * d_gain;
+    if(abs(dir.dir) < 90){
+      dir_power = (camera.goal_dir) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
+    }else{
+      dir_power = (dir.dir) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
+    }
 
-    if(abs(dir.dir) > 45) {
+    if(abs(dir.dir) > 90) {
       // 故障復帰
       motor.set(dir_power, dir_power, dir_power, dir_power);
     }else{
@@ -263,7 +226,7 @@ void loop() {
       motor.add(dir_power, dir_power, dir_power, dir_power);
     }
 
-    if(ball.is_hold){
+    if(line.on){
       ui.buzzer(880.0f);
     }else{
       digitalWrite(ui.BZ_PIN, 0);
