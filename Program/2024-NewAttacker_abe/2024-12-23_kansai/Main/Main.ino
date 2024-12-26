@@ -84,6 +84,8 @@ float     shoot_dir_begin = 0;
 bool     kick = false;
 uint32_t kick_timer = 0;
 
+float keep_dir_goal = 0;
+
 
 void loop() {
   // delayなしで3(ms)
@@ -121,41 +123,9 @@ void loop() {
 
 
 
+    bool keep_dir = false;
     // シュート
-    // if(shoot){
-    if(false){
-      motor.moveDirFast(-camera.goal_dir* 1.2, 100);
-
-      // シュート終了
-      if(ball.not_hold_time > 200) shoot = false;
-
-      // ゴール前がガラ空きの場合にボールをキックする
-      if(camera.atk_num == 1 && 80 < camera.atk_w && camera.atk_w < 120 && millis() - shoot_timer > 200){
-        kick = true;
-        kick_timer = millis();
-      }
-
-      // キック動作
-      if(kick){
-        // ゴールに向ける
-        if(millis() - kick_timer < 100){
-          float dir_power = camera.goal_dir * 6.0;
-          motor.add(dir_power, dir_power, dir_power, dir_power);
-        }
-        // キック
-        kicker.kick();
-
-        // キック終了
-        if(100 < millis() - kick_timer){
-          shoot = false;
-          kick = false;
-        }
-
-      }
-        
-
-    }
-    else if(ball.not_hold_time < 100){
+    if(ball.not_hold_time < 100){
       motor.moveDirFast(-camera.goal_dir*1.5, 100);
 
       if(ball.hold_time > 50 && abs(camera.prev_goal_dir) > 15.0 && camera.atk_h > 25){
@@ -165,6 +135,8 @@ void loop() {
         motor.add(dir_power, dir_power, dir_power, dir_power);
 
       }
+      
+      if(100 <= camera.atk_w && camera.atk_w <= 150 && ball.hold_time > 250) kicker.kick();
     }
     // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
     else{
@@ -173,12 +145,14 @@ void loop() {
       // PD
       if(abs(ball.dir)<h){
         move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
+        keep_dir = true;
         h = 45;
       }
       // 円周上
       else if(ball.distance < r){
         float theta = 90 + (r-ball.distance) * 90 / r;
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
+        // keep_dir = true;
         h = 20;
       }
       //接線
@@ -188,7 +162,7 @@ void loop() {
         h = 20;
       }
 
-      motor.moveDir(move_dir, 100);
+      motor.moveDirFast(move_dir, 100);
     }
 
 
@@ -197,6 +171,14 @@ void loop() {
     if(!ball.is_exist){
       motor.moveDir(180, 60);
     }
+
+
+
+    // ストール
+    // if(motor.raw_sum > 200 && dir.accel_sum < 1.0){
+    //   float power = 80.0;
+    //   motor.set(power, power, power, power);
+    // }
 
     
 
@@ -208,28 +190,39 @@ void loop() {
 
 
     // 姿勢制御
-
-    float p_gain = 0.64f;
-    float d_gain = 0.45f;
-    float dir_power = 0;
-    if(abs(dir.dir) < 90){
-      dir_power = (camera.goal_dir) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
-    }else{
-      dir_power = (dir.dir) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
-    }
-
-    if(abs(dir.dir) > 90) {
-      // 故障復帰
-      motor.set(dir_power, dir_power, dir_power, dir_power);
-    }else{
-      // 姿勢制御
+    // if(keep_dir){
+    if(false){
+      float d_gain = 0.45f;
+      float p_gain = 0.64f;
+      float dir_power = (dir.dir - keep_dir_goal) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
       motor.add(dir_power, dir_power, dir_power, dir_power);
+
+    }else{
+      float d_gain = 0.45f;
+      float p_gain = 0.64f;
+      float dir_power = 0;
+
+      if(abs(dir.dir) < 90){
+        dir_power = (camera.goal_dir) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
+      }else{
+        dir_power = (dir.dir) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
+      }
+
+      if(abs(dir.dir) > 90) {
+        // 故障復帰
+        motor.set(dir_power, dir_power, dir_power, dir_power);
+      }else{
+        // 姿勢制御
+        motor.add(dir_power, dir_power, dir_power, dir_power);
+      }
+
+      keep_dir_goal = dir.dir;
     }
 
-    if(line.on){
+    if(keep_dir){
       ui.buzzer(880.0f);
     }else{
-      digitalWrite(ui.BZ_PIN, 0);
+      ui.buzzer(440.0f);
     }
 
   }

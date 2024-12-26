@@ -22,7 +22,8 @@ public:
   float dir_y;
   float dir_z;
   Vec2  accel;
-  bool  is_stole = 0;
+  float accel_sum = 0;
+  bool  is_stole  = false;
 
   Dir() : bno(55, 0x28, &Wire2), default_dir(0), dir(0), prev_dir(0), accel(0,0) {};
 

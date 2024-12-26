@@ -212,6 +212,9 @@ void Display::Dir(){
   str.erase(str.begin()+5,str.end());
   printd(8, 32, str);
 
+  printd(8,16,to_string(dir.accel_sum));
+  printd(8,24,to_string(motor.raw_sum));
+
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180, 24);
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180-dir.dir, 16);
 
