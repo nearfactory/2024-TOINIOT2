@@ -354,4 +354,12 @@ void Display::Game(){
   printd(120,32,"change atk",ALIGN::RIGHT);
   printd(120,40,"sig="+to_string(camera.atk_sig),ALIGN::RIGHT);
   if(ui.buttonUp(2)) camera.changeAtk();
+
+
+  printd(8,16,"damaged:");
+  printd(16,24,to_string(ui.damaged_timer/1000) );
+  if(ui.damaged_timer < 0) display.invertDisplay(true);
+
+
+  return;
 }

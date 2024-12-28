@@ -63,8 +63,9 @@ private:
   
   Adafruit_SSD1306 display; 
 
-  // デバッグ用
   static constexpr uint8_t MODE_NUM = 10;
+  
+  // デバッグ用
   vector<string> variables;
   vector<float*> valiables_addr;
   uint8_t selector = 0;
