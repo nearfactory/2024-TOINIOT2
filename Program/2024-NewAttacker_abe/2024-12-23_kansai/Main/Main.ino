@@ -98,7 +98,7 @@ void loop() {
   ui.read();
 
 
-  if(digitalRead(ui.TOGGLE_PIN)){
+  if(ui.is_toggle){
     if(ui.buttonUp(0)) display.next();
     // if(display.mode != MODE::VARIABLES){
     //   if(ui.buttonUp(0)) display.next();
