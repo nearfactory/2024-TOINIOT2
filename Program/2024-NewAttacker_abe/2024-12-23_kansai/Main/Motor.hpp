@@ -42,6 +42,10 @@ public:
   void setDir(float dir, float p_gain);
   void moveDir(float dir, uint8_t power);     // 全方位に対して同じ速度で移動
   void moveDirFast(float dir, uint8_t power); // 常にどれかのモーターの絶対値が100%の状態で動くように移動
+  void moveDirAdd(float dir, uint8_t power);  // 出力値を加算
+  void moveDirFastAdd(float dir, uint8_t power);
+
+
   void p();
   void avr();
   void write();
