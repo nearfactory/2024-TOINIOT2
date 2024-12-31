@@ -1,15 +1,19 @@
 #include "Motor.hpp"
 
+// ---------------- 基本関数 ----------------
+
 void Motor::begin(){
   for(int i=0;i<NUM;i++){
     pinMode(PIN[i][EN], OUTPUT);
     pinMode(PIN[i][PH], OUTPUT);
-    // analogWriteFrequency(PIN[i][EN], FREQUENCY);
+    analogWriteFrequency(PIN[i][EN], FREQUENCY);
   }
   
   Serial.println("motor setup");
   return;
 }
+
+
 
 void Motor::set(float m1, float m2, float m3, float m4){
   motor[0] = m1;
@@ -20,6 +24,7 @@ void Motor::set(float m1, float m2, float m3, float m4){
   return;
 }
 
+
 void Motor::add(float m1, float m2, float m3, float m4){
   motor[0] += m1;
   motor[1] += m2;
@@ -29,17 +34,46 @@ void Motor::add(float m1, float m2, float m3, float m4){
   return;
 }
 
-void Motor::setDir(float dir, float p_gain){
-  // P制御
-  float power = dir / 1.8;
-  p_gain /= 100;
-  
-  for(int i=0;i<NUM;i++){
-    motor[i] = motor[i]*(1-p_gain) + power*p_gain;
-  }
+
+void Motor::addRaw(float m1, float m2, float m3, float m4){
+  motor_add[0] = m1;
+  motor_add[1] = m2;
+  motor_add[2] = m3;
+  motor_add[3] = m4;
+
+  return;
+}
+
+
+// ---------------- 姿勢制御 ----------------
+
+
+void Motor::setDir(float dir, float dir_prev, float p_gain, float d_gain){
+  float power = dir * p_gain + (dir - dir_prev) * d_gain;
+  set(power, power, power, power);  
   
   return;
 }
+
+
+void Motor::setDirAdd(float dir, float dir_prev, float p_gain, float d_gain){
+  float power = dir * p_gain + (dir - dir_prev) * d_gain;
+  add(power, power, power, power);  
+  
+  return;
+}
+
+
+void Motor::setDirAddRaw(float dir, float dir_prev, float p_gain, float d_gain){
+  float power = dir * p_gain + (dir - dir_prev) * d_gain;
+  addRaw(power, power, power, power);  
+  
+  return;
+}
+
+
+// ---------------- 移動 ----------------
+
 
 void Motor::moveDir(float dir, uint8_t power){
   for(int i=0;i<NUM;i++){
@@ -50,27 +84,31 @@ void Motor::moveDir(float dir, uint8_t power){
   return;
 }
 
-void Motor::p(){
-  for(int i = 0; i < NUM; i++){
-    if(motor_prev[i] == motor[i]  &&  p_count[i] < p_step){
-      motor_raw[i] += p_val[i];
-      p_count[i]++;
-    }else if(motor_prev[i] != motor[i]){
-      p_val[i] = (motor[i] - motor_raw[i]) / p_step;
 
-      motor_raw[i] += p_val[i];
-      p_count[i] = 1;
+void Motor::moveDirFast(float dir, uint8_t power){
+  moveDir(dir, power);
+
+  float max = 0;
+  for(int i=0;i<NUM;i++){
+    if(abs(motor[i]) > max){
+      max = abs(motor[i]);
     }
-
-    motor_prev[i] = motor[i];
   }
+
+  float rate = 0;
+  for(int i=0;i<NUM;i++){
+    motor[i] = motor[i] * 100 / max;
+  }
+
   return;
 }
 
 
+// ---------------- 平均化・反映 ----------------
+
 
 void Motor::avr() {
-  static int queue_index = 0;      // 出力値のキューのインデックス
+  static int queue_index = 0;           // 出力値のキューのインデックス
   static float queue_sum[NUM] = {0.0f}; // 各モーターのキュー内の合計値を記録
 
   for (int i = 0; i < NUM; i++) {
@@ -90,33 +128,20 @@ void Motor::avr() {
 }
 
 
-
-// void Motor::avr(){
-//   static int queue_index = 0;      // 出力値のキューのインデックス
-
-//   for(int i=0;i<NUM;i++){
-//     queue[queue_index][i] = motor[i];
-//     queue_index = (queue_index+1) % QUEUE_SIZE;
-
-//     // 出力値を計算
-//     float sum = 0.0f;
-//     for(int j=0;j<QUEUE_SIZE;j++) sum += queue[j][i];
-//     motor_raw[i] = sum / (float)QUEUE_SIZE;
-//   }
-
-//   return;
-// }
-
 void Motor::write(){
+  raw_sum = 0;
   for(int i=0;i<NUM;i++){
-      motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
-      motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
+    motor_raw[i] += motor_add[i];
+    motor_add[i] = 0;
 
-      digitalWrite( PIN[i][PH], motor_raw[i]>0);
-      analogWrite(  PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100));
-      // Serial.printf("%f ", motor_raw[i]);
+    motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
+    motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
+
+    raw_sum += abs(motor_raw[i]);
+
+    digitalWrite( PIN[i][PH], motor_raw[i]>0 );
+    analogWrite ( PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100) );
   }
-  // Serial.println();
 
   return;
 }
