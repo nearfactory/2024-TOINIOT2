@@ -78,11 +78,13 @@ bool display_on = true;
 
 void loop() {
   ball.read();
+  camera.read();
   dir.read();
   line.read();
+  sub.read();
+  ui.read();
 
   if(digitalRead(ui.TOGGLE)){
-    ui.read();
     if(ui.buttonUp(0)) display.next();
 
     display.debug();
@@ -110,25 +112,22 @@ void loop() {
     // ペナルティエリア内にボールがあるか
     bool is_ball_penalty_area = false;
     if(is_ball_penalty_area){
-
+      
     }
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
     // トリガー
     static uint32_t ball_front_begin = 0;
+    static bool ball_front = false;
+    static bool ball_front_prev = false;
 
-    static bool is_ball_front = false;
-    static bool is_ball_front_prev = false;
+    ball_front_prev = ball_front;
+    ball_front = ball.distance < 14400 && abs(ball.dir) < 22.5;
 
-
-    is_ball_front_prev = is_ball_front;
-    is_ball_front = ball.distance < 14400 && abs(ball.dir) < 22.5;
-
-
-    if(is_ball_front == true && is_ball_front_prev == false){
+    if(ball_front == true && ball_front_prev == false){
       ball_front_begin = millis();
     }
-
 
     // →  2.キーパーダッシュ
     if(millis()-ball_front_begin > 2000){
@@ -145,7 +144,18 @@ void loop() {
 
   // 2.キーパーダッシュ
   else if(state == State::KeeperDash){
-    bool is_line = false;
+    float move_dir = 0;
+    if(ball.is_hold){
+      move_dir = camera.atk_dir;
+    }else{
+      move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
+    }
+    motor.moveDirFast(move_dir, 100);
+
+    motor.setDirAdd(camera.atk_dir, camera.atk_dir_prev, dir.p_gain, dir.d_gain);
+
+
+    bool is_line = line.on && abs(line.dir) < 90;
     bool is_stop = false;
 
     // → 4.ゴール前に戻る(強め)
@@ -159,7 +169,8 @@ void loop() {
   // 3.ゴール前に戻る（弱め）
   else if(state == State::BackToGoal_Weak){
     // 最後のラインのベクトルへ移動
-    motor.moveDir(line.dir, 100);
+    motor.moveDirFast(line.dir, 100);
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
     // トリガー
@@ -183,7 +194,13 @@ void loop() {
   // 4.ゴール前に戻る（強め）
   else if(state == State::BackToGoal_Strong){
     motor.moveDir(camera.def_dir, 100);
-    motor.setDirAdd(dir.dir);
+
+    if(abs(dir.dir)>30){
+      motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }else{
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }
+
 
     // →  1.ライントレース
     if(line.on){
@@ -203,22 +220,5 @@ void loop() {
   motor.avr();
   motor.write();
 
-  delay(10);
+  kicker.write();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

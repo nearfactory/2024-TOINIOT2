@@ -1,5 +1,3 @@
-#include <Adafruit_BNO055.h>
-#include <Wire.h>
 #include "Dir.hpp"
 
 void Dir::begin(){
@@ -26,6 +24,7 @@ void Dir::setDefault(){
 }
 
 void Dir::read(){
+  prev_dir = dir;
   sensors_event_t dir_data{};
   bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_EULER);
 
@@ -37,12 +36,14 @@ void Dir::read(){
   dir_y = dir_data.orientation.y;
   dir_z = dir_data.orientation.z;
 
+  // Serial.printf("x:%f y:%f z:%f\n", dir_data.orientation.x, dir_data.orientation.y, dir_data.orientation.z);
+
   // 加速度を更新
   bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_ACCELEROMETER);
   accel.x = dir_data.acceleration.x;
   accel.y = dir_data.acceleration.y;
 
-  prev_dir = dir;
+  accel_sum = abs(accel.x) + abs(accel.y);
   
   return;
 }
