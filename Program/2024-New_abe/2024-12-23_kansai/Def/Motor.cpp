@@ -4,7 +4,7 @@ void Motor::begin(){
   for(int i=0;i<NUM;i++){
     pinMode(PIN[i][EN], OUTPUT);
     pinMode(PIN[i][PH], OUTPUT);
-    analogWriteFrequency(PIN[i][EN], FREQUENCY);
+    // analogWriteFrequency(PIN[i][EN], FREQUENCY);
   }
   
   Serial.println("motor setup");
@@ -29,15 +29,6 @@ void Motor::add(float m1, float m2, float m3, float m4){
   return;
 }
 
-void Motor::addRaw(float m1, float m2, float m3, float m4){
-  motor_add[0] = m1;
-  motor_add[1] = m2;
-  motor_add[2] = m3;
-  motor_add[3] = m4;
-
-  return;
-}
-
 void Motor::setDir(float dir, float p_gain){
   // P制御
   float power = dir / 1.8;
@@ -54,24 +45,6 @@ void Motor::moveDir(float dir, uint8_t power){
   for(int i=0;i<NUM;i++){
     float t = (-dir-45-i*90)*3.14/180.0;
     motor[i] = sin(t)*power;
-  }
-
-  return;
-}
-
-void Motor::moveDirFast(float dir, uint8_t power){
-  moveDir(dir, power);
-
-  float max = 0;
-  for(int i=0;i<NUM;i++){
-    if(abs(motor[i]) > max){
-      max = abs(motor[i]);
-    }
-  }
-
-  float rate = 0;
-  for(int i=0;i<NUM;i++){
-    motor[i] = motor[i] * 100 / max;
   }
 
   return;
@@ -116,6 +89,8 @@ void Motor::avr() {
   return;
 }
 
+
+
 // void Motor::avr(){
 //   static int queue_index = 0;      // 出力値のキューのインデックス
 
@@ -133,19 +108,15 @@ void Motor::avr() {
 // }
 
 void Motor::write(){
-  raw_sum = 0;
   for(int i=0;i<NUM;i++){
-    motor_raw[i] += motor_add[i];
-    motor_add[i] = 0;
+      motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
+      motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
 
-    motor_raw[i] = motor_raw[i]<-100.0 ? -100.0 : motor_raw[i];
-    motor_raw[i] = 100.0<motor_raw[i]  ?  100.0 : motor_raw[i];
-
-    raw_sum += abs(motor_raw[i]);
-
-    digitalWrite( PIN[i][PH], motor_raw[i]>0 );
-    analogWrite ( PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100) );
+      digitalWrite( PIN[i][PH], motor_raw[i]>0);
+      analogWrite(  PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100));
+      // Serial.printf("%f ", motor_raw[i]);
   }
+  // Serial.println();
 
   return;
 }
