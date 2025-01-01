@@ -45,8 +45,10 @@ void Line::read(){
 
 
   // 角度算出
-  on = false;
-  dir = 0;
+  on_prev = on;
+  dir_prev = dir;
+
+
   num = 0;
   vec1.set(10.0f, 10.0f);   // ちいさいx, y
   vec2.set(-10.0f, -10.0f); // でかいx, y
@@ -68,21 +70,17 @@ void Line::read(){
     }
   }
 
-  
 
   // ラインのベクトル
   float x = (vec1.x + vec2.x) / 2;
   float y = (vec1.y + vec2.y) / 2;
   vec.set(x, y);
+
+  
   
   on = num > 0;
-  distance = vec.len();
   dir = degrees(atan2(vec.y, vec.x));
-
-
-
-  dir_prev = dir;
-  vec_prev = vec;
+  distance = vec.len();
 
   return;
 }

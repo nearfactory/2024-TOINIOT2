@@ -182,25 +182,29 @@ void Display::Camera(){
   int width = 76;
   int height = 48;
 
-  printd(8,16,to_string(camera.goal_dir));
+  printd(8,16,to_string(camera.atk.dir));
 
-  printd(104, 8,  to_string(camera.atk_x));
-  printd(104, 16, to_string(camera.atk_y));
-  printd(104, 24, to_string(camera.atk_w));
-  printd(104, 32, to_string(camera.atk_h));
+  printd(104, 8,  to_string(camera.atk.x));
+  printd(104, 16, to_string(camera.atk.y));
+  printd(104, 24, to_string(camera.atk.w));
+  printd(104, 32, to_string(camera.atk.h));
 
   display.drawRect(64-width/2, 16, width, height, WHITE);
 
-  // 検出されたブロック全体のバウンディングボックス
-  for(int i=0;i<camera.block_num;i++){
-    display.fillRect(
-      26+ camera.block[i].x *width/320.0,
-      16+ camera.block[i].y *height/200.0,
-      camera.block[i].width  *width/320.0,
-      camera.block[i].height *height/200.0,
-      WHITE
-    );
-  }
+  // // 検出されたブロック全体のバウンディングボックス
+  // for(int i=0;i<camera.block_num;i++){
+  //   display.fillRect(
+  //     26+ camera.block[i].x *width/320.0,
+  //     16+ camera.block[i].y *height/200.0,
+  //     camera.block[i].width  *width/320.0,
+  //     camera.block[i].height *height/200.0,
+  //     WHITE
+  //   );
+  // }
+
+  display.fillRect(camera.atk.x1 *width/320, camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
+  display.fillRect(camera.def.x1 *width/320, camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
+
   return;
 }
 
@@ -212,7 +216,7 @@ void Display::Dir(){
   str.erase(str.begin()+5,str.end());
   printd(8, 32, str);
 
-  printd(8,16,to_string(dir.accel_sum));
+  // printd(8,16,to_string(dir.accel_sum));
   printd(8,24,to_string(motor.raw_sum));
 
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180, 24);
@@ -352,7 +356,7 @@ void Display::Game(){
   if(ui.buttonUp(1)) dir.setDefault();
 
   printd(120,32,"change atk",ALIGN::RIGHT);
-  printd(120,40,"sig="+to_string(camera.atk_sig),ALIGN::RIGHT);
+  printd(120,40,"sig="+to_string(camera.atk.sig),ALIGN::RIGHT);
   if(ui.buttonUp(2)) camera.changeAtk();
 
 
