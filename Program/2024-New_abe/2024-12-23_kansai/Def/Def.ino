@@ -115,12 +115,10 @@ void loop() {
 
   // 1.ライントレース
   if(state == State::LineTrace){
-    // 白線の角度の範囲を -90° ~ 90°に収める
+    // 白線の角度の範囲を -90° ~ 90°に変換する
     float line_dir = line.dir;
-    if(abs(line_dir) > 90){
-      if(line_dir < 0)  line_dir += 180.0;
-      else              line_dir -= 180.0;
-    }
+    if     (line_dir >  90) line_dir -= 180.0;
+    else if(line_dir < -90) line_dir += 180.0;
 
     // 白線に垂直に動くためのベクトル
     float follow_dir   = 0;
@@ -143,6 +141,11 @@ void loop() {
     Vec2 move_vec;
     move_vec.x = line.vec.x + cos(radians(follow_dir)) * follow_power;
     move_vec.y = line.vec.y + sin(radians(follow_dir)) * follow_power;
+    
+    float move_power = move_vec.len() * 100;
+    if(move_power > 100) move_power = 100;
+
+    motor.moveDir(radians(atan2(move_vec.y, move_vec.x)), move_power);
 
 
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
