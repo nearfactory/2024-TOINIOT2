@@ -1,8 +1,6 @@
 #include "wiring.h"
 #include "Ball.hpp"
 
-extern float r;
-
 void Ball::begin(){
   for(auto p:PIN) pinMode(p, INPUT);
   Serial.println("ball setup");
@@ -17,8 +15,6 @@ void Ball::read(){
   int max = 1023;
   int max_id = 0;
 
-  float x2=0, y2=0;
-  double dir2 = 0.0;
 
   for(int i=0;i<NUM;i++){
     ball[i] = analogRead(PIN[i]);
@@ -47,7 +43,7 @@ void Ball::read(){
   // 保持
   if(is_hold){
     // 持ち終わり
-    if(abs(dir) > 30.0 || distance > r + 400 || !sub.is_hold){
+    if(abs(dir) > 30.0 || distance > 14800 || !sub.is_hold){
       is_hold = false;
       not_hold_begin = millis();
     }else{

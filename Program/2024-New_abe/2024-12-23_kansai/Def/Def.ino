@@ -8,29 +8,26 @@
 #include "Camera.hpp"
 #include "Dir.hpp"
 #include "Display.hpp"
+#include "Kicker.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
+#include "Sub.hpp"
 #include "UI.hpp"
+
+#include "StateMachine.hpp"
 
 Ball ball;
 Camera camera;
 Dir dir;
 Display display;
+Kicker kicker;
 Line line;
 Motor motor;
+Sub sub;
 UI ui;
 
 using namespace std;
 
-
-
-// ステートマシン
-enum class State{
-  LineTrace,
-  KeeperDash,
-  BackToGoal_Weak,
-  BackToGoal_Strong
-};
 State state = State::LineTrace;
 
 

@@ -4,8 +4,6 @@
 
 using namespace std;
 
-extern float r;
-
 void Display::begin(){
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
     Serial.println("Display err!");
@@ -364,6 +362,21 @@ void Display::Game(){
   printd(16,24,to_string(ui.damaged_timer/1000) );
   if(ui.damaged_timer < 0) display.invertDisplay(true);
 
+  printd(8,40,"state:");
+  switch(state){
+  case State::LineTrace:
+    printd(16,48,"LineTrace");
+    break;
+  case State::KeeperDash:
+    printd(16,48,"KeeperDash");
+    break;
+  case State::BackToGoal_Weak:
+    printd(16,48,"BackToGoal_Weak");
+    break;
+  case State::BackToGoal_Strong:
+    printd(16,48,"BackToGoal_Strong");
+    break;
+  }
 
   return;
 }

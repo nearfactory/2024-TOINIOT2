@@ -17,6 +17,8 @@
 #include "Motor.hpp"
 #include "UI.hpp"
 
+#include "StateMachine.hpp"
+
 extern Ball ball;
 extern Camera camera;
 extern Dir dir;
@@ -26,6 +28,8 @@ extern Motor motor;
 extern UI ui;
 
 using namespace std;
+
+extern State state;
 
 
 
