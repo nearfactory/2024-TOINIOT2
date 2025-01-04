@@ -14,6 +14,7 @@ enum MOTOR : uint8_t{
 void setup() {
   for(int i=0;i<MOTOR_PWM_TYPE;i++){
     for(int j=0;j<MOTOR_NUM;j++){
+      analogWriteFrequency(MOTOR_PIN[j][MOTOR::EN], 40000);
       pinMode(MOTOR_PIN[j][i], OUTPUT);
     }
   }

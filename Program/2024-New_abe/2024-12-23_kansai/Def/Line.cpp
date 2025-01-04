@@ -71,16 +71,18 @@ void Line::read(){
   }
 
 
-  // ラインのベクトル
-  float x = (vec1.x + vec2.x) / 2;
-  float y = (vec1.y + vec2.y) / 2;
-  vec.set(x, y);
-
-  
-  
   on = num > 0;
-  dir = degrees(atan2(vec.y, vec.x));
-  distance = vec.len();
+  if(on){
+    // ラインのベクトル
+    float x = (vec1.x + vec2.x) / 2;
+    float y = (vec1.y + vec2.y) / 2;
+    vec.set(x + 0.6, -y);
+
+    
+    
+    dir = degrees(atan2(vec.y, vec.x));
+    distance = vec.len();
+  }
 
   return;
 }

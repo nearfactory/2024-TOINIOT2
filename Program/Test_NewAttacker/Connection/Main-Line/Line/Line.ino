@@ -5,10 +5,10 @@ void setup() {
 void loop() {
 
   Serial.print("atmega:");
-  while(Serial.available()){
-    Serial.print((char)Serial.read());
-  }
-  Serial.println();
+  // while(Serial.available()){
+  //   Serial.print((char)Serial.read());
+  // }
+  // Serial.println();
 
   delay(20);
 }
