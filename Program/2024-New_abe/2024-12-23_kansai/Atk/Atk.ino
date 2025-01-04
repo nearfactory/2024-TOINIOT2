@@ -159,7 +159,7 @@ void loop() {
       else{
         float theta = degrees(atan2(r, ball.distance));
         move_dir = ball.dir + (ball.dir>0?theta:-theta);
-        h = 20;
+        h = 20; 
       }
 
       motor.moveDirFast(move_dir, 100);
