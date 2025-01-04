@@ -200,8 +200,13 @@ void Display::Camera(){
   //   );
   // }
 
-  display.fillRect(camera.atk.x1 *width/320, camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
-  display.fillRect(camera.def.x1 *width/320, camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
+  if(camera.atk.is_visible){
+    display.drawRect(64-width/2 + camera.atk.x1 *width/320, 16 + camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
+    // Serial.printf(" x:%d y:%d w:%d h:%d\n", camera.atk.x1, camera.atk.x2, camera.atk.w, camera.atk.h);
+  }
+  if(camera.def.is_visible){
+    display.drawRect(64-width/2 + camera.def.x1 *width/320, 16 + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
+  }
 
   return;
 }
@@ -276,11 +281,13 @@ void Display::Line(){
   }
 
   // ベクトル
-  display.drawRect(64-1-cos(radians(line.dir))*13, 32-1+sin(radians(line.dir))*13, 2, 2, WHITE);
+  display.drawRect(64-1-cos(radians(line.dir))*13, 32-1-sin(radians(line.dir))*13, 2, 2, WHITE);
 
   // 情報
-  printd(8, 40, "on:"+to_string(line.on));
-  printd(8, 48, "num:"+to_string(line.num));
+  printd(8, 32, "on:"+to_string(line.on));
+  printd(8, 40, "num:"+to_string(line.num));
+  // printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
+  printd(8, 48, "dis:"+to_string(line.distance));
   printd(8, 56, "dir:"+to_string(line.dir));
 
   // しきい値調整
@@ -360,7 +367,7 @@ void Display::Game(){
 
   printd(8,16,"damaged:");
   printd(16,24,to_string(ui.damaged_timer/1000) );
-  if(ui.damaged_timer < 0) display.invertDisplay(true);
+  // if(ui.damaged_timer < 0) display.invertDisplay(true);
 
   printd(8,40,"state:");
   switch(state){

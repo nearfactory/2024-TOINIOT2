@@ -13,9 +13,9 @@ void Camera::read(){
   pixy.ccc.getBlocks(false);
 
   block_num = pixy.ccc.numBlocks;
-  if(block_num == 0){
-    return;
-  }
+  // if(block_num == 0){
+  //   return;
+  // }
 
 
   atk.is_visible = false;
@@ -61,6 +61,11 @@ void Camera::read(){
 
       if(atk.y1 > y1) atk.y1 = y1;
       if(atk.y2 < y2) atk.y2 = y2;
+
+      atk.x1 = x1;
+      atk.x2 = x2;
+      atk.y1 = y1;
+      atk.y2 = y2;
 
     }
     // def

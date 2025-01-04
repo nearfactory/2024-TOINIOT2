@@ -30,6 +30,8 @@ using namespace std;
 
 State state = State::LineTrace;
 
+#define COMPILE 7
+
 
 
 void setup() {
@@ -52,6 +54,8 @@ void setup() {
   while(system<3 || gyro<3 || mag<3){
     dir.calibration(&system, &gyro, &accel, &mag);
     digitalWrite(LED_BUILTIN, HIGH);
+
+    display.printd(8,8,to_string(COMPILE));
 
     display.printd(32,16,"system: "+to_string(system));
     display.printd(32,24,"gyro  : "+to_string(gyro));
@@ -98,7 +102,7 @@ void loop() {
 
     motor.avr();
     motor.write();
-    delay(10);
+    // delay(15);
 
     return;
   }
@@ -127,27 +131,41 @@ void loop() {
     float follow_power = abs(sin(radians(ball.dir - line.dir)));
 
 
+    /*
     // ペナルティエリア内にボールがある場合に止める
     bool is_ball_penalty_area = false;
     if(is_ball_penalty_area){
       follow_power = 0;
     }
+    */
 
 
     // 合成
-    Vec2 move_vec;
-    move_vec.x = line.vec.x + cos(radians(follow_dir)) * follow_power;
-    move_vec.y = line.vec.y + sin(radians(follow_dir)) * follow_power;
+    Vec2 move_vec(0,0);
+    // move_vec.x = line.vec.x + cos(radians(follow_dir)) * follow_power;
+    // move_vec.y = line.vec.y + sin(radians(follow_dir)) * follow_power;
     
-    float move_power = move_vec.len() * 100;
-    if(move_power > 100) move_power = 100;
+    if(line.distance > 0.3){
+      move_vec.x += line.vec.x;
+      move_vec.y += line.vec.y;
+    }
 
-    motor.moveDir(radians(atan2(move_vec.y, move_vec.x)), move_power);
+    if(abs(ball.dir) > 30){
+      move_vec.y += sin(radians(ball.dir)) * 4;
+    }
+    // move_vec.x = 0.01;
+
+    // float move_power = move_vec.len() * 100;
+    // if(move_power > 100) move_power = 100;
+
+    float move_dir = degrees(atan2(move_vec.y, move_vec.x));
+    motor.moveDirFast(move_dir, 100);
 
 
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
+    /*
     // トリガー
     static uint32_t ball_front_begin = 0;
     static bool ball_front = false;
@@ -168,6 +186,7 @@ void loop() {
     else if(line.on == false){
       // state = State::BackToGoal_Weak;
     }
+    */
 
   }
 
@@ -206,9 +225,9 @@ void loop() {
 
     // トリガー
     static uint32_t is_not_line_begin = 0;
-    if(line.on_prev == true && line.on == false){
-      is_not_line_begin = millis();
-    }
+    // if(line.on_prev == true && line.on == false){
+    //   is_not_line_begin = millis();
+    // }
 
     // →  1.ライントレース
     if(line.on){

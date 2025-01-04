@@ -105,12 +105,12 @@ void loop(){
   // }
   // Serial.print(threshold*4);
   // Serial.print("\t");
-  if(Serial.available()){
-    char c = Serial.read();
-    if(c == 'u') threshold += 5;
-    if(c == 'd') threshold -= 5;
-    // threshold -= 5;
-  }
+  // if(Serial.available()){
+  //   char c = Serial.read();
+  //   if(c == 'u') threshold += 5;
+  //   if(c == 'd') threshold -= 5;
+  //   // threshold -= 5;
+  // }
   analogWrite(THRESHOLD_PIN, threshold);
 
   // 白線を取得
