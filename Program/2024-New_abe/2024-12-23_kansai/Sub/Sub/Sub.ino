@@ -1,8 +1,8 @@
 constexpr uint8_t BALL01K_PIN  = A0;
 constexpr uint8_t BALL02K_PIN  = A1;
-// constexpr uint8_t VOLUME_PIN   = A2;
+constexpr uint8_t VOLUME_PIN   = A2;
 
-// constexpr uint8_t KICKER_PIN   = D3;
+constexpr uint8_t KICKER_PIN   = D3;
 // constexpr uint8_t PH_PIN       = 4;
 // constexpr uint8_t EN_PIN       = 5;
 // constexpr uint8_t NEOPIXEL_PIN = 10;
@@ -15,9 +15,10 @@ void setup() {
 
   pinMode(BALL01K_PIN, INPUT);
   pinMode(BALL02K_PIN, INPUT);
-  // pinMode(VOLUME_PIN, INPUT);
 
-  // pinMode(KICKER_PIN, OUTPUT);
+  pinMode(VOLUME_PIN, INPUT);
+
+  pinMode(KICKER_PIN, OUTPUT);
   // pinMode(PH_PIN, OUTPUT);
   // pinMode(EN_PIN, OUTPUT);
   // pinMode(NEOPIXEL_PIN, OUTPUT);
@@ -44,61 +45,43 @@ void setup() {
 
 bool kicker = 0;
 uint32_t kicker_time = 0;
-int dribbler = 0;
+// int dribbler = 0;
 
 uint32_t kicker_timer = 0;
 
 
-void loop() {  
-  /*
-  // 受信
-  if(Serial1.available()){
-    // 最初の1byteを読み出す
-    char c = Serial1.read();
-    kicker   = (c >> 7) & 0b00000001;
-    dribbler = (c >> 1) & 0b00111111;
-    while(Serial1.available())
+void loop() {
+  while(Serial1.available()){
+    if((char)Serial1.read() == 'k'){
+      if(millis()-kicker_timer > 10000){
+        kicker_timer = millis();
+      }
+    }
   }
 
-  delay(1);
-  */
+  if(millis()-kicker_timer < 100){
+    digitalWrite(KICKER_PIN, HIGH);
+  }else{
+    digitalWrite(KICKER_PIN, LOW);
+  }
 
 
-  // while(Serial1.available()){
-  //   if(Serial1.read() == 'k'){
-  //     kicker_timer = millis();
-  //   }
-  // }
+  // 送信
+  char send[4] = "";
+  send[0] = ((analogRead(BALL01K_PIN) >> 4) & 0b11111110) + 1;
+  send[1] = ((analogRead(BALL02K_PIN) >> 4) & 0b11111110) + 1;
+  send[2] = ((analogRead(VOLUME_PIN)  >> 4) & 0b11111110) + 1;
+  send[3] = '\0';
+  Serial1.print(send);
 
-  // if(millis()-kicker_timer < 50){
-  //   digitalWrite(KICKER_PIN, HIGH);
-  // }else{
-  //   digitalWrite(KICKER_PIN, LOW);
-  // }
 
-  // Serial1.print("min:0 max:1023 ");
-  // Serial1.printf("b1:%d b2:%d \n",
+  // テスト
+  // Serial.print("min:0 max:4095 ");
+  // Serial.printf("b1:%d b2:%d \n",
   //   analogRead(BALL01K_PIN),
   //   analogRead(BALL02K_PIN)
   //   // analogRead(VOLUME_PIN)
   // );
-
-  /*
-  // 送信
-  char send[4] = "";
-  send[0] = (analogRead(BALL01K_PIN) >> 4 + 1) & 0b11111111;
-  send[1] = (analogRead(BALL02K_PIN) >> 4 + 1) & 0b11111111;
-  send[2] = (analogRead(VOLUME_PIN)  >> 4 + 1) & 0b11111111;
-  send[3] = '\0';
-  Serial1.print(send);
-  */
   
-  // 送信
-  char send[3] = "";
-  send[0] = (analogRead(BALL01K_PIN) >> 3 + 1) & 0b11111111;
-  send[1] = (analogRead(BALL02K_PIN) >> 3 + 1) & 0b11111111;
-  send[3] = '\0';
-  Serial1.print(send);
-  
-  delay(4);
+  delay(2);
 }
