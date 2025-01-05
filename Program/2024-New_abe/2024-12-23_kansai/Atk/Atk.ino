@@ -88,8 +88,11 @@ uint32_t kick_timer = 0;
 float keep_dir_goal = 0;
 
 
+uint32_t state_begin = 0;
+
+
 void loop() {
-  // delayなしで3(ms)
+  // delayなしで約3(ms)
 
   ball.read();
   camera.read();
@@ -97,6 +100,7 @@ void loop() {
   line.read();
   sub.read();
   ui.read();
+
 
 
   // ディスプレイ
@@ -127,53 +131,107 @@ void loop() {
 
 
 
-  // 回り込み(接線)
-  // 回り込み(円)
-  // 回り込み(PD)
-  float move_dir = 0;
+  uint32_t state_elapsed = millis() - state_begin;
 
-  // PD
-  if(abs(ball.dir)<h){
-    move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
-    h = 45;
+
+
+
+  // キックオフ
+  if(state == State::KickOff){
+    motor.moveDirFast(ball.dir, 100);
+
+
+    // ボールを保持 -> ゴールに向かう
+    if(ball.is_hold){
+      state = State::Dribble;
+    }
+
+    // 1秒経過 -> 回り込み
+    if(state_elapsed > 1000){
+      state = State::Follow;
+    }
+
   }
-  // 円周上
-  else if(ball.distance < r){
-    float theta = 90 + (r-ball.distance) * 90 / r;
-    move_dir = ball.dir + (ball.dir>0?theta:-theta);
-    // keep_dir = true;
-    h = 20;
+
+
+
+  // 回り込み
+  else if(state == State::Follow){
+    float move_dir = 0;
+
+    // PD
+    if(abs(ball.dir)<h){
+      move_dir = ball.dir * p_gain - d_gain*(ball.dir -     ball.dir_prev);
+      h = 45;
+    }
+    // 円周上
+    else if(ball.distance < r){
+      float theta = 90 + (r-ball.distance) * 90 / r;
+      move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      h = 20;
+    }
+    //接線
+    else{
+      float theta = degrees(atan2(r, ball.distance));
+      move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      h = 20;
+    }
+
+    motor.moveDir(move_dir, 100);
+    motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+   
+    // ボールを保持 -> ゴールに向かう
+    if(ball.is_hold){
+      state = State::Dribble;
+    }
+
   }
-  //接線
+
+
+
+  // ゴールに向かう
+  else if(state == State::Dribble){
+    // キーパーのいない方のゴールの角を狙う
+    
+
+
+  }
+
+
+
+  // キーパーをどかす
+  else if(state == State::AvoidKeeper){
+    // ゴール左側に向かいながら右を狙う
+    
+  }
+
+
+
+  // 押し合い
+  else if(state == State::Pushing){
+    
+  }
+
+
+
+  // ボールが取り上げられた
+  else if(state == State::NoBall){
+    // 近くの中立点の前まで移動する
+    
+  }
+
+
+
+  // 中立点からの回り込み・シュート
+  else if(state == State::Neutral){
+    // ゴールの方に45度傾ける
+    
+  }
   else{
-    float theta = degrees(atan2(r, ball.distance));
-    move_dir = ball.dir + (ball.dir>0?theta:-theta);
-    h = 20;
+    state = State::Follow;
   }
 
-  motor.moveDir(move_dir, 100);
-
-
-
-  // ボールが見えない場合に後ろに下がる (デバッグ段階では手前に)
-  if(!ball.is_exist){
-    motor.moveDir(180, 60);
-  }
-
-  // 姿勢制御
-  float d_gain = 0.45f;
-  float p_gain = 0.64f;
-  float dir_power = 0;
-
-  dir_power = (dir.dir) * p_gain + (dir.dir - dir.dir_prev) * d_gain;
-
-  if(abs(dir.dir) > 90) {
-    // 故障復帰
-    motor.set(dir_power, dir_power, dir_power, dir_power);
-  }else{
-    // 姿勢制御
-    motor.add(dir_power, dir_power, dir_power, dir_power);
-  }
 
   motor.avr();
   motor.write();
