@@ -248,7 +248,7 @@ void Display::Kicker(){
   display.fillRect(96, 8+(255-sub.ball02k)*height/255, width, (sub.ball02k)*height/255, WHITE);
 
   printd(120,16,"test kick",ALIGN::RIGHT);
-  if(ui.buttonUp(1)) kicker.kick();
+  if(ui.buttonUp(1)) sub.kick();
   
   return;
 }
@@ -327,7 +327,7 @@ void Display::Valiables(){
 
   
   // 変数のセレクタ
-  if(ui.buttonUp(0)){
+  if(ui.buttonUp(3)){
     selector++;
     selector %= variables.size();
   }
