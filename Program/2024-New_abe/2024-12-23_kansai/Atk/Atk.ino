@@ -113,6 +113,8 @@ void loop() {
     motor.avr();
     motor.write();
     delay(10);
+
+    return;
   }
 
   // ディスプレイを消灯
@@ -167,7 +169,7 @@ void loop() {
     motor.add(dir_power, dir_power, dir_power, dir_power);
   }
 
-  motor.moveDir(0, 80);
+  // motor.moveDir(0, 80);
 
   motor.avr();
   motor.write();

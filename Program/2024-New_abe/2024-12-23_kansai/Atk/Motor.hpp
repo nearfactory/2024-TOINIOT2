@@ -12,10 +12,10 @@ private:
   static constexpr uint32_t FREQUENCY = 50000;
   const uint8_t PIN[NUM][PWM_TYPE]{
     // for Main ver.002
-    {2, 3},
-    {4, 5},
-    {6, 7},
-    {8, 9}
+    {9, 8},
+    {7, 6},
+    {5, 4},
+    {3, 2}
     
     // for Main ver.001
     // {29, 28},
