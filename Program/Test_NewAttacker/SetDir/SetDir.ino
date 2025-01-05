@@ -195,11 +195,11 @@ void loop(){
     display.printf("pow:%f", power);
     display.display();
 
-    motor_raw[0] = power;
-    motor_raw[1] = power;
-    motor_raw[2] = power;
-    motor_raw[3] = power;
-    motorRaw();
+    // motor_raw[0] = power;
+    // motor_raw[1] = power;
+    // motor_raw[2] = power;
+    // motor_raw[3] = power;
+    // motorRaw();
   }else{
     motor[0] = 0;
     motor[1] = 0;
