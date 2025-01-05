@@ -5,7 +5,7 @@
 class UI{
 private:
   static constexpr uint8_t BUTTON_NUM = 4;
-  const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 36,31,30,32 };
+  const     uint8_t BUTTON_PIN[BUTTON_NUM] = { 36,30,31,32 };
 
 
   bool button[BUTTON_NUM] = {false};

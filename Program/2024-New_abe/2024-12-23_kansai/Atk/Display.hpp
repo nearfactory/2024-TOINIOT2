@@ -16,6 +16,8 @@
 #include "Motor.hpp"
 #include "UI.hpp"
 
+#include "StateMachine.hpp"
+
 extern Ball ball;
 extern Camera camera;
 extern Dir dir;
@@ -23,11 +25,13 @@ extern Line line;
 extern Motor motor;
 extern UI ui;
 
-// #include "Kicker.hpp"
-// extern Kicker kicker;
-
 using namespace std;
 
+extern State state;
+
+
+// #include "Kicker.hpp"
+// extern Kicker kicker;
 
 
 enum class ALIGN : uint8_t{
@@ -74,7 +78,7 @@ private:
 public:
   uint8_t mode = 0;
 
-  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::VARIABLES) {}
+  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::KICKER) {}
 
   void begin();
   void clear();

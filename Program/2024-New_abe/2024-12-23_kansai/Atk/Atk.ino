@@ -62,6 +62,7 @@ void setup() {
   display.printd(8,56,"set dir");
   display.draw();
   while(!ui.buttonUp(0)){ ui.read(); }
+  display.draw();
   
   dir.setDefault();
 }
@@ -98,7 +99,9 @@ void loop() {
   ui.read();
 
 
+  // ディスプレイ
   if(ui.is_toggle){
+    Serial.println("display");
     if(ui.buttonUp(0)) display.next();
 
     display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
@@ -116,7 +119,6 @@ void loop() {
 
     return;
   }
-
   // ディスプレイを消灯
   if(is_display_on){
     display.draw();
@@ -124,6 +126,10 @@ void loop() {
   }
 
 
+
+  // 回り込み(接線)
+  // 回り込み(円)
+  // 回り込み(PD)
   float move_dir = 0;
 
   // PD
@@ -159,7 +165,7 @@ void loop() {
   float p_gain = 0.64f;
   float dir_power = 0;
 
-  dir_power = (dir.dir) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
+  dir_power = (dir.dir) * p_gain + (dir.dir - dir.dir_prev) * d_gain;
 
   if(abs(dir.dir) > 90) {
     // 故障復帰
@@ -169,10 +175,6 @@ void loop() {
     motor.add(dir_power, dir_power, dir_power, dir_power);
   }
 
-  // motor.moveDir(0, 80);
-
   motor.avr();
   motor.write();
-
-  delay(1);
 }
