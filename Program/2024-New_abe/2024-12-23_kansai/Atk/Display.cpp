@@ -370,6 +370,7 @@ void Display::Game(){
   if(ui.buttonUp(2)) camera.changeAtk();
 
 
+
   printd(8,16,"damaged:");
   printd(16,24,to_string(ui.damaged_timer/1000) );
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
