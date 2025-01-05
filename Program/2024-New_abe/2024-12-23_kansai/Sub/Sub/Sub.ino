@@ -67,12 +67,13 @@ void loop() {
 
 
   // 送信
-  char send[4] = "";
+  uint8_t send[4] = "";
   send[0] = ((analogRead(BALL01K_PIN) >> 4) & 0b11111110) + 1;
   send[1] = ((analogRead(BALL02K_PIN) >> 4) & 0b11111110) + 1;
   send[2] = ((analogRead(VOLUME_PIN)  >> 4) & 0b11111110) + 1;
   send[3] = '\0';
-  Serial1.print(send);
+  // Serial1.print(send);
+  for(int i=0;i<4;i++) Serial1.write(send[i]);
 
 
   // テスト
