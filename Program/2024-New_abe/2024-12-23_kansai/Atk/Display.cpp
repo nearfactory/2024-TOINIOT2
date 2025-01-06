@@ -380,31 +380,31 @@ void Display::Game(){
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
 
   switch(state){
-  case KickOff:
+  case State::KickOff:
     printd(8,56,"kick off");
     break;
-  case Damaged:
+  case State::Damaged:
     printd(8,56,"damaged");
     break;
-  case Follow:
+  case State::Follow:
     printd(8,56,"follow");
     break;
-  case Dribble:
+  case State::Dribble:
     printd(8,56,"dribble");
     break;
-  case Shoot:
+  case State::Shoot:
     printd(8,56,"shoot");
     break;
-  case AvoidKeeper:
+  case State::AvoidKeeper:
     printd(8,56,"avoid keeper");
     break;
-  case Pushing:
+  case State::Pushing:
     printd(8,56,"pushing");
     break;
-  case NoBall:
+  case State::NoBall:
     printd(8,56,"no ball");
     break;
-  case Neutral:
+  case State::Neutral:
     printd(8,56,"neutral");
     break;
   }

@@ -112,8 +112,7 @@ void loop() {
     display.draw();
     is_display_on = true;
 
-    // state = State::KickOff;
-    state = State::Follow;
+    state = State::KickOff;
     state_begin = millis();
 
     motor.set(0,0,0,0);
@@ -122,11 +121,6 @@ void loop() {
     motor.write();
     delay(10);
 
-    if(ball.is_hold){
-      ui.buzzer(440.0f);
-    }else{
-      ui.buzzer(880.0f);
-    }
 
     return;
   }
@@ -149,14 +143,14 @@ void loop() {
 
   // キックオフ
   if(state == State::KickOff){
-    // motor.moveDirFast(ball.dir, 100);
+    motor.moveDir(ball.dir, 100);
     // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-    motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, dir.p_gain, dir.d_gain);
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
     // 後ろ向き -> 故障復帰
     if(abs(dir.dir) > 90){
-      // state = State::Damaged;
+      state = State::Damaged;
     }
 
     // ボールを保持 -> ゴールに向かう
@@ -166,7 +160,7 @@ void loop() {
 
     // 1秒経過 -> 回り込み
     if(state_elapsed > 1000){
-      // state = State::Follow;
+      state = State::Follow;
     }
 
   }
@@ -207,7 +201,7 @@ void loop() {
       h = 20;
     }
 
-    motor.moveDir(move_dir, 100);
+    motor.moveDir(move_dir, 80);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
    
@@ -226,13 +220,16 @@ void loop() {
     
     // 攻める角度の決定
 
-    motor.moveDirFast(camera.atk.dir, 100);
-    motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, dir.p_gain, dir.d_gain);
+    // motor.moveDirFast(camera.chance_dir, 0);
+    if(camera.atk.is_visible){
+      motor.moveDir(0,0);
+      motor.setDir(camera.chance_dir, camera.chance_dir_prev, dir.p_gain, dir.d_gain);
+    }
 
 
     // ボールを保持していない -> 回り込みなおす
     if(ball.is_hold == false){
-      state = State::Follow;
+      // state = State::Follow;
     }
 
     // ロボットが動かない -> 押し合い
@@ -241,7 +238,7 @@ void loop() {
 
     // センターサークルを超えた -> キックし回り込み
     if(camera.atk.h > 40){
-      state = State::Shoot;
+      // state = State::Shoot;
     }
 
 

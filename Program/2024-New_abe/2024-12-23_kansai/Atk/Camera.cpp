@@ -70,11 +70,11 @@ void Camera::read(){
       def.is_visible = true;
       def.num++;
 
-      if(atk.x1 > x1) atk.x1 = x1;
-      if(atk.x2 < x2) atk.x2 = x2;
+      if(def.x1 > x1) def.x1 = x1;
+      if(def.x2 < x2) def.x2 = x2;
 
-      if(atk.y1 > y1) atk.y1 = y1;
-      if(atk.y2 < y2) atk.y2 = y2;
+      if(def.y1 > y1) def.y1 = y1;
+      if(def.y2 < y2) def.y2 = y2;
 
     }
 
@@ -110,7 +110,8 @@ void Camera::read(){
   // def.dir = sum / (float)DIR_QUEUE_SIZE;
   // def.dir_queue_id = (def.dir_queue_id + 1) % DIR_QUEUE_SIZE;
 
-
+  chance_dir_prev = chance_dir;
+  chance_dir = atk.dir;
 
   return;
 }

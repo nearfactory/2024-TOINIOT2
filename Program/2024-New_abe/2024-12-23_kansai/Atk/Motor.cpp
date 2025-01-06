@@ -58,6 +58,10 @@ void Motor::setDir(float dir, float dir_prev, float p_gain, float d_gain){
 
 void Motor::setDirAdd(float dir, float dir_prev, float p_gain, float d_gain){
   float power = dir * p_gain + (dir - dir_prev) * d_gain;
+
+  if(power > 100)  power = 100;
+  if(power < -100) power = -100;
+  
   add(power, power, power, power);  
   
   return;
