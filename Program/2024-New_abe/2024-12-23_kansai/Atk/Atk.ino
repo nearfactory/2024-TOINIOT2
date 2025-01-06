@@ -141,21 +141,15 @@ void loop() {
 
 
 
-  // キックオフ
+  // ok?: キックオフ(まっすぐ進めない時がある)
   if(state == State::KickOff){
-    motor.moveDir(ball.dir, 100);
-    // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    motor.moveDirFast(ball.dir, 100);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
     // 後ろ向き -> 故障復帰
     if(abs(dir.dir) > 90){
       state = State::Damaged;
-    }
-
-    // ボールを保持 -> ゴールに向かう
-    if(ball.is_hold){
-      // state = State::Dribble;
     }
 
     // 1秒経過 -> 回り込み
@@ -167,6 +161,7 @@ void loop() {
 
 
 
+  // ok: 故障復帰
   else if(state == State::Damaged){
     motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
@@ -179,7 +174,7 @@ void loop() {
 
 
 
-  // 回り込み
+  // ok: 回り込み
   else if(state == State::Follow){
     float move_dir = 0;
 
@@ -201,20 +196,20 @@ void loop() {
       h = 20;
     }
 
-    motor.moveDir(move_dir, 80);
+    motor.moveDir(move_dir, 100);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
    
     // ボールを保持 -> ゴールに向かう
     if(ball.is_hold){
-      // state = State::Dribble;
+      state = State::Dribble;
     }
 
   }
 
 
 
-  // ゴールに向かう
+  // ToDo: ゴールに向かう
   else if(state == State::Dribble){
     // キーパーのいない方のゴールの角を狙う
     
@@ -246,7 +241,7 @@ void loop() {
 
 
 
-  // シュート
+  // ToDo: シュート
   else if(state == State::Shoot){
     static int  type = 0;
     static bool is_decided = false;
@@ -311,7 +306,7 @@ void loop() {
 
 
 
-  // 押し合い
+  // ToDo: 押し合い
   else if(state == State::Pushing){
     // 左に押した後、右に切り返す
     if(state_elapsed < 2500){
