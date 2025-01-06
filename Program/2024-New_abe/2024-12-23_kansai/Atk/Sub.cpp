@@ -33,15 +33,16 @@ void Sub::read(){
   // テスト
   // Serial.printf("min:0 max:255 b01k:%d b02k:%d vol:%d \n", str[0], str[1], str[2]);
 
-  if(is_hold){
-    if(ball01k > 130 || ball02k > 130){
-      is_hold = false;
-    }
-  }else{
-    if(ball01k < 100 || ball02k < 100){
-      is_hold = true;
-    }
-  }
+  // if(is_hold){
+  //   if(ball01k > 160 || ball02k > 160){
+  //     is_hold = false;
+  //   }
+  // }else{
+  //   if(ball01k < 100 || ball02k < 100){
+  //     is_hold = true;
+  //   }
+  // }
+  is_hold = ball01k < 140 || ball02k < 140;
 
   return;
 }

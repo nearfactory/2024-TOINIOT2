@@ -23,7 +23,7 @@ void UI::read(){
   if(is_toggle_prev == false && is_toggle == true){
     damaged_begin = millis();
   }
-  damaged_timer = 300000 - ( millis() - damaged_begin );
+  damaged_timer = 30000 - ( millis() - damaged_begin );
 
   return;
 }

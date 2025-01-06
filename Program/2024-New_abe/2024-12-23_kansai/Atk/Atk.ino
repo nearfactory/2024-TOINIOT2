@@ -33,7 +33,8 @@ bool is_display_on = true;
 
 // 周り込み
 float h = 45;       // ヒステリシス
-float r = 14400.0; // 回り込みの半径
+// float r = 14400.0; // 回り込みの半径
+float r = 7000.0; // 回り込みの半径
 float p_gain = 1.5;
 float d_gain = 4.2;
 
@@ -111,7 +112,8 @@ void loop() {
     display.draw();
     is_display_on = true;
 
-    state = State::KickOff;
+    // state = State::KickOff;
+    state = State::Follow;
     state_begin = millis();
 
     motor.set(0,0,0,0);
@@ -119,6 +121,12 @@ void loop() {
     motor.avr();
     motor.write();
     delay(10);
+
+    if(ball.is_hold){
+      ui.buzzer(440.0f);
+    }else{
+      ui.buzzer(880.0f);
+    }
 
     return;
   }
@@ -141,23 +149,24 @@ void loop() {
 
   // キックオフ
   if(state == State::KickOff){
-    motor.moveDirFast(ball.dir, 100);
-    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    // motor.moveDirFast(ball.dir, 100);
+    // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, dir.p_gain, dir.d_gain);
 
 
     // 後ろ向き -> 故障復帰
     if(abs(dir.dir) > 90){
-      state = State::Damaged;
+      // state = State::Damaged;
     }
 
     // ボールを保持 -> ゴールに向かう
     if(ball.is_hold){
-      state = State::Dribble;
+      // state = State::Dribble;
     }
 
     // 1秒経過 -> 回り込み
     if(state_elapsed > 1000){
-      state = State::Follow;
+      // state = State::Follow;
     }
 
   }

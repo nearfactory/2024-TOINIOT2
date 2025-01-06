@@ -47,16 +47,16 @@ void Camera::read(){
     block.index = pixy.ccc.blocks[i].m_index;
     block.age   = pixy.ccc.blocks[i].m_age;
 
+    int x1 = block.x - block.w / 2;
+    int x2 = block.x + block.w / 2;
+
+    int y1 = block.y - block.h / 2;
+    int y2 = block.y + block.h / 2;
+
     // atk
     if(block.sig == atk.sig){
       atk.is_visible = true;
       atk.num++;
-
-      int x1 = block.x - block.w / 2;
-      int x2 = block.x + block.w / 2;
-
-      int y1 = block.y - block.h / 2;
-      int y2 = block.y + block.h / 2;
 
       if(atk.x1 > x1) atk.x1 = x1;
       if(atk.x2 < x2) atk.x2 = x2;
@@ -64,22 +64,11 @@ void Camera::read(){
       if(atk.y1 > y1) atk.y1 = y1;
       if(atk.y2 < y2) atk.y2 = y2;
 
-      // atk.x1 = x1;
-      // atk.x2 = x2;
-      // atk.y1 = y1;
-      // atk.y2 = y2;
-
     }
     // def
     else if(block.sig == def.sig){
       def.is_visible = true;
       def.num++;
-
-      int x1 = block.x - block.w / 2;
-      int x2 = block.x + block.w / 2;
-
-      int y1 = block.y - block.h / 2;
-      int y2 = block.y + block.h / 2;
 
       if(atk.x1 > x1) atk.x1 = x1;
       if(atk.x2 < x2) atk.x2 = x2;

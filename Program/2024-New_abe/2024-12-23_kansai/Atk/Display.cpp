@@ -210,8 +210,10 @@ void Display::Camera(){
     // Serial.printf(" x:%d y:%d w:%d h:%d\n", camera.atk.x1, camera.atk.x2, camera.atk.w, camera.atk.h);
   }
   if(camera.def.is_visible){
-    display.drawRect(left + camera.def.x1 *width/320, up + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
+    display.fillRect(left + camera.def.x1 *width/320, up + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
   }
+
+  // display.drawRect(left + 80 * width/320, up + 50 * height/200, 160 * width/320, 100 * height/200, WHITE);
 
   return;
 }
@@ -258,6 +260,8 @@ void Display::Kicker(){
 
   display.fillRect(8,  8+(255-sub.ball01k)*height/255, width, (sub.ball01k)*height/255, WHITE);
   display.fillRect(96, 8+(255-sub.ball02k)*height/255, width, (sub.ball02k)*height/255, WHITE);
+
+  printd(64,56,"hold :"+to_string(sub.is_hold),ALIGN::CENTER);
 
   printd(120,16,"test kick",ALIGN::RIGHT);
   if(ui.buttonUp(1)) sub.kick();
@@ -374,6 +378,36 @@ void Display::Game(){
   printd(8,16,"damaged:");
   printd(16,24,to_string(ui.damaged_timer/1000) );
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
+
+  switch(state){
+  case KickOff:
+    printd(8,56,"kick off");
+    break;
+  case Damaged:
+    printd(8,56,"damaged");
+    break;
+  case Follow:
+    printd(8,56,"follow");
+    break;
+  case Dribble:
+    printd(8,56,"dribble");
+    break;
+  case Shoot:
+    printd(8,56,"shoot");
+    break;
+  case AvoidKeeper:
+    printd(8,56,"avoid keeper");
+    break;
+  case Pushing:
+    printd(8,56,"pushing");
+    break;
+  case NoBall:
+    printd(8,56,"no ball");
+    break;
+  case Neutral:
+    printd(8,56,"neutral");
+    break;
+  }
 
   return;
 }

@@ -16,8 +16,6 @@
 #include "Motor.hpp"
 #include "UI.hpp"
 
-#include "StateMachine.hpp"
-
 extern Ball ball;
 extern Camera camera;
 extern Dir dir;
@@ -25,9 +23,11 @@ extern Line line;
 extern Motor motor;
 extern UI ui;
 
-using namespace std;
-
+#include "StateMachine.hpp"
 extern State state;
+
+
+using namespace std;
 
 
 // #include "Kicker.hpp"
@@ -78,7 +78,7 @@ private:
 public:
   uint8_t mode = 0;
 
-  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::KICKER) {}
+  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::GAME) {}
 
   void begin();
   void clear();
