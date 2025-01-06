@@ -12,7 +12,6 @@
 #include "Ball.hpp"
 #include "Camera.hpp"
 #include "Dir.hpp"
-#include "Kicker.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
 #include "UI.hpp"
@@ -20,13 +19,19 @@
 extern Ball ball;
 extern Camera camera;
 extern Dir dir;
-extern Kicker kicker;
 extern Line line;
 extern Motor motor;
 extern UI ui;
 
+#include "StateMachine.hpp"
+extern State state;
+
+
 using namespace std;
 
+
+// #include "Kicker.hpp"
+// extern Kicker kicker;
 
 
 enum class ALIGN : uint8_t{
@@ -73,7 +78,7 @@ private:
 public:
   uint8_t mode = 0;
 
-  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::VARIABLES) {}
+  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::GAME) {}
 
   void begin();
   void clear();

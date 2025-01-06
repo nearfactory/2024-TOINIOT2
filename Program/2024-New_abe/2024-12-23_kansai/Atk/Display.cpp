@@ -4,8 +4,6 @@
 
 using namespace std;
 
-extern float r;
-
 void Display::begin(){
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3c)){
     Serial.println("Display err!");
@@ -132,6 +130,8 @@ void Display::debug(uint8_t mode){
       break;
   }
 
+  display.fillRect(126, 64 - sub.volume*64/255, 2, 64, WHITE);
+
   return;
 }
 
@@ -182,25 +182,39 @@ void Display::Camera(){
   int width = 76;
   int height = 48;
 
-  printd(8,16,to_string(camera.goal_dir));
+  int left = 64-width/2;
+  int up   = 16;
 
-  printd(104, 8,  to_string(camera.atk_x));
-  printd(104, 16, to_string(camera.atk_y));
-  printd(104, 24, to_string(camera.atk_w));
-  printd(104, 32, to_string(camera.atk_h));
+  printd(8,16,to_string(camera.atk.dir));
 
-  display.drawRect(64-width/2, 16, width, height, WHITE);
+  printd(104, 8,  to_string(camera.atk.x));
+  printd(104, 16, to_string(camera.atk.y));
+  printd(104, 24, to_string(camera.atk.w));
+  printd(104, 32, to_string(camera.atk.h));
 
-  // 検出されたブロック全体のバウンディングボックス
-  for(int i=0;i<camera.block_num;i++){
-    display.fillRect(
-      26+ camera.block[i].x *width/320.0,
-      16+ camera.block[i].y *height/200.0,
-      camera.block[i].width  *width/320.0,
-      camera.block[i].height *height/200.0,
-      WHITE
-    );
+  display.drawRect(left, up, width, height, WHITE);
+
+  // // 検出されたブロック全体のバウンディングボックス
+  // for(int i=0;i<camera.block_num;i++){
+  //   display.fillRect(
+  //     26+ camera.block[i].x *width/320.0,
+  //     16+ camera.block[i].y *height/200.0,
+  //     camera.block[i].width  *width/320.0,
+  //     camera.block[i].height *height/200.0,
+  //     WHITE
+  //   );
+  // }
+
+  if(camera.atk.is_visible){
+    display.drawRect(left + camera.atk.x1 *width/320, up + camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
+    // Serial.printf(" x:%d y:%d w:%d h:%d\n", camera.atk.x1, camera.atk.x2, camera.atk.w, camera.atk.h);
   }
+  if(camera.def.is_visible){
+    display.fillRect(left + camera.def.x1 *width/320, up + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
+  }
+
+  // display.drawRect(left + 80 * width/320, up + 50 * height/200, 160 * width/320, 100 * height/200, WHITE);
+
   return;
 }
 
@@ -212,7 +226,7 @@ void Display::Dir(){
   str.erase(str.begin()+5,str.end());
   printd(8, 32, str);
 
-  printd(8,16,to_string(dir.accel_sum));
+  // printd(8,16,to_string(dir.accel_sum));
   printd(8,24,to_string(motor.raw_sum));
 
   drawAngleLine(DISPLAY_W/2, DISPLAY_H/2, 180, 24);
@@ -247,8 +261,10 @@ void Display::Kicker(){
   display.fillRect(8,  8+(255-sub.ball01k)*height/255, width, (sub.ball01k)*height/255, WHITE);
   display.fillRect(96, 8+(255-sub.ball02k)*height/255, width, (sub.ball02k)*height/255, WHITE);
 
+  printd(64,56,"hold :"+to_string(sub.is_hold),ALIGN::CENTER);
+
   printd(120,16,"test kick",ALIGN::RIGHT);
-  if(ui.buttonUp(1)) kicker.kick();
+  if(ui.buttonUp(1)) sub.kick();
   
   return;
 }
@@ -274,11 +290,13 @@ void Display::Line(){
   }
 
   // ベクトル
-  display.drawRect(64-1-cos(radians(line.dir))*13, 32-1+sin(radians(line.dir))*13, 2, 2, WHITE);
+  display.drawRect(64-1-cos(radians(line.dir))*13, 32-1-sin(radians(line.dir))*13, 2, 2, WHITE);
 
   // 情報
-  printd(8, 40, "on:"+to_string(line.on));
-  printd(8, 48, "num:"+to_string(line.num));
+  printd(8, 32, "on:"+to_string(line.on));
+  printd(8, 40, "num:"+to_string(line.num));
+  // printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
+  printd(8, 48, "dis:"+to_string(line.distance));
   printd(8, 56, "dir:"+to_string(line.dir));
 
   // しきい値調整
@@ -352,14 +370,44 @@ void Display::Game(){
   if(ui.buttonUp(1)) dir.setDefault();
 
   printd(120,32,"change atk",ALIGN::RIGHT);
-  printd(120,40,"sig="+to_string(camera.atk_sig),ALIGN::RIGHT);
+  printd(120,40,"sig="+to_string(camera.atk.sig),ALIGN::RIGHT);
   if(ui.buttonUp(2)) camera.changeAtk();
+
 
 
   printd(8,16,"damaged:");
   printd(16,24,to_string(ui.damaged_timer/1000) );
-  if(ui.damaged_timer < 0) display.invertDisplay(true);
+  // if(ui.damaged_timer < 0) display.invertDisplay(true);
 
+  switch(state){
+  case State::KickOff:
+    printd(8,56,"kick off");
+    break;
+  case State::Damaged:
+    printd(8,56,"damaged");
+    break;
+  case State::Follow:
+    printd(8,56,"follow");
+    break;
+  case State::Dribble:
+    printd(8,56,"dribble");
+    break;
+  case State::Shoot:
+    printd(8,56,"shoot");
+    break;
+  case State::AvoidKeeper:
+    printd(8,56,"avoid keeper");
+    break;
+  case State::Pushing:
+    printd(8,56,"pushing");
+    break;
+  case State::NoBall:
+    printd(8,56,"no ball");
+    break;
+  case State::Neutral:
+    printd(8,56,"neutral");
+    break;
+  }
 
   return;
 }

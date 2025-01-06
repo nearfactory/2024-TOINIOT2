@@ -1,6 +1,6 @@
 // new atacker kansai block program
 // Teensy4.1
-// 2024-12-24
+// 2024-01-05
 
 #include <Wire.h>
 
@@ -8,7 +8,6 @@
 #include "Camera.hpp"
 #include "Dir.hpp"
 #include "Display.hpp"
-#include "Kicker.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
 #include "Sub.hpp"
@@ -18,13 +17,34 @@ Ball ball;
 Camera camera;
 Dir dir;
 Display display;
-Kicker kicker;
 Line line;
 Motor motor;
 Sub sub;
 UI ui;
 
+// #include "Kicker.hpp"
+// Kicker kicker;
+
 using namespace std;
+
+
+
+bool is_display_on = true;
+
+// 周り込み
+float h = 45;       // ヒステリシス
+// float r = 14400.0; // 回り込みの半径
+float r = 7000.0; // 回り込みの半径
+float p_gain = 1.5;
+float d_gain = 4.2;
+
+
+// ステートマシン
+State state = State::KickOff;
+State state_prev = State::KickOff;
+uint32_t state_begin = 0;
+
+
 
 void setup() {
   Serial.begin(115200);
@@ -34,7 +54,6 @@ void setup() {
   camera.begin();
   display.begin();
   dir.begin();
-  kicker.begin();
   line.begin(115200);
   motor.begin();
   sub.begin();
@@ -62,33 +81,15 @@ void setup() {
   display.printd(8,56,"set dir");
   display.draw();
   while(!ui.buttonUp(0)){ ui.read(); }
+  display.draw();
   
   dir.setDefault();
 }
 
 
-bool is_display_on = true;
-
-// 周り込み
-float h = 45;       // ヒステリシス
-float r = 14400.0; // 回り込みの半径
-float p_gain = 1.5;
-float d_gain = 4.2;
-
-// ボールの運搬
-bool      shoot = false;
-uint32_t  shoot_timer = 0;
-float     shoot_dir_begin = 0;
-
-// ボールのキック動作
-bool     kick = false;
-uint32_t kick_timer = 0;
-
-float keep_dir_goal = 0;
-
 
 void loop() {
-  // delayなしで3(ms)
+  // delayなしで約3(ms)
 
   ball.read();
   camera.read();
@@ -98,138 +99,254 @@ void loop() {
   ui.read();
 
 
+
+  // ディスプレイ
   if(ui.is_toggle){
+    Serial.println("display");
     if(ui.buttonUp(0)) display.next();
-    // if(display.mode != MODE::VARIABLES){
-    //   if(ui.buttonUp(0)) display.next();
-    // }
 
     display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
     display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
 
     display.debug();
     display.draw();
-
-    motor.set(0,0,0,0);
     is_display_on = true;
 
-  }else{
-    // ディスプレイを消灯
-    if(is_display_on){
-      display.draw();
-      is_display_on = false;
+    state = State::KickOff;
+    state_begin = millis();
+
+    motor.set(0,0,0,0);
+
+    motor.avr();
+    motor.write();
+    delay(10);
+
+
+    return;
+  }
+  // ディスプレイを消灯
+  if(is_display_on){
+    display.draw();
+    is_display_on = false;
+  }
+
+
+
+  // ステートマシンを更新
+  if(state != state_prev){
+    state_begin = millis();
+  }
+  state_prev = state;
+  uint32_t state_elapsed = millis() - state_begin;
+
+
+
+  // ok?: キックオフ(まっすぐ進めない時がある)
+  if(state == State::KickOff){
+    motor.moveDirFast(ball.dir, 100);
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+
+    // 後ろ向き -> 故障復帰
+    if(abs(dir.dir) > 90){
+      state = State::Damaged;
     }
 
-
-
-
-    bool keep_dir = false;
-    // シュート
-    if(ball.not_hold_time < 100){
-      motor.moveDirFast(-camera.goal_dir*1.5, 100);
-
-      if(ball.hold_time > 50 && abs(camera.prev_goal_dir) > 15.0 && camera.atk_h > 25){
-        motor.moveDirFast(0, 100);
-
-        float dir_power = camera.goal_dir * 8.0;
-        motor.add(dir_power, dir_power, dir_power, dir_power);
-
-      }
-      
-      if(100 <= camera.atk_w && camera.atk_w <= 150 && ball.hold_time > 250) kicker.kick();
-    }
-    // 回り込み(方法4) https://yuta.techblog.jp/archives/40889399.html
-    else{
-      float move_dir = 0;
-
-      // PD
-      if(abs(ball.dir)<h){
-        move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
-        keep_dir = true;
-        h = 45;
-      }
-      // 円周上
-      else if(ball.distance < r){
-        float theta = 90 + (r-ball.distance) * 90 / r;
-        move_dir = ball.dir + (ball.dir>0?theta:-theta);
-        // keep_dir = true;
-        h = 20;
-      }
-      //接線
-      else{
-        float theta = degrees(atan2(r, ball.distance));
-        move_dir = ball.dir + (ball.dir>0?theta:-theta);
-        h = 20; 
-      }
-
-      motor.moveDirFast(move_dir, 100);
-    }
-
-
-
-    // ボールが見えない場合に後ろに下がる (デバッグ段階では手前に)
-    if(!ball.is_exist){
-      motor.moveDir(180, 60);
-    }
-
-
-
-    // ストール
-    // if(motor.raw_sum > 200 && dir.accel_sum < 1.0){
-    //   float power = 80.0;
-    //   motor.set(power, power, power, power);
-    // }
-
-    
-
-    // 白線避け
-    if(line.on){
-      motor.moveDir(line.dir+180, 100);
-    }
-
-
-
-    // 姿勢制御
-    // if(keep_dir){
-    if(false){
-      float d_gain = 0.45f;
-      float p_gain = 0.64f;
-      float dir_power = (dir.dir - keep_dir_goal) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
-      motor.add(dir_power, dir_power, dir_power, dir_power);
-
-    }else{
-      float d_gain = 0.45f;
-      float p_gain = 0.64f;
-      float dir_power = 0;
-
-      if(abs(dir.dir) < 90){
-        dir_power = (camera.goal_dir) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
-      }else{
-        dir_power = (dir.dir) * p_gain + (dir.dir - dir.prev_dir) * d_gain;
-      }
-
-      if(abs(dir.dir) > 90) {
-        // 故障復帰
-        motor.set(dir_power, dir_power, dir_power, dir_power);
-      }else{
-        // 姿勢制御
-        motor.add(dir_power, dir_power, dir_power, dir_power);
-      }
-
-      keep_dir_goal = dir.dir;
-    }
-
-    if(keep_dir){
-      ui.buzzer(880.0f);
-    }else{
-      ui.buzzer(440.0f);
+    // 1秒経過 -> 回り込み
+    if(state_elapsed > 1000){
+      state = State::Follow;
     }
 
   }
 
 
+
+  // ok: 故障復帰
+  else if(state == State::Damaged){
+    motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+
+    // 45度以内 -> 回り込み
+    if(abs(dir.dir) < 45){
+      state = State::Follow;
+    }
+  }
+
+
+
+  // ok: 回り込み
+  else if(state == State::Follow){
+    float move_dir = 0;
+
+    // PD
+    if(abs(ball.dir)<h){
+      move_dir = ball.dir * p_gain - d_gain*(ball.dir -     ball.dir_prev);
+      h = 45;
+    }
+    // 円周上
+    else if(ball.distance < r){
+      float theta = 90 + (r-ball.distance) * 90 / r;
+      move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      h = 20;
+    }
+    //接線
+    else{
+      float theta = degrees(atan2(r, ball.distance));
+      move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      h = 20;
+    }
+
+    motor.moveDir(move_dir, 100);
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+   
+    // ボールを保持 -> ゴールに向かう
+    if(ball.is_hold){
+      state = State::Dribble;
+    }
+
+  }
+
+
+
+  // ToDo: ゴールに向かう
+  else if(state == State::Dribble){
+    // キーパーのいない方のゴールの角を狙う
+    
+    // 攻める角度の決定
+
+    // motor.moveDirFast(camera.chance_dir, 0);
+    if(camera.atk.is_visible){
+      motor.moveDir(0,0);
+      motor.setDir(camera.chance_dir, camera.chance_dir_prev, dir.p_gain, dir.d_gain);
+    }
+
+
+    // ボールを保持していない -> 回り込みなおす
+    if(ball.is_hold == false){
+      // state = State::Follow;
+    }
+
+    // ロボットが動かない -> 押し合い
+
+    // キーパーが目の前にいる -> キーパー避け
+
+    // センターサークルを超えた -> キックし回り込み
+    if(camera.atk.h > 40){
+      // state = State::Shoot;
+    }
+
+
+  }
+
+
+
+  // ToDo: シュート
+  else if(state == State::Shoot){
+    static int  type = 0;
+    static bool is_decided = false;
+
+    // シュート方式の決定
+    if(is_decided == false){
+      // ゴールに向いている倍位はキッカー作動
+      if(camera.atk.h > 40){
+        type = 0;
+      }
+      
+      // ゴールを向けていない場合は機体をねじる
+      else{
+        type = 1;
+      }
+    }
+
+
+    // キッカー使用
+    // チャージされていない場合突進
+    if(type == 0){
+      motor.moveDirFast(camera.atk.dir, 100);
+      if(state_elapsed > 50) sub.kick();
+    }
+
+    // 機体のねじり  
+    else if(type == 1){
+      motor.moveDirFast(camera.atk.dir,100);
+      motor.setDirAdd(camera.atk.dir, 0, 6.0, 0);
+    }
+
+
+    // キック終了(100ms) -> 回り込み
+    if(state_elapsed > 100){
+      state = State::Follow;
+    }
+
+  }
+
+
+
+  // キーパーをどかす
+  else if(state == State::AvoidKeeper){
+    // ゴール左側に向かいながら右を狙う
+    float move_limit = 0;   // ボールを保持したまま平行移動できる限界の角度
+    float goal_dir = camera.atk.dir;  // 狙う角度(右)
+    static float goal_dir_prev = 0;
+
+    motor.moveDir(goal_dir-move_limit, 100);
+    motor.setDirAdd(goal_dir, goal_dir_prev, dir.p_gain, dir.d_gain);
+
+    goal_dir_prev = goal_dir;
+
+
+    // センターサークルを超えた -> シュート
+    if(camera.atk.h > 40){
+      state = State::Shoot;
+    }
+
+    // キーパーがどいた -> ドリブル
+  }
+
+
+
+  // ToDo: 押し合い
+  else if(state == State::Pushing){
+    // 左に押した後、右に切り返す
+    if(state_elapsed < 2500){
+      motor.moveDirFast(-22.5, 100);
+      motor.setDirAdd(dir.dir+10, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }
+    else{
+      motor.moveDirFast(22.5,100);
+      motor.setDirAdd(dir.dir-10, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }
+
+
+    // ボールを奪えた -> シュート
+  }
+
+
+
+  // ボールが取り上げられた
+  else if(state == State::NoBall){
+    // 近くの中立点の前まで移動する
+    if(camera.def.is_visible == false){
+      motor.moveDir(180,70);
+    }
+
+    // 見えた -> 回り込み
+  }
+
+
+
+  // 中立点からの回り込み・シュート
+  else if(state == State::Neutral){
+    // ゴールの方に45度傾ける
+    
+  }
+  else{
+    state = State::Follow;
+  }
+
+
+
   motor.avr();
   motor.write();
-  
-  kicker.write();
 }

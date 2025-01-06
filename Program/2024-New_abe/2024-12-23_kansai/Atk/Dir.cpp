@@ -24,7 +24,7 @@ void Dir::setDefault(){
 }
 
 void Dir::read(){
-  prev_dir = dir;
+  dir_prev = dir;
   sensors_event_t dir_data{};
   bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_EULER);
 
@@ -32,18 +32,6 @@ void Dir::read(){
   dir = dir_data.orientation.x-default_dir;
   if(dir<-180) dir += 360;
   if(dir>180)  dir -= 360;
-
-  dir_y = dir_data.orientation.y;
-  dir_z = dir_data.orientation.z;
-
-  // Serial.printf("x:%f y:%f z:%f\n", dir_data.orientation.x, dir_data.orientation.y, dir_data.orientation.z);
-
-  // 加速度を更新
-  bno.getEvent(&dir_data, Adafruit_BNO055::VECTOR_ACCELEROMETER);
-  accel.x = dir_data.acceleration.x;
-  accel.y = dir_data.acceleration.y;
-
-  accel_sum = abs(accel.x) + abs(accel.y);
   
   return;
 }

@@ -2,7 +2,6 @@
 
 #include <Arduino.h>
 #define byte uint8_t
-// using ::byte;
 
 #include <Adafruit_BNO055.h>
 #include <Wire.h>
@@ -17,15 +16,11 @@ private:
 
 public:
   float dir;
-  float prev_dir;
+  float dir_prev;
 
-  float dir_y;
-  float dir_z;
-  Vec2  accel;
-  float accel_sum = 0;
-  bool  is_stole  = false;
+  float p_gain = 0.45, d_gain = 0.64;
 
-  Dir() : bno(55, 0x28, &Wire2), default_dir(0), dir(0), prev_dir(0), accel(0,0) {};
+  Dir() : bno(55, 0x28, &Wire2), default_dir(0), dir(0), dir_prev(0) {};
 
   void begin();
   void calibration(uint8_t* system, uint8_t* gyro, uint8_t* accel, uint8_t* mag);

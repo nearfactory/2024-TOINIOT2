@@ -4,6 +4,8 @@
 
 class Sub{
   int count = 0;
+
+  static constexpr uint8_t STR_SIZE = 4;
   
   static constexpr uint8_t QUEUE_SIZE = 4;
   uint8_t queue[QUEUE_SIZE][2];
@@ -16,6 +18,7 @@ public:
 
   void begin();
   void read();
+  void kick();
 };
 
 extern Sub sub;
