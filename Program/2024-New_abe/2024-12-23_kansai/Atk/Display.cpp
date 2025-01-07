@@ -206,11 +206,11 @@ void Display::Camera(){
   // }
 
   if(camera.atk.is_visible){
-    display.drawRect(left + camera.atk.x1 *width/320, up + camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
+    display.fillRect(left + camera.atk.x1 *width/320, up + camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
     // Serial.printf(" x:%d y:%d w:%d h:%d\n", camera.atk.x1, camera.atk.x2, camera.atk.w, camera.atk.h);
   }
   if(camera.def.is_visible){
-    display.fillRect(left + camera.def.x1 *width/320, up + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
+    display.drawRect(left + camera.def.x1 *width/320, up + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
   }
 
   // display.drawRect(left + 80 * width/320, up + 50 * height/200, 160 * width/320, 100 * height/200, WHITE);
@@ -406,6 +406,9 @@ void Display::Game(){
     break;
   case State::Neutral:
     printd(8,56,"neutral");
+    break;
+  default: 
+    printd(8,56,"error!");
     break;
   }
 

@@ -112,7 +112,7 @@ void loop() {
     display.draw();
     is_display_on = true;
 
-    state = State::KickOff;
+    state = State::Dribble;
     state_begin = millis();
 
     motor.set(0,0,0,0);
@@ -204,6 +204,9 @@ void loop() {
     if(ball.is_hold){
       state = State::Dribble;
     }
+
+    if(!ball.is_exist) state = State::NoBall;
+
 
   }
 
@@ -324,14 +327,29 @@ void loop() {
 
 
 
-  // ボールが取り上げられた
+  // ok: ボールが取り上げられた
   else if(state == State::NoBall){
-    // 近くの中立点の前まで移動する
-    if(camera.def.is_visible == false){
-      motor.moveDir(180,70);
+    // 真ん中くらいまで下がる
+    static uint32_t timer = 0;
+    static bool timer_begin = false;
+    if(camera.atk.h < 26 && timer_begin == false){
+      timer = millis();
+      timer_begin = true;
     }
 
+    if(timer_begin == false || millis()-timer < 500){
+      motor.moveDir(180 - dir.dir, 100);
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }else{
+      motor.moveDir(0, 0);
+    }
+
+
     // 見えた -> 回り込み
+    if(ball.is_exist){
+      timer_begin = false;
+      state = State::Follow;
+    }
   }
 
 
@@ -339,11 +357,14 @@ void loop() {
   // 中立点からの回り込み・シュート
   else if(state == State::Neutral){
     // ゴールの方に45度傾ける
-    
+    motor.moveDir(ball.dir, 100);
   }
   else{
     state = State::Follow;
   }
+
+
+
 
 
 
