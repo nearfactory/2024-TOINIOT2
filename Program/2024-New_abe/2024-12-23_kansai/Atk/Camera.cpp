@@ -88,7 +88,7 @@ void Camera::read(){
   atk.h = atk.y2 - atk.y1;
   atk.dir_prev = atk.dir;
 
-  atk.dir = (atk.x - 160) / 4.0;
+  atk.dir = -(atk.x - 160) / 4.0;
   // atk.dir_queue[atk.dir_queue_id] = atk.dir;
   // float sum = 0;
   // for(auto d:atk.dir_queue) sum += d;
@@ -103,7 +103,7 @@ void Camera::read(){
   def.h = def.y2 - def.y1;
   def.dir_prev = def.dir;
 
-  def.dir = (def.x - 160) / 4.0;
+  def.dir = -(def.x - 160) / 4.0;
   // def.dir_queue[def.dir_queue_id] = def.dir;
   // sum = 0;
   // for(auto d:def.dir_queue) sum += d;
@@ -111,7 +111,13 @@ void Camera::read(){
   // def.dir_queue_id = (def.dir_queue_id + 1) % DIR_QUEUE_SIZE;
 
   chance_dir_prev = chance_dir;
-  chance_dir = atk.dir;
+  if(abs(atk.x1-160) < abs(atk.x2-160)){
+    chance_dir = ( atk.x1 - 160 ) / 4.0;
+    chance_dir -= 15;
+  }else{
+    chance_dir = ( atk.x2 - 160 ) / 4.0;
+    chance_dir += 15;
+  }
 
   return;
 }

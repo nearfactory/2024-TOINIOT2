@@ -44,6 +44,7 @@ public:
 
   void setDir      (float dir, float dir_prev, float p_gain, float d_gain);
   void setDirAdd   (float dir, float dir_prev, float p_gain, float d_gain);
+  void setDirAdd   (float dir, float dir_prev, float p_gain, float d_gain, float limit);
   void setDirAddRaw(float dir, float dir_prev, float p_gain, float d_gain);
 
   void moveDir    (float dir, uint8_t power); // 全方位に対して同じ速度で移動

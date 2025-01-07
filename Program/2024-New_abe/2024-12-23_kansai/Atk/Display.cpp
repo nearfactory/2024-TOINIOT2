@@ -186,6 +186,7 @@ void Display::Camera(){
   int up   = 16;
 
   printd(8,16,to_string(camera.atk.dir));
+  printd(8,24,to_string(camera.chance_dir));
 
   printd(104, 8,  to_string(camera.atk.x));
   printd(104, 16, to_string(camera.atk.y));
@@ -406,6 +407,9 @@ void Display::Game(){
     break;
   case State::Neutral:
     printd(8,56,"neutral");
+    break;
+  case State::Test:
+    printd(8,56,"Test");
     break;
   default: 
     printd(8,56,"error!");

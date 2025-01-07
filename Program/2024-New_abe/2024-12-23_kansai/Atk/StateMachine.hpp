@@ -10,6 +10,7 @@ enum class State : int{
   Pushing,
   NoBall,
   Neutral,
+  Test
 };
 
 extern State state;

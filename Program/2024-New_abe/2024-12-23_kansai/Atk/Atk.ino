@@ -105,14 +105,14 @@ void loop() {
     Serial.println("display");
     if(ui.buttonUp(0)) display.next();
 
-    display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
-    display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
 
     display.debug();
     display.draw();
     is_display_on = true;
 
-    state = State::Dribble;
+    state = State::Follow;
     state_begin = millis();
 
     motor.set(0,0,0,0);
@@ -207,7 +207,6 @@ void loop() {
 
     if(!ball.is_exist) state = State::NoBall;
 
-
   }
 
 
@@ -215,19 +214,27 @@ void loop() {
   // ToDo: ゴールに向かう
   else if(state == State::Dribble){
     // キーパーのいない方のゴールの角を狙う
+    // 保持したまま動けるのは±30°
     
     // 攻める角度の決定
 
-    // motor.moveDirFast(camera.chance_dir, 0);
-    if(camera.atk.is_visible){
-      motor.moveDir(0,0);
-      motor.setDir(camera.chance_dir, camera.chance_dir_prev, dir.p_gain, dir.d_gain);
-    }
+    // float move_dir = 0;
+    // if(camera.chance_dir < -2.0){
+    //   move_dir = -30.0;
+    // }else if(camera.chance_dir > 2.0){
+    //   move_dir =  30.0;
+    // }else{
+    //   move_dir = 0;
+    // }
+    // motor.moveDir(camera.atk.dir*1.5, 100);
+    motor.moveDir(0, 100);
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
 
 
     // ボールを保持していない -> 回り込みなおす
-    if(ball.is_hold == false){
-      // state = State::Follow;
+    if(!ball.is_hold){
+      state = State::Follow;
     }
 
     // ロボットが動かない -> 押し合い
@@ -235,10 +242,14 @@ void loop() {
     // キーパーが目の前にいる -> キーパー避け
 
     // センターサークルを超えた -> キックし回り込み
-    if(camera.atk.h > 40){
-      // state = State::Shoot;
+    if(camera.atk.h > 26){
+      state = State::Shoot;
     }
 
+    // state = State::Shoot;
+
+    // ボールなし -> ボールなし
+    if(!ball.is_exist) state = State::NoBall;
 
   }
 
@@ -252,7 +263,7 @@ void loop() {
     // シュート方式の決定
     if(is_decided == false){
       // ゴールに向いている倍位はキッカー作動
-      if(camera.atk.h > 40){
+      if(abs(camera.atk.dir) < 30){
         type = 0;
       }
       
@@ -278,7 +289,7 @@ void loop() {
 
 
     // キック終了(100ms) -> 回り込み
-    if(state_elapsed > 100){
+    if(state_elapsed > 400){
       state = State::Follow;
     }
 
@@ -309,7 +320,7 @@ void loop() {
 
 
 
-  // ToDo: 押し合い
+  // 押し合い
   else if(state == State::Pushing){
     // 左に押した後、右に切り返す
     if(state_elapsed < 2500){
@@ -359,10 +370,24 @@ void loop() {
     // ゴールの方に45度傾ける
     motor.moveDir(ball.dir, 100);
   }
+
+
+
+  // テスト
+  else if(state == State::Test){
+    // motor.setDir(camera.chance_dir, camera.chance_dir_prev, dir.p_gain * 3, dir.d_gain * 3);
+  }
   else{
     state = State::Follow;
   }
 
+
+  
+  if(state == State::Dribble){
+    ui.buzzer(880.0f);
+  }else{
+    ui.buzzer(440.0f);
+  }
 
 
 

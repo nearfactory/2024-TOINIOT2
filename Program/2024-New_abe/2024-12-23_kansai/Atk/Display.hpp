@@ -78,7 +78,7 @@ private:
 public:
   uint8_t mode = 0;
 
-  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::GAME) {}
+  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::VARIABLES) {}
 
   void begin();
   void clear();
