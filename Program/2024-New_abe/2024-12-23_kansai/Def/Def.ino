@@ -30,7 +30,7 @@ using namespace std;
 
 State state = State::LineTrace;
 
-#define COMPILE 7
+#define COMPILE 8
 
 
 

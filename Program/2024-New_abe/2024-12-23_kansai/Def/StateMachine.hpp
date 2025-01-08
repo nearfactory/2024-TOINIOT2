@@ -1,17 +1,10 @@
 #pragma once
 
 enum class State : int{
-  KickOff,
-  Damaged,
-  Follow, 
-  Dribble,
-  Shoot,
-  AvoidKeeper,
-  Pushing,
-  NoBall,
-  Neutral,
-  Test
+  LineTrace,
+  KeeperDash,
+  BackToGoal_Weak,
+  BackToGoal_Strong
 };
 
 extern State state;
-extern State state_prev;

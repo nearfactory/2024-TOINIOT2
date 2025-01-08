@@ -355,11 +355,26 @@ void Display::Valiables(){
 
   printd(120,8,"+",ALIGN::RIGHT);
   printd(120,32,"-",ALIGN::RIGHT);
+  printd(120,56,"o",ALIGN::RIGHT);
   printd(128,56,"select",ALIGN::RIGHT);
 
   // 加減算
-  if(ui.buttonUp(1))      *valiables_addr[selector] += 0.1;
-  else if(ui.buttonUp(2)) *valiables_addr[selector] -= 0.1;
+  static float order = 0.1;
+  if(ui.buttonUp(1))      *valiables_addr[selector] += order;
+  else if(ui.buttonUp(2)) *valiables_addr[selector] -= order;
+  
+  // 桁の変更
+  if(ui.buttonUp(3)){
+    if(order == 0.01){
+      order = 0.1;
+    }else if(order == 0.1){
+      order = 1.0;
+    }else if(order == 1.0){
+      order = 0.01;
+    }else{
+      order = 0.1;
+    }
+  }
 
   return;
 }

@@ -45,7 +45,7 @@ State state_prev = State::KickOff;
 uint32_t state_begin = 0;
 
 // ToDo: 白線から出ない速度の調整・半分超えた場合の処理
-uint8_t speed_normal = 100;
+float speed_normal = 100.0;
 
 
 
@@ -110,6 +110,7 @@ void loop() {
 
     // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
     // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    display.addValiables("speed_normal :"+to_string(speed_normal), &speed_normal);
 
     display.debug();
     display.draw();
