@@ -22,7 +22,7 @@ uint32_t min = 1023;
 uint32_t avr = 0;
 uint32_t count = 0;
 
-uint8_t threshold1 = 600/4;
+uint8_t threshold1 = 580/4;
 uint8_t threshold2 = 600/4;
 
 void setup(){
