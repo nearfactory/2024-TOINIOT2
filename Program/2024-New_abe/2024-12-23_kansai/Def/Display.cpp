@@ -130,6 +130,8 @@ void Display::debug(uint8_t mode){
       break;
   }
 
+  display.fillRect(126, 64 - sub.volume*64/255, 2, 64, WHITE);
+
   return;
 }
 
@@ -180,14 +182,18 @@ void Display::Camera(){
   int width = 76;
   int height = 48;
 
+  int left = 64-width/2;
+  int up   = 16;
+
   printd(8,16,to_string(camera.atk.dir));
+  printd(8,24,to_string(camera.chance_dir));
 
   printd(104, 8,  to_string(camera.atk.x));
   printd(104, 16, to_string(camera.atk.y));
   printd(104, 24, to_string(camera.atk.w));
   printd(104, 32, to_string(camera.atk.h));
 
-  display.drawRect(64-width/2, 16, width, height, WHITE);
+  display.drawRect(left, up, width, height, WHITE);
 
   // // 検出されたブロック全体のバウンディングボックス
   // for(int i=0;i<camera.block_num;i++){
@@ -201,12 +207,14 @@ void Display::Camera(){
   // }
 
   if(camera.atk.is_visible){
-    display.drawRect(64-width/2 + camera.atk.x1 *width/320, 16 + camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
+    display.fillRect(left + camera.atk.x1 *width/320, up + camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
     // Serial.printf(" x:%d y:%d w:%d h:%d\n", camera.atk.x1, camera.atk.x2, camera.atk.w, camera.atk.h);
   }
   if(camera.def.is_visible){
-    display.drawRect(64-width/2 + camera.def.x1 *width/320, 16 + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
+    display.drawRect(left + camera.def.x1 *width/320, up + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
   }
+
+  // display.drawRect(left + 80 * width/320, up + 50 * height/200, 160 * width/320, 100 * height/200, WHITE);
 
   return;
 }
@@ -251,11 +259,14 @@ void Display::Kicker(){
   display.drawRect(8, 8, width, height, WHITE);
   display.drawRect(96, 8, width, height, WHITE);
 
-  display.fillRect(8,  8+(255-sub.ball01k)*height/255, width, (sub.ball01k)*height/255, WHITE);
+  display.fillRect(8,  8+(255-sub.brightness)*height/255, width, (sub.brightness)*height/255, WHITE);
   display.fillRect(96, 8+(255-sub.ball02k)*height/255, width, (sub.ball02k)*height/255, WHITE);
 
+  printd(64,56,"hold :"+to_string(sub.is_hold),ALIGN::CENTER);
+  printd(64,48,"ready:"+to_string(sub.ready),  ALIGN::CENTER);
+
   printd(120,16,"test kick",ALIGN::RIGHT);
-  if(ui.buttonUp(1)) kicker.kick();
+  if(ui.buttonUp(1)) sub.kick();
   
   return;
 }
@@ -365,23 +376,46 @@ void Display::Game(){
   if(ui.buttonUp(2)) camera.changeAtk();
 
 
+
   printd(8,16,"damaged:");
   printd(16,24,to_string(ui.damaged_timer/1000) );
+  if(ui.damaged_timer < 0) ui.buzzer(880.0f);
+  else ui.buzzer(0);
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
 
-  printd(8,40,"state:");
   switch(state){
-  case State::LineTrace:
-    printd(16,48,"LineTrace");
+  case State::KickOff:
+    printd(8,56,"kick off");
     break;
-  case State::KeeperDash:
-    printd(16,48,"KeeperDash");
+  case State::Damaged:
+    printd(8,56,"damaged");
     break;
-  case State::BackToGoal_Weak:
-    printd(16,48,"BackToGoal_Weak");
+  case State::Follow:
+    printd(8,56,"follow");
     break;
-  case State::BackToGoal_Strong:
-    printd(16,48,"BackToGoal_Strong");
+  case State::Dribble:
+    printd(8,56,"dribble");
+    break;
+  case State::Shoot:
+    printd(8,56,"shoot");
+    break;
+  case State::AvoidKeeper:
+    printd(8,56,"avoid keeper");
+    break;
+  case State::Pushing:
+    printd(8,56,"pushing");
+    break;
+  case State::NoBall:
+    printd(8,56,"no ball");
+    break;
+  case State::Neutral:
+    printd(8,56,"neutral");
+    break;
+  case State::Test:
+    printd(8,56,"Test");
+    break;
+  default: 
+    printd(8,56,"error!");
     break;
   }
 

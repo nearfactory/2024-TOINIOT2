@@ -13,11 +13,17 @@ private:
 
   uint32_t baudrate = 115200;
 
+  bool prev_on1 = false;
+  bool prev_on2 = false;
+  bool prev_on3 = false;
+
+  uint32_t right_timer = 0;
+
   Vec2  vec1;              // 反応しているセンサのベクトルの左上
   Vec2  vec2;              // 反応しているセンサのベクトルの右下
 
   static constexpr uint8_t DATA_SIZE = 5; // bit
-  static constexpr uint8_t STR_SIZE  = 8;  // byte
+  static constexpr uint8_t STR_SIZE = 8;  // byte
   char receive[STR_SIZE] = "";
 
 public:
@@ -29,18 +35,14 @@ public:
   bool back = false;
   bool right = false;
 
-  // ラインのベクトル
-  Vec2  vec;               
+  Vec2  vec;               // ラインのベクトル
   Vec2  vec_prev;
-  float distance;          // ベクトルの長さ
 
-  // 正面に対する白線の角度
-  float dir;               
+  float distance;          // ロボットの中心点と白線の距離
+  float dir;               // ロボットの中心点と白線の角度
   float dir_prev;
-
-  // 白線上のフラグ
-  bool  on;                
-  bool  on_prev;
+  bool  on;                // 白線上のフラグ
+  bool  prev_on;
 
   bool outside = false;
   

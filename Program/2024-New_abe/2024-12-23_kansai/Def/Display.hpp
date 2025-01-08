@@ -12,25 +12,26 @@
 #include "Ball.hpp"
 #include "Camera.hpp"
 #include "Dir.hpp"
-#include "Kicker.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
 #include "UI.hpp"
 
-#include "StateMachine.hpp"
-
 extern Ball ball;
 extern Camera camera;
 extern Dir dir;
-extern Kicker kicker;
 extern Line line;
 extern Motor motor;
 extern UI ui;
 
-using namespace std;
-
+#include "StateMachine.hpp"
 extern State state;
 
+
+using namespace std;
+
+
+// #include "Kicker.hpp"
+// extern Kicker kicker;
 
 
 enum class ALIGN : uint8_t{

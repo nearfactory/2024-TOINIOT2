@@ -1,10 +1,17 @@
 #pragma once
 
-enum class State{
-  LineTrace,
-  KeeperDash,
-  BackToGoal_Weak,
-  BackToGoal_Strong
+enum class State : int{
+  KickOff,
+  Damaged,
+  Follow, 
+  Dribble,
+  Shoot,
+  AvoidKeeper,
+  Pushing,
+  NoBall,
+  Neutral,
+  Test
 };
 
 extern State state;
+extern State state_prev;
