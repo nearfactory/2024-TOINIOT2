@@ -44,6 +44,7 @@ State state = State::KickOff;
 State state_prev = State::KickOff;
 uint32_t state_begin = 0;
 
+// ToDo: 白線から出ない速度の調整・半分超えた場合の処理
 uint8_t speed_normal = 100;
 
 
