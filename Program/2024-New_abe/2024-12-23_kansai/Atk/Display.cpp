@@ -259,10 +259,11 @@ void Display::Kicker(){
   display.drawRect(8, 8, width, height, WHITE);
   display.drawRect(96, 8, width, height, WHITE);
 
-  display.fillRect(8,  8+(255-sub.ball01k)*height/255, width, (sub.ball01k)*height/255, WHITE);
+  display.fillRect(8,  8+(255-sub.brightness)*height/255, width, (sub.brightness)*height/255, WHITE);
   display.fillRect(96, 8+(255-sub.ball02k)*height/255, width, (sub.ball02k)*height/255, WHITE);
 
   printd(64,56,"hold :"+to_string(sub.is_hold),ALIGN::CENTER);
+  printd(64,48,"ready:"+to_string(sub.ready),  ALIGN::CENTER);
 
   printd(120,16,"test kick",ALIGN::RIGHT);
   if(ui.buttonUp(1)) sub.kick();
@@ -378,6 +379,8 @@ void Display::Game(){
 
   printd(8,16,"damaged:");
   printd(16,24,to_string(ui.damaged_timer/1000) );
+  if(ui.damaged_timer < 0) ui.buzzer(880.0f);
+  else ui.buzzer(0);
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
 
   switch(state){

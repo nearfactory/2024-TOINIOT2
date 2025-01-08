@@ -44,6 +44,8 @@ State state = State::KickOff;
 State state_prev = State::KickOff;
 uint32_t state_begin = 0;
 
+uint8_t speed_normal = 100;
+
 
 
 void setup() {
@@ -144,6 +146,7 @@ void loop() {
   // ok?: キックオフ(まっすぐ進めない時がある)
   if(state == State::KickOff){
     motor.moveDirFast(ball.dir, 100);
+    if(line.on) motor.moveDirFast(line.dir+180, 100);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
@@ -164,6 +167,7 @@ void loop() {
   // ok: 故障復帰
   else if(state == State::Damaged){
     motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    if(line.on) motor.moveDir(line.dir+180, 100);
 
 
     // 45度以内 -> 回り込み
@@ -196,7 +200,8 @@ void loop() {
       h = 20;
     }
 
-    motor.moveDir(move_dir, 100);
+    motor.moveDir(move_dir, speed_normal);
+    if(line.on) motor.moveDir(line.dir+180, 100);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
    
@@ -218,18 +223,85 @@ void loop() {
     
     // 攻める角度の決定
 
-    // float move_dir = 0;
-    // if(camera.chance_dir < -2.0){
-    //   move_dir = -30.0;
-    // }else if(camera.chance_dir > 2.0){
-    //   move_dir =  30.0;
-    // }else{
-    //   move_dir = 0;
-    // }
-    // motor.moveDir(camera.atk.dir*1.5, 100);
-    motor.moveDir(0, 100);
-    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    static bool is_decided = false;
+    static int  type = 0;
 
+    // 方式の決定
+    if(!is_decided){
+      if(sub.ready){
+        type = 0;
+      }else{
+        type = 1;
+      }
+    }
+
+    // キッカー
+    if(type == 0){
+      static bool     kick_begin = false;
+      static uint32_t kick_timer = 0;
+
+      // 直進
+      if(kick_begin == false){
+        motor.moveDirFast(0, 100);
+        if(line.on) motor.moveDirFast(line.dir+180, 100);
+        motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, dir.p_gain, dir.d_gain);
+
+        // キックに移行
+        if(camera.atk.h > 26 && millis()-kick_timer > 250 && abs(camera.atk.dir) < 10.0){
+          kick_begin = true;
+          kick_timer = millis();
+        }
+      }
+
+      // キック
+      else{
+        // 0.2秒間キック
+        if(millis()-kick_timer < 200){
+          motor.moveDirFast(0, 100);
+          if(line.on) motor.moveDirFast(line.dir+180, 100);
+          sub.kick();
+        }else{
+          kick_begin = false;
+          state = State::Follow;
+        }
+      }
+
+    }
+
+
+    // ねじる
+    else if(type == 1){
+      static bool     nejiri_begin = false;
+      static uint32_t nejiri_timer = 0;
+
+      // 直進する
+      if(nejiri_begin == false){
+        motor.moveDirFast(0, 100);
+        if(line.on) motor.moveDirFast(line.dir+180, 100);
+        motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+        // ねじりに移行
+        if(camera.atk.h > 24 && millis()-nejiri_timer > 500){
+          nejiri_begin = true;
+          nejiri_timer = millis();
+        }
+      }
+
+      // ねじる
+      else{
+        // 0.4秒ねじったら回り込みに戻る
+        if(millis()-nejiri_timer < 400){
+          motor.moveDirFast(0, 100);
+          if(line.on) motor.moveDirFast(line.dir+180, 100);
+          motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, 6.0f, 0.0f);
+        }else{
+          nejiri_begin = false;
+          state = State::Follow;
+        }
+
+      }
+
+    }
 
 
     // ボールを保持していない -> 回り込みなおす
@@ -239,23 +311,16 @@ void loop() {
 
     // ロボットが動かない -> 押し合い
 
-    // キーパーが目の前にいる -> キーパー避け
-
-    // センターサークルを超えた -> キックし回り込み
-    if(camera.atk.h > 26){
-      state = State::Shoot;
-    }
-
-    // state = State::Shoot;
-
     // ボールなし -> ボールなし
     if(!ball.is_exist) state = State::NoBall;
 
+
+    // キーパーが目の前にいる -> キーパー避け
   }
 
 
 
-  // ToDo: シュート
+  // シュート(一旦無視)
   else if(state == State::Shoot){
     static int  type = 0;
     static bool is_decided = false;
@@ -349,10 +414,12 @@ void loop() {
     }
 
     if(timer_begin == false || millis()-timer < 500){
-      motor.moveDir(180 - dir.dir, 100);
+      motor.moveDir(180 - dir.dir, speed_normal);
+      if(line.on) motor.moveDir(line.dir+180, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
     }else{
       motor.moveDir(0, 0);
+      if(line.on) motor.moveDir(line.dir+180, speed_normal);
     }
 
 
@@ -383,7 +450,8 @@ void loop() {
 
 
   
-  if(state == State::Dribble){
+  // if(state == State::Dribble){
+  if(ball.is_hold){
     ui.buzzer(880.0f);
   }else{
     ui.buzzer(440.0f);
