@@ -24,32 +24,30 @@ void Sub::read(){
 
   while(Serial7.available()<4){int i=0;}
 
-  // uint8_t str[4] = "";
   ball02k = Serial7.read();
   ball01k = Serial7.read();
   volume  = Serial7.read();
-  // str[3]  = Serial7.read();
 
   // テスト
   // Serial.printf("min:0 max:255 b01k:%d b02k:%d vol:%d \n", str[0], str[1], str[2]);
 
-  // if(is_hold){
-  //   if(ball01k > 160 || ball02k > 160){
-  //     is_hold = false;
-  //   }
-  // }else{
-  //   if(ball01k < 100 || ball02k < 100){
-  //     is_hold = true;
-  //   }
-  // }
-  is_hold = ball01k < 140 || ball02k < 140;
+
+  // 保持判定
+  brightness = ball01k;
+  is_hold = brightness < THRESHOLD;
+
+
+  // キッカーの準備判定
+  ready = millis()-kicked_timer > INTERVAL;
 
   return;
 }
 
 
 void Sub::kick(){
-  if(millis()-kicked_timer > 10000){
+  ready = millis()-kicked_timer > INTERVAL;
+
+  if(ready){
     Serial7.print('k');
     kicked_timer = millis();
   }
