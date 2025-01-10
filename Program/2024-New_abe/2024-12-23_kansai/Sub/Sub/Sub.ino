@@ -53,13 +53,13 @@ uint32_t kicker_timer = 0;
 void loop() {
   while(Serial1.available()){
     if((char)Serial1.read() == 'k'){
-      if(millis()-kicker_timer > 10000){
+      if(millis()-kicker_timer > 6000){
         kicker_timer = millis();
       }
     }
   }
 
-  if(millis()-kicker_timer < 100){
+  if(millis()-kicker_timer < 60){
     digitalWrite(KICKER_PIN, HIGH);
   }else{
     digitalWrite(KICKER_PIN, LOW);
