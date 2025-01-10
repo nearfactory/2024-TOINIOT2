@@ -82,6 +82,8 @@ void setup() {
 float line_dir = 0;
 float follow_dir   = 0;
 
+float gain = 4.0f;
+
 bool is_display_on = true;
 
 
@@ -121,6 +123,7 @@ void loop() {
     // Serial.println();
 
     // variables
+    display.addValiables("gain: "+to_string(gain), &gain);
 
     display.debug();
     display.draw();
@@ -158,19 +161,21 @@ void loop() {
 
     // 合成
     Vec2 move_vec(0,0);
-    // move_vec.x = line.vec.x + cos(radians(follow_dir)) * follow_power;
-    // move_vec.y = line.vec.y + sin(radians(follow_dir)) * follow_power;
     
-    if(line.distance > 0.3){
-      move_vec.x += line.vec.x;
-      move_vec.y += line.vec.y;
-    }
+    // if(line.distance > 0.3){
+    //   move_vec.x += line.vec.x;
+    //   move_vec.y += line.vec.y;
+    // }
 
     // if(abs(ball.dir) > 30){
     // }
       // move_vec.y += sin(radians(ball.dir)) * 4;
-      move_vec.x += cos(radians(follow_dir));
-      move_vec.y += sin(radians(follow_dir));
+
+      move_vec.x += cos(radians(line.dir));
+      move_vec.y += sin(radians(line.dir));
+
+      move_vec.x += cos(radians(follow_dir)) * gain;
+      move_vec.y += sin(radians(follow_dir)) * gain;
 
     // float move_power = move_vec.len() * 100;
     // if(move_power > 100) move_power = 100;
@@ -285,7 +290,7 @@ void loop() {
 
 
   motor.avr();
-  // motor.write();
+  motor.write();
 
   kicker.write();
 }
