@@ -1,10 +1,13 @@
-#include <stdint.h>
 #pragma once
+
+#include <vector>
 
 #include <Arduino.h>
 
 #include "General.hpp"
 #include "Vec2.hpp"
+
+using namespace std;
 
 class Line{
 private:
@@ -22,12 +25,16 @@ private:
   Vec2  vec1;              // 反応しているセンサのベクトルの左上
   Vec2  vec2;              // 反応しているセンサのベクトルの右下
 
+  Vec2  vecs[LINE_NUM];
+  int   count[LINE_NUM];
+
   static constexpr uint8_t DATA_SIZE = 5; // bit
   static constexpr uint8_t STR_SIZE = 8;  // byte
   char receive[STR_SIZE] = "";
 
 public:
   bool  line[INNER_NUM+4]; // センサの値
+
   int   num;               // 反応しているセンサの数
 
   bool front = false;

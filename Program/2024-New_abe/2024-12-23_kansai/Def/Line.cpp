@@ -46,35 +46,62 @@ void Line::read(){
 
   // 角度算出
   num = 0;
+  vec.clear();
   vec1.set(10.0f, 10.0f);   // ちいさいx, y
   vec2.set(-10.0f, -10.0f); // でかいx, y
-  
+
+
+
+  int index = 0;
+  Vec2 v[INNER_NUM];
+  int count[INNER_NUM];
+
+  for(int i=0;i<INNER_NUM;i++){
+    v[i].x = 0;
+    v[i].y = 0;
+    count[i] = 0;
+  }
+
+
   for(int i=0;i<INNER_NUM;i++){
     if(line[i]){
       float sensor_dir = radians(i*360/INNER_NUM);
+      v[index].x += cos(sensor_dir);
+      v[index].y += sin(sensor_dir);
+      count[index]++;
+    }
 
-      float x = cos(sensor_dir);
-      float y = sin(sensor_dir);
-      
-      if(vec1.x > x) vec1.x = x;
-      if(vec2.x < x) vec2.x = x;
+    if(line[(i+INNER_NUM-1)%INNER_NUM] && !line[i]){
+      index++;
+    }
+  }
 
-      if(vec1.y > y) vec1.y = y;
-      if(vec2.y < y) vec2.y = y;
+  if(line[INNER_NUM-1]){
+    v[0].x += v[index].x;
+    v[0].y += v[index].y;
+  }
 
-      num++;
+  for(int i=0;i<INNER_NUM;i++){
+    // Serial.printf("x:%f y:%f ", v[i].x, )
+    if(count[i] != 0){
+      v[i].x /= (float)count[i];
+      v[i].y /= (float)count[i];
+      vec.x += v[i].x;
+      vec.y += v[i].y;
     }
   }
 
 
 
   // ラインのベクトル
-  float x = (vec1.x + vec2.x) / 2;
-  float y = (vec1.y + vec2.y) / 2;
-  vec.set(x, y);
+  // float x = (vec1.x + vec2.x) / 2;
+  // float y = (vec1.y + vec2.y) / 2;
+  // vec.set(x, y);
 
-  dir = degrees(atan2(vec.y, vec.x));
-  distance = vec.len();
+  dir = -degrees(atan2(vec.y, vec.x));
+  distance = vec.len() / (float)(index+1);
+
+  Serial.printf("dir:%f area:%d x:%f y:%f \n", dir, index, vec.x, vec.y);
 
 
 

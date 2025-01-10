@@ -27,6 +27,9 @@ extern UI ui;
 extern State state;
 
 
+extern float line_dir;
+extern float follow_dir;
+
 using namespace std;
 
 

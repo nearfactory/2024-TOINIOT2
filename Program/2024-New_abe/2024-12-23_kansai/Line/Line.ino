@@ -80,23 +80,23 @@ char send_str[8]{};
 constexpr uint8_t DATA_SIZE = 5;
 
 void loop(){
-  // if(Serial.available()){
+  // if(Serial1.available()){
   //   char str[10];
   //   int i = 0;
-  //   while(Serial.available()){
-  //     str[i] = Serial.read();
+  //   while(Serial1.available()){
+  //     str[i] = Serial1.read();
   //     count++;
   //   }
   //   threshold = atoi(str);
   // }
   // Serial.print(threshold*4);
   // Serial.print("\t");
-  // if(Serial.available()){
-  //   char c = Serial.read();
-  //   if(c == 'u') threshold += 5;
-  //   if(c == 'd') threshold -= 5;
-  //   // threshold -= 5;
-  // }
+  if(Serial1.available()){
+    char c = Serial1.read();
+    if(c == 'u') threshold1 += 2;
+    if(c == 'd') threshold1 -= 2;
+    // threshold -= 5;
+  }
   analogWrite(THRESHOLD_PIN1, threshold1);
   analogWrite(THRESHOLD_PIN2, threshold2);
 

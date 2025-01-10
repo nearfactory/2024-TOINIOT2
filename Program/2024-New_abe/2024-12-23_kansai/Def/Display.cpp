@@ -297,7 +297,7 @@ void Display::Line(){
   // 情報
   printd(8, 32, "on:"+to_string(line.on));
   printd(8, 40, "num:"+to_string(line.num));
-  // printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
+  printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
   printd(8, 48, "dis:"+to_string(line.distance));
   printd(8, 56, "dir:"+to_string(line.dir));
 
@@ -357,6 +357,12 @@ void Display::Valiables(){
   printd(120,32,"-",ALIGN::RIGHT);
   printd(128,56,"select",ALIGN::RIGHT);
 
+  
+  display.drawCircle(64, 32, 24, WHITE);
+  display.drawPixel(64, 32, WHITE);
+  display.drawRect(64-1-cos(radians(line_dir))*13, 32-1-sin(radians(line_dir))*13, 2, 2, WHITE);
+  display.drawRect(64-1-cos(radians(follow_dir))*13, 32-1-sin(radians(follow_dir))*13, 2, 2, WHITE);
+
   // 加減算
   if(ui.buttonUp(1))      *valiables_addr[selector] += 0.1;
   else if(ui.buttonUp(2)) *valiables_addr[selector] -= 0.1;
@@ -384,38 +390,17 @@ void Display::Game(){
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
 
   switch(state){
-  case State::KickOff:
-    printd(8,56,"kick off");
+  case State::LineTrace:
+    printd(8,56,"LineTrace");
     break;
-  case State::Damaged:
-    printd(8,56,"damaged");
+  case State::KeeperDash:
+    printd(8,56,"KeeperDash");
     break;
-  case State::Follow:
-    printd(8,56,"follow");
+  case State::BackToGoal_Weak:
+    printd(8,56,"Weak");
     break;
-  case State::Dribble:
-    printd(8,56,"dribble");
-    break;
-  case State::Shoot:
-    printd(8,56,"shoot");
-    break;
-  case State::AvoidKeeper:
-    printd(8,56,"avoid keeper");
-    break;
-  case State::Pushing:
-    printd(8,56,"pushing");
-    break;
-  case State::NoBall:
-    printd(8,56,"no ball");
-    break;
-  case State::Neutral:
-    printd(8,56,"neutral");
-    break;
-  case State::Test:
-    printd(8,56,"Test");
-    break;
-  default: 
-    printd(8,56,"error!");
+  case State::BackToGoal_Strong:
+    printd(8,56,"Strong");
     break;
   }
 

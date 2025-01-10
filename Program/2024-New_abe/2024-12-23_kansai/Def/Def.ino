@@ -68,15 +68,19 @@ void setup() {
 
     display.draw();
   }
+  Serial.println("calibrated");
 
   // 攻め方向が設定されるまで待機
   display.printd(8,56,"set dir");
   display.draw();
   while(!ui.buttonUp(0)){ ui.read(); }
+  display.draw();
   
   dir.setDefault();
 }
 
+float line_dir = 0;
+float follow_dir   = 0;
 
 bool is_display_on = true;
 
@@ -88,9 +92,33 @@ void loop() {
   line.read();
   sub.read();
   ui.read();
+  
+    // 白線の角度の範囲を -90° ~ 90°に変換する
+    line_dir = line.dir;
+    // if(-90 < line_dir && line_dir < 90)       line_dir = line_dir;
+    // else if(90 < line_dir && line_dir < 180)  line_dir -= 180.0;
+    // else if(-180 < line_dir && line_dir < 90) line_dir += 180.0;
+
+    // 白線に垂直に動くためのベクトル
+    follow_dir = 0;
+    if(line_dir > 0){
+      if(line_dir-180 < ball.dir && ball.dir < line_dir){
+        follow_dir = line_dir - 90.0;
+      }else{
+        follow_dir = line_dir + 90.0;
+      }
+    }else{
+      if(line_dir < ball.dir && ball.dir < line_dir + 180){
+        follow_dir = line_dir + 90.0;
+      }else{
+        follow_dir = line_dir - 90.0;
+      }
+    }
 
   if(ui.is_toggle){
     if(ui.buttonUp(0)) display.next();
+    // for(auto b:ball.ball) Serial.printf("%d\t", b);
+    // Serial.println();
 
     // variables
 
@@ -116,19 +144,7 @@ void loop() {
 
   // 1.ライントレース
   if(state == State::LineTrace){
-    // 白線の角度の範囲を -90° ~ 90°に変換する
-    float line_dir = line.dir;
-    if     (line_dir >  90) line_dir -= 180.0;
-    else if(line_dir < -90) line_dir += 180.0;
-
-    // 白線に垂直に動くためのベクトル
-    float follow_dir   = 0;
-    if(ball.dir < line.dir){
-      follow_dir = line.dir - 90.0;
-    }else{
-      follow_dir = line.dir + 90.0;
-    }
-    float follow_power = abs(sin(radians(ball.dir - line.dir)));
+    // float follow_power = abs(sin(radians(ball.dir - line.dir)));
 
 
     /*
@@ -150,16 +166,17 @@ void loop() {
       move_vec.y += line.vec.y;
     }
 
-    if(abs(ball.dir) > 30){
-      move_vec.y += sin(radians(ball.dir)) * 4;
-    }
-    // move_vec.x = 0.01;
+    // if(abs(ball.dir) > 30){
+    // }
+      // move_vec.y += sin(radians(ball.dir)) * 4;
+      move_vec.x += cos(radians(follow_dir));
+      move_vec.y += sin(radians(follow_dir));
 
     // float move_power = move_vec.len() * 100;
     // if(move_power > 100) move_power = 100;
 
     float move_dir = degrees(atan2(move_vec.y, move_vec.x));
-    motor.moveDirFast(move_dir, 100);
+    motor.moveDir(move_dir, 70);
 
 
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
@@ -268,7 +285,7 @@ void loop() {
 
 
   motor.avr();
-  motor.write();
+  // motor.write();
 
   kicker.write();
 }

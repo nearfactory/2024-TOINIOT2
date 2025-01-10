@@ -7,7 +7,7 @@ class Sub{
 
   static constexpr uint8_t THRESHOLD = 128;
 
-  static constexpr uint16_t INTERVAL = 10000;
+  static constexpr uint16_t INTERVAL = 6000;
   uint32_t kicked_timer = 0;  
 public:
   uint8_t ball01k = 0;
