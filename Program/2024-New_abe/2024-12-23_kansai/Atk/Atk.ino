@@ -440,7 +440,9 @@ void loop() {
     }
 
 
-    // 見えた -> 回り込み
+    // 後ろに見えた -> 逆の回り込み
+    
+    // 前に見えた -> 回り込み
     if(ball.is_exist){
       timer_begin = false;
       state = State::Follow;
@@ -455,6 +457,34 @@ void loop() {
     motor.moveDir(ball.dir, 100);
   }
 
+
+
+  // ボールを持って後ろに下がる
+  else if(state == State::Back){
+    // PD
+    if(abs(ball.dir)<h){
+      move_dir = follow_dir * p_gain - d_gain*(follow_dir -     follow_dir_prev);
+      // move_dir = follow_dir;
+      h = 45;
+    }
+    // 円周上
+    else if(ball.distance < r){
+      float theta = 90 + (r-ball.distance) * 90 / r;
+      move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      h = 20;
+    }
+    //接線
+    else{
+      float theta = degrees(atan2(r, ball.distance));
+      move_dir = ball.dir + (ball.dir>0?theta:-theta);
+      h = 20;
+    }
+    
+    // 半分超えたら回り込み直し
+    if(camera.atk.h > 24){
+      state = State::Follow;
+    }
+  }
 
 
   // テスト
