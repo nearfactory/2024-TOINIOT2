@@ -292,14 +292,14 @@ void Display::Line(){
   }
 
   // ベクトル
-  display.drawRect(64-1-cos(radians(line.dir))*13, 32-1-sin(radians(line.dir))*13, 2, 2, WHITE);
+  // display.drawRect(64-1-cos(radians(line.dir))*13, 32-1+sin(radians(line.dir))*13, 2, 2, WHITE);
 
   // 情報
-  printd(8, 32, "on:"+to_string(line.on));
-  printd(8, 40, "num:"+to_string(line.num));
+  // printd(8, 32, "on:"+to_string(line.on));
+  // printd(8, 40, "num:"+to_string(line.num));
   // printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
-  printd(8, 48, "dis:"+to_string(line.distance));
-  printd(8, 56, "dir:"+to_string(line.dir));
+  // printd(8, 48, "dis:"+to_string(line.distance));
+  // printd(8, 56, "dir:"+to_string(line.dir));
 
   // しきい値調整
   printd(112,8, "+");
@@ -347,7 +347,7 @@ void Display::Valiables(){
 
   
   // 変数のセレクタ
-  if(ui.buttonUp(0)){
+  if(ui.buttonUp(3)){
     selector++;
     selector %= variables.size();
   }
@@ -364,17 +364,17 @@ void Display::Valiables(){
   else if(ui.buttonUp(2)) *valiables_addr[selector] -= order;
   
   // 桁の変更
-  if(ui.buttonUp(3)){
-    if(order == 0.01){
-      order = 0.1;
-    }else if(order == 0.1){
-      order = 1.0;
-    }else if(order == 1.0){
-      order = 0.01;
-    }else{
-      order = 0.1;
-    }
-  }
+  // if(ui.buttonUp(3)){
+  //   if(order == 0.01){
+  //     order = 0.1;
+  //   }else if(order == 0.1){
+  //     order = 1.0;
+  //   }else if(order == 1.0){
+  //     order = 0.01;
+  //   }else{
+  //     order = 0.1;
+  //   }
+  // }
 
   return;
 }

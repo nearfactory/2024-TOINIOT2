@@ -34,9 +34,11 @@ bool is_display_on = true;
 // 周り込み
 float h = 45;       // ヒステリシス
 // float r = 14400.0; // 回り込みの半径
-float r = 7000.0; // 回り込みの半径
+float r = 13500.0; // 回り込みの半径
 float p_gain = 1.5;
 float d_gain = 4.2;
+
+float offset = 1.0;
 
 
 // ステートマシン
@@ -45,7 +47,7 @@ State state_prev = State::KickOff;
 uint32_t state_begin = 0;
 
 // ToDo: 白線から出ない速度の調整・半分超えた場合の処理
-float speed_normal = 100.0;
+float speed_normal = 10.0;
 
 
 
@@ -108,8 +110,9 @@ void loop() {
     Serial.println("display");
     if(ui.buttonUp(0)) display.next();
 
-    // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
-    // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    display.addValiables("offset: "+to_string(offset), &offset);
     display.addValiables("speed_normal :"+to_string(speed_normal), &speed_normal);
 
     display.debug();
@@ -184,9 +187,21 @@ void loop() {
   else if(state == State::Follow){
     float move_dir = 0;
 
+    // ボールの距離・角度をロボットの中心から補足エリアの中心に補正
+    float y = sin(radians(ball.dir))*ball.distance;
+    float x = cos(radians(ball.dir))*ball.distance - offset/10;
+
+    static float follow_dir = 0;
+    static float follow_dir_prev = 0;
+    follow_dir_prev = follow_dir;
+    follow_dir = degrees(atan2(y, x));
+  
+    float follor_distance = sin(radians(ball.dir)) * ball.distance / sin(radians(follow_dir));
+
     // PD
     if(abs(ball.dir)<h){
-      move_dir = ball.dir * p_gain - d_gain*(ball.dir -     ball.dir_prev);
+      move_dir = follow_dir * p_gain - d_gain*(follow_dir -     follow_dir_prev);
+      // move_dir = follow_dir;
       h = 45;
     }
     // 円周上
@@ -202,7 +217,7 @@ void loop() {
       h = 20;
     }
 
-    motor.moveDir(move_dir, speed_normal);
+    motor.moveDir(move_dir, speed_normal*10.0);
     if(line.on) motor.moveDir(line.dir+180, 100);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
@@ -416,12 +431,12 @@ void loop() {
     }
 
     if(timer_begin == false || millis()-timer < 500){
-      motor.moveDir(180 - dir.dir, speed_normal);
+      motor.moveDir(180 - dir.dir, speed_normal*10.0);
       if(line.on) motor.moveDir(line.dir+180, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
     }else{
       motor.moveDir(0, 0);
-      if(line.on) motor.moveDir(line.dir+180, speed_normal);
+      if(line.on) motor.moveDir(line.dir+180, speed_normal*10.0);
     }
 
 
