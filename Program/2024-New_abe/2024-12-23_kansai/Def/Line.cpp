@@ -43,7 +43,7 @@ void Line::read(){
   for(int i=0;i<INNER_NUM;i++){
     if(line[i]) num++;
   }
-  
+
   if(num>0){
     on = true;
   }else{
@@ -91,6 +91,10 @@ void Line::read(){
     }
   }
 
+  if(index>0){
+    area = index;
+  }
+
   if(line[INNER_NUM-1]){
     v[0].x += v[index].x;
     v[0].y += v[index].y;
@@ -104,6 +108,7 @@ void Line::read(){
     if(count[i] != 0){
       v[i].x /= (float)count[i];
       v[i].y /= (float)count[i];
+      // v[i].x += 0.2;
       vec.x += v[i].x;
       vec.y += v[i].y;
     }
@@ -116,6 +121,7 @@ void Line::read(){
   // float y = (vec1.y + vec2.y) / 2;
   // vec.set(x, y);
 
+  vec.y += 0.2;
   dir = -degrees(atan2(vec.y, vec.x));
   distance = vec.len() / (float)(index+1);
 

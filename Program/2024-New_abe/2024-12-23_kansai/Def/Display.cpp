@@ -212,6 +212,9 @@ void Display::Camera(){
   }
   if(camera.def.is_visible){
     display.drawRect(left + camera.def.x1 *width/320, up + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
+    ui.buzzer(880.0f);
+  }else{
+    ui.buzzer(440.0f);
   }
 
   // display.drawRect(left + 80 * width/320, up + 50 * height/200, 160 * width/320, 100 * height/200, WHITE);
@@ -295,8 +298,9 @@ void Display::Line(){
   display.drawRect(64-1-cos(radians(line.dir))*13, 32-1-sin(radians(line.dir))*13, 2, 2, WHITE);
 
   // 情報
-  printd(8, 32, "on:"+to_string(line.on));
-  printd(8, 40, "num:"+to_string(line.num));
+  printd(8, 24, "on:"+to_string(line.on));
+  printd(8, 32, "num:"+to_string(line.num));
+  printd(8, 40, "area:"+to_string(line.area));
   // printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
   printd(8, 48, "dis:"+to_string(line.distance));
   printd(8, 56, "dir:"+to_string(line.dir));

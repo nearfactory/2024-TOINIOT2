@@ -30,7 +30,7 @@ using namespace std;
 
 State state = State::LineTrace;
 
-#define COMPILE 10
+#define COMPILE 15
 
 
 
@@ -149,7 +149,8 @@ void loop() {
     if(abs(dir.dir) > 90){
       motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
     }else{
-      state = State::BackToGoal_Weak;
+      // state = State::BackToGoal_Weak;
+      state = State::LineTrace;
     }
   }
 
@@ -190,17 +191,26 @@ void loop() {
     // float move_power = move_vec.len() * 100;
     // if(move_power > 100) move_power = 100;
 
-    float move_dir = degrees(atan2(move_vec.y, move_vec.x));
 
     // コート端の白線の場合
-    if(!camera.def.is_visible){
-      if(camera.def.dir < 0){
-        move_dir = -90;
-      }else{
-        move_dir = 90;
-      }
+    // if(abs(camera.def.dir)>23){
+    //   // if(camera.def.dir < 0){
+    //   //   move_dir = -90;
+    //   // }else{
+    //   //   move_dir = 90;
+    //   // }
+    //   if(camera.def.dir>0){
+    //     move_vec.y = 1;
+    //   }else{
+    //     move_vec.y = -1;
+    //   }
+    //   move_vec.y = 0;
+    // }
+    float move_dir = degrees(atan2(move_vec.y, move_vec.x));
+    motor.moveDir(move_dir, 100);
+    if(abs(camera.def.dir)>26.0){
+      motor.moveDir(0,0);
     }
-    motor.moveDir(move_dir, 70);
 
 
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
@@ -304,6 +314,12 @@ void loop() {
   // 5.エラー
   else{
     state = State::LineTrace;
+  }
+
+  if(camera.def.is_visible){
+    ui.buzzer(880.0f);
+  }else{
+    ui.buzzer(440.0f);
   }
 
 

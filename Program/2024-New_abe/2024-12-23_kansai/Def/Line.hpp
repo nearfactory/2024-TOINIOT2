@@ -36,6 +36,7 @@ public:
   bool  line[INNER_NUM+4]; // センサの値
 
   int   num;               // 反応しているセンサの数
+  int area = 0;
 
   bool front = false;
   bool left = false;

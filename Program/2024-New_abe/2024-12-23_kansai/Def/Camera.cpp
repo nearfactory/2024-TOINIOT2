@@ -82,13 +82,15 @@ void Camera::read(){
 
 
 
-  atk.x = (atk.x1 + atk.x2) / 2;
-  atk.y = (atk.y1 + atk.y2) / 2;
-  atk.w = atk.x2 - atk.x1;
-  atk.h = atk.y2 - atk.y1;
-  atk.dir_prev = atk.dir;
+  if(atk.is_visible){
+    atk.x = (atk.x1 + atk.x2) / 2;
+    atk.y = (atk.y1 + atk.y2) / 2;
+    atk.w = atk.x2 - atk.x1;
+    atk.h = atk.y2 - atk.y1;
+    atk.dir_prev = atk.dir;
 
-  atk.dir = (atk.x - 160) / 4.0;
+    atk.dir = (atk.x - 140) / 4.0;
+  }
   // atk.dir_queue[atk.dir_queue_id] = atk.dir;
   // float sum = 0;
   // for(auto d:atk.dir_queue) sum += d;
@@ -96,14 +98,17 @@ void Camera::read(){
   // atk.dir_queue_id = (atk.dir_queue_id + 1) % DIR_QUEUE_SIZE;
 
 
-  
-  def.x = (def.x1 + def.x2) / 2;
-  def.y = (def.y1 + def.y2) / 2;
-  def.w = def.x2 - def.x1;
-  def.h = def.y2 - def.y1;
-  def.dir_prev = def.dir;
 
-  def.dir = (def.x - 160) / 4.0;
+  if(def.is_visible){
+    def.x = (def.x1 + def.x2) / 2;
+    def.y = (def.y1 + def.y2) / 2;
+    def.w = def.x2 - def.x1;
+    def.h = def.y2 - def.y1;
+    def.dir_prev = def.dir;
+
+    def.dir = -(def.x - 140) / 4.0;
+  }  
+
   // def.dir_queue[def.dir_queue_id] = def.dir;
   // sum = 0;
   // for(auto d:def.dir_queue) sum += d;
