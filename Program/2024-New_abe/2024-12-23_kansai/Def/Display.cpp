@@ -185,13 +185,13 @@ void Display::Camera(){
   int left = 64-width/2;
   int up   = 16;
 
-  printd(8,16,to_string(camera.atk.dir));
+  printd(8,16,to_string(camera.def.dir));
   printd(8,24,to_string(camera.chance_dir));
 
-  printd(104, 8,  to_string(camera.atk.x));
-  printd(104, 16, to_string(camera.atk.y));
-  printd(104, 24, to_string(camera.atk.w));
-  printd(104, 32, to_string(camera.atk.h));
+  printd(104, 8,  to_string(camera.def.x));
+  printd(104, 16, to_string(camera.def.y));
+  printd(104, 24, to_string(camera.def.w));
+  printd(104, 32, to_string(camera.def.h));
 
   display.drawRect(left, up, width, height, WHITE);
 
@@ -297,7 +297,7 @@ void Display::Line(){
   // 情報
   printd(8, 32, "on:"+to_string(line.on));
   printd(8, 40, "num:"+to_string(line.num));
-  printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
+  // printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
   printd(8, 48, "dis:"+to_string(line.distance));
   printd(8, 56, "dir:"+to_string(line.dir));
 

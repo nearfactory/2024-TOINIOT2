@@ -31,6 +31,8 @@ void Line::read(){
 
 
   // 読み出して格納
+  num = 0;
+  on = false;
   for(int i=0;i<6;i++){
     char c = Serial1.read();
     for(int j=0;j<5;j++){
@@ -38,6 +40,20 @@ void Line::read(){
     }
   }
 
+  for(int i=0;i<INNER_NUM;i++){
+    if(line[i]) num++;
+  }
+  
+  if(num>0){
+    on = true;
+  }else{
+    on = false;
+  }
+
+
+  if(!on){
+    return;
+  }
 
 
   // 壊れたセンサを反応しいないように修正
@@ -45,7 +61,6 @@ void Line::read(){
 
 
   // 角度算出
-  num = 0;
   vec.clear();
   vec1.set(10.0f, 10.0f);   // ちいさいx, y
   vec2.set(-10.0f, -10.0f); // でかいx, y
@@ -81,8 +96,11 @@ void Line::read(){
     v[0].y += v[index].y;
   }
 
+  
   for(int i=0;i<INNER_NUM;i++){
     // Serial.printf("x:%f y:%f ", v[i].x, )
+    count[i]--;
+    if(count[i] < 1) count[i] = 1;
     if(count[i] != 0){
       v[i].x /= (float)count[i];
       v[i].y /= (float)count[i];

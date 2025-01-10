@@ -30,7 +30,7 @@ using namespace std;
 
 State state = State::LineTrace;
 
-#define COMPILE 8
+#define COMPILE 10
 
 
 
@@ -144,6 +144,16 @@ void loop() {
   }
 
 
+  // 0.キックオフ
+  if(state == State::KickOff){
+    if(abs(dir.dir) > 90){
+      motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }else{
+      state = State::BackToGoal_Weak;
+    }
+  }
+
+
 
   // 1.ライントレース
   if(state == State::LineTrace){
@@ -181,14 +191,23 @@ void loop() {
     // if(move_power > 100) move_power = 100;
 
     float move_dir = degrees(atan2(move_vec.y, move_vec.x));
+
+    // コート端の白線の場合
+    if(!camera.def.is_visible){
+      if(camera.def.dir < 0){
+        move_dir = -90;
+      }else{
+        move_dir = 90;
+      }
+    }
     motor.moveDir(move_dir, 70);
 
 
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
-    /*
     // トリガー
+    /*
     static uint32_t ball_front_begin = 0;
     static bool ball_front = false;
     static bool ball_front_prev = false;
@@ -204,11 +223,11 @@ void loop() {
     if(millis()-ball_front_begin > 2000){
       // state = State::KeeperDash;
     }
-    // →  3.ゴール前に戻る(弱め)
-    else if(line.on == false){
-      // state = State::BackToGoal_Weak;
-    }
     */
+    // →  3.ゴール前に戻る(弱め)
+    if(!line.on){
+      state = State::BackToGoal_Weak;
+    }
 
   }
 
@@ -241,7 +260,7 @@ void loop() {
   // 3.ゴール前に戻る（弱め）
   else if(state == State::BackToGoal_Weak){
     // 最後のラインのベクトルへ移動
-    motor.moveDirFast(line.dir, 100);
+    motor.moveDir(line.dir, 70);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
@@ -256,9 +275,9 @@ void loop() {
       state = State::LineTrace;
     }
     // →  4.ゴール前に戻る(強め)
-    else if(millis()-is_not_line_begin > 2000){
-      state = State::BackToGoal_Strong;
-    }
+    // else if(millis()-is_not_line_begin > 2000){
+    //   state = State::BackToGoal_Strong;
+    // }
   }
 
   
