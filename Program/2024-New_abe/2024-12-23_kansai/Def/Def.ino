@@ -26,12 +26,14 @@ Motor motor;
 Sub sub;
 UI ui;
 
-using namespace std;
-
-State state = State::LineTrace;
 
 #define COMPILE 15
+using namespace std;
 
+
+State state = State::LineTrace;
+State state_prev = State::LineTrace;
+uint32_t state_begin = 0;
 
 
 void setup() {
@@ -94,28 +96,22 @@ void loop() {
   line.read();
   sub.read();
   ui.read();
-  
-    // 白線の角度の範囲を -90° ~ 90°に変換する
-    line_dir = line.dir;
-    // if(-90 < line_dir && line_dir < 90)       line_dir = line_dir;
-    // else if(90 < line_dir && line_dir < 180)  line_dir -= 180.0;
-    // else if(-180 < line_dir && line_dir < 90) line_dir += 180.0;
 
-    // 白線に垂直に動くためのベクトル
-    follow_dir = 0;
-    if(line_dir > 0){
-      if(line_dir-180 < ball.dir && ball.dir < line_dir){
-        follow_dir = line_dir - 90.0;
-      }else{
-        follow_dir = line_dir + 90.0;
-      }
+  // 白線に垂直に動くためのベクトル
+  follow_dir = 0;
+  if(line_dir > 0){
+    if(line_dir-180 < ball.dir && ball.dir < line_dir){
+      follow_dir = line_dir - 90.0;
     }else{
-      if(line_dir < ball.dir && ball.dir < line_dir + 180){
-        follow_dir = line_dir + 90.0;
-      }else{
-        follow_dir = line_dir - 90.0;
-      }
+      follow_dir = line_dir + 90.0;
     }
+  }else{
+    if(line_dir < ball.dir && ball.dir < line_dir + 180){
+      follow_dir = line_dir + 90.0;
+    }else{
+      follow_dir = line_dir - 90.0;
+    }
+  }
 
   if(ui.is_toggle){
     if(ui.buttonUp(0)) display.next();
@@ -144,6 +140,16 @@ void loop() {
   }
 
 
+
+  // ステートマシンを更新
+  if(state != state_prev){
+    state_begin = millis();
+  }
+  state_prev = state;
+  uint32_t state_elapsed = millis() - state_begin;
+
+
+
   // 0.キックオフ
   if(state == State::KickOff){
     if(abs(dir.dir) > 90){
@@ -158,7 +164,17 @@ void loop() {
 
   // 1.ライントレース
   if(state == State::LineTrace){
-    // float follow_power = abs(sin(radians(ball.dir - line.dir)));
+    Vec2 move_vec(0,0);
+
+
+    // 白線に戻るベクトル
+    move_vec.x += cos(radians(line.dir)) * distance;
+    move_vec.y += sin(radians(line.dir)) * distance;
+
+
+    // 白線と垂直に動くベクトル
+    move_vec.x += cos(radians(follow_dir)) * gain;
+    move_vec.y += sin(radians(follow_dir)) * gain;
 
 
     /*
@@ -171,45 +187,15 @@ void loop() {
 
 
     // 合成
-    Vec2 move_vec(0,0);
-    
-    // if(line.distance > 0.3){
-    //   move_vec.x += line.vec.x;
-    //   move_vec.y += line.vec.y;
-    // }
-
-    // if(abs(ball.dir) > 30){
-    // }
-      // move_vec.y += sin(radians(ball.dir)) * 4;
-
-      move_vec.x += cos(radians(line.dir));
-      move_vec.y += sin(radians(line.dir));
-
-      move_vec.x += cos(radians(follow_dir)) * gain;
-      move_vec.y += sin(radians(follow_dir)) * gain;
-
-    // float move_power = move_vec.len() * 100;
-    // if(move_power > 100) move_power = 100;
-
-
-    // コート端の白線の場合
-    // if(abs(camera.def.dir)>23){
-    //   // if(camera.def.dir < 0){
-    //   //   move_dir = -90;
-    //   // }else{
-    //   //   move_dir = 90;
-    //   // }
-    //   if(camera.def.dir>0){
-    //     move_vec.y = 1;
-    //   }else{
-    //     move_vec.y = -1;
-    //   }
-    //   move_vec.y = 0;
-    // }
     float move_dir = degrees(atan2(move_vec.y, move_vec.x));
     motor.moveDir(move_dir, 100);
+
+
+    // ペナルティエリアの端で止まる
     if(abs(camera.def.dir)>26.0){
-      motor.moveDir(0,0);
+      if(abs(ball.dir) > 45.0){
+        motor.moveDir(0,0);
+      }
     }
 
 
@@ -217,23 +203,26 @@ void loop() {
 
 
     // トリガー
-    /*
-    static uint32_t ball_front_begin = 0;
-    static bool ball_front = false;
-    static bool ball_front_prev = false;
+    static bool     begin = false;
+    static uint32_t timer = 0;
+    bool is_dash = false;
 
-    ball_front_prev = ball_front;
-    ball_front = ball.distance < 14400 && abs(ball.dir) < 22.5;
-
-    if(ball_front == true && ball_front_prev == false){
-      ball_front_begin = millis();
+    // -30~30かつ、<14400 の範囲にボールがある状態が2秒続けばキーパーダッシュにに移行
+    if(abs(ball.dir)<30 && ball.distance < 13500){
+      if(!begin){
+        begin = true;
+        timer = millis();
+      }else{
+        if(millis()-timer > 2000) is_dash = true;
+      }
+    }else{
+      begin = false;
     }
 
     // →  2.キーパーダッシュ
-    if(millis()-ball_front_begin > 2000){
-      // state = State::KeeperDash;
+    if(is_dash){
+      state = State::KeeperDash;
     }
-    */
     // →  3.ゴール前に戻る(弱め)
     if(!line.on){
       state = State::BackToGoal_Weak;
@@ -245,6 +234,11 @@ void loop() {
 
   // 2.キーパーダッシュ
   else if(state == State::KeeperDash){
+    motor.moveDir(0,0);
+    if(state_elapsed > 2000){
+      state = State::LineTrace;
+    }
+    /*
     float move_dir = 0;
     if(ball.is_hold){
       move_dir = camera.atk.dir;
@@ -263,6 +257,7 @@ void loop() {
     if(is_line || is_stop){
       state = State::BackToGoal_Strong;
     }
+    */
   }
   
 

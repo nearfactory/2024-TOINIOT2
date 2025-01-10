@@ -117,15 +117,12 @@ void Line::read(){
 
 
   // ラインのベクトル
-  // float x = (vec1.x + vec2.x) / 2;
-  // float y = (vec1.y + vec2.y) / 2;
-  // vec.set(x, y);
 
   vec.y += 0.2;
   dir = -degrees(atan2(vec.y, vec.x));
-  distance = vec.len() / (float)(index+1);
+  distance = vec.len() / (float)index;
 
-  Serial.printf("dir:%f area:%d x:%f y:%f \n", dir, index, vec.x, vec.y);
+  // Serial.printf("dir:%f area:%d x:%f y:%f \n", dir, index, vec.x, vec.y);
 
 
 
