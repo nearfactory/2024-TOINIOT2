@@ -304,6 +304,7 @@ void Display::Line(){
   // しきい値調整
   printd(112,8, "+");
   printd(112,32,"-");
+  printd(112,56,"s");
 
   // しきい値の加減算
   if(ui.buttonUp(1)){
@@ -316,6 +317,10 @@ void Display::Line(){
     Serial1.print("d");
     printd(96,32,"-");
   } 
+  if(ui.buttonUp(3)){
+    Serial1.print("c");
+    printd(96,56,"s");
+  }
 
   return;
 }

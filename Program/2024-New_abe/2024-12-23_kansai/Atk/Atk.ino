@@ -194,17 +194,6 @@ void loop() {
   else if(state == State::Follow){
     float move_dir = 0;
 
-    // ボールの距離・角度をロボットの中心から補足エリアの中心に補正
-    // float y = sin(radians(ball.dir))*ball.distance;
-    // float x = cos(radians(ball.dir))*ball.distance - offset/10;
-
-    // static float follow_dir = 0;
-    // static float follow_dir_prev = 0;
-    // follow_dir_prev = follow_dir;
-    // follow_dir = degrees(atan2(y, x));
-  
-    // float follor_distance = sin(radians(ball.dir)) * ball.distance / sin(radians(follow_dir));
-
     // PD
     if(abs(ball.dir)<h){
       move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
@@ -223,22 +212,20 @@ void loop() {
       h = 20;
     }
 
-    motor.moveDir(180, 80); 
-    // if(line.on) motor.moveDir(line.dir+180, 100);
-    // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    motor.moveDir(move_dir, 100); 
+    if(line.on) motor.moveDir(line.dir+180, 100);
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
    
     // ボールを保持 -> ゴールに向かう
     if(ball.is_hold){
-      // state = State::Dribble;
+      state = State::Dribble;
     }
 
-    // if(!ball.is_exist) state = State::NoBall;
+    if(!ball.is_exist) state = State::NoBall;
 
   }
 
-
-  /*
 
   // ToDo: ゴールに向かう
   else if(state == State::Dribble){
@@ -480,8 +467,6 @@ void loop() {
   // }else{
   //   ui.buzzer(440.0f);
   // }
-
-
 
 
 

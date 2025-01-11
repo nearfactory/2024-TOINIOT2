@@ -39,10 +39,15 @@ void Line::read(){
   }
 
 
+  // 調べる
   for(int i=0;i<INNER_NUM;i++){
     if(line[i]) num++;
   }
-  on = num > 0;
+  // 外側
+  outside = front | left | back | right;
+
+  angel = num > 0;
+  on = angel | outside;
 
 
   // 踏んでいない場合に処理をスキップ
@@ -109,6 +114,15 @@ void Line::read(){
   }
 
 
+  // 外側のみ反応している場合
+  if(!angel){
+    if(front) vec.x = 1;
+    if(left)  vec.y = 1;
+    if(back)  vec.x = -1;
+    if(right) vec.y = -1;
+  }
+
+
 
   // 角度・距離を算出
   dir = -degrees(atan2(vec.y, vec.x));
@@ -119,12 +133,9 @@ void Line::read(){
 
 
 
-  // 外側
-  outside = front | left | back | right;
-
-
 
   /*
+  */
   // 踏み始め
   if(prev_on == false && on == true){
     dir_prev = dir;
@@ -153,7 +164,6 @@ void Line::read(){
     }
 
   }
-  */
 
 
 
