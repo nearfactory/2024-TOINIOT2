@@ -223,10 +223,13 @@ void loop() {
     switch(dir_type){
       case 0:
         r = 12500.0;
-        if(camera.atk.dir < -23){
-          dir_type = 1;
-        }else if(camera.atk.dir > 23){
-          dir_type = 2;
+        // ゴールに近い場合のみ
+        if(camera.atk.h > 25){
+          if(camera.atk.dir < -23){
+            dir_type = 1;
+          }else if(camera.atk.dir > 23){
+            dir_type = 2;
+          }
         }
         face = 0;
         break;
