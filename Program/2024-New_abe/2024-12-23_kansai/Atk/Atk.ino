@@ -258,9 +258,9 @@ void loop() {
     }
 
     // 押し込み
-    if(camera.atk.h > 50 && abs(ball.dir) < 30 && line.on && abs(line.dir) < 30){
+    if(state_elapsed > 1000 && camera.atk.h > 50 && abs(ball.dir) < 30 && line.on && abs(line.dir) < 30){
       line_flag = 0;
-      state == State::Oshikomi;
+      state = State::Oshikomi;
     }
 
     if(!ball.is_exist) state = State::NoBall;
@@ -445,7 +445,8 @@ void loop() {
     //   motor.moveDir(0, 0);
     // }
 
-    motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    // motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    motor.moveDir(0, 0);z
 
 
     // 後ろに見えた -> 逆の回り込み
@@ -493,8 +494,17 @@ void loop() {
   // 押し込み
   else if(state == State::Oshikomi){
     static bool go_flag = true;
+    static int  count = 0;
+
     line_flag = 0;
-    if(go_flag){
+
+    // 飛び出さないよう、0.5秒間止める
+    if(state_elapsed < 500){
+      motor.moveDir(0,0);
+    }
+    
+    // 進む
+    else if(go_flag){
       motor.moveDir(ball.dir, 60);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
@@ -502,15 +512,25 @@ void loop() {
       if(abs(line.dir) > 90 && line.distance > 1.4){
         go_flag = false;
       }
-    }else{
+    }
+
+    // 下がる
+    else{
       motor.moveDir(180, 50);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
       if(!line.on){
         go_flag = true;
-        state = State::Follow;
+        count++;
       }
     }
+
+
+    if(count >= 5){
+      count = 0;
+      state = State::Follow;
+    }
+
   }
 
 
