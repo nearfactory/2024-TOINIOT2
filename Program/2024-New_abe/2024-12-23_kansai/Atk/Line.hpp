@@ -19,9 +19,6 @@ private:
 
   uint32_t right_timer = 0;
 
-  Vec2  vec1;              // 反応しているセンサのベクトルの左上
-  Vec2  vec2;              // 反応しているセンサのベクトルの右下
-
   static constexpr uint8_t DATA_SIZE = 5; // bit
   static constexpr uint8_t STR_SIZE = 8;  // byte
   char receive[STR_SIZE] = "";

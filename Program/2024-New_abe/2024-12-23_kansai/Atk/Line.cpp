@@ -30,6 +30,7 @@ void Line::read(){
 
 
   // 読み出して格納
+  num = 0;
   for(int i=0;i<6;i++){
     char c = Serial1.read();
     for(int j=0;j<5;j++){
@@ -38,63 +39,92 @@ void Line::read(){
   }
 
 
+  for(int i=0;i<INNER_NUM;i++){
+    if(line[i]) num++;
+  }
+  on = num > 0;
 
-  // 不調のセンサを修正
+
+  // 踏んでいない場合に処理をスキップ
+  if(!on){
+    return;
+  }
+
+
+
+  // 壊れたセンサを反応しいないように修正
 
 
 
   // 角度算出
-  on = false;
-  dir = 0;
-  num = 0;
-  vec1.set(10.0f, 10.0f);   // ちいさいx, y
-  vec2.set(-10.0f, -10.0f); // でかいx, y
+  vec.clear();
 
-  // 最大値・最小値を算出  
+
+
+  // 初期化
+  int index = 0;
+  Vec2 v[INNER_NUM];
+  int count[INNER_NUM];
+
+  for(int i=0;i<INNER_NUM;i++){
+    v[i].x = 0;
+    v[i].y = 0;
+    count[i] = 0;
+  }
+
+
+  // 連続する部分をひとまとめにする
   for(int i=0;i<INNER_NUM;i++){
     if(line[i]){
       float sensor_dir = radians(i*360/INNER_NUM);
+      v[index].x += cos(sensor_dir);
+      v[index].y += sin(sensor_dir);
+      count[index]++;
+    }
 
-      float x = cos(sensor_dir);
-      float y = sin(sensor_dir);
-      
-      if(vec1.x > x) vec1.x = x;
-      if(vec2.x < x) vec2.x = x;
+    if(line[(i+INNER_NUM-1)%INNER_NUM] && !line[i]){
+      index++;
+    }
+  }
 
-      if(vec1.y > y) vec1.y = y;
-      if(vec2.y < y) vec2.y = y;
+  // ループの切れ目を処理
+  if(line[INNER_NUM-1]){
+    v[0].x += v[index].x;
+    v[0].y += v[index].y;
+  }
 
-      num++;
+  area = index;
+
+  
+  // 合成
+  for(int i=0;i<INNER_NUM;i++){
+    count[i]--;
+    if(count[i] < 1) count[i] = 1;
+    if(count[i] != 0){
+      v[i].x /= (float)count[i];
+      v[i].y /= (float)count[i];
+      vec.x += v[i].x;
+      vec.y += v[i].y;
     }
   }
 
 
-  // ラインのベクトルを算出
-  vec_prev = vec;
 
-  float x = (vec1.x + vec2.x) / 2;
-  float y = (vec1.y + vec2.y) / 2;
-  vec.set(x, y);
-  distance = vec.len();
+  // 角度・距離を算出
+  dir = -degrees(atan2(vec.y, vec.x));
+  distance = vec.len() / (float)index;
 
 
+  // Serial.printf("dir:%f area:%d x:%f y:%f \n", dir, index, vec.x, vec.y);
 
-  // サイドのセンサ
+
+
+  // 外側
   outside = front | left | back | right;
 
 
 
-  // 白線上かを判定
-  prev_on = on;
-  on = num > 0;
-
-
-  // 角度算出
-  dir = degrees(atan2(vec.y, vec.x));
-  dir_prev = dir;
-
-
-
+  /*
   // 踏み始め
   if(prev_on == false && on == true){
     dir_prev = dir;
@@ -123,6 +153,7 @@ void Line::read(){
     }
 
   }
+  */
 
 
 
