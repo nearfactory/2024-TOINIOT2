@@ -22,8 +22,8 @@ uint32_t min = 1023;
 uint32_t avr = 0;
 uint32_t count = 0;
 
-uint8_t threshold1 = 580/4;
-uint8_t threshold2 = 600/4;
+uint8_t threshold1 = 155;
+uint8_t threshold2 = 190;
 
 void setup(){
   Serial.begin(115200);
@@ -79,6 +79,8 @@ void setup(){
 char send_str[8]{};
 constexpr uint8_t DATA_SIZE = 5;
 
+uint8_t *selector = &threshold1;
+
 void loop(){
   // if(Serial1.available()){
   //   char str[10];
@@ -93,8 +95,15 @@ void loop(){
   // Serial.print("\t");
   if(Serial1.available()){
     char c = Serial1.read();
-    if(c == 'u') threshold1 += 2;
-    if(c == 'd') threshold1 -= 2;
+    if(c == 'c'){
+      if(selector == &threshold1){
+        selector = &threshold2;
+      }else{
+        selector = &threshold1;
+      }
+    }
+    if(c == 'u') *selector += 2;
+    if(c == 'd') *selector -= 2;
     // threshold -= 5;
   }
   analogWrite(THRESHOLD_PIN1, threshold1);
@@ -124,9 +133,9 @@ void loop(){
 
 
   // テスト
-  Serial.print(threshold1);
+  Serial.print(threshold1*4);
   Serial.print("\t");
-  Serial.print(threshold2);
+  Serial.print(threshold2*4);
   Serial.print("\t");
   for(int i=0;i<LINE_NUM;i++){
     Serial.print(line[i]);
