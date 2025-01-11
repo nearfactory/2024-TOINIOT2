@@ -195,31 +195,57 @@ void loop() {
     float move_dir = 0;
 
     // 直進
-    if(abs(ball.dir)<5){
-      move_dir = ball.dir;
-    }
+    // if(abs(ball.dir)<5){
+    //   move_dir = ball.dir;
+    // }
 
     // PD
-    else if(abs(ball.dir)<h){
+    if(abs(ball.dir)<h){
       move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
-      h = 20;
+      h = 15;
     }
     // 円周上
     else if(ball.distance < r){
       float theta = 90 + (r-ball.distance) * 90 / r;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 20;
+      h = 15;
     }
     //接線
     else{
       float theta = degrees(atan2(r, ball.distance));
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 20;
+      h = 15;
     }
 
     motor.moveDir(move_dir, 95); 
     if(line.on) motor.moveDirFast(line.dir+180, 100);
-    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+    // ゴールに向ける
+    float face = 0;
+    static int dir_type = 0;
+    switch(dir_type){
+    case 0:
+      if(camera.atk.dir < -25){
+        dir_type = 1;
+      }else if(camera.atk.dir > 25){
+        dir_type = 2;
+      }
+      face = 0;
+      break;
+    case 1:
+      if(camera.atk.dir > 10){
+        dir_type = 0;
+      }
+      face = -20;
+      break;
+    case 2:
+      if(camera.atk.dir < -10){
+        dir_type = 0;
+      }
+      face = 20;
+      break;
+    }
+    motor.setDirAdd(dir.dir + face, dir.dir_prev, dir.p_gain, dir.d_gain);
 
    
     // ボールを保持 -> ゴールに向かう
