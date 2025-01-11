@@ -147,6 +147,7 @@ void loop() {
   }
   state_prev = state;
   uint32_t state_elapsed = millis() - state_begin;
+  int line_flag = 0;
 
 
 
@@ -217,28 +218,28 @@ void loop() {
       h = 15;
     }
 
+    if(line.on) line_flag = 1;
     motor.moveDir(move_dir, 95); 
-    if(line.on) motor.moveDirFast(line.dir+180, 100);
 
     // ゴールに向ける
     float face = 0;
     static int dir_type = 0;
     switch(dir_type){
-    case 0:
-      if(camera.atk.dir < -25){
-        dir_type = 1;
-      }else if(camera.atk.dir > 25){
-        dir_type = 2;
-      }
-      face = 0;
-      break;
-    case 1:
-      if(camera.atk.dir > 10){
-        dir_type = 0;
-      }
-      face = -20;
-      break;
-    case 2:
+      case 0:
+        if(camera.atk.dir < -25){
+          dir_type = 1;
+        }else if(camera.atk.dir > 25){
+          dir_type = 2;
+        }
+        face = 0;
+        break;
+      case 1:
+        if(camera.atk.dir > 10){
+          dir_type = 0;
+        }
+        face = -20;
+        break;
+      case 2:
       if(camera.atk.dir < -10){
         dir_type = 0;
       }
@@ -285,12 +286,12 @@ void loop() {
 
       // 直進
       if(kick_begin == false){
+        if(line.on) line_flag = 2;
         motor.moveDirFast(0, 100);
-        if(line.on) motor.moveDirFast(line.dir+180, 100);
         motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, dir.p_gain, dir.d_gain);
 
         // キックに移行
-        if(camera.atk.h > 26 && millis()-kick_timer > 250 && abs(camera.atk.dir) < 10.0){
+        if(camera.atk.h > 26 && state_elapsed > 250 && abs(camera.atk.dir) < 10.0){
           kick_begin = true;
           kick_timer = millis();
         }
@@ -300,8 +301,8 @@ void loop() {
       else{
         // 0.2秒間キック
         if(millis()-kick_timer < 200){
+          if(line.on) line_flag = 2;
           motor.moveDirFast(0, 100);
-          if(line.on) motor.moveDirFast(line.dir+180, 100);
           sub.kick();
         }else{
           kick_begin = false;
@@ -319,8 +320,8 @@ void loop() {
 
       // 直進する
       if(nejiri_begin == false){
+        if(line.on) line_flag = 2;
         motor.moveDirFast(0, 100);
-        if(line.on) motor.moveDirFast(line.dir+180, 100);
         motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
         // ねじりに移行
@@ -334,8 +335,8 @@ void loop() {
       else{
         // 0.4秒ねじったら回り込みに戻る
         if(millis()-nejiri_timer < 400){
+          if(line.on) line_flag = 2;
           motor.moveDirFast(0, 100);
-          if(line.on) motor.moveDirFast(line.dir+180, 100);
           motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, 6.0f, 0.0f);
         }else{
           nejiri_begin = false;
@@ -437,12 +438,12 @@ void loop() {
     }
 
     if(timer_begin == false || millis()-timer < 500){
+      if(line.on) line_flag = 1;
       motor.moveDir(180 - dir.dir, speed_normal*10.0);
-      if(line.on) motor.moveDir(line.dir+180, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
     }else{
+      if(line.on) line_flag = 1;
       motor.moveDir(0, 0);
-      if(line.on) motor.moveDir(line.dir+180, speed_normal*10.0);
     }
 
 
@@ -497,6 +498,25 @@ void loop() {
   }
 
   */
+
+
+  // 白線処理
+  static uint32_t timer = 0;
+
+  // 早い場合に0.2秒間戻る
+  if(millis()-timer < 200){
+    motor.moveDirFast(line.dir+180, 100);
+  }else{
+    switch(line_flag){
+    case 1:
+      motor.moveDirFast(line.dir+180, 100);
+      break;
+    case 2:
+      timer = millis();
+      break;
+    }
+
+  }
 
   
   // if(state == State::Dribble){
