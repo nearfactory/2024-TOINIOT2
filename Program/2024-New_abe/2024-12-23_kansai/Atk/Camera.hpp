@@ -32,7 +32,7 @@ private:
 
   static constexpr uint8_t  DIR_QUEUE_SIZE = 10;
 
-  using Goal =  struct{
+  using Goal = struct{
     bool is_visible = false;
     int  sig = 1;
 

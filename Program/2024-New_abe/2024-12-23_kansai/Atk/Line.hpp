@@ -26,6 +26,7 @@ private:
 public:
   bool  line[INNER_NUM+4]; // センサの値
   int   num;               // 反応しているセンサの数
+  int   area;              // 連続する部分の数
 
   bool front = false;
   bool left = false;

@@ -1,5 +1,7 @@
 #pragma once
 
+#define COMPILE 7
+
 enum class State : int{
   KickOff,
   Damaged,
