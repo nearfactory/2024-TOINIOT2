@@ -34,7 +34,7 @@ bool is_display_on = true;
 // 周り込み
 float h = 45;       // ヒステリシス
 // float r = 14400.0; // 回り込みの半径
-float r = 13500.0; // 回り込みの半径
+float r = 13000.0; // 回り込みの半径
 float p_gain = 1.5;
 float d_gain = 4.2;
 
@@ -150,7 +150,7 @@ void loop() {
 
 
 
-  // ok: キックオフ(まっすぐ進めない時がある)
+  // ok: キックオフ
   if(state == State::KickOff){
     motor.moveDirFast(ball.dir, 100);
     if(line.on) motor.moveDirFast(line.dir+180, 100);
@@ -194,10 +194,15 @@ void loop() {
   else if(state == State::Follow){
     float move_dir = 0;
 
+    // 直進
+    if(abs(ball.dir)<5){
+      move_dir = ball.dir;
+    }
+
     // PD
-    if(abs(ball.dir)<h){
+    else if(abs(ball.dir)<h){
       move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
-      h = 45;
+      h = 20;
     }
     // 円周上
     else if(ball.distance < r){
@@ -212,8 +217,8 @@ void loop() {
       h = 20;
     }
 
-    motor.moveDir(move_dir, 100); 
-    if(line.on) motor.moveDir(line.dir+180, 100);
+    motor.moveDir(move_dir, 95); 
+    if(line.on) motor.moveDirFast(line.dir+180, 100);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
    
@@ -239,17 +244,13 @@ void loop() {
 
     // 方式の決定
     if(!is_decided){
-      if(sub.ready){
+      // キッカーok かつ 姿勢制御が間に合う
+      if(sub.ready && abs(camera.atk.dir)){
         type = 0;
       }else{
         type = 1;
       }
     }
-
-    if(true){
-      motor.moveDir(0,80);
-      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-    }else
 
     // キッカー
     if(type == 0){
@@ -340,25 +341,36 @@ void loop() {
 
 
   // キーパーをどかす
+  /*
   else if(state == State::AvoidKeeper){
     // ゴール左側に向かいながら右を狙う
-    float move_limit = 0;   // ボールを保持したまま平行移動できる限界の角度
-    float goal_dir = camera.atk.dir;  // 狙う角度(右)
-    static float goal_dir_prev = 0;
+    static bool is_decided = false;
+    static float atk_dir = 0;
 
-    motor.moveDir(goal_dir-move_limit, 100);
-    motor.setDirAdd(goal_dir, goal_dir_prev, dir.p_gain, dir.d_gain);
+    if(!is_decided){
+      if(camera.atk.dir < 0)  atk_dir = 30;
+      else                    atk_dir = -30;
+    }
 
-    goal_dir_prev = goal_dir;
+    
+    motor.moveDir(-dir.dir, 100);
+    motor.setDirAdd(dir.dir-atk_dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
-    // センターサークルを超えた -> シュート
-    if(camera.atk.h > 40){
-      state = State::Shoot;
+    if(!ball.is_hold){
+      state = State::Follow;
+    }
+
+
+    // ゴールを中心に捉えた -> シュート
+    if(camera.atk.x1-140 < 0 && 0 < camera.atk.x2-140){
+      sub.kick();
+      state = State::Follow;
     }
 
     // キーパーがどいた -> ドリブル
   }
+  */
 
 
 

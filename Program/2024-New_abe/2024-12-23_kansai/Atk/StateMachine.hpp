@@ -1,6 +1,6 @@
 #pragma once
 
-#define COMPILE 9
+#define COMPILE 25
 
 enum class State : int{
   KickOff,
@@ -12,6 +12,7 @@ enum class State : int{
   Pushing,
   NoBall,
   Neutral,
+  Oshikomi,
   Test
 };
 

@@ -292,7 +292,7 @@ void Display::Line(){
   }
 
   // ベクトル
-  // display.drawRect(64-1-cos(radians(line.dir))*13, 32-1+sin(radians(line.dir))*13, 2, 2, WHITE);
+  display.drawRect(64-1-cos(radians(line.dir))*13, 32-1-sin(radians(line.dir))*13, 2, 2, WHITE);
 
   // 情報
   // printd(8, 32, "on:"+to_string(line.on));
