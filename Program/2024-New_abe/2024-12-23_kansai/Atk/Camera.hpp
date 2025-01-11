@@ -32,7 +32,7 @@ private:
 
   static constexpr uint8_t  DIR_QUEUE_SIZE = 10;
 
-  using Goal =  struct{
+  using Goal = struct{
     bool is_visible = false;
     int  sig = 1;
 
@@ -55,6 +55,8 @@ public:
   int           block_num = 0;
 
   Goal atk, def;
+  float chance_dir = 0; // シュートコース(ゴールの空いている方の角)の角度
+  float chance_dir_prev = 0;
 
   void begin();
   void read();

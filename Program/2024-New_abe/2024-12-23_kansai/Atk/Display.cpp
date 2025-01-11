@@ -186,6 +186,7 @@ void Display::Camera(){
   int up   = 16;
 
   printd(8,16,to_string(camera.atk.dir));
+  printd(8,24,to_string(camera.chance_dir));
 
   printd(104, 8,  to_string(camera.atk.x));
   printd(104, 16, to_string(camera.atk.y));
@@ -206,12 +207,14 @@ void Display::Camera(){
   // }
 
   if(camera.atk.is_visible){
-    display.drawRect(left + camera.atk.x1 *width/320, up + camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
+    display.fillRect(left + camera.atk.x1 *width/320, up + camera.atk.y1 *height/200,  camera.atk.w *width/320, camera.atk.h *height/200,  WHITE);
     // Serial.printf(" x:%d y:%d w:%d h:%d\n", camera.atk.x1, camera.atk.x2, camera.atk.w, camera.atk.h);
   }
   if(camera.def.is_visible){
     display.drawRect(left + camera.def.x1 *width/320, up + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
   }
+
+  // display.drawRect(left + 80 * width/320, up + 50 * height/200, 160 * width/320, 100 * height/200, WHITE);
 
   return;
 }
@@ -256,8 +259,11 @@ void Display::Kicker(){
   display.drawRect(8, 8, width, height, WHITE);
   display.drawRect(96, 8, width, height, WHITE);
 
-  display.fillRect(8,  8+(255-sub.ball01k)*height/255, width, (sub.ball01k)*height/255, WHITE);
+  display.fillRect(8,  8+(255-sub.brightness)*height/255, width, (sub.brightness)*height/255, WHITE);
   display.fillRect(96, 8+(255-sub.ball02k)*height/255, width, (sub.ball02k)*height/255, WHITE);
+
+  printd(64,56,"hold :"+to_string(sub.is_hold),ALIGN::CENTER);
+  printd(64,48,"ready:"+to_string(sub.ready),  ALIGN::CENTER);
 
   printd(120,16,"test kick",ALIGN::RIGHT);
   if(ui.buttonUp(1)) sub.kick();
@@ -286,18 +292,19 @@ void Display::Line(){
   }
 
   // ベクトル
-  display.drawRect(64-1-cos(radians(line.dir))*13, 32-1-sin(radians(line.dir))*13, 2, 2, WHITE);
+  // display.drawRect(64-1-cos(radians(line.dir))*13, 32-1+sin(radians(line.dir))*13, 2, 2, WHITE);
 
   // 情報
-  printd(8, 32, "on:"+to_string(line.on));
-  printd(8, 40, "num:"+to_string(line.num));
+  // printd(8, 32, "on:"+to_string(line.on));
+  // printd(8, 40, "num:"+to_string(line.num));
   // printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
-  printd(8, 48, "dis:"+to_string(line.distance));
-  printd(8, 56, "dir:"+to_string(line.dir));
+  // printd(8, 48, "dis:"+to_string(line.distance));
+  // printd(8, 56, "dir:"+to_string(line.dir));
 
   // しきい値調整
   printd(112,8, "+");
   printd(112,32,"-");
+  printd(112,56,"s");
 
   // しきい値の加減算
   if(ui.buttonUp(1)){
@@ -310,6 +317,10 @@ void Display::Line(){
     Serial1.print("d");
     printd(96,32,"-");
   } 
+  if(ui.buttonUp(3)){
+    Serial1.print("c");
+    printd(96,56,"s");
+  }
 
   return;
 }
@@ -341,7 +352,7 @@ void Display::Valiables(){
 
   
   // 変数のセレクタ
-  if(ui.buttonUp(0)){
+  if(ui.buttonUp(3)){
     selector++;
     selector %= variables.size();
   }
@@ -349,11 +360,26 @@ void Display::Valiables(){
 
   printd(120,8,"+",ALIGN::RIGHT);
   printd(120,32,"-",ALIGN::RIGHT);
+  printd(120,56,"o",ALIGN::RIGHT);
   printd(128,56,"select",ALIGN::RIGHT);
 
   // 加減算
-  if(ui.buttonUp(1))      *valiables_addr[selector] += 0.1;
-  else if(ui.buttonUp(2)) *valiables_addr[selector] -= 0.1;
+  static float order = 0.1;
+  if(ui.buttonUp(1))      *valiables_addr[selector] += order;
+  else if(ui.buttonUp(2)) *valiables_addr[selector] -= order;
+  
+  // 桁の変更
+  // if(ui.buttonUp(3)){
+  //   if(order == 0.01){
+  //     order = 0.1;
+  //   }else if(order == 0.1){
+  //     order = 1.0;
+  //   }else if(order == 1.0){
+  //     order = 0.01;
+  //   }else{
+  //     order = 0.1;
+  //   }
+  // }
 
   return;
 }
@@ -370,9 +396,48 @@ void Display::Game(){
   if(ui.buttonUp(2)) camera.changeAtk();
 
 
+
   printd(8,16,"damaged:");
   printd(16,24,to_string(ui.damaged_timer/1000) );
+  if(ui.damaged_timer < 0) ui.buzzer(880.0f);
+  else ui.buzzer(0);
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
+
+  switch(state){
+  case State::KickOff:
+    printd(8,56,"kick off");
+    break;
+  case State::Damaged:
+    printd(8,56,"damaged");
+    break;
+  case State::Follow:
+    printd(8,56,"follow");
+    break;
+  case State::Dribble:
+    printd(8,56,"dribble");
+    break;
+  case State::Shoot:
+    printd(8,56,"shoot");
+    break;
+  case State::AvoidKeeper:
+    printd(8,56,"avoid keeper");
+    break;
+  case State::Pushing:
+    printd(8,56,"pushing");
+    break;
+  case State::NoBall:
+    printd(8,56,"no ball");
+    break;
+  case State::Neutral:
+    printd(8,56,"neutral");
+    break;
+  case State::Test:
+    printd(8,56,"Test");
+    break;
+  default: 
+    printd(8,56,"error!");
+    break;
+  }
 
   return;
 }

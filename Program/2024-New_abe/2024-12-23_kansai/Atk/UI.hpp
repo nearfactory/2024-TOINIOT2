@@ -29,7 +29,7 @@ private:
 public:
   bool is_toggle = false;
 
-  uint32_t damaged_timer = 0; // 1.10  故障復帰用タイマー
+  int32_t damaged_timer = 0; // 1.10  故障復帰用タイマー
 
   void begin();
   void read();

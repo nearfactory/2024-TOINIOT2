@@ -3,8 +3,8 @@
 void Camera::begin(){
   pixy.init();
 
-  atk.sig = 1;
-  def.sig = 2;
+  atk.sig = 2;
+  def.sig = 1;
 
   return;
 }
@@ -47,27 +47,22 @@ void Camera::read(){
     block.index = pixy.ccc.blocks[i].m_index;
     block.age   = pixy.ccc.blocks[i].m_age;
 
+    int x1 = block.x - block.w / 2;
+    int x2 = block.x + block.w / 2;
+
+    int y1 = block.y - block.h / 2;
+    int y2 = block.y + block.h / 2;
+
     // atk
     if(block.sig == atk.sig){
       atk.is_visible = true;
       atk.num++;
-
-      int x1 = block.x - block.w / 2;
-      int x2 = block.x + block.w / 2;
-
-      int y1 = block.y - block.h / 2;
-      int y2 = block.y + block.h / 2;
 
       if(atk.x1 > x1) atk.x1 = x1;
       if(atk.x2 < x2) atk.x2 = x2;
 
       if(atk.y1 > y1) atk.y1 = y1;
       if(atk.y2 < y2) atk.y2 = y2;
-
-      // atk.x1 = x1;
-      // atk.x2 = x2;
-      // atk.y1 = y1;
-      // atk.y2 = y2;
 
     }
     // def
@@ -75,17 +70,11 @@ void Camera::read(){
       def.is_visible = true;
       def.num++;
 
-      int x1 = block.x - block.w / 2;
-      int x2 = block.x + block.w / 2;
+      if(def.x1 > x1) def.x1 = x1;
+      if(def.x2 < x2) def.x2 = x2;
 
-      int y1 = block.y - block.h / 2;
-      int y2 = block.y + block.h / 2;
-
-      if(atk.x1 > x1) atk.x1 = x1;
-      if(atk.x2 < x2) atk.x2 = x2;
-
-      if(atk.y1 > y1) atk.y1 = y1;
-      if(atk.y2 < y2) atk.y2 = y2;
+      if(def.y1 > y1) def.y1 = y1;
+      if(def.y2 < y2) def.y2 = y2;
 
     }
 
@@ -121,7 +110,14 @@ void Camera::read(){
   // def.dir = sum / (float)DIR_QUEUE_SIZE;
   // def.dir_queue_id = (def.dir_queue_id + 1) % DIR_QUEUE_SIZE;
 
-
+  chance_dir_prev = chance_dir;
+  if(abs(atk.x1-160) < abs(atk.x2-160)){
+    chance_dir = ( atk.x1 - 160 ) / 4.0;
+    chance_dir -= 15;
+  }else{
+    chance_dir = ( atk.x2 - 160 ) / 4.0;
+    chance_dir += 15;
+  }
 
   return;
 }
