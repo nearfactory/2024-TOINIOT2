@@ -1,4 +1,3 @@
-#include <stdint.h>
 #pragma once
 
 #include <Arduino.h>

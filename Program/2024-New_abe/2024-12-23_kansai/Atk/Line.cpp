@@ -44,6 +44,10 @@ void Line::read(){
     if(line[i]) num++;
   }
   // 外側
+  front = line[INNER_NUM];
+  left  = line[INNER_NUM+1];
+  right = line[INNER_NUM+2];
+  back  = line[INNER_NUM+3];
   outside = front | left | back | right;
 
   angel = num > 0;

@@ -111,13 +111,14 @@ void loop() {
     display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
     display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
     display.addValiables("offset: "+to_string(offset), &offset);
-    display.addValiables("speed_normal :"+to_string(speed_normal), &speed_normal);
+    // display.addValiables("speed_normal :"+to_string(speed_normal), &speed_normal);
 
     display.debug();
     display.draw();
     is_display_on = true;
 
-    state = State::KickOff;
+    // state = State::KickOff;
+    state = State::Oshikomi;
     state_begin = millis();
 
     motor.set(0,0,0,0);
@@ -215,7 +216,7 @@ void loop() {
     }
 
     if(line.on) line_flag = 1;
-    motor.moveDir(move_dir, 95); 
+    motor.moveDir(move_dir, 60); 
 
     // ゴールに向ける
     float face = 0;
@@ -253,7 +254,13 @@ void loop() {
    
     // ボールを保持 -> ゴールに向かう
     if(ball.is_hold){
-      state = State::Dribble;
+      // state = State::Dribble;
+    }
+
+    // 押し込み
+    if(camera.atk.h > 50 && abs(ball.dir) < 30 && line.on && abs(line.dir) < 30){
+      line_flag = 0;
+      state == State::Oshikomi;
     }
 
     if(!ball.is_exist) state = State::NoBall;
@@ -480,6 +487,31 @@ void loop() {
     }
   }
   */
+
+
+
+  // 押し込み
+  else if(state == State::Oshikomi){
+    static bool go_flag = true;
+    line_flag = 0;
+    if(go_flag){
+      motor.moveDir(ball.dir, 60);
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+      // ギリギリなら戻る
+      if(abs(line.dir) > 90 && line.distance > 1.4){
+        go_flag = false;
+      }
+    }else{
+      motor.moveDir(180, 50);
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+      if(!line.on){
+        go_flag = true;
+        state = State::Follow;
+      }
+    }
+  }
 
 
 
