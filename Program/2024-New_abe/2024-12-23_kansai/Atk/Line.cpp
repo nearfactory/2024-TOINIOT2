@@ -125,6 +125,7 @@ void Line::read(){
 
 
   // 角度・距離を算出
+  dir_prev = dir;
   dir = -degrees(atan2(vec.y, vec.x));
   distance = vec.len() / (float)index;
 
@@ -135,6 +136,7 @@ void Line::read(){
 
 
   /*
+  */
   // 踏み始め
   if(prev_on == false && on == true){
     dir_prev = dir;
@@ -143,8 +145,8 @@ void Line::read(){
   // 継続して踏んでいる場合
   else if(prev_on == true && on == true){
 
-    // 前回値の±90°を有効な範囲とする
-    float range = 45.0;
+    // 前回値の±450°を有効な範囲とする
+    float range = 22.5;
 
 
     float range_start = normalizeAngle(dir_prev - range);
@@ -163,7 +165,6 @@ void Line::read(){
     }
 
   }
-  */
 
 
 

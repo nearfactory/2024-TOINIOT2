@@ -1,5 +1,4 @@
 #include <string>
-#include "HardwareSerial.h"
 #include "Display.hpp"
 
 using namespace std;

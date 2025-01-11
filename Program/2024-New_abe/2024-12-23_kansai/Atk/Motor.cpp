@@ -124,8 +124,8 @@ void Motor::moveDirFast(float dir, uint8_t power){
 
 
 void Motor::avr() {
-  static int queue_index = 0;           // 出力値のキューのインデックス
-  static float queue_sum[NUM] = {0.0f}; // 各モーターのキュー内の合計値を記録
+  static int   queue_index = 0;       // 出力値のキューのインデックス
+  static float queue_sum[NUM] = {0};  // 各モーターのキュー内の合計値を記録
 
   for (int i = 0; i < NUM; i++) {
     // キューの合計値から古い値を引き、新しい値を足す

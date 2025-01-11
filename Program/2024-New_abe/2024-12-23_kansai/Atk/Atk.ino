@@ -32,9 +32,8 @@ using namespace std;
 bool is_display_on = true;
 
 // 周り込み
-float h = 45;       // ヒステリシス
-// float r = 14400.0; // 回り込みの半径
-float r = 13000.0; // 回り込みの半径
+float h = 45;         // ヒステリシス
+float r = 13000.0;    // 回り込みの半径
 float p_gain = 1.5;
 float d_gain = 8.0;
 
@@ -42,12 +41,9 @@ float offset = 1.0;
 
 
 // ステートマシン
-State state = State::KickOff;
+State state      = State::KickOff;
 State state_prev = State::KickOff;
 uint32_t state_begin = 0;
-
-// ToDo: 白線から出ない速度の調整・半分超えた場合の処理
-float speed_normal = 10.0;
 
 
 
@@ -109,7 +105,7 @@ void loop() {
 
   // ディスプレイ
   if(ui.is_toggle){
-    Serial.println("display");
+    // Serial.println("display");
     if(ui.buttonUp(0)) display.next();
 
     display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
@@ -121,7 +117,7 @@ void loop() {
     display.draw();
     is_display_on = true;
 
-    state = State::Follow;
+    state = State::KickOff;
     state_begin = millis();
 
     motor.set(0,0,0,0);
@@ -153,8 +149,8 @@ void loop() {
 
   // ok: キックオフ
   if(state == State::KickOff){
+    if(line.on) line_flag = 2;
     motor.moveDirFast(ball.dir, 100);
-    if(line.on) motor.moveDirFast(line.dir+180, 100);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
@@ -180,7 +176,7 @@ void loop() {
   // ok: 故障復帰
   else if(state == State::Damaged){
     motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-    if(line.on) motor.moveDir(line.dir+180, 100);
+    if(line.on) line_flag = 1;
 
 
     // 45度以内 -> 回り込み
@@ -226,7 +222,7 @@ void loop() {
     static int dir_type = 0;
     switch(dir_type){
       case 0:
-        r = 13000.0;
+        r = 12500.0;
         if(camera.atk.dir < -23){
           dir_type = 1;
         }else if(camera.atk.dir > 23){
@@ -275,7 +271,7 @@ void loop() {
     // 方式の決定
     if(!is_decided){
       // キッカーok かつ 姿勢制御が間に合う
-      if(sub.ready && abs(camera.atk.dir)){
+      if(sub.ready && abs(camera.atk.dir) < 20.0){
         type = 0;
       }else{
         type = 1;
@@ -306,8 +302,8 @@ void loop() {
         if(millis()-kick_timer < 200){
           if(line.on) line_flag = 2;
           motor.moveDirFast(0, 100);
-          sub.kick();
         }else{
+          sub.kick();
           kick_begin = false;
           state = State::Follow;
         }
@@ -328,7 +324,7 @@ void loop() {
         motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
         // ねじりに移行
-        if(camera.atk.h > 24 && millis()-nejiri_timer > 500){
+        if(camera.atk.h > 24){
           nejiri_begin = true;
           nejiri_timer = millis();
         }
@@ -416,9 +412,6 @@ void loop() {
       motor.setDirAdd(dir.dir-10, dir.dir_prev, dir.p_gain, dir.d_gain);
     }
 
-    motor.moveDir(0,0);
-    motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-
 
     // 4秒経過 -> ドリブルに戻る
     if(state_elapsed > 4000){
@@ -502,7 +495,7 @@ void loop() {
   // 白線処理
   static uint32_t timer = 0;
 
-  // 早い場合に0.2秒間戻る
+  // 速い場合に0.2秒間戻る
   if(millis()-timer < 200){
     motor.moveDirFast(line.dir+180, 100);
   }else{

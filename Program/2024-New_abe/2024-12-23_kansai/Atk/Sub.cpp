@@ -1,4 +1,3 @@
-#include "HardwareSerial.h"
 #include "Sub.hpp"
 
 void Sub::begin(){
