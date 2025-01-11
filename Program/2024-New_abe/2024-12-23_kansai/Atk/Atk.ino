@@ -36,7 +36,7 @@ float h = 45;       // ヒステリシス
 // float r = 14400.0; // 回り込みの半径
 float r = 13000.0; // 回り込みの半径
 float p_gain = 1.5;
-float d_gain = 4.2;
+float d_gain = 8.0;
 
 float offset = 1.0;
 
@@ -226,25 +226,28 @@ void loop() {
     static int dir_type = 0;
     switch(dir_type){
       case 0:
-        if(camera.atk.dir < -25){
+        r = 13000.0;
+        if(camera.atk.dir < -23){
           dir_type = 1;
-        }else if(camera.atk.dir > 25){
+        }else if(camera.atk.dir > 23){
           dir_type = 2;
         }
         face = 0;
         break;
       case 1:
+        r = 12500.0;
         if(camera.atk.dir > 10){
           dir_type = 0;
         }
-        face = -20;
+        face = -23;
         break;
       case 2:
-      if(camera.atk.dir < -10){
-        dir_type = 0;
-      }
-      face = 20;
-      break;
+        r = 12500.0;
+        if(camera.atk.dir < -10){
+          dir_type = 0;
+        }
+        face = 20;
+        break;
     }
     motor.setDirAdd(dir.dir + face, dir.dir_prev, dir.p_gain, dir.d_gain);
 
@@ -430,28 +433,23 @@ void loop() {
   // ok: ボールが取り上げられた
   else if(state == State::NoBall){
     // 真ん中くらいまで下がる
-    static uint32_t timer = 0;
-    static bool timer_begin = false;
-    if(camera.atk.h < 28 && timer_begin == false){
-      timer = millis();
-      timer_begin = true;
-    }
+    // if(state_elapsed < 1000){
+    //   if(line.on) line_flag = 1;
+    //   motor.moveDir(180 - dir.dir, speed_normal*10.0);
+    //   motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    // }else{
+    //   if(line.on) line_flag = 1;
+    //   motor.moveDir(0, 0);
+    // }
 
-    if(timer_begin == false || millis()-timer < 500){
-      if(line.on) line_flag = 1;
-      motor.moveDir(180 - dir.dir, speed_normal*10.0);
-      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-    }else{
-      if(line.on) line_flag = 1;
-      motor.moveDir(0, 0);
-    }
+    motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
     // 後ろに見えた -> 逆の回り込み
     
     // 前に見えた -> 回り込み
     if(ball.is_exist){
-      timer_begin = false;
+      // timer_begin = false;
       state = State::Follow;
     }
   }
@@ -487,8 +485,9 @@ void loop() {
   }
   */
 
-  /*
 
+
+  /*
   // テスト
   else if(state == State::Test){
     // motor.setDir(camera.chance_dir, camera.chance_dir_prev, dir.p_gain * 3, dir.d_gain * 3);
@@ -496,8 +495,8 @@ void loop() {
   else{
     state = State::Follow;
   }
-
   */
+
 
 
   // 白線処理
@@ -517,14 +516,6 @@ void loop() {
     }
 
   }
-
-  
-  // if(state == State::Dribble){
-  // if(ball.is_hold){
-  //   ui.buzzer(880.0f);
-  // }else{
-  //   ui.buzzer(440.0f);
-  // }
 
 
 
