@@ -149,8 +149,8 @@ void loop(){
   // Serial.println();
 
 
-  // delay(4);
-  delay(3);
+  delay(4);
+  // delay(3);
   // static uint32_t time = 0;
   // uint32_t t = millis() - time;
   // Serial.print(" ");
