@@ -191,6 +191,8 @@ void Display::Camera(){
   printd(104, 16, to_string(camera.atk.y));
   printd(104, 24, to_string(camera.atk.w));
   printd(104, 32, to_string(camera.atk.h));
+  printd(104, 40, to_string(camera.atk.x1));
+  printd(104, 48, to_string(camera.atk.x2));
 
   display.drawRect(left, up, width, height, WHITE);
 

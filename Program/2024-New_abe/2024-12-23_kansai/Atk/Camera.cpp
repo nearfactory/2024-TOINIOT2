@@ -37,7 +37,19 @@ void Camera::read(){
   def.x2 = -1;
   def.y2 = -1;
 
+  x1_1 = 0;
+  x2_1 = 0;
+  len_1 = 0;
+  x1_2 = 0;
+  x2_2 = 0;
+  len_2 = 0;
 
+  // chance.area = 0;
+  // chance.area.x1 = 321;
+  // chance.is_left = false; // 左側のブロックであるか？
+
+
+  int count = 0;
   // 左上・右下座標を計算
   for(int i=0;i<block_num;i++){
     Block block;
@@ -66,6 +78,19 @@ void Camera::read(){
 
       if(atk.y1 > y1) atk.y1 = y1;
       if(atk.y2 < y2) atk.y2 = y2;
+
+
+      if(count == 0){
+        x1_1 = x1;
+        x2_1 = x2;
+        len_1 = x2 - x1;
+      }else if(count == 1){
+        x1_2 = x1;
+        x2_2 = x2;
+        len_2 = x2 - x1;
+      }
+
+      count++;
 
     }
     // def
@@ -100,11 +125,73 @@ void Camera::read(){
     // atk.dir = sum / (float) DIR_QUEUE_SIZE;
     // atk.dir_queue_id = (atk.dir_queue_id + 1) % DIR_QUEUE_SIZE;
 
-    if(atk.num == 1){
+    // if(num_prev != atk.num){
+    //   lock = false;
+    // }
 
-    }else if(atk.num == 2){
-      
+    // 敵避けの角度
+    if(atk.num == 1){
+      // 遠い方のカドにする
+      if(lock){
+        if(target == 0){
+          chance_dir = x1_1;
+        }else{
+          chance_dir = x2_1;
+        }
+      }else{
+        if(abs(atk.x1-160) > abs(atk.x2-160)){
+          target = 0;
+        }else{
+          target = 1;
+        }
+      }
+    }else{
+      // int len_buf = 0, x1_buf = 0, x2_buf = 0;
+
+      // 入れ替え
+      // if(x1_1 > x1_2){
+      //   len_buf = len_1;
+      //   x1_buf  = x1_1;
+      //   x2_buf  = x2_1;
+
+      //   len_1 = len_2;
+      //   x1_1  = x1_2;
+      //   x2_1  = x2_2;
+
+      //   len_2 = len_buf;
+      //   x1_2  = x1_buf;
+      //   x2_2  = x2_buf;
+      // }
+
+      if(lock){
+        if(target == 0){
+          chance_dir = x1_1;
+        }else{
+          chance_dir = x2_2;
+        }
+      }
+      else{
+        if(len_1 > len_2){
+          if(x1_1 < x1_2){
+            target = 0;
+          }else{
+            target = 1;
+          }
+        }else{
+          if(x1_1 < x1_2){
+            target = 1;
+          }else{
+            target = 0;
+          }
+
+        }
+      }
     }
+
+    chance_dir_prev = chance_dir;
+    chance_dir = (chance_dir - 160) / 4.0;
+    Serial.printf("num:%d x1_1:%d x2_1:%d len_1:%d x1_2:%d x2_2:%d len_2:%d target:%d chance_dir:%f lock:%d \n", atk.num, x1_1, x2_1, len_1, x1_2, x2_2, len_2, target, chance_dir, lock);
+    lock = false;
   }
 
 

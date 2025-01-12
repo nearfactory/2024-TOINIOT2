@@ -1,13 +1,14 @@
 void setup() {
   Serial.begin(115200);
+  Serial1.begin(115200);
 }
 
 void loop() {
 
-  Serial.print("atmega:");
-  // while(Serial.available()){
-  //   Serial.print((char)Serial.read());
-  // }
+  Serial1.println("atmega");
+  while(Serial1.available()){
+    Serial.print((char)Serial1.read());
+  }
   // Serial.println();
 
   delay(20);

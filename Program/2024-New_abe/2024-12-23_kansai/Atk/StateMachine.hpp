@@ -1,6 +1,6 @@
 #pragma once
 
-#define COMPILE 40
+#define COMPILE 48
 
 enum class State : int{
   KickOff,      // キックオフ

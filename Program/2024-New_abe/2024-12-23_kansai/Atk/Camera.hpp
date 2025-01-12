@@ -50,14 +50,35 @@ private:
     float dir_queue[DIR_QUEUE_SIZE]{};
   };
 
+  using Chance = struct{
+    int x1 = 0, x2 = 0;
+    int area = 0;
+    bool is_left = false;
+
+    float dir = 0;
+    float dir_prev = 0;
+
+    int   dir_queue_id = 0;
+    float dir_queue[DIR_QUEUE_SIZE]{};
+  };
+
 public:
   // Pixyからのデータ
   int           block_num = 0;
 
   Goal atk, def;
+
+
+  bool lock = false;
+  int target = 0;
+  int len_1 = 0, x1_1 = 0, x2_1 = 0;
+  int len_2 = 0, x1_2 = 0, x2_2 = 0;
+
+  int num_prev = 0;
+
   float chance_dir = 0;       // シュートコース(ゴールの空いている方の角)の角度
   float chance_dir_prev = 0;
-  Goal chance;
+
 
   void begin();
   void read();

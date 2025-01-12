@@ -12,7 +12,7 @@ void loop(){
   while(Serial1.available()){
     Serial.print((char)Serial1.read());
   }
-  Serial.println();
+  // Serial.println();
 
   delay(30);
 }

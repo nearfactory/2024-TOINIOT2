@@ -62,6 +62,7 @@ void Line::read(){
 
 
   // 壊れたセンサを反応しいないように修正
+  front = false;
 
 
 

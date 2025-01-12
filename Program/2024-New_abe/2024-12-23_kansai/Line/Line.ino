@@ -22,8 +22,8 @@ uint32_t min = 1023;
 uint32_t avr = 0;
 uint32_t count = 0;
 
-uint8_t threshold1 = 155;
-uint8_t threshold2 = 190;
+uint8_t threshold1 = 170;
+uint8_t threshold2 = 200;
 
 void setup(){
   Serial.begin(115200);
@@ -133,20 +133,20 @@ void loop(){
 
 
   // テスト
-  // Serial.print(threshold1*4);
-  // Serial.print("\t");
-  // Serial.print(threshold2*4);
-  // Serial.print("\t");
-  // for(int i=0;i<LINE_NUM;i++){
-  //   Serial.print(line[i]);
-  //   if((i+1)%5==0) Serial.print(" ");
-  // }
-  // Serial.print("\t\t");
-  // for(int i=0;i<ANALOG_NUM;i++){
-  //   Serial.print(analogRead(ANALOG_PIN[i]));
-  //   Serial.print("\t");
-  // }
-  // Serial.println();
+  Serial.print(threshold1*4);
+  Serial.print("\t");
+  Serial.print(threshold2*4);
+  Serial.print("\t");
+  for(int i=0;i<LINE_NUM;i++){
+    Serial.print(line[i]);
+    if((i+1)%5==0) Serial.print(" ");
+  }
+  Serial.print("\t\t");
+  for(int i=0;i<ANALOG_NUM;i++){
+    Serial.print(analogRead(ANALOG_PIN[i]));
+    Serial.print("\t");
+  }
+  Serial.println();
 
 
   delay(4);
