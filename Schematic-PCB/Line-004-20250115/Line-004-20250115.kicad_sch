@@ -40686,7 +40686,7 @@
 				)
 			)
 		)
-		(property "Footprint" "@2024TOINIOT2-Line:ATmega2560Pro Board"
+		(property "Footprint" "@2024TOINIOT2-Line:ATmega2560Pro Board THT"
 			(at 411.48 114.3 0)
 			(effects
 				(font
