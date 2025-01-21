@@ -29,10 +29,10 @@ void setup(){
   Serial.begin(115200);
   Serial.println("TOINIOT2 Line 2025-01-05");
 
-  Serial1.begin(115200);
+  // Serial1.begin(115200);
 
   for(auto p:LINE_PIN) pinMode(p, INPUT_PULLUP);
-  for(auto p:ANALOG_PIN) pinMode(p, INPUT_PULLUP);
+  // for(auto p:ANALOG_PIN) pinMode(p, INPUT_PULLUP);
   
   pinMode(THRESHOLD_PIN1, OUTPUT);
   pinMode(THRESHOLD_PIN2, OUTPUT);
@@ -93,24 +93,27 @@ void loop(){
   // }
   // Serial.print(threshold*4);
   // Serial.print("\t");
-  if(Serial1.available()){
-    char c = Serial1.read();
-    if(c == 'c'){
-      if(selector == &threshold1){
-        selector = &threshold2;
-      }else{
-        selector = &threshold1;
-      }
-    }
-    if(c == 'u') *selector += 2;
-    if(c == 'd') *selector -= 2;
-    // threshold -= 5;
-  }
+
+
+  // if(Serial1.available()){
+  //   char c = Serial1.read();
+  //   if(c == 'c'){
+  //     if(selector == &threshold1){
+  //       selector = &threshold2;
+  //     }else{
+  //       selector = &threshold1;
+  //     }
+  //   }
+  //   if(c == 'u') *selector += 2;
+  //   if(c == 'd') *selector -= 2;
+  //   // threshold -= 5;
+  // }
   analogWrite(THRESHOLD_PIN1, threshold1);
   analogWrite(THRESHOLD_PIN2, threshold2);
 
   // 白線を取得
   for(int i=0;i<LINE_NUM;i++){
+    if(i == 14 || i == 18 || i == 20 || i == 28) continue;
     line[i] = digitalRead(LINE_PIN[i]);
   }
 
@@ -129,7 +132,7 @@ void loop(){
   send_str[7] = '\0';
 
   // 送信
-  Serial1.print(send_str);
+  // Serial1.print(send_str);
 
 
   // テスト
@@ -149,8 +152,13 @@ void loop(){
   Serial.println();
 
 
+<<<<<<< Updated upstream
   delay(4);
   // delay(3);
+=======
+  // delay(4);
+  delay(100);
+>>>>>>> Stashed changes
   // static uint32_t time = 0;
   // uint32_t t = millis() - time;
   // Serial.print(" ");
