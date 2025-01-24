@@ -117,7 +117,13 @@ void Camera::read(){
     atk.h = atk.y2 - atk.y1;
     atk.dir_prev = atk.dir;
 
-    atk.dir = (atk.x - 160) / 4.0;
+    atk.dir = -(atk.x - 160) / 4.0;
+
+    if(atk.x1 < 160 && 160 < atk.x2){
+      is_center = true;
+    }else{
+      is_center = false;
+    }
 
     // atk.dir_queue[atk.dir_queue_id] = atk.dir;
     // float sum = 0;
@@ -189,7 +195,7 @@ void Camera::read(){
     }
 
     chance_dir_prev = chance_dir;
-    chance_dir = (chance_dir - 160) / 4.0;
+    chance_dir = -(chance_dir - 160) / 4.0;
     // Serial.printf("num:%d x1_1:%d x2_1:%d len_1:%d x1_2:%d x2_2:%d len_2:%d target:%d chance_dir:%f lock:%d \n", atk.num, x1_1, x2_1, len_1, x1_2, x2_2, len_2, target, chance_dir, lock);
     lock = false;
   }
@@ -202,7 +208,7 @@ void Camera::read(){
     def.h = def.y2 - def.y1;
     def.dir_prev = def.dir;
 
-    def.dir = (def.x - 160) / 4.0;
+    def.dir = -(def.x - 160) / 4.0;
 
   // def.dir_queue[def.dir_queue_id] = def.dir;
   // sum = 0;

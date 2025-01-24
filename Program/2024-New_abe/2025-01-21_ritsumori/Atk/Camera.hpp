@@ -65,6 +65,8 @@ private:
 public:
   // Pixyからのデータ
   int           block_num = 0;
+  
+  bool is_center = false;
 
   Goal atk, def;
 

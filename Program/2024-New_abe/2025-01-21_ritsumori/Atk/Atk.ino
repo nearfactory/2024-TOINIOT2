@@ -35,9 +35,9 @@ bool is_display_on = true;
 
 // 周り込み
 float h = 45;         // ヒステリシス
-float r = 12000.0;    // 回り込みの半径
+float r = 11800.0;    // 回り込みの半径
 float p_gain = 1.5;
-float d_gain = 8.0;
+float d_gain = 3.0;
 
 float offset = 1.0;
 
@@ -139,7 +139,6 @@ void loop() {
   }
 
 
-
   // ステートマシンを更新
   if(state != state_prev){
     state_begin = millis();
@@ -198,9 +197,9 @@ void loop() {
 
     // PD
     if(abs(ball.dir)<h){
-      // move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
-      move_dir = ball.dir * p_gain;
-      h = 12;
+      move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
+      // move_dir = ball.dir * p_gain;
+      h = 20;
     }
     // 円周上
     else if(ball.distance < r){
@@ -216,7 +215,7 @@ void loop() {
     }
 
     if(line.on) line_flag = 1;
-    motor.moveDir(move_dir, 60); 
+    motor.moveDir(move_dir, 95); 
 
     // ゴールに向ける
     /*
@@ -283,7 +282,7 @@ void loop() {
     // 方式の決定
     if(!is_decided){
       // キッカーok かつ 姿勢制御が間に合う
-      if(sub.ready && abs(camera.atk.dir) < 20.0){
+      if(sub.ready && camera.is_center){
         type = 0;
       }else{
         type = 1;
@@ -298,13 +297,19 @@ void loop() {
       // 直進
       if(kick_begin == false){
         if(line.on) line_flag = 2;
-        motor.moveDir(camera.atk.dir, 70);
-        // motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, dir.p_gain, dir.d_gain);
-        motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+        // motor.moveDir(camera.atk.dir, 80);
+        // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+        motor.moveDir(0, 100);
+        
+        // float t = 20.0f;
+        // camera.chance_dir = camera.chance_dir < t  ? camera.chance_dir : t;
+        // camera.chance_dir = -t < camera.chance_dir ? camera.chance_dir : -t;
+
+        motor.setDirAdd(camera.chance_dir, camera.chance_dir, dir.p_gain / 2, 0);
         
 
         // キックに移行
-        if(camera.atk.h > 24 && abs(camera.atk.dir) < 10.0){
+        if(camera.atk.h > 22){
           kick_begin = true;
           kick_timer = millis();
         }
@@ -318,9 +323,9 @@ void loop() {
       // キック
       else{
         // 0.1秒進んでキック
-        if(millis()-kick_timer < 100){
+        if(millis()-kick_timer < 150){
           if(line.on) line_flag = 2;
-          motor.moveDir(0, 70);
+          motor.moveDir(0, 100);
         }else{
           sub.kick();
           kick_begin = false;
@@ -339,11 +344,11 @@ void loop() {
       // 直進する
       if(nejiri_begin == false){
         // if(line.on) line_flag = 2;
-        motor.moveDir(0, 60);
+        motor.moveDir(0, 100);
         motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
         // ねじりに移行
-        if(camera.atk.h > 24){
+        if(camera.atk.h > 22){
           nejiri_begin = true;
           nejiri_timer = millis();
         }
@@ -356,10 +361,10 @@ void loop() {
       // ねじる
       else{
         // 0.4秒ねじったら回り込みに戻る
-        if(millis()-nejiri_timer < 400){
-          if(line.on) line_flag = 2;
-          motor.moveDir(0, 60);
-          motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, 6.0f, 0.0f);
+        if(millis()-nejiri_timer < 120){
+          // if(line.on) line_flag = 2;
+          motor.moveDir(0, 100);
+          motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, -6.0f, 0.0f);
           // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
         }else{
           nejiri_begin = false;
@@ -551,9 +556,6 @@ void loop() {
   }
 
 
-
-  /*
-  */
   // テスト
   else if(state == State::Test){
     camera.lock = true;
@@ -599,42 +601,6 @@ void loop() {
   // }
 
   // カメラで移動範囲を制限する
-  
-
-  // Vec2 avoid(0, 0);
-  // // 前
-  // if(camera.atk.h > 45){
-  //   avoid.x = -1;
-  //   // motor.moveDir(180, 100);
-  //   // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-  // }
-  // // 後ろ
-  // else if(camera.def.h > 26){
-  //   avoid.x = 1;
-  //   // motor.moveDir(0, 100);
-  //   // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-  // }
-  // // if(camera.atk.x1 > 160){
-  // if(camera.atk.dir > 10){
-  //   // motor.moveDir(90, 100);
-  //   // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-  // }
-  // // if(camera.atk.x2 < 160){
-  // if(camera.atk.dir < -10){
-  //   // motor.moveDir(-90, 100);
-  //   // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-  // }
-
-  // if(avoid.x != 0 || avoid.y != 0){
-  //   float ang = radians(atan2(avoid.y, avoid.x));
-
-  //   motor.moveDir(ang, 100);
-  //   motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-  //   ui.buzzer(880.0f);
-  // }else{
-  //   ui.buzzer(440.0f);
-  // }
-
 
 
   motor.avr();
