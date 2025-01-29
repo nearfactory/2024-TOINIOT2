@@ -362,7 +362,7 @@
 		(path "/44edd618-681c-4ddd-955b-e30d08389643")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 2.5 -5.08)
 			(end 2.5 5.08)
@@ -2800,7 +2800,7 @@
 		(path "/f9bdb704-c5e8-480a-a7b2-1d040f9bf19d")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr smd exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_rect
 			(start -27 -19)
 			(end 27 19)
@@ -4551,7 +4551,7 @@
 		(path "/973dd27e-cb99-4389-89fb-619c075cfa69")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 5.06 7.71)
 			(end 5.06 -4.01)
@@ -5341,7 +5341,7 @@
 		(path "/81426e9a-b112-4191-96da-3ac6beaa541a")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_rect
 			(start -7 -1)
 			(end 7 1)
@@ -6556,7 +6556,7 @@
 		(path "/055fbeff-69a9-4834-90fa-b23600aaec6e")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -6748,7 +6748,7 @@
 		(path "/10e520e9-6591-413a-9cc7-a019111f1c32")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -7402,7 +7402,7 @@
 		(path "/1ece125b-75e0-4aa4-840d-730b0e6dbba4")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -7594,7 +7594,7 @@
 		(path "/4cf6bde2-f446-4a1a-babe-4865163c4661")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -7781,7 +7781,7 @@
 		(path "/befc8a0f-acea-4df3-8e58-38ca7332e49e")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -8021,7 +8021,7 @@
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 1.4 1)
 			(end -1.4 1)
@@ -8424,7 +8424,7 @@
 		(path "/e2e50c58-e68c-4fe3-be39-6e8e89518af0")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -8661,7 +8661,7 @@
 		(path "/2b22a54f-05f1-4e63-b38d-4327b7ebd36b")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -8896,7 +8896,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.997616 0.001053 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -9364,7 +9364,7 @@
 		(path "/ab15e6cc-f8e3-48fe-aaff-8c7fb7146142")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -9552,7 +9552,7 @@
 		(path "/e25b4306-e8ce-4f02-834d-7c2f4069cc26")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -10582,7 +10582,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.00014 0.002603 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -11046,7 +11046,7 @@
 		(path "/2149c63e-f3e0-4639-99f9-7e9a48026528")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -11080,7 +11080,7 @@
 		)
 		(fp_arc
 			(start -1.040961 -1.079999)
-			(mid 0.000117 -1.499994)
+			(mid 0.000117 -1.499993)
 			(end 1.04113 -1.079837)
 			(stroke
 				(width 0.12)
@@ -11287,7 +11287,7 @@
 		(path "/abf50752-5863-4b4c-a593-a269e32c41da")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.000001 0)
@@ -11473,7 +11473,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.00183 0.001855 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -12166,7 +12166,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.999611 -0.002576 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -12397,7 +12397,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.002384 -0.001054 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -12630,7 +12630,7 @@
 		(path "/54c8e783-8014-44b3-8460-04946f07e420")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -13200,7 +13200,7 @@
 		(path "/e3bb7c54-1127-448f-8d6d-6e82c51b2c19")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -13668,7 +13668,7 @@
 		(path "/ff1c9bf8-9872-4543-804e-dba12cdd2436")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -14140,7 +14140,7 @@
 		(path "/9440864d-730a-48b9-8fd3-496d5d5d1291")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -14326,7 +14326,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.997779 -0.001364 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -14892,7 +14892,7 @@
 		(path "/5445fd89-ad4c-4f26-bb0e-6cca26b1db0c")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.559999 -1.08)
@@ -15593,7 +15593,7 @@
 		(path "/59ed96e3-d396-4e4a-be1d-836037a9928a")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr smd exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 0.8 -0.735)
 			(end -1.485 -0.735)
@@ -16628,7 +16628,7 @@
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 1.4 1)
 			(end -1.4 1)
@@ -16800,7 +16800,7 @@
 		(path "/094098c5-8cb0-4f5c-a0a3-e938de45ab67")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -17041,7 +17041,7 @@
 		(path "/bd15fe5c-8105-4b0d-acc4-a5a6b8baeb63")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -17233,7 +17233,7 @@
 		(path "/6bd3a9db-c479-4aa9-bf75-78be8a4d70f1")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -17652,7 +17652,7 @@
 		(path "/f6ed2d91-a760-4d51-97b5-562fb1c6b5ad")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.559999 1.236)
@@ -18453,7 +18453,7 @@
 		(path "/01a9686d-cdf0-4ef0-9d0b-c9f3a6385673")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -18694,7 +18694,7 @@
 		(path "/28146c8a-947c-4307-859c-4226f7a088b4")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.000001 0)
@@ -18882,7 +18882,7 @@
 		(path "/25fc0a01-338c-4dc0-88cd-92f3f7045735")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -19350,7 +19350,7 @@
 		(path "/252f4cfa-aa61-47f7-8f7c-073742bd23ac")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -19818,7 +19818,7 @@
 		(path "/4af7a7f8-2e1c-4795-bc76-5d2bec05c50d")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.560001 -1.236)
 			(end -1.56 -1.08)
@@ -20286,7 +20286,7 @@
 		(path "/6665dfd8-8c46-4b0c-94c4-712191c7c544")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -20331,7 +20331,7 @@
 		)
 		(fp_arc
 			(start -1.040961 -1.079999)
-			(mid 0.000117 -1.499994)
+			(mid 0.000117 -1.499993)
 			(end 1.04113 -1.079837)
 			(stroke
 				(width 0.12)
@@ -21882,7 +21882,7 @@
 		(path "/63dca83d-829f-4ecf-a581-f67a9ed62b14")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -21905,7 +21905,7 @@
 		)
 		(fp_arc
 			(start 1.672335 1.078608)
-			(mid 0.096487 1.987655)
+			(mid 0.096486 1.987654)
 			(end -1.56 1.235516)
 			(stroke
 				(width 0.12)
@@ -22119,7 +22119,7 @@
 		(path "/7c0ad992-90e1-4c2e-bddb-35436065949b")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -22356,7 +22356,7 @@
 		(path "/74079394-a92e-4aac-b945-aa55bfefca21")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -22591,7 +22591,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.00234 0.001144 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -22828,7 +22828,7 @@
 		(path "/49b99103-b7ad-4a22-970b-ef27f2c21fec")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -23020,7 +23020,7 @@
 		(path "/c54f870e-fab6-4380-a402-29fad4a92e1e")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -23443,7 +23443,7 @@
 		(path "/15061506-198d-481e-8357-4b8f20ed9408")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -23635,7 +23635,7 @@
 		(path "/8f8d6717-0456-4480-8603-5688c6fa79f0")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -23823,7 +23823,7 @@
 		(path "/4896bc1a-d6f5-47ad-8197-875bd171fc86")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -24058,7 +24058,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.998581 0.002187 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -24853,7 +24853,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C25804"
 			(at 76.236104 -9.949274 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -25021,7 +25021,7 @@
 		(descr "LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "D47"
-			(at 0 1.43 270)
+			(at 0 1.43 -90)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "267902ef-40c3-4dd0-9d76-ca003797cfed")
@@ -25034,7 +25034,7 @@
 			)
 		)
 		(property "Value" "LED01"
-			(at 0 -1.43 270)
+			(at 0 -1.43 -90)
 			(layer "B.Fab")
 			(uuid "2d537c3a-bd37-4ee7-bce8-fd3138398f54")
 			(effects
@@ -25088,7 +25088,7 @@
 		(path "/091037d5-f331-4d78-93d2-8d4b9600b547")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr smd exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 0.8 -0.735)
 			(end -1.485 -0.735)
@@ -25210,7 +25210,7 @@
 			(uuid "fed66aa4-ee4a-4533-b985-75395ba8ea75")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 -90)
 			(layer "B.Fab")
 			(uuid "aea639e5-9e20-4f59-9fa5-86bcfc35a094")
 			(effects
@@ -25323,7 +25323,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.001899 -0.001784 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -25560,7 +25560,7 @@
 		(path "/a771182f-e185-4b43-bcf0-23eb5ff2770f")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -25751,7 +25751,7 @@
 		(path "/6882d03b-9465-4d20-9257-dd1f996ef6f5")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -26632,7 +26632,7 @@
 		(path "/522cc37d-18b3-428f-9658-a80ff33c854a")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -26869,7 +26869,7 @@
 		(path "/d4bddc00-0175-4cef-8729-4bcecdf073c3")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.559999 1.08)
 			(end -1.56 1.236)
@@ -27106,7 +27106,7 @@
 		(path "/6f536934-2e6f-4e3a-a106-923327ddda90")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -27343,7 +27343,7 @@
 		(path "/a2ea8be1-4a4b-4e6f-b16c-fb7bc8234a5c")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -28481,7 +28481,7 @@
 		(path "/69a94322-2e75-43c3-b10a-718444d6d253")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.000001 0)
@@ -28904,7 +28904,7 @@
 		(path "/0530d881-c685-4735-999a-b05aa746e591")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -29092,7 +29092,7 @@
 		(path "/6080f6c7-8fe9-435a-a1c0-24f448e07b3f")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -29564,7 +29564,7 @@
 		(path "/6cd71239-d138-46c7-8a5a-201184cb9a15")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -29750,7 +29750,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.998666 -0.00224 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -30218,7 +30218,7 @@
 		(path "/6758194e-5d46-439b-a5a5-3bb38ca012c8")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -30406,7 +30406,7 @@
 		(path "/ad641fa5-8c28-4082-b88b-497bdfc015af")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.560001 -1.236)
 			(end -1.56 -1.08)
@@ -30641,7 +30641,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.999242 -0.002494 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -30872,7 +30872,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.997488 0.000696 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -31103,7 +31103,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.998914 0.002369 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -31340,7 +31340,7 @@
 		(path "/11e693f9-392d-4759-af59-36ccb5a48e62")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -31526,7 +31526,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.000854 -0.002462 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -31763,7 +31763,7 @@
 		(path "/113d68a1-b63f-4b8e-8bad-5ce8af983761")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -32182,7 +32182,7 @@
 		(path "/88d76207-ece1-4238-bfae-43d6d9738074")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.080001)
 			(end -1.56 1.236)
@@ -32419,7 +32419,7 @@
 		(path "/52b8d1b3-f2d9-4fc4-9437-2fe0d5874545")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -32891,7 +32891,7 @@
 		(path "/d03544fb-b05d-4e1d-ba96-5592248afe35")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -33308,7 +33308,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C25804"
 			(at 93.001292 0.001036 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -33348,7 +33348,7 @@
 			(uuid "2baebe90-d92a-4ca8-b8d7-eb7d22c393b7")
 		)
 		(fp_line
-			(start 1.48 0.730005)
+			(start 1.48 0.730006)
 			(end -1.48 0.73)
 			(stroke
 				(width 0.05)
@@ -33359,7 +33359,7 @@
 		)
 		(fp_line
 			(start 1.48 -0.73)
-			(end 1.48 0.730005)
+			(end 1.48 0.730006)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -33369,7 +33369,7 @@
 		)
 		(fp_line
 			(start -1.48 0.73)
-			(end -1.48 -0.730005)
+			(end -1.48 -0.730006)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -33378,7 +33378,7 @@
 			(uuid "eaec28de-f236-4a99-a77a-54dbe771c954")
 		)
 		(fp_line
-			(start -1.48 -0.730005)
+			(start -1.48 -0.730006)
 			(end 1.48 -0.73)
 			(stroke
 				(width 0.05)
@@ -33541,7 +33541,7 @@
 		(path "/b2ef5add-1dcf-4ded-88b4-f6b24952de12")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -33776,7 +33776,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.997936 0.001592 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -34244,7 +34244,7 @@
 		(path "/fcb5d474-a241-4746-bbb3-b540b93ea52a")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -34432,7 +34432,7 @@
 		(path "/8efea935-7791-4537-aa78-1e9164850f1b")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -34673,7 +34673,7 @@
 		(path "/45f95dc5-9346-40db-b9ab-d5a3efbbd7a6")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -35323,7 +35323,7 @@
 		(path "/f8bcc894-c7f3-475d-92b2-08915a998c7f")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -35558,7 +35558,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.002511 -0.000695 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -35789,7 +35789,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C25804"
 			(at 93.001037 -0.001292 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -35830,7 +35830,7 @@
 		)
 		(fp_line
 			(start 1.48 -0.73)
-			(end 1.48 0.730005)
+			(end 1.48 0.730006)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -35839,7 +35839,7 @@
 			(uuid "5c631690-d961-454e-9e31-4f5778296afe")
 		)
 		(fp_line
-			(start -1.48 -0.730005)
+			(start -1.48 -0.730006)
 			(end 1.48 -0.73)
 			(stroke
 				(width 0.05)
@@ -35849,7 +35849,7 @@
 			(uuid "d33d3c54-0c4a-4ea2-83b1-1c35347100c6")
 		)
 		(fp_line
-			(start 1.48 0.730005)
+			(start 1.48 0.730006)
 			(end -1.48 0.73)
 			(stroke
 				(width 0.05)
@@ -35860,7 +35860,7 @@
 		)
 		(fp_line
 			(start -1.48 0.73)
-			(end -1.48 -0.730005)
+			(end -1.48 -0.730006)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -37508,7 +37508,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.001621 -0.002041 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -37745,7 +37745,7 @@
 		(path "/0a038b75-c672-4a20-a5ab-4e63fbf05e75")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -38164,7 +38164,7 @@
 		(path "/df8d95b7-575d-4a1c-a034-1268b76794b6")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -38636,7 +38636,7 @@
 		(path "/7e3554cc-df62-4dc6-83df-f354592ca198")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -38824,7 +38824,7 @@
 		(path "/3151ed94-66cb-460d-a3d1-9d183952c439")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -38858,7 +38858,7 @@
 		)
 		(fp_arc
 			(start -1.040961 -1.079999)
-			(mid 0.000117 -1.499994)
+			(mid 0.000117 -1.499993)
 			(end 1.04113 -1.079837)
 			(stroke
 				(width 0.12)
@@ -39065,7 +39065,7 @@
 		(path "/8d6cb16d-8f21-4700-bf2f-f5d5580d4e2c")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -39252,7 +39252,7 @@
 		(path "/9d4db41e-8b05-482a-879e-9b7096539530")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -39493,7 +39493,7 @@
 		(path "/a7027050-9805-4936-becc-642529addf72")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -39685,7 +39685,7 @@
 		(path "/4d3bfcaf-cca5-4697-9e74-3ed09ebe8821")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -39877,7 +39877,7 @@
 		(path "/e0727059-686e-487f-8d03-9d97c377dcd5")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -40069,7 +40069,7 @@
 		(path "/a1d97d38-e5fc-4fb3-ad93-2e414861c8c3")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 1.999999 0)
@@ -40723,7 +40723,7 @@
 		(path "/2e0cb43e-4383-41c5-be78-09bd718b06da")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -40909,7 +40909,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.002482 0.000793 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -41140,7 +41140,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.997399 -0.000175 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -41935,7 +41935,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.997999 -0.001672 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -42399,7 +42399,7 @@
 		(path "/69883c21-ea3a-4513-93d8-89fc84e9c352")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -42867,7 +42867,7 @@
 		(path "/ae82ef59-193b-4ada-badd-0dba119a2c5e")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -43108,7 +43108,7 @@
 		(path "/5a8e8f09-1970-4527-98a5-1959a0e8b9eb")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -43762,7 +43762,7 @@
 		(path "/89849fdd-d3bd-42e1-b9b6-268defd31913")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -43950,7 +43950,7 @@
 		(path "/f061613d-5051-40c6-9cc2-f8f89d5144da")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -44191,7 +44191,7 @@
 		(path "/442c2eec-0b05-4cc5-bfb1-08acc2c68f42")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -44379,7 +44379,7 @@
 		(path "/f6e5b275-dada-4826-ad52-7cffd5f743b9")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -44616,7 +44616,7 @@
 		(path "/26d8ed64-4ec9-4e17-9f3c-8b8847780a75")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -45088,7 +45088,7 @@
 		(path "/169e755f-e875-45dd-bb7d-2dbc747fb64d")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -45280,7 +45280,7 @@
 		(path "/e6334956-3bd5-4b34-9ede-5e42784a161d")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -45465,7 +45465,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.000993 0.00241 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -45505,7 +45505,7 @@
 			(uuid "8cc9258d-8583-440c-ada2-c72ff1ebdfbf")
 		)
 		(fp_line
-			(start -1.480005 0.73)
+			(start -1.480006 0.73)
 			(end -1.48 -0.73)
 			(stroke
 				(width 0.05)
@@ -45516,7 +45516,7 @@
 		)
 		(fp_line
 			(start 1.48 0.73)
-			(end -1.480005 0.73)
+			(end -1.480006 0.73)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -45526,7 +45526,7 @@
 		)
 		(fp_line
 			(start -1.48 -0.73)
-			(end 1.480005 -0.73)
+			(end 1.480006 -0.73)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -45535,7 +45535,7 @@
 			(uuid "0a675f63-ca08-4011-a297-3c3035b66d70")
 		)
 		(fp_line
-			(start 1.480005 -0.73)
+			(start 1.480006 -0.73)
 			(end 1.48 0.73)
 			(stroke
 				(width 0.05)
@@ -45702,7 +45702,7 @@
 		(path "/3f828802-5935-40ac-9b07-cc19a8f9cde0")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -45894,7 +45894,7 @@
 		(path "/c32a86cc-e41a-4b3e-b454-8c838fe930ea")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -46086,7 +46086,7 @@
 		(path "/a911fe48-efea-439d-a2e5-502cd3ecca6c")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -46274,7 +46274,7 @@
 		(path "/912c6570-aef2-4fcd-a1c4-a0b8951bb05b")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -46511,7 +46511,7 @@
 		(path "/81cca9a8-7710-434f-bd41-51e41c453a19")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.559999 1.236)
@@ -46746,7 +46746,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.001332 0.00224 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -47445,7 +47445,7 @@
 		(path "/2b28144a-dad5-4bf4-a4c7-deb7b0229fb5")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -49408,7 +49408,7 @@
 		(path "/5e1351cc-b8a4-4e0a-9852-88bfdf6bf10b")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -50341,7 +50341,7 @@
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 1.4 1)
 			(end -1.4 1)
@@ -50517,7 +50517,7 @@
 		(path "/946ec96d-10ac-4d29-bfa3-19f131c9cd01")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2.000001 0)
@@ -50709,7 +50709,7 @@
 		(path "/cb74b2e9-f0dd-43dd-8a81-174624268917")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -50897,7 +50897,7 @@
 		(path "/e292bbfa-d10a-41b7-9b5b-6a24df0b9fad")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -51465,7 +51465,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.000487 -0.002559 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -52953,7 +52953,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -67.002604 -0.000075 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -53420,7 +53420,7 @@
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 1.4 1)
 			(end -1.4 1)
@@ -53592,7 +53592,7 @@
 		(path "/edd453d2-2937-4c2f-83b8-695007984bfb")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 -1.236)
 			(end -1.56 -1.08)
@@ -53867,7 +53867,7 @@
 			(uuid "a8724af1-4b37-4248-a213-41f99002fbb7")
 		)
 		(fp_line
-			(start 1.480005 -0.73)
+			(start 1.480006 -0.73)
 			(end 1.48 0.73)
 			(stroke
 				(width 0.05)
@@ -53878,7 +53878,7 @@
 		)
 		(fp_line
 			(start -1.48 -0.73)
-			(end 1.480005 -0.73)
+			(end 1.480006 -0.73)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -53888,7 +53888,7 @@
 		)
 		(fp_line
 			(start 1.48 0.73)
-			(end -1.480005 0.73)
+			(end -1.480006 0.73)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -53897,7 +53897,7 @@
 			(uuid "d37a10be-fdf1-49d9-b68f-5c02aaf21fe1")
 		)
 		(fp_line
-			(start -1.480005 0.73)
+			(start -1.480006 0.73)
 			(end -1.48 -0.73)
 			(stroke
 				(width 0.05)
@@ -54064,7 +54064,7 @@
 		(path "/50a6c0fb-eaec-4c1d-81fc-451e69a5811b")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
@@ -54252,7 +54252,7 @@
 		(path "/5131b64f-3cf3-4f8f-ad21-76c54cabf654")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -54489,7 +54489,7 @@
 		(path "/59cc0c77-6622-4eea-be27-e1e7bbc83d10")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.56 1.08)
 			(end -1.56 1.236)
@@ -54512,7 +54512,7 @@
 		)
 		(fp_arc
 			(start 1.672335 1.078608)
-			(mid 0.096487 1.98766)
+			(mid 0.096488 1.987659)
 			(end -1.56 1.235516)
 			(stroke
 				(width 0.12)
@@ -54545,7 +54545,7 @@
 		)
 		(fp_arc
 			(start -1.56 -1.235516)
-			(mid 0.096488 -1.98766)
+			(mid 0.096487 -1.987659)
 			(end 1.672335 -1.078608)
 			(stroke
 				(width 0.12)
@@ -54725,7 +54725,7 @@
 			)
 		)
 		(property "LCSC" "C4275"
-			(at -73.818413 -8.960147 0)
+			(at -73.818412 -8.960147 0)
 			(unlocked yes)
 			(layer "F.Cu")
 			(hide yes)
@@ -54955,7 +54955,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C25804"
 			(at 92.998708 -0.001036 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -54995,7 +54995,7 @@
 			(uuid "092cc5d8-6e38-42b7-96ae-fe789e2321f4")
 		)
 		(fp_line
-			(start -1.48 -0.730005)
+			(start -1.48 -0.730006)
 			(end 1.48 -0.73)
 			(stroke
 				(width 0.05)
@@ -55006,7 +55006,7 @@
 		)
 		(fp_line
 			(start -1.48 0.73)
-			(end -1.48 -0.730005)
+			(end -1.48 -0.730006)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -55016,7 +55016,7 @@
 		)
 		(fp_line
 			(start 1.48 -0.73)
-			(end 1.48 0.730005)
+			(end 1.48 0.730006)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -55025,7 +55025,7 @@
 			(uuid "bbd79970-75ef-4e9f-9bbc-d4f714ffce59")
 		)
 		(fp_line
-			(start 1.48 0.730005)
+			(start 1.48 0.730006)
 			(end -1.48 0.73)
 			(stroke
 				(width 0.05)
@@ -55186,7 +55186,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.997453 -0.000551 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -55750,7 +55750,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4184"
 			(at -66.99976 0.002596 0)
 			(unlocked yes)
 			(layer "F.Cu")
@@ -56218,7 +56218,7 @@
 		(path "/d73f5da5-5e93-49c7-a396-caae78427a64")
 		(sheetname "ルート")
 		(sheetfile "Line-003-20241222.kicad_sch")
-		(attr through_hole exclude_from_pos_files)
+		(attr through_hole exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 2 0)
