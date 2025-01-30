@@ -67,6 +67,17 @@
 		)
 	)
 	(attr smd)
+	(fp_circle
+		(center -14.4 -10.9)
+		(end -12.7 -10.9)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "b8799847-a957-45ae-8d83-d96417bec2f4")
+	)
 	(fp_rect
 		(start -27 -19)
 		(end 27 19)
@@ -89,6 +100,13 @@
 				(thickness 0.15)
 			)
 		)
+	)
+	(pad "" np_thru_hole circle
+		(at -14.4 -10.9)
+		(size 3.2 3.2)
+		(drill 3.2)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "c34560d5-4c03-4ead-993d-b4fb679e029b")
 	)
 	(pad "3V3" smd circle
 		(at -17.78 15.24 180)
