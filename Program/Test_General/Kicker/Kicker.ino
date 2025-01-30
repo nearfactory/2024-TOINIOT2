@@ -8,12 +8,12 @@ void setup() {
 void loop() {
   if(analogRead(A1) < 200){
     Serial.println("Holding");
-    digitalWrite(D3, 0);
+    digitalWrite(D3, 1);
     delay(50);
     digitalWrite(D3, 0);
   }
   else{
     Serial.println("Waiting");
   }
-  delay(500);
+  delay(1000);
 }
