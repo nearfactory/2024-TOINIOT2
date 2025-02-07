@@ -215,7 +215,7 @@ void loop() {
     }
 
     if(line.on) line_flag = 1;
-    motor.moveDir(move_dir, 95); 
+    motor.moveDir(move_dir, 60); 
 
     // ゴールに向ける
     /*
@@ -251,7 +251,7 @@ void loop() {
     }
     motor.setDirAdd(dir.dir + face, dir.dir_prev, dir.p_gain, dir.d_gain);
     */
-    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
    
     // ボールを保持 -> ゴールに向かう
@@ -603,6 +603,7 @@ void loop() {
   // カメラで移動範囲を制限する
 
 
+  motor.set(80.0, 80.0, 80.0, 80.0);
   motor.avr();
   motor.write();
 }

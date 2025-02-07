@@ -1,4 +1,5 @@
 void setup() {
+  Serial.begin(9600);
   pinMode(LED_BUILTIN,OUTPUT);
   for(int i=2;i<=9;i++){
     pinMode(i,OUTPUT);
@@ -8,9 +9,10 @@ void setup() {
 }
 
 void loop() {  
+  Serial.println("motor pin 2");
   digitalWrite(LED_BUILTIN,HIGH);
   for(int i=2;i<=9;i++){
-    analogWrite(i,128);
+    // analogWrite(i,128);
     // digitalWrite(i,1);
   }
 
@@ -24,6 +26,7 @@ void loop() {
   analogWrite(9,128);
 
   delay(100);
+  digitalWrite(LED_BUILTIN,LOW);
   
   // digitalWrite(LED_BUILTIN,LOW);
   // for(int i=2;i<=9;i++){
