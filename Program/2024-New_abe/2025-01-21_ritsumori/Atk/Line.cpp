@@ -48,21 +48,25 @@ void Line::read(){
   left  = line[INNER_NUM+1];
   right = line[INNER_NUM+2];
   back  = line[INNER_NUM+3];
-  outside = front | left | back | right;
-
-  angel = num > 0;
-  on = angel | outside;
-
-
-  // 踏んでいない場合に処理をスキップ
-  if(!on){
-    return;
-  }
 
 
 
   // 壊れたセンサを反応しいないように修正
   front = false;
+  left = false;
+  right = false;
+  back = false;
+
+
+
+  outside = front | left | back | right;
+
+  angel = num > 0;
+  on = angel | outside;
+  // 踏んでいない場合に処理をスキップ
+  if(!on){
+    return;
+  }
 
 
 
@@ -140,8 +144,6 @@ void Line::read(){
 
 
 
-  /*
-  */
   // 踏み始め
   if(prev_on == false && on == true){
     dir_prev = dir;
