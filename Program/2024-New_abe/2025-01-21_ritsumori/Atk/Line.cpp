@@ -39,6 +39,14 @@ void Line::read(){
   }
 
 
+
+  // 壊れたセンサを反応しいないように修正
+  line[14] = false;
+  // for(auto l:line) Serial.printf("%d ", l);
+  // Serial.println();
+  
+
+
   // 調べる
   for(int i=0;i<INNER_NUM;i++){
     if(line[i]) num++;
@@ -48,14 +56,6 @@ void Line::read(){
   left  = line[INNER_NUM+1];
   right = line[INNER_NUM+2];
   back  = line[INNER_NUM+3];
-
-
-
-  // 壊れたセンサを反応しいないように修正
-  front = false;
-  left = false;
-  right = false;
-  back = false;
 
 
 
