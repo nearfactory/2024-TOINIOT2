@@ -3,8 +3,8 @@
 void Camera::begin(){
   pixy.init();
 
-  atk.sig = 2;
-  def.sig = 1;
+  atk.sig = 1;
+  def.sig = 2;
 
   return;
 }

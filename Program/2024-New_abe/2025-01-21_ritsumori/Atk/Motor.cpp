@@ -94,7 +94,7 @@ void Motor::setDirAddRaw(float dir, float dir_prev, float p_gain, float d_gain){
 void Motor::moveDir(float dir, uint8_t power){
   for(int i=0;i<NUM;i++){
     float t = (-dir-45-i*90)*3.14/180.0;
-    motor[i] = sin(t)*power;
+    motor[i] = sin(t)*power * 0.6;
   }
 
   return;
@@ -113,7 +113,7 @@ void Motor::moveDirFast(float dir, uint8_t power){
 
   float rate = 0;
   for(int i=0;i<NUM;i++){
-    motor[i] = motor[i] * 100 / max;
+    motor[i] = motor[i] * 100 / max * 0.6;
   }
 
   return;
