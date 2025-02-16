@@ -36,7 +36,7 @@ bool is_display_on = true;
 // 周り込み
 float h = 45;         // ヒステリシス
 // float r = 11800.0;    // 回り込みの半径
-float r = 9800.0;    // 回り込みの半径
+float r = 8200.0;    // 回り込みの半径
 float p_gain = 1.5;
 float d_gain = 3.0;
 
@@ -288,13 +288,12 @@ void loop() {
     // ボールを保持 -> ゴールに向かう
     if(ball.is_hold){
       // Test
-      // state = State::Dribble;
+      state = State::Dribble;
     }
 
     // 押し込み
     if(state_elapsed > 4000 && abs(dir.dir) < 15 && camera.atk.h > 50 && abs(ball.dir) < 25 && abs(line.dir) < 10){
       // line_flag = 0;
-      // Test
       // state = State::Oshikomi;
     }
 
@@ -419,6 +418,67 @@ void loop() {
   }
   */
   else if(state == State::Dribble){
+    // ボールを持ち始めたときのゴールまでの距離で方式を決定
+    static bool is_decided = false;
+    static int  type = 0;
+
+    if(!is_decided){
+      // ゴールに近すぎる場合、平行移動ですら躱せないためねじる
+      if(camera.atk.h > 40){
+
+      }
+      // ゴールに近い場合、姿勢制御が間に合わないため平行移動
+      else if(camera.atk.h > 25){
+
+      }
+      else{
+
+      }
+    }
+
+
+    // ねじる
+    if(type == 0){
+      motor.moveDirFast(0, 100);
+      motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -8.0f , 0);
+    }
+
+
+    // 平行移動
+    else if(type == 1){
+      motor.moveDirFast()
+    }
+
+
+    // 空いてる方に向ける
+    else if(type == 2){
+      motor.moveDir(0,100);
+
+      // 一気にゴールに向けるとボールを離してしまうため、出力をコントロールする
+      float p_power = state_elapsed / 250;
+      if(p_power > 3) p_power = 3;
+      motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -dir.p_gain * p_power, dir.d_gain * 0);
+
+      if(camera.is_center) sub.kick();
+    }
+
+
+    // 白線処理
+    if(line.on) line_flag = 1;
+
+
+    // ボールを保持していない -> 回り込みなおす
+    if(!ball.is_hold) {
+      is_decided = false;
+      state = State::Follow;
+    }
+
+
+    // ボールなし -> ボールなし
+    if(!ball.is_exist) {
+      is_decided = false;
+      state = State::NoBall;
+    }
 
   }
 
@@ -601,10 +661,10 @@ void loop() {
 
   // テスト
   else if(state == State::Test){
-    camera.lock = true;
+    // camera.lock = true;
     Serial.println("test");
     // Serial.printf("atk_num:%d", camera.atk.num);
-    motor.setDir(camera.chance_dir, camera.chance_dir_prev, dir.p_gain*2.0, 0);
+    motor.setDir(camera.chance_dir, camera.chance_dir_prev, -dir.p_gain*3, dir.d_gain*0);
     // motor.moveDir(0, 0);
   }
   else{

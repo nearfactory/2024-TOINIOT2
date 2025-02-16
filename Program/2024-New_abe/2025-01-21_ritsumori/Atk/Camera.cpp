@@ -117,7 +117,32 @@ void Camera::read(){
   }
 
 
-  // 敵避け用
+
+  if(atk.is_visible){
+    atk.x = (atk.x1 + atk.x2) / 2;
+    atk.y = (atk.y1 + atk.y2) / 2;
+    atk.w = atk.x2 - atk.x1;
+    atk.h = atk.y2 - atk.y1;
+    atk.dir_prev = atk.dir;
+
+    atk.dir = (atk.x - 160) / 4.0;
+  }
+
+
+
+  if(def.is_visible){
+    def.x = (def.x1 + def.x2) / 2;
+    def.y = (def.y1 + def.y2) / 2;
+    def.w = def.x2 - def.x1;
+    def.h = def.y2 - def.y1;
+    def.dir_prev = def.dir;
+
+    def.dir = (def.x - 160) / 4.0;
+  }
+
+
+
+  // 敵
   // [x1] -- [x2]
   if(atk.is_visible && atk.num == 2){
     enemy.is_visible = true;
@@ -149,31 +174,61 @@ void Camera::read(){
 
 
 
-  if(atk.is_visible){
-    atk.x = (atk.x1 + atk.x2) / 2;
-    atk.y = (atk.y1 + atk.y2) / 2;
-    atk.w = atk.x2 - atk.x1;
-    atk.h = atk.y2 - atk.y1;
-    atk.dir_prev = atk.dir;
+  // 敵避け
+  static int atk_dir = 0; // 攻める方向 0:x1(左), 1:x2(右)
+  static int queue[4]{};
+  static int id = 0;
 
-    atk.dir = (atk.x - 160) / 4.0;
+  // キーパーあり
+  if(enemy.is_visible){
+    int left_w  = enemy.x1 - atk.x1;
+    int right_w = atk.x2   - enemy.x2;
 
-    if(atk.x1 < 160 && 160 < atk.x2){
-      is_center = true;
+    // 左側に攻める
+    if(left_w > right_w){
+      atk_dir = 0;
     }else{
-      is_center = false;
+      atk_dir = 1;
     }
+  }
+  // キーパーなし = 前の意思決定を存続
+
+
+  // 平均化
+  queue[id] = atk_dir;
+  id = (id+1) % 4;
+  atk_dir = 0;
+  for(auto q:queue) atk_dir += q;
+  if(atk_dir >= 2) atk_dir = 1;
+  else             atk_dir = 0;
+
+
+  // 角度算出
+  chance_dir_prev = chance_dir;
+  // 左に攻める
+  if(atk_dir == 0){
+    // ボールが入るようにするため、中心から少しずらして角度を算出
+    chance_dir = (atk.x1 - 140) / 4.0;
+  }
+  // 右
+  else{
+    chance_dir = (atk.x2 - 180) / 4.0;
   }
 
 
-  if(def.is_visible){
-    def.x = (def.x1 + def.x2) / 2;
-    def.y = (def.y1 + def.y2) / 2;
-    def.w = def.x2 - def.x1;
-    def.h = def.y2 - def.y1;
-    def.dir_prev = def.dir;
-
-    def.dir = (def.x - 160) / 4.0;
+  // シュートが決まるか判定
+  is_center = false;
+  if(atk.num == 1){
+    if(atk.x1 < 160 && 160 < atk.x2) is_center = true;
+  }else{
+    // 左に攻める
+    if(atk_dir == 0){
+      if(atk.x1 < 160 && 160 < enemy.x1) is_center = true;
+    }
+    // 右
+    else{
+      if(enemy.x2 < 160 && 160 < atk.x2) is_center = true;
+    }
   }
 
 

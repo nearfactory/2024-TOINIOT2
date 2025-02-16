@@ -187,8 +187,8 @@ void Display::Camera(){
   int left = 64-width/2;
   int up   = 16;
 
-  printd(8,16,to_string(camera.atk.dir));
-  printd(8,24,to_string(camera.chance_dir));
+  printd(8,48,to_string(camera.atk.dir));
+  printd(8,56,to_string(camera.chance_dir));
 
   printd(104, 8,  to_string(camera.atk.x));
   printd(104, 16, to_string(camera.atk.y));
