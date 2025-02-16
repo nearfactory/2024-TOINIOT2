@@ -121,6 +121,9 @@ void Display::debug(uint8_t mode){
     case MODE::GAME :
       this->Game();
       break;
+    case MODE::TEST :
+      this->Test();
+      break;
     default:
       for(size_t i=0;i<variables.size();i++){
         printd(8,24+i*8,variables[i]);
@@ -400,8 +403,12 @@ void Display::Game(){
 
   printd(8,16,"damaged:");
   printd(16,24,to_string(ui.damaged_timer/1000) );
-  if(ui.damaged_timer < 0) ui.buzzer(880.0f);
-  else ui.buzzer(0);
+  if(ui.damaged_timer < 0) {
+    ui.buzzer(880.0f);
+  }
+  else{
+    ui.buzzer(0);
+  } 
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
 
   switch(state){
@@ -442,6 +449,67 @@ void Display::Game(){
     printd(8,56,"error!");
     break;
   }
+
+  return;
+}
+
+void Display::Test(){
+  int w = 64;
+
+  // 目盛り
+  display.drawLine(24, 0, 24, 64, WHITE);
+
+  // ゴール
+  int g_x = camera.atk.x1 * w / 320;
+  int g_w = camera.atk.w * w / 320;
+
+  display.drawRect(8, 64-g_x-g_w, 8, g_w, WHITE);
+
+  // キーパー
+  int e_x = camera.enemy.x1 * w / 320;
+  int e_w = camera.enemy.w * w / 320;
+
+
+  static int atk_dir = 0; // 攻める方向 0:x1, 1:x2
+  static int queue[4]{};
+  static int id = 0;
+
+  // キーパーあり
+  if(camera.enemy.is_visible){
+    display.fillRect(8, 64-e_x-e_w, 8, e_w, WHITE);
+
+    int left_w  = camera.enemy.x1 - camera.atk.x1;
+    int right_w = camera.atk.x2   - camera.enemy.x2;
+
+    // 左側に攻める
+    if(left_w > right_w){
+      atk_dir = 0;
+    }else{
+      atk_dir = 1;
+    }
+  }
+  // キーパーなし = 前の意思決定を存続
+
+  queue[id] = atk_dir;
+  id = (id+1) % 4;
+  atk_dir = 0;
+  for(auto q:queue) atk_dir += q;
+  if(atk_dir >= 2) atk_dir = 1;
+  else            atk_dir = 0;
+
+  // 攻め方向の表示
+  if(atk_dir == 0){
+    printd(32, 56, "<");
+  }else{
+    printd(32, 8,  "<");
+  }
+
+
+
+  // 情報
+  // printd(32, 8, "goal_h :"+to_string(camera.atk.h));
+  // printd(32, 16, "enemy_w:"+to_string(camera.enemy.w));
+
 
   return;
 }

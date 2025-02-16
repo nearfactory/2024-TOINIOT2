@@ -22,6 +22,14 @@ void Camera::read(){
   }
 
 
+
+  // 左右反転処理
+  for (int i = 0; i < pixy.ccc.numBlocks; i++) {
+    pixy.ccc.blocks[i].m_x = 320 - pixy.ccc.blocks[i].m_x;
+  }
+
+
+
   // バウンディングボックスの計算
   atk.is_visible = false;
   atk.num = 0;
@@ -109,6 +117,37 @@ void Camera::read(){
   }
 
 
+  // 敵避け用
+  // [x1] -- [x2]
+  if(atk.is_visible && atk.num == 2){
+    enemy.is_visible = true;
+    
+    int x1_1 = pixy.ccc.blocks[0].m_x - pixy.ccc.blocks[0].m_width / 2;
+    int x2_1 = pixy.ccc.blocks[0].m_x + pixy.ccc.blocks[0].m_width / 2;
+    
+    int x1_2 = pixy.ccc.blocks[1].m_x - pixy.ccc.blocks[1].m_width / 2;
+    int x2_2 = pixy.ccc.blocks[1].m_x + pixy.ccc.blocks[1].m_width / 2;
+
+    // 入れ替え
+    if(x1_1 > x1_2){
+      int b = x1_1;
+      x1_1 = x1_2;
+      x1_2 = b;
+
+      b = x2_1;
+      x2_1 = x2_2;
+      x2_2 = b;
+    }
+
+    enemy.x1 = x2_1;
+    enemy.x2 = x1_2;
+
+    enemy.w = enemy.x2 - enemy.x1;
+  }else{
+    enemy.is_visible = false;
+  }
+
+
 
   if(atk.is_visible){
     atk.x = (atk.x1 + atk.x2) / 2;
@@ -117,87 +156,13 @@ void Camera::read(){
     atk.h = atk.y2 - atk.y1;
     atk.dir_prev = atk.dir;
 
-    atk.dir = -(atk.x - 160) / 4.0;
+    atk.dir = (atk.x - 160) / 4.0;
 
     if(atk.x1 < 160 && 160 < atk.x2){
       is_center = true;
     }else{
       is_center = false;
     }
-
-    // atk.dir_queue[atk.dir_queue_id] = atk.dir;
-    // float sum = 0;
-    // for(auto d:atk.dir_queue) sum += d;
-    // atk.dir = sum / (float) DIR_QUEUE_SIZE;
-    // atk.dir_queue_id = (atk.dir_queue_id + 1) % DIR_QUEUE_SIZE;
-
-    // if(num_prev != atk.num){
-    //   lock = false;
-    // }
-
-    // 敵避けの角度
-    if(atk.num == 1){
-      // 遠い方のカドにする
-      if(lock){
-        if(target == 0){
-          chance_dir = x1_1;
-        }else{
-          chance_dir = x2_1;
-        }
-      }else{
-        if(abs(atk.x1-160) > abs(atk.x2-160)){
-          target = 0;
-        }else{
-          target = 1;
-        }
-      }
-    }else{
-      // int len_buf = 0, x1_buf = 0, x2_buf = 0;
-
-      // 入れ替え
-      // if(x1_1 > x1_2){
-      //   len_buf = len_1;
-      //   x1_buf  = x1_1;
-      //   x2_buf  = x2_1;
-
-      //   len_1 = len_2;
-      //   x1_1  = x1_2;
-      //   x2_1  = x2_2;
-
-      //   len_2 = len_buf;
-      //   x1_2  = x1_buf;
-      //   x2_2  = x2_buf;
-      // }
-
-      if(lock){
-        if(target == 0){
-          chance_dir = x1_1;
-        }else{
-          chance_dir = x2_2;
-        }
-      }
-      else{
-        if(len_1 > len_2){
-          if(x1_1 < x1_2){
-            target = 0;
-          }else{
-            target = 1;
-          }
-        }else{
-          if(x1_1 < x1_2){
-            target = 1;
-          }else{
-            target = 0;
-          }
-
-        }
-      }
-    }
-
-    chance_dir_prev = chance_dir;
-    chance_dir = -(chance_dir - 160) / 4.0;
-    // Serial.printf("num:%d x1_1:%d x2_1:%d len_1:%d x1_2:%d x2_2:%d len_2:%d target:%d chance_dir:%f lock:%d \n", atk.num, x1_1, x2_1, len_1, x1_2, x2_2, len_2, target, chance_dir, lock);
-    lock = false;
   }
 
 
@@ -208,13 +173,7 @@ void Camera::read(){
     def.h = def.y2 - def.y1;
     def.dir_prev = def.dir;
 
-    def.dir = -(def.x - 160) / 4.0;
-
-  // def.dir_queue[def.dir_queue_id] = def.dir;
-  // sum = 0;
-  // for(auto d:def.dir_queue) sum += d;
-  // def.dir = sum / (float)DIR_QUEUE_SIZE;
-  // def.dir_queue_id = (def.dir_queue_id + 1) % DIR_QUEUE_SIZE;
+    def.dir = (def.x - 160) / 4.0;
   }
 
 

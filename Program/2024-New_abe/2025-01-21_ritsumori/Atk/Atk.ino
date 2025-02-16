@@ -211,6 +211,7 @@ void loop() {
       float theta = 90 + (r-ball.distance) * 90 / r;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
       h = 12;
+      // face_flag = false;
     }
     //接線
     else{
@@ -223,51 +224,78 @@ void loop() {
     motor.moveDir(move_dir, 90); 
 
     // ゴールに向ける
-    float face = 0;
+    static float  face = 0;
+    static int    face_queue_id = 0;
+    static float  face_queue[10]{};
+
     static int dir_type = 0;
     static uint32_t t_begin = 0;
 
     if(face_flag){
       switch(dir_type){
         case 0:
+          face = 0;
+
           // ゴールに近い場合のみ
-          if(camera.atk.h > 23 && millis()-t_begin > 500){
-            if(camera.atk.dir < -16){
+          if(camera.atk.h > 25 && millis()-t_begin > 500){
+          // if(camera.atk.h > 23){
+            if(camera.atk.dir < -18){
+            // if(camera.atk.x1 > 160){
               dir_type = 1;
-            }else if(camera.atk.dir > 18){
+              face = 20;
+              t_begin = millis();
+            }else if(camera.atk.dir > 20){
+            // }else if(camera.atk.x2 < 160){
               dir_type = 2;
+              face = -20;
+              t_begin = millis();
             }
           }
-          face = 0;
           break;
+        // ロボットを左に向ける
         case 1:
-          if(camera.atk.dir > 12){
-            dir_type = 0;
-            t_begin = millis();
-          }
           face = 20;
-          break;
-        case 2:
-          if(camera.atk.dir < -12){
+          if(camera.atk.dir > 14 && millis()-t_begin > 0){
+          // if(camera.atk.x2 < 170){
             dir_type = 0;
             t_begin = millis();
           }
+          break;
+        // ロボットを右に向ける
+        case 2:
           face = -20;
+          if(camera.atk.dir < -14 && millis()-t_begin > 0){
+          // if(camera.atk.x1 > 170){
+            dir_type = 0;
+            t_begin = millis();
+          }
           break;
       }
+      // if(!camera.atk.is_visible){
+      //   dir_type = 0;
+      // }
     }
+
+    // face_queue[face_queue_id] = face;
+    // face_queue_id = (face_queue_id + 1) % 10;
+    // face = 0;
+    // for(auto f:face_queue) face += f;
+    // face /= 10.0;
+
     motor.setDirAdd(dir.dir + face, dir.dir_prev, dir.p_gain, dir.d_gain);
 
    
     // ボールを保持 -> ゴールに向かう
     if(ball.is_hold){
-      state = State::Dribble;
+      // Test
+      // state = State::Dribble;
     }
 
     // 押し込み
     if(state_elapsed > 4000 && abs(dir.dir) < 15 && camera.atk.h > 50 && abs(ball.dir) < 25 && abs(line.dir) < 10){
-      line_flag = 0;
-      state = State::Oshikomi;
+      // line_flag = 0;
+      // Test
+      // state = State::Oshikomi;
     }
 
     if(!ball.is_exist) state = State::NoBall;
@@ -275,6 +303,7 @@ void loop() {
   }
 
 
+  /*
   // ToDo: ゴールに向かう
   else if(state == State::Dribble){
     // 攻める角度の決定
@@ -387,6 +416,10 @@ void loop() {
 
 
     // キーパーが目の前にいる -> キーパー避け
+  }
+  */
+  else if(state == State::Dribble){
+
   }
 
 
@@ -584,7 +617,7 @@ void loop() {
   static uint32_t timer = 0;
   static float    back_dir = 0;
 
-  // 速い場合に0.2秒間戻る
+  // 速い場合に0.5秒間戻る
   if(millis()-timer < 500){
     motor.moveDirFast(back_dir, 100);
   }else{
@@ -618,7 +651,11 @@ void loop() {
       }
       // 前側でラインに触れる
       else{
-        motor.moveDirFast(line.dir+180, 100);
+        float avoid_dir = 0;
+        if(abs(ball.dir)<22.5)  avoid_dir = 180;
+        else if(ball.dir > 0)   avoid_dir = 135;
+        else                    avoid_dir = -135;
+        motor.moveDirFast(avoid_dir, 100);
       }
 
       break;

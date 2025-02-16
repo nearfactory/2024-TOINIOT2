@@ -68,7 +68,7 @@ public:
   
   bool is_center = false;
 
-  Goal atk, def;
+  Goal atk, def, enemy;
 
 
   bool lock = false;
