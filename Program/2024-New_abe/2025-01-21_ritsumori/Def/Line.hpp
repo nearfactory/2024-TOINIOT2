@@ -1,13 +1,9 @@
 #pragma once
 
-#include <vector>
-
 #include <Arduino.h>
 
 #include "General.hpp"
 #include "Vec2.hpp"
-
-using namespace std;
 
 class Line{
 private:
@@ -22,21 +18,14 @@ private:
 
   uint32_t right_timer = 0;
 
-  Vec2  vec1;              // 反応しているセンサのベクトルの左上
-  Vec2  vec2;              // 反応しているセンサのベクトルの右下
-
-  Vec2  vecs[LINE_NUM];
-  int   count[LINE_NUM];
-
   static constexpr uint8_t DATA_SIZE = 5; // bit
   static constexpr uint8_t STR_SIZE = 8;  // byte
   char receive[STR_SIZE] = "";
 
 public:
   bool  line[INNER_NUM+4]; // センサの値
-
   int   num;               // 反応しているセンサの数
-  int area = 0;
+  int   area;              // 連続する部分の数
 
   bool front = false;
   bool left = false;
@@ -52,6 +41,7 @@ public:
   bool  on;                // 白線上のフラグ
   bool  prev_on;
 
+  bool angel   = false;
   bool outside = false;
   
   Line() : num(0), vec(0,0), vec_prev(0,0), distance(0), dir(0), on(0) {}

@@ -448,7 +448,7 @@ void loop() {
       motor.moveDir(camera.chance_dir, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
-      // if(camera.is_center) sub.kick();
+      if(camera.is_center && state_elapsed > 200) sub.kick();
     }
 
 
@@ -462,7 +462,7 @@ void loop() {
       if(p_power > 4) p_power = 4;
       motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -dir.p_gain * p_power, dir.d_gain * 0);
 
-      // if(camera.is_center) sub.kick();
+      if(camera.is_center && state_elapsed > 200) sub.kick();
     }
     else{
       type = 0;
@@ -628,8 +628,8 @@ void loop() {
       }else if(ball.dir < -10){
         move_dir = -10;
       }
-      // motor.moveDir(move_dir, 50);
-      motor.moveDir(move_dir, 100);
+      motor.moveDir(move_dir, 50);
+      // motor.moveDir(move_dir, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain*2, dir.d_gain);
 
       if(ball.is_hold) sub.kick();
@@ -642,8 +642,8 @@ void loop() {
 
     // 下がる
     else{
-      // motor.moveDir(180, 60);
-      motor.moveDir(180, 100);
+      motor.moveDir(180, 60);
+      // motor.moveDir(180, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain*2, dir.d_gain);
 
       if(!line.on && abs(line.dir) < 90){

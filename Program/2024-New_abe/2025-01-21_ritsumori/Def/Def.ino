@@ -168,8 +168,8 @@ void loop() {
 
 
     // 白線に戻るベクトル
-    move_vec.x += cos(radians(line.dir)) * distance;
-    move_vec.y += sin(radians(line.dir)) * distance;
+    move_vec.x += cos(radians(line.dir)) * line.distance;
+    move_vec.y += sin(radians(line.dir)) * line.distance;
 
 
     // 白線と垂直に動くベクトル

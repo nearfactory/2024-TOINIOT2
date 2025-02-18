@@ -28,9 +28,11 @@ void Ball::read(){
       max = ball[i];
       max_id = i;
     }
+    // Serial.printf("%d\t", ball[i]);
   }
+  // Serial.println();
 
-  for(int i=0;i<16;i++){
+  for(int i=0;i<NUM;i++){
     float sensor_dir = radians(i*360/NUM);
     x += (1023 - ball[i]) * cos(sensor_dir);
     y += (1023 - ball[i]) * sin(sensor_dir);

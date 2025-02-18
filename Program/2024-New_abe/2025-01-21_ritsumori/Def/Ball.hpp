@@ -13,14 +13,14 @@ private:
   };
 
   static constexpr uint16_t DISTANCE_MIN = 7000;
-  static constexpr uint16_t DISTANCE_MAX = 16200;
+  static constexpr uint16_t DISTANCE_MAX = 15500;
   uint16_t distance_h = 13200;
 
+  uint16_t ball[NUM]{0};
   uint32_t hold_begin = 0;
   uint32_t not_hold_begin = 0;
 
 public:
-  uint16_t ball[NUM]{0};
   float    dir = 0;
   float    dir_prev = 0;
   uint16_t distance = 0;

@@ -1,5 +1,4 @@
 #include <string>
-#include "HardwareSerial.h"
 #include "Display.hpp"
 
 using namespace std;
@@ -122,6 +121,9 @@ void Display::debug(uint8_t mode){
     case MODE::GAME :
       this->Game();
       break;
+    case MODE::TEST :
+      this->Test();
+      break;
     default:
       for(size_t i=0;i<variables.size();i++){
         printd(8,24+i*8,variables[i]);
@@ -185,13 +187,15 @@ void Display::Camera(){
   int left = 64-width/2;
   int up   = 16;
 
-  printd(8,16,to_string(camera.def.dir));
-  printd(8,24,to_string(camera.chance_dir));
+  printd(8,48,to_string(camera.atk.dir));
+  printd(8,56,to_string(camera.chance_dir));
 
-  printd(104, 8,  to_string(camera.def.x));
-  printd(104, 16, to_string(camera.def.y));
-  printd(104, 24, to_string(camera.def.w));
-  printd(104, 32, to_string(camera.def.h));
+  printd(104, 8,  to_string(camera.atk.x));
+  printd(104, 16, to_string(camera.atk.y));
+  printd(104, 24, to_string(camera.atk.w));
+  printd(104, 32, to_string(camera.atk.h));
+  printd(104, 40, to_string(camera.atk.x1));
+  printd(104, 48, to_string(camera.atk.x2));
 
   display.drawRect(left, up, width, height, WHITE);
 
@@ -212,9 +216,6 @@ void Display::Camera(){
   }
   if(camera.def.is_visible){
     display.drawRect(left + camera.def.x1 *width/320, up + camera.def.y1 *height/200,  camera.def.w *width/320, camera.def.h *height/200,  WHITE);
-    ui.buzzer(880.0f);
-  }else{
-    ui.buzzer(440.0f);
   }
 
   // display.drawRect(left + 80 * width/320, up + 50 * height/200, 160 * width/320, 100 * height/200, WHITE);
@@ -298,16 +299,16 @@ void Display::Line(){
   display.drawRect(64-1-cos(radians(line.dir))*13, 32-1-sin(radians(line.dir))*13, 2, 2, WHITE);
 
   // 情報
-  printd(8, 24, "on:"+to_string(line.on));
-  printd(8, 32, "num:"+to_string(line.num));
-  printd(8, 40, "area:"+to_string(line.area));
+  // printd(8, 32, "on:"+to_string(line.on));
+  // printd(8, 40, "num:"+to_string(line.num));
   // printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
   printd(8, 48, "dis:"+to_string(line.distance));
-  printd(8, 56, "dir:"+to_string(line.dir));
+  // printd(8, 56, "dir:"+to_string(line.dir));
 
   // しきい値調整
   printd(112,8, "+");
   printd(112,32,"-");
+  printd(112,56,"s");
 
   // しきい値の加減算
   if(ui.buttonUp(1)){
@@ -320,6 +321,10 @@ void Display::Line(){
     Serial1.print("d");
     printd(96,32,"-");
   } 
+  if(ui.buttonUp(3)){
+    Serial1.print("c");
+    printd(96,56,"s");
+  }
 
   return;
 }
@@ -351,7 +356,7 @@ void Display::Valiables(){
 
   
   // 変数のセレクタ
-  if(ui.buttonUp(0)){
+  if(ui.buttonUp(3)){
     selector++;
     selector %= variables.size();
   }
@@ -359,17 +364,26 @@ void Display::Valiables(){
 
   printd(120,8,"+",ALIGN::RIGHT);
   printd(120,32,"-",ALIGN::RIGHT);
+  printd(120,56,"o",ALIGN::RIGHT);
   printd(128,56,"select",ALIGN::RIGHT);
 
-  
-  display.drawCircle(64, 32, 24, WHITE);
-  display.drawPixel(64, 32, WHITE);
-  display.drawRect(64-1-cos(radians(line_dir))*13, 32-1-sin(radians(line_dir))*13, 2, 2, WHITE);
-  display.drawRect(64-1-cos(radians(follow_dir))*13, 32-1-sin(radians(follow_dir))*13, 2, 2, WHITE);
-
   // 加減算
-  if(ui.buttonUp(1))      *valiables_addr[selector] += 0.1;
-  else if(ui.buttonUp(2)) *valiables_addr[selector] -= 0.1;
+  static float order = 0.1;
+  if(ui.buttonUp(1))      *valiables_addr[selector] += order;
+  else if(ui.buttonUp(2)) *valiables_addr[selector] -= order;
+  
+  // 桁の変更
+  // if(ui.buttonUp(3)){
+  //   if(order == 0.01){
+  //     order = 0.1;
+  //   }else if(order == 0.1){
+  //     order = 1.0;
+  //   }else if(order == 1.0){
+  //     order = 0.01;
+  //   }else{
+  //     order = 0.1;
+  //   }
+  // }
 
   return;
 }
@@ -389,24 +403,113 @@ void Display::Game(){
 
   printd(8,16,"damaged:");
   printd(16,24,to_string(ui.damaged_timer/1000) );
-  if(ui.damaged_timer < 0) ui.buzzer(880.0f);
-  else ui.buzzer(0);
+  if(ui.damaged_timer < 0) {
+    ui.buzzer(880.0f);
+  }
+  else{
+    ui.buzzer(0);
+  } 
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
 
-  switch(state){
-  case State::LineTrace:
-    printd(8,56,"LineTrace");
-    break;
-  case State::KeeperDash:
-    printd(8,56,"KeeperDash");
-    break;
-  case State::BackToGoal_Weak:
-    printd(8,56,"Weak");
-    break;
-  case State::BackToGoal_Strong:
-    printd(8,56,"Strong");
-    break;
+  // switch(state){
+  // case State::KickOff:
+  //   printd(8,56,"kick off");
+  //   break;
+  // case State::Damaged:
+  //   printd(8,56,"damaged");
+  //   break;
+  // case State::Follow:
+  //   printd(8,56,"follow");
+  //   break;
+  // case State::Dribble:
+  //   printd(8,56,"dribble");
+  //   break;
+  // case State::Shoot:
+  //   printd(8,56,"shoot");
+  //   break;
+  // case State::AvoidKeeper:
+  //   printd(8,56,"avoid keeper");
+  //   break;
+  // case State::Pushing:
+  //   printd(8,56,"pushing");
+  //   break;
+  // case State::NoBall:
+  //   printd(8,56,"no ball");
+  //   break;
+  // case State::Neutral:
+  //   printd(8,56,"neutral");
+  //   break;
+  // case State::Oshikomi:
+  //   printd(8,56,"oshikomi");
+  //   break;
+  // case State::Test:
+  //   printd(8,56,"Test");
+  //   break;
+  // default: 
+  //   printd(8,56,"error!");
+  //   break;
+  // }
+
+  return;
+}
+
+void Display::Test(){
+  int w = 64;
+
+  // 目盛り
+  display.drawLine(24, 0, 24, 64, WHITE);
+
+  // ゴール
+  int g_x = camera.atk.x1 * w / 320;
+  int g_w = camera.atk.w * w / 320;
+
+  display.drawRect(8, 64-g_x-g_w, 8, g_w, WHITE);
+
+  // キーパー
+  int e_x = camera.enemy.x1 * w / 320;
+  int e_w = camera.enemy.w * w / 320;
+
+
+  static int atk_dir = 0; // 攻める方向 0:x1, 1:x2
+  static int queue[4]{};
+  static int id = 0;
+
+  // キーパーあり
+  if(camera.enemy.is_visible){
+    display.fillRect(8, 64-e_x-e_w, 8, e_w, WHITE);
+
+    int left_w  = camera.enemy.x1 - camera.atk.x1;
+    int right_w = camera.atk.x2   - camera.enemy.x2;
+
+    // 左側に攻める
+    if(left_w > right_w){
+      atk_dir = 0;
+    }else{
+      atk_dir = 1;
+    }
   }
+  // キーパーなし = 前の意思決定を存続
+
+  queue[id] = atk_dir;
+  id = (id+1) % 4;
+  atk_dir = 0;
+  for(auto q:queue) atk_dir += q;
+  if(atk_dir >= 2) atk_dir = 1;
+  else            atk_dir = 0;
+
+  // 攻め方向の表示
+  if(atk_dir == 0){
+    printd(32, 56, "<");
+  }else{
+    printd(32, 8,  "<");
+  }
+
+
+
+  // 情報
+  // printd(32, 8, "goal_h :"+to_string(camera.atk.h));
+  // printd(32, 16, "enemy_w:"+to_string(camera.enemy.w));
+
 
   return;
 }
