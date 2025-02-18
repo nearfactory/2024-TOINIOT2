@@ -206,13 +206,14 @@ void Camera::read(){
   // 角度算出
   chance_dir_prev = chance_dir;
   // 左に攻める
+  int offset = 25;
   if(atk_dir == 0){
     // ボールが入るようにするため、中心から少しずらして角度を算出
-    chance_dir = (atk.x1 - 140) / 4.0;
+    chance_dir = (atk.x1 - 160 + offset) / 4.0;
   }
   // 右
   else{
-    chance_dir = (atk.x2 - 180) / 4.0;
+    chance_dir = (atk.x2 - 160 - offset) / 4.0;
   }
 
 

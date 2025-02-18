@@ -38,7 +38,8 @@ float h = 45;         // ヒステリシス
 // float r = 11800.0;    // 回り込みの半径
 float r = 8200.0;    // 回り込みの半径
 float p_gain = 1.5;
-float d_gain = 3.0;
+float d_gain = 3.0;  // Test
+// float d_gain = 1.0;
 
 float offset = 1.0;
 
@@ -193,7 +194,8 @@ void loop() {
 
 
   // ToDo: 回り込み
-  else if(state == State::Follow){
+  static int dir_type = 0;  // ゴールに向けるやつ ドリブルの判定でも使うためココに配置
+  if(state == State::Follow){
     float move_dir = 0;
     bool face_flag = true;
 
@@ -203,32 +205,30 @@ void loop() {
     if(abs(ball.dir)<h){
       move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
       // move_dir = ball.dir * p_gain;
-      h = 20;
+      h = 10;
       face_flag = false;
     }
     // 円周上
     else if(ball.distance < r){
       float theta = 90 + (r-ball.distance) * 90 / r;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 12;
+      h = 5;
       // face_flag = false;
     }
     //接線
     else{
       float theta = degrees(asin(r / ball.distance));
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 12;
+      h = 5;
     }
-
-    if(line.on) line_flag = 1;
     motor.moveDir(move_dir, 90); 
+
+    // 白線処理
+    if(line.on) line_flag = 1;
+
 
     // ゴールに向ける
     static float  face = 0;
-    static int    face_queue_id = 0;
-    static float  face_queue[10]{};
-
-    static int dir_type = 0;
     static uint32_t t_begin = 0;
 
     if(face_flag){
@@ -275,13 +275,6 @@ void loop() {
       //   dir_type = 0;
       // }
     }
-
-    // face_queue[face_queue_id] = face;
-    // face_queue_id = (face_queue_id + 1) % 10;
-    // face = 0;
-    // for(auto f:face_queue) face += f;
-    // face /= 10.0;
-
     motor.setDirAdd(dir.dir + face, dir.dir_prev, dir.p_gain, dir.d_gain);
 
    
@@ -292,9 +285,9 @@ void loop() {
     }
 
     // 押し込み
-    if(state_elapsed > 4000 && abs(dir.dir) < 15 && camera.atk.h > 50 && abs(ball.dir) < 25 && abs(line.dir) < 10){
-      // line_flag = 0;
-      // state = State::Oshikomi;
+    if(state_elapsed > 4000 && abs(dir.dir) < 15 && camera.atk.h > 50 && abs(ball.dir) < 25 && abs(line.dir) < 5){
+      line_flag = 0;
+      state = State::Oshikomi;
     }
 
     if(!ball.is_exist) state = State::NoBall;
@@ -424,47 +417,60 @@ void loop() {
 
     if(!is_decided){
       // ゴールに近すぎる場合、平行移動ですら躱せないためねじる
-      if(camera.atk.h > 40){
-
+      if(camera.atk.h > 36 && !camera.is_center){
+      // if(camera.atk.h > 36){
+        type = 0;
       }
       // ゴールに近い場合、姿勢制御が間に合わないため平行移動
-      else if(camera.atk.h > 25){
-
+      else if(camera.atk.h > 32){
+        type = 1;
       }
+      // 間に合う場合、ゴールに向けて姿勢制御しながら攻める
       else{
-
+        type = 2;
       }
+
+      is_decided = true;
     }
 
 
     // ねじる
     if(type == 0){
-      motor.moveDirFast(0, 100);
-      motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -8.0f , 0);
+      // motor.moveDirFast(0, 100);
+      motor.moveDir(0, 100);
+      motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -4.0f , 0);
     }
 
 
     // 平行移動
     else if(type == 1){
-      motor.moveDirFast()
+      // motor.moveDirFast(camera.chance_dir, 100);
+      motor.moveDir(camera.chance_dir, 100);
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+      // if(camera.is_center) sub.kick();
     }
 
 
     // 空いてる方に向ける
     else if(type == 2){
+      // motor.moveDirFast(0,100);
       motor.moveDir(0,100);
 
       // 一気にゴールに向けるとボールを離してしまうため、出力をコントロールする
-      float p_power = state_elapsed / 250;
-      if(p_power > 3) p_power = 3;
+      float p_power = state_elapsed / 80;
+      if(p_power > 4) p_power = 4;
       motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -dir.p_gain * p_power, dir.d_gain * 0);
 
-      if(camera.is_center) sub.kick();
+      // if(camera.is_center) sub.kick();
+    }
+    else{
+      type = 0;
     }
 
 
     // 白線処理
-    if(line.on) line_flag = 1;
+    if(line.on) line_flag = 2;
 
 
     // ボールを保持していない -> 回り込みなおす
@@ -683,42 +689,90 @@ void loop() {
   }else{
     switch(line_flag){
     case 1:{
-      
-      // 後ろ側でラインに触れる かつ ボールが前
-      if(abs(line.dir)>135){
-        float avoid_dir = 0;
-        if(abs(ball.dir) < 10) avoid_dir = 0;
-        else if(ball.dir > 0)  avoid_dir = 45;
-        else                   avoid_dir = -45;
 
-        motor.moveDirFast(avoid_dir, 100);
+      float avoid_dir = 0;
+
+      // 後ろ
+      if(line.dir > 157.5 || line.dir < -157.5){
+        if(abs(ball.dir) < 5) avoid_dir = 0;
+        else if(ball.dir < 0) avoid_dir = 45;
+        else                  avoid_dir = -45;
       }
-      // 左側
-      else if(line.dir < -45){
-        if(abs(ball.dir) < 90){
-          motor.moveDirFast(45, 100);
-        }else{
-          motor.moveDirFast(135, 100);
-        }
+      // 左後ろ
+      else if(line.dir < -112.5){
+        if(-135 < ball.dir && ball.dir < 45)  avoid_dir = 0;
+        else                                  avoid_dir = 90;
       }
-      // 右側
-      else if(45 < line.dir){
-        if(abs(ball.dir) < 90){
-          motor.moveDirFast(-45, 100);
-        }else{
-          motor.moveDirFast(-135, 100);
-        }
+      // 左
+      else if(line.dir < -67.5){
+        if(-90 < ball.dir && ball.dir < 90)   avoid_dir = 45;
+        else                                  avoid_dir = 135;
       }
-      // 前側でラインに触れる
+      // 左前
+      else if(line.dir < -22.5){
+        if(-45 < ball.dir && ball.dir < 135)  avoid_dir = 90;
+        else                                  avoid_dir = 180;
+      }
+      // 正面
+      else if(line.dir < 22.5){
+        if(abs(ball.dir) < 5) avoid_dir = 180;
+        else if(ball.dir < 0) avoid_dir = 135;
+        else                  avoid_dir = -135;
+      }
+      // 右前
+      else if(line.dir < 67.5){
+        if(-135 < ball.dir && ball.dir < 45)  avoid_dir = -90;
+        else                                  avoid_dir = -180;
+      }
+      // 右
+      else if(line.dir < 112.5){
+        if(-90 < ball.dir && ball.dir < 90) avoid_dir = -45;
+        else                                avoid_dir = -135;
+      }
+      // 右後ろ
       else{
-        float avoid_dir = 0;
-        if(abs(ball.dir)<22.5)  avoid_dir = 180;
-        else if(ball.dir > 0)   avoid_dir = 135;
-        else                    avoid_dir = -135;
-        motor.moveDirFast(avoid_dir, 100);
+        if(-45 < ball.dir && ball.dir < 135)  avoid_dir = 0;
+        else                                  avoid_dir = -90;
       }
 
+      motor.moveDirFast(avoid_dir, 100);
       break;
+      
+      // // 後ろ側でラインに触れる かつ ボールが前
+      // if(abs(line.dir)>135){
+      //   float avoid_dir = 0;
+      //   if(abs(ball.dir) < 10) avoid_dir = 0;
+      //   else if(ball.dir > 0)  avoid_dir = 45;
+      //   else                   avoid_dir = -45;
+
+      //   motor.moveDirFast(avoid_dir, 100);
+      // }
+      // // 左側
+      // else if(line.dir < -45){
+      //   if(abs(ball.dir) < 90){
+      //     motor.moveDirFast(45, 100);
+      //   }else{
+      //     motor.moveDirFast(135, 100);
+      //   }
+      // }
+      // // 右側
+      // else if(45 < line.dir){
+      //   if(abs(ball.dir) < 90){
+      //     motor.moveDirFast(-45, 100);
+      //   }else{
+      //     motor.moveDirFast(-135, 100);
+      //   }
+      // }
+      // // 前側でラインに触れる
+      // else{
+      //   float avoid_dir = 0;
+      //   if(abs(ball.dir)<22.5)  avoid_dir = 180;
+      //   else if(ball.dir > 0)   avoid_dir = 135;
+      //   else                    avoid_dir = -135;
+      //   motor.moveDirFast(avoid_dir, 100);
+      // }
+
+      // break;
     }
     case 2:
       back_dir = line.dir + 180.0f;
