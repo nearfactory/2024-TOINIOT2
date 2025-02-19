@@ -79,7 +79,7 @@ private:
 public:
   uint8_t mode = 0;
 
-  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::CAMERA) {}
+  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::DIR) {}
 
   void begin();
   void clear();

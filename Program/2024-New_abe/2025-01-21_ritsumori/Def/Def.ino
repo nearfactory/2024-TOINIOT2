@@ -44,7 +44,7 @@ void setup() {
   camera.begin();
   display.begin();
   dir.begin();
-  kicker.begin();
+  // kicker.begin();
   line.begin(115200);
   motor.begin();
   sub.begin();
@@ -119,7 +119,9 @@ void loop() {
     // Serial.println();
 
     // variables
-    display.addValiables("gain: "+to_string(gain), &gain);
+    // display.addValiables("gain: "+to_string(gain), &gain);
+    display.addValiables("p_gain: "+to_string(dir.p_gain), &dir.p_gain);
+    display.addValiables("d_gain: "+to_string(dir.d_gain), &dir.d_gain);
 
     display.debug();
     display.draw();
@@ -166,69 +168,78 @@ void loop() {
 
   // 1.ライントレース
   if(state == State::LineTrace){
-    Vec2 move_vec(0,0);
-
-
-    // 白線に戻るベクトル
-    move_vec.x += cos(radians(line.dir)) * line.distance;
-    move_vec.y += sin(radians(line.dir)) * line.distance;
-
-
-    // 白線と垂直に動くベクトル
-    move_vec.x += cos(radians(follow_dir)) * gain;
-    move_vec.y += sin(radians(follow_dir)) * gain;
-
-
-    /*
-    // ペナルティエリア内にボールがある場合に止める
-    bool is_ball_penalty_area = false;
-    if(is_ball_penalty_area){
-      follow_power = 0;
-    }
-    */
-
-
-    // 合成
-    float move_dir = degrees(atan2(move_vec.y, move_vec.x));
-    motor.moveDir(move_dir, 80);
-
-
-    // ペナルティエリアの端で止まる
-    if(abs(camera.def.dir)>26.0){
-      if(abs(ball.dir) > 45.0){
-        motor.moveDir(0,0);
-      }
-    }
-
-
-    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-
-
-    // トリガー
-    static bool     begin = false;
-    static uint32_t timer = 0;
-    bool is_dash = false;
-
-    // -30~30かつ、<14400 の範囲にボールがある状態が2秒続けばキーパーダッシュにに移行
-    if(abs(ball.dir)<30 && ball.distance < 13500){
-      if(!begin){
-        begin = true;
-        timer = millis();
-      }else{
-        if(millis()-timer > 2000) is_dash = true;
-      }
+    if(abs(ball.dir) < 20){
+      motor.moveDir(0,0);
+    }else if(ball.dir < 0){
+      motor.moveDir(-90, 80);
     }else{
-      begin = false;
+      motor.moveDir(90, 80);
     }
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    // motor.
+    // Vec2 move_vec(0,0);
 
-    // →  2.キーパーダッシュ
-    if(is_dash){
-      state = State::KeeperDash;
-    }
-    // →  3.ゴール前に戻る(弱め)
-    if(!line.on){
-      state = State::BackToGoal_Weak;
-    }
+
+    // // 白線に戻るベクトル
+    // move_vec.x += cos(radians(line.dir)) * line.distance;
+    // move_vec.y += sin(radians(line.dir)) * line.distance;
+
+
+    // // 白線と垂直に動くベクトル
+    // move_vec.x += cos(radians(follow_dir)) * gain;
+    // move_vec.y += sin(radians(follow_dir)) * gain;
+
+
+    // /*
+    // // ペナルティエリア内にボールがある場合に止める
+    // bool is_ball_penalty_area = false;
+    // if(is_ball_penalty_area){
+    //   follow_power = 0;
+    // }
+    // */
+
+
+    // // 合成
+    // float move_dir = degrees(atan2(move_vec.y, move_vec.x));
+    // motor.moveDir(move_dir, 80);
+
+
+    // // ペナルティエリアの端で止まる
+    // if(abs(camera.def.dir)>26.0){
+    //   if(abs(ball.dir) > 45.0){
+    //     motor.moveDir(0,0);
+    //   }
+    // }
+
+
+    // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+
+    // // トリガー
+    // static bool     begin = false;
+    // static uint32_t timer = 0;
+    // bool is_dash = false;
+
+    // // -30~30かつ、<14400 の範囲にボールがある状態が2秒続けばキーパーダッシュにに移行
+    // if(abs(ball.dir)<30 && ball.distance < 13500){
+    //   if(!begin){
+    //     begin = true;
+    //     timer = millis();
+    //   }else{
+    //     if(millis()-timer > 2000) is_dash = true;
+    //   }
+    // }else{
+    //   begin = false;
+    // }
+
+    // // →  2.キーパーダッシュ
+    // if(is_dash){
+    //   state = State::KeeperDash;
+    // }
+    // // →  3.ゴール前に戻る(弱め)
+    // if(!line.on){
+    //   state = State::BackToGoal_Weak;
+    // }
 
   }
 

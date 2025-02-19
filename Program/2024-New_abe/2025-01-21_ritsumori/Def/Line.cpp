@@ -41,7 +41,7 @@ void Line::read(){
 
 
   // 壊れたセンサを反応しいないように修正
-  line[14] = false;
+  line[2] = false;
   // for(auto l:line) Serial.printf("%d ", l);
   // Serial.println();
   
@@ -54,8 +54,8 @@ void Line::read(){
   // 外側
   front = line[INNER_NUM];
   left  = line[INNER_NUM+1];
-  right = line[INNER_NUM+2];
-  back  = line[INNER_NUM+3];
+  back  = line[INNER_NUM+2];
+  right = line[INNER_NUM+3];
 
 
 
@@ -112,8 +112,8 @@ void Line::read(){
   
   // 合成
   for(int i=0;i<INNER_NUM;i++){
-    count[i]--;
-    if(count[i] < 1) count[i] = 1;
+    // count[i]--;
+    // if(count[i] < 1) count[i] = 1;
     if(count[i] != 0){
       v[i].x /= (float)count[i];
       v[i].y /= (float)count[i];
