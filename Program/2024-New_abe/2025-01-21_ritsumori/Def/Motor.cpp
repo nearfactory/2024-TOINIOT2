@@ -94,7 +94,7 @@ void Motor::setDirAddRaw(float dir, float dir_prev, float p_gain, float d_gain){
 void Motor::moveDir(float dir, uint8_t power){
   for(int i=0;i<NUM;i++){
     float t = (-dir-45-i*90)*3.14/180.0;
-    motor[i] = sin(t)*power * 0.7;
+    motor[i] = sin(t)*power * 0.9;
   }
 
   return;
@@ -102,7 +102,7 @@ void Motor::moveDir(float dir, uint8_t power){
 
 
 void Motor::moveDirFast(float dir, uint8_t power){
-  power *= 0.7;
+  power *= 0.9;
   moveDir(dir, power);
 
   float max = 0;
@@ -156,7 +156,9 @@ void Motor::write(){
 
     raw_sum += abs(motor_raw[i]);
 
-    digitalWrite( PIN[i][PH], motor_raw[i]>0 );
+
+    if(i != 3)  digitalWrite( PIN[i][PH], motor_raw[i]<0 );
+    else        digitalWrite( PIN[i][PH], motor_raw[i]>0 );
     analogWrite ( PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100) );
   }
 

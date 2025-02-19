@@ -8,7 +8,7 @@
 #include "Camera.hpp"
 #include "Dir.hpp"
 #include "Display.hpp"
-#include "Kicker.hpp"
+// #include "Kicker.hpp"
 #include "Line.hpp"
 #include "Motor.hpp"
 #include "Sub.hpp"
@@ -20,7 +20,7 @@ Ball ball;
 Camera camera;
 Dir dir;
 Display display;
-Kicker kicker;
+// Kicker kicker;
 Line line;
 Motor motor;
 Sub sub;
@@ -151,6 +151,7 @@ void loop() {
 
 
   // 0.キックオフ
+  /*
   if(state == State::KickOff){
     if(abs(dir.dir) > 90){
       motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
@@ -159,6 +160,7 @@ void loop() {
       state = State::LineTrace;
     }
   }
+  */
 
 
 
@@ -188,7 +190,7 @@ void loop() {
 
     // 合成
     float move_dir = degrees(atan2(move_vec.y, move_vec.x));
-    motor.moveDir(move_dir, 100);
+    motor.moveDir(move_dir, 80);
 
 
     // ペナルティエリアの端で止まる
@@ -232,13 +234,13 @@ void loop() {
 
 
 
+  /*
   // 2.キーパーダッシュ
   else if(state == State::KeeperDash){
     motor.moveDir(0,0);
     if(state_elapsed > 2000){
       state = State::LineTrace;
     }
-    /*
     float move_dir = 0;
     if(ball.is_hold){
       move_dir = camera.atk.dir;
@@ -257,12 +259,13 @@ void loop() {
     if(is_line || is_stop){
       state = State::BackToGoal_Strong;
     }
-    */
   }
+  */
   
 
 
   // 3.ゴール前に戻る（弱め）
+  /*
   else if(state == State::BackToGoal_Weak){
     // 最後のラインのベクトルへ移動
     motor.moveDir(line.dir, 70);
@@ -316,11 +319,10 @@ void loop() {
   }else{
     ui.buzzer(440.0f);
   }
+  */
 
 
 
   motor.avr();
   motor.write();
-
-  kicker.write();
 }
