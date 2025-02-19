@@ -302,7 +302,7 @@ void Display::Line(){
   // printd(8, 32, "on:"+to_string(line.on));
   // printd(8, 40, "num:"+to_string(line.num));
   // printd(8, 40, "x:"+to_string(line.vec.x)+"y:"+to_string(line.vec.y));
-  // printd(8, 48, "dis:"+to_string(line.distance));
+  printd(8, 48, "dis:"+to_string(line.distance));
   printd(8, 56, "dir:"+to_string(line.dir));
 
   // しきい値調整

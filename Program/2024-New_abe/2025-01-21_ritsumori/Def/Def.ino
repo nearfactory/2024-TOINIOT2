@@ -168,51 +168,24 @@ void loop() {
 
   // 1.ライントレース
   if(state == State::LineTrace){
+    Vec2 move(0, 0);
     if(abs(ball.dir) < 20){
-      motor.moveDir(0,0);
+      move.set(0, 0);
     }else if(ball.dir < 0){
-      motor.moveDir(-90, 80);
+      move.y = -1;
     }else{
-      motor.moveDir(90, 80);
+      move.y = 1;
+    }
+    move.x += cos(radians(line.dir)) * line.distance;
+    move.y += sin(radians(line.dir)) * line.distance;
+
+    float move_dir = degrees(atan2(move.y, move.x));
+    if(abs(ball.dir) < 20){
+      motor.moveDir(0, 0);
+    }else{
+      motor.moveDir(move_dir, 80);
     }
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-    // motor.
-    // Vec2 move_vec(0,0);
-
-
-    // // 白線に戻るベクトル
-    // move_vec.x += cos(radians(line.dir)) * line.distance;
-    // move_vec.y += sin(radians(line.dir)) * line.distance;
-
-
-    // // 白線と垂直に動くベクトル
-    // move_vec.x += cos(radians(follow_dir)) * gain;
-    // move_vec.y += sin(radians(follow_dir)) * gain;
-
-
-    // /*
-    // // ペナルティエリア内にボールがある場合に止める
-    // bool is_ball_penalty_area = false;
-    // if(is_ball_penalty_area){
-    //   follow_power = 0;
-    // }
-    // */
-
-
-    // // 合成
-    // float move_dir = degrees(atan2(move_vec.y, move_vec.x));
-    // motor.moveDir(move_dir, 80);
-
-
-    // // ペナルティエリアの端で止まる
-    // if(abs(camera.def.dir)>26.0){
-    //   if(abs(ball.dir) > 45.0){
-    //     motor.moveDir(0,0);
-    //   }
-    // }
-
-
-    // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
     // // トリガー
