@@ -126,6 +126,8 @@ void loop() {
     display.debug();
     display.draw();
 
+    state = State::BackToGoal_Strong;
+
     motor.set(0,0,0,0);
     is_display_on = true;
 
@@ -168,24 +170,67 @@ void loop() {
 
   // 1.ライントレース
   if(state == State::LineTrace){
-    Vec2 move(0, 0);
-    if(abs(ball.dir) < 20){
-      move.set(0, 0);
-    }else if(ball.dir < 0){
-      move.y = -1;
+    // ボール追従の角度を算出
+    float follow_dir = 0;
+    if(line.dir < 0){
+      if(line.dir < ball.dir && ball.dir < line.dir + 180)  follow_dir = line.dir + 90;
+      else                                                  follow_dir = line.dir - 90;
     }else{
-      move.y = 1;
+      if(line.dir - 180 < ball.dir && ball.dir < line.dir)  follow_dir = line.dir - 90;
+      else                                                  follow_dir = line.dir + 90;
     }
-    move.x += cos(radians(line.dir)) * line.distance;
-    move.y += sin(radians(line.dir)) * line.distance;
 
-    float move_dir = degrees(atan2(move.y, move.x));
-    if(abs(ball.dir) < 20){
+
+    static bool is_block = false, is_side = false;
+    static bool is_stop = false;
+
+    // ラインと同じ角度にボールがある場合に動かない
+    if(abs(ball.dir - line.dir) < 10 /*|| abs(ball.dir - line.dir) > 170*/) {
+      is_block = true;
+    }else{
+      is_block = false;
+    }
+
+    // ラインが±90°付近のときに動かない
+    if(is_block || is_side){
+      // ロボットが敵陣向かって左
+      if(0 < camera.def.dir){
+        if(-45 < ball.dir)  is_side = false;
+      }
+      // 右
+      else{
+        if(ball.dir < 45)   is_side = false;
+      }
+
+      // 白線がズレた
+      if(abs(line.dir) < 60 || 120 < abs(line.dir)) is_side = false;
+    }else{
+      if(80 < abs(line.dir) && abs(line.dir) < 100) is_side = true;
+      if(camera.def.is_visible == false) is_side = true;
+      if(abs(camera.def.dir) > 26) is_side = true;
+    }
+
+
+    if(is_block || is_side){
       motor.moveDir(0, 0);
     }else{
-      motor.moveDir(move_dir, 80);
+      // ベクトルを合成
+      Vec2 move(0, 0);
+
+      move.x += cos(radians(follow_dir));
+      move.y += sin(radians(follow_dir));
+
+      move.x += cos(radians(line.dir)) * line.distance;
+      move.y += sin(radians(line.dir)) * line.distance;
+
+      // ベクトルから角度に変換
+      float move_dir = degrees(atan2(move.y, move.x));
+      motor.moveDir(move_dir, 90);
+
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
     }
-    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+
+
 
 
     // // トリガー
@@ -193,7 +238,7 @@ void loop() {
     // static uint32_t timer = 0;
     // bool is_dash = false;
 
-    // // -30~30かつ、<14400 の範囲にボールがある状態が2秒続けばキーパーダッシュにに移行
+    // // -30~30かつ、<14400 の範囲にボールがある状態が2秒続けばキーパーダッシュに移行
     // if(abs(ball.dir)<30 && ball.distance < 13500){
     //   if(!begin){
     //     begin = true;
@@ -209,10 +254,10 @@ void loop() {
     // if(is_dash){
     //   state = State::KeeperDash;
     // }
-    // // →  3.ゴール前に戻る(弱め)
-    // if(!line.on){
-    //   state = State::BackToGoal_Weak;
-    // }
+    // →  3.ゴール前に戻る(弱め)
+    if(!line.on){
+      state = State::BackToGoal_Weak;
+    }
 
   }
 
@@ -249,15 +294,14 @@ void loop() {
 
 
   // 3.ゴール前に戻る（弱め）
-  /*
   else if(state == State::BackToGoal_Weak){
     // 最後のラインのベクトルへ移動
-    motor.moveDir(line.dir, 70);
+    motor.moveDir(line.dir, 90);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
     // トリガー
-    static uint32_t is_not_line_begin = 0;
+    // static uint32_t is_not_line_begin = 0;
     // if(line.on_prev == true && line.on == false){
     //   is_not_line_begin = millis();
     // }
@@ -276,12 +320,14 @@ void loop() {
 
   // 4.ゴール前に戻る（強め）
   else if(state == State::BackToGoal_Strong){
-    motor.moveDir(camera.def.dir, 100);
 
     if(abs(dir.dir)>30){
       motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-    }else{
+      // ui.buzzer(1.0f);
+    }else if(state_elapsed > 1000){
+      motor.moveDir(180 - camera.def.dir, 80);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+      // ui.buzzer(440.0f);
     }
 
 
@@ -298,6 +344,7 @@ void loop() {
     state = State::LineTrace;
   }
 
+  /*
   if(camera.def.is_visible){
     ui.buzzer(880.0f);
   }else{

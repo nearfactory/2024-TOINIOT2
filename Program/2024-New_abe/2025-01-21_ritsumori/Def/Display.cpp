@@ -187,15 +187,15 @@ void Display::Camera(){
   int left = 64-width/2;
   int up   = 16;
 
-  printd(8,48,to_string(camera.atk.dir));
-  printd(8,56,to_string(camera.chance_dir));
+  printd(8,56,to_string(camera.def.dir));
+  // printd(8,56,to_string(camera.chance_dir));
 
-  printd(104, 8,  to_string(camera.atk.x));
-  printd(104, 16, to_string(camera.atk.y));
-  printd(104, 24, to_string(camera.atk.w));
-  printd(104, 32, to_string(camera.atk.h));
-  printd(104, 40, to_string(camera.atk.x1));
-  printd(104, 48, to_string(camera.atk.x2));
+  printd(104, 8,  to_string(camera.def.x));
+  printd(104, 16, to_string(camera.def.y));
+  printd(104, 24, to_string(camera.def.w));
+  printd(104, 32, to_string(camera.def.h));
+  printd(104, 40, to_string(camera.def.x1));
+  printd(104, 48, to_string(camera.def.x2));
 
   display.drawRect(left, up, width, height, WHITE);
 
