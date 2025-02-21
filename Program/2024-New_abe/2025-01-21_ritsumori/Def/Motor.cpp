@@ -111,7 +111,6 @@ void Motor::moveDirFast(float dir, uint8_t power){
     }
   }
 
-  float rate = 0;
   for(int i=0;i<NUM;i++){
     motor[i] = motor[i] * power / max;
   }

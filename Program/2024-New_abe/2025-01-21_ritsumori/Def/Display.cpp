@@ -407,7 +407,7 @@ void Display::Game(){
     ui.buzzer(880.0f);
   }
   else{
-    ui.buzzer(0);
+    // ui.buzzer(0);
   } 
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
 

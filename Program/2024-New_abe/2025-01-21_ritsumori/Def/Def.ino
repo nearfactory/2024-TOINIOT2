@@ -101,6 +101,8 @@ void loop() {
   sub.read();
   ui.read();
 
+static float _min = 0.8, _max = 2.0;
+     int min = (int)(_min*10.0f), max = (int)(_max*10.0f), max_power = 100;
 
 
   if(ui.is_toggle){
@@ -110,6 +112,8 @@ void loop() {
     // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
     // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
     // display.addValiables("diff :"+to_string(difference), &difference);
+    display.addValiables("min :"+to_string(min), &_min);
+    display.addValiables("max :"+to_string(max), &_max);
 
     display.debug();
     display.draw();
@@ -167,25 +171,11 @@ void loop() {
     float difference = abs(b-l);
 
 
-    // ラインと同じ角度にボールがある場合に動かない
-    if(difference < 15.0) {
-      ui.buzzer(880.0f);
-    }else{
-      ui.buzzer(440.0f);
-    }
-
-
-    static bool is_block = false, is_side = false;
+    static bool is_side = false;
     static bool is_stop = false;
-    
-    if(abs(ball.dir - line.dir) < 10 /*|| abs(ball.dir - line.dir) > 170*/) {
-      // is_block = true;
-    }else{
-      is_block = false;
-    }
 
     // ラインが±90°付近のときに動かない
-    if(is_block || is_side && ball.is_exist){
+    if(is_side && ball.is_exist){
       // ロボットが敵陣向かって左
       if(0 < camera.def.dir){
         if(-45 < ball.dir)  is_side = false;
@@ -204,9 +194,11 @@ void loop() {
     }
 
 
-    if(is_block || is_side){
+    if(is_side){
       motor.moveDir(0, 0);
-    }else{
+    }
+    // 本編
+    else{
       // ベクトルを合成
       Vec2 move(0, 0);
 
@@ -220,7 +212,7 @@ void loop() {
       float move_dir = degrees(atan2(move.y, move.x));
 
       // 角度の差分から出力の強さに変換
-      int min = 10, max = 30, max_power = 90;
+      // int min = 10, max = 30, max_power = 100;
       int power = max_power * (difference - min) / (max - min);
       if(power < 0) power = 0;
       if(max_power < power) power = max_power;
@@ -231,7 +223,6 @@ void loop() {
 
 
     // →  2.キーパーダッシュ
-    if(ball.is_hold) state = State::KeeperDash;
 
     // 中立点のボールを押しだす
     // -30~30かつ、<14400 の範囲にボールがある状態が2秒続けばキーパーダッシュに移行
@@ -240,10 +231,11 @@ void loop() {
 
     if(is_neutral == false){
       // キーパーダッシュに移行する条件
-      if(abs(ball.dir) < 30 && ball.distance < 12000){
+      if(abs(ball.dir) < 90 && ball.distance < 12000){
         is_neutral = true;
         neutral_begin = millis();
       }
+      ui.buzzer(440.0f);
     }else{
       if(millis() - neutral_begin > 2000){
         state = State::KeeperDash;
@@ -251,9 +243,10 @@ void loop() {
       }
 
       // ボールが動かされた判定
-      if(abs(ball.dir) > 30 || ball.distance > 12000){
+      if(abs(ball.dir) > 45 || ball.distance > 12000){
         is_neutral = false;
       }
+      ui.buzzer(1760.0f);
     }
 
     
@@ -263,16 +256,18 @@ void loop() {
       state = State::BackToGoal_Weak;
     }
 
+    if(!ball.is_exist){
+      // state = State::Center;
+    }
   }
 
 
 
-  /*
-  */
   // 2.キーパーダッシュ
   else if(state == State::KeeperDash){
+    static uint32_t timer = 0;
 
-    
+    // 回り込み    
     if(ball.is_hold == false){
       
       static float r = 8200;
@@ -304,10 +299,14 @@ void loop() {
       motor.moveDir(camera.chance_dir, 80);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
-      // if(camera.atk.h > 30){
-      // }
-        sub.kick();
-        state = State::BackToGoal_Strong;
+      sub.kick();
+      timer = millis();
+    }
+
+    if(millis()-timer < 400){
+      motor.moveDir(0, 0);
+    }else{
+      state = State::BackToGoal_Strong;
     }
 
 
@@ -391,10 +390,36 @@ void loop() {
     if(line.on){
       state = State::LineTrace;
     }
+
     // →  4.ゴール前に戻る(強め)
     // else if(millis()-is_not_line_begin > 2000){
     //   state = State::BackToGoal_Strong;
     // }
+  }
+
+
+
+  // 真ん中で止まる
+  else if(state == State::Center){
+    if(camera.def.w < 280){
+      // ベクトルを合成
+      Vec2 move(0, 0);
+      if(camera.def.dir < 0)  move.y = -1;
+      else                    move.y = 1;
+
+      move.x += cos(radians(line.dir)) * line.distance;
+      move.y += sin(radians(line.dir)) * line.distance;
+
+      // ベクトルから角度に変換
+      float move_dir = degrees(atan2(move.y, move.x));
+
+      motor.moveDir(move_dir, 80);
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }
+
+    if(ball.is_exist){
+      state = State::LineTrace;
+    }
   }
 
   
