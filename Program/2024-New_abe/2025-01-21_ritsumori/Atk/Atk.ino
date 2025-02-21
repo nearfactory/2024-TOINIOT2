@@ -205,23 +205,23 @@ void loop() {
     if(abs(ball.dir)<h){
       move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
       // move_dir = ball.dir * p_gain;
-      h = 10;
+      h = 20;
       face_flag = false;
     }
     // 円周上
     else if(ball.distance < r){
       float theta = 90 + (r-ball.distance) * 90 / r;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 5;
+      h = 10;
       // face_flag = false;
     }
     //接線
     else{
       float theta = degrees(asin(r / ball.distance));
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 5;
+      h = 10;
     }
-    motor.moveDir(move_dir, 90); 
+    motor.moveDir(move_dir, 80); 
 
     // 白線処理
     if(line.on) line_flag = 1;
@@ -237,15 +237,15 @@ void loop() {
           face = 0;
 
           // ゴールに近い場合のみ
-          if(camera.atk.h > 25 && millis()-t_begin > 500){
+          if(camera.atk.h > 24 && millis()-t_begin > 500){
           // if(camera.atk.h > 23){
-            if(camera.atk.dir < -18){
+            if(camera.atk.dir < -16){
             // if(camera.atk.x1 > 160){
               dir_type = 1;
               face = 20;
               t_begin = millis();
-            }else if(camera.atk.dir > 20){
-            // }else if(camera.atk.x2 < 160){
+            }else if(camera.atk.dir > 16){
+            // }else if(camera.atk.x1 < 245){
               dir_type = 2;
               face = -20;
               t_begin = millis();
@@ -255,7 +255,7 @@ void loop() {
         // ロボットを左に向ける
         case 1:
           face = 20;
-          if(camera.atk.dir > 14 && millis()-t_begin > 0){
+          if(camera.atk.dir > 16 && millis()-t_begin > 0){
           // if(camera.atk.x2 < 170){
             dir_type = 0;
             t_begin = millis();
@@ -264,16 +264,13 @@ void loop() {
         // ロボットを右に向ける
         case 2:
           face = -20;
-          if(camera.atk.dir < -14 && millis()-t_begin > 0){
+          if(camera.atk.dir < -16 && millis()-t_begin > 0){
           // if(camera.atk.x1 > 170){
             dir_type = 0;
             t_begin = millis();
           }
           break;
       }
-      // if(!camera.atk.is_visible){
-      //   dir_type = 0;
-      // }
     }
     motor.setDirAdd(dir.dir + face, dir.dir_prev, dir.p_gain, dir.d_gain);
 
@@ -295,121 +292,8 @@ void loop() {
   }
 
 
-  /*
+
   // ToDo: ゴールに向かう
-  else if(state == State::Dribble){
-    // 攻める角度の決定
-
-    static bool is_decided = false;
-    static int  type = 0;
-
-    camera.lock = true;
-
-    // 方式の決定
-    if(!is_decided){
-      // キッカーok かつ 姿勢制御が間に合う
-      if(sub.ready && camera.is_center){
-        type = 0;
-      }else{
-        type = 1;
-      }
-    }
-
-    // キッカー
-    if(type == 0){
-      static bool     kick_begin = false;
-      static uint32_t kick_timer = 0;
-
-      // 直進
-      if(kick_begin == false){
-        if(line.on) line_flag = 2;
-        motor.moveDirFast(0, 100);
-
-        motor.setDirAdd(camera.chance_dir, camera.chance_dir, dir.p_gain / 1.5, 0);
-        
-
-        // キックに移行
-        if(camera.atk.h > 22 && camera.is_center){
-          kick_begin = true;
-          kick_timer = millis();
-        }
-
-        if(!ball.is_hold){
-          state = State::Follow;
-        }
-      }
-
-
-      // キック
-      else{
-        // 0.1秒進んでキック
-        if(millis()-kick_timer < 50){
-          if(line.on) line_flag = 2;
-          motor.moveDirFast(0, 100);
-        }else{
-          sub.kick();
-          kick_begin = false;
-          state = State::Follow;
-        }
-      }
-
-    }
-
-
-    // ねじる
-    else if(type == 1){
-      static bool     nejiri_begin = false;
-      static uint32_t nejiri_timer = 0;
-
-      // 直進する
-      if(nejiri_begin == false){
-        if(line.on) line_flag = 2;
-        motor.moveDirFast(0, 100);
-        motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-
-        // ねじりに移行
-        if(camera.atk.h > 22){
-          nejiri_begin = true;
-          nejiri_timer = millis();
-        }
-
-        if(!ball.is_hold){
-          state = State::Follow;
-        }
-      }
-
-      // ねじる
-      else{
-        // 0.4秒ねじったら回り込みに戻る
-        if(millis()-nejiri_timer < 150){
-          if(line.on) line_flag = 2;
-          motor.moveDirFast(0, 100);
-          motor.setDirAdd(camera.atk.dir, camera.atk.dir_prev, -8.0f, 0.0f);
-        }else{
-          nejiri_begin = false;
-          state = State::Follow;
-        }
-
-      }
-
-    }
-
-
-    // ボールを保持していない -> 回り込みなおす
-    // if(!ball.is_hold) state = State::Follow;
-
-    // ロボットが動かない(≒このステートで5秒経過 -> 押し合い
-    // if(state_elapsed > 5000){
-    //   state = State::Pushing;
-    // }
-
-    // ボールなし -> ボールなし
-    if(!ball.is_exist) state = State::NoBall;
-
-
-    // キーパーが目の前にいる -> キーパー避け
-  }
-  */
   else if(state == State::Dribble){
     // ボールを持ち始めたときのゴールまでの距離で方式を決定
     static bool is_decided = false;
@@ -436,33 +320,36 @@ void loop() {
 
     // ねじる
     if(type == 0){
-      // motor.moveDirFast(0, 100);
-      motor.moveDir(0, 100);
+      motor.moveDirFast(0, 100);
+      // motor.moveDir(0, 100);
       motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -4.0f , 0);
     }
 
 
     // 平行移動
     else if(type == 1){
-      // motor.moveDirFast(camera.chance_dir, 100);
-      motor.moveDir(camera.chance_dir, 100);
+      motor.moveDirFast(camera.chance_dir, 100);
+      // motor.moveDir(camera.chance_dir, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
-      if(camera.is_center && state_elapsed > 200) sub.kick();
+      if(abs(camera.chance_dir) < 2 && state_elapsed > 200) sub.kick();
+      if(camera.atk.h > 36) sub.kick();
     }
 
 
     // 空いてる方に向ける
     else if(type == 2){
       // motor.moveDirFast(0,100);
-      motor.moveDir(0,100);
+      motor.moveDirFast(camera.chance_dir, 100);
+      // motor.moveDir(0,100);
 
       // 一気にゴールに向けるとボールを離してしまうため、出力をコントロールする
       float p_power = state_elapsed / 80;
       if(p_power > 4) p_power = 4;
       motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -dir.p_gain * p_power, dir.d_gain * 0);
 
-      if(camera.is_center && state_elapsed > 200) sub.kick();
+      if(abs(camera.chance_dir) < 2 && state_elapsed > 200) sub.kick();
+      if(camera.atk.h > 36) sub.kick();
     }
     else{
       type = 0;
