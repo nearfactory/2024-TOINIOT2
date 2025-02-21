@@ -35,11 +35,9 @@ bool is_display_on = true;
 
 // 周り込み
 float h = 45;         // ヒステリシス
-// float r = 11800.0;    // 回り込みの半径
 float r = 8200.0;    // 回り込みの半径
 float p_gain = 1.5;
 float d_gain = 3.0;  // Test
-// float d_gain = 1.0;
 
 float offset = 1.0;
 
@@ -116,7 +114,6 @@ void loop() {
     display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
     display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
     display.addValiables("offset: "+to_string(offset), &offset);
-    // display.addValiables("speed_normal :"+to_string(speed_normal), &speed_normal);
 
     display.debug();
     display.draw();
@@ -294,7 +291,8 @@ void loop() {
 
 
   // ToDo: ゴールに向かう
-  else if(state == State::Dribble){
+  static uint32_t dribble_end = millis(); // ドリブルの終了時間(差分を計算して白線避けに使用する)
+  if(state == State::Dribble){
     // ボールを持ち始めたときのゴールまでの距離で方式を決定
     static bool is_decided = false;
     static int  type = 0;
@@ -329,7 +327,6 @@ void loop() {
     // 平行移動
     else if(type == 1){
       motor.moveDirFast(camera.chance_dir, 100);
-      // motor.moveDir(camera.chance_dir, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
       if(abs(camera.chance_dir) < 2 && state_elapsed > 200) sub.kick();
@@ -339,9 +336,7 @@ void loop() {
 
     // 空いてる方に向ける
     else if(type == 2){
-      // motor.moveDirFast(0,100);
       motor.moveDirFast(camera.chance_dir, 100);
-      // motor.moveDir(0,100);
 
       // 一気にゴールに向けるとボールを離してしまうため、出力をコントロールする
       float p_power = state_elapsed / 80;
@@ -372,6 +367,8 @@ void loop() {
       is_decided = false;
       state = State::NoBall;
     }
+
+    dribble_end = millis();
 
   }
 
@@ -499,6 +496,7 @@ void loop() {
   else if(state == State::Oshikomi){
     static bool go_flag = true;
     static int  count = 0;
+    static uint32_t timer = millis();
 
     line_flag = 0;
 
@@ -516,26 +514,26 @@ void loop() {
         move_dir = -10;
       }
       motor.moveDir(move_dir, 50);
-      // motor.moveDir(move_dir, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain*2, dir.d_gain);
 
       if(ball.is_hold) sub.kick();
 
       // ギリギリなら戻る
-      if(abs(line.dir) > 90 && line.distance > 1.4){
+      if(abs(line.dir) > 90 && line.distance > 1.4 || millis() - timer > 2000){
         go_flag = false;
+        timer = millis();
       }
     }
 
     // 下がる
     else{
       motor.moveDir(180, 60);
-      // motor.moveDir(180, 100);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain*2, dir.d_gain);
 
       if(!line.on && abs(line.dir) < 90){
         go_flag = true;
         count++;
+        timer = millis();
       }
     }
 
@@ -554,11 +552,7 @@ void loop() {
 
   // テスト
   else if(state == State::Test){
-    // camera.lock = true;
-    Serial.println("test");
-    // Serial.printf("atk_num:%d", camera.atk.num);
-    motor.setDir(camera.chance_dir, camera.chance_dir_prev, -dir.p_gain*3, dir.d_gain*0);
-    // motor.moveDir(0, 0);
+
   }
   else{
     state = State::Follow;
@@ -576,6 +570,12 @@ void loop() {
   }else{
     switch(line_flag){
     case 1:{
+
+      // ドリブル直後の場合も考慮
+      if(millis()-dribble_end < 300){
+        back_dir = line.dir + 180.0f;
+        timer = millis();
+      }
 
       float avoid_dir = 0;
 
@@ -624,42 +624,7 @@ void loop() {
 
       motor.moveDirFast(avoid_dir, 100);
       break;
-      
-      // // 後ろ側でラインに触れる かつ ボールが前
-      // if(abs(line.dir)>135){
-      //   float avoid_dir = 0;
-      //   if(abs(ball.dir) < 10) avoid_dir = 0;
-      //   else if(ball.dir > 0)  avoid_dir = 45;
-      //   else                   avoid_dir = -45;
 
-      //   motor.moveDirFast(avoid_dir, 100);
-      // }
-      // // 左側
-      // else if(line.dir < -45){
-      //   if(abs(ball.dir) < 90){
-      //     motor.moveDirFast(45, 100);
-      //   }else{
-      //     motor.moveDirFast(135, 100);
-      //   }
-      // }
-      // // 右側
-      // else if(45 < line.dir){
-      //   if(abs(ball.dir) < 90){
-      //     motor.moveDirFast(-45, 100);
-      //   }else{
-      //     motor.moveDirFast(-135, 100);
-      //   }
-      // }
-      // // 前側でラインに触れる
-      // else{
-      //   float avoid_dir = 0;
-      //   if(abs(ball.dir)<22.5)  avoid_dir = 180;
-      //   else if(ball.dir > 0)   avoid_dir = 135;
-      //   else                    avoid_dir = -135;
-      //   motor.moveDirFast(avoid_dir, 100);
-      // }
-
-      // break;
     }
     case 2:
       back_dir = line.dir + 180.0f;
