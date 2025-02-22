@@ -249,13 +249,16 @@ static float _min = 1.0, _max = 2.5;
       ui.buzzer(1760.0f);
     }
 
-    
+    if(!camera.def.is_visible){
+      state = State::BackToGoal_Strong;
+    }
 
     // →  3.ゴール前に戻る(弱め)
     if(!line.on){
       state = State::BackToGoal_Weak;
     }
 
+    // ボールなし
     if(!ball.is_exist){
       state = State::Center;
     }
@@ -263,7 +266,7 @@ static float _min = 1.0, _max = 2.5;
 
 
 
-  // 2.キーパーダッシュ
+  // ok: 2.キーパーダッシュ
   else if(state == State::KeeperDash){
     static uint32_t timer = 0;
 
@@ -277,7 +280,7 @@ static float _min = 1.0, _max = 2.5;
 
 
       // 2秒以上の回り込みを禁止
-      if(state_elapsed > 3000) state = State::BackToGoal_Strong;
+      if(state_elapsed > 2000) state = State::BackToGoal_Strong;
 
     }
 
@@ -357,22 +360,15 @@ static float _min = 1.0, _max = 2.5;
     motor.moveDir(line.dir, 90);
     motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
-
-    // トリガー
-    // static uint32_t is_not_line_begin = 0;
-    // if(line.on_prev == true && line.on == false){
-    //   is_not_line_begin = millis();
-    // }
-
     // →  1.ライントレース
     if(line.on){
       state = State::LineTrace;
     }
 
     // →  4.ゴール前に戻る(強め)
-    // else if(millis()-is_not_line_begin > 2000){
-    //   state = State::BackToGoal_Strong;
-    // }
+    if(state_elapsed > 2000 || camera.def.h < 40 || !camera.def.is_visible){
+      state = State::BackToGoal_Strong;
+    }
   }
 
 
@@ -410,12 +406,24 @@ static float _min = 1.0, _max = 2.5;
     if(state_elapsed < 400){
       motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
     }else{
-      motor.moveDir(180 - camera.def.dir*2, 60);
+      // ボールの近くでは円を描くようによける
+      if(ball.distance < 8500){
+        motor.moveDir(ball.dir+90, 60);
+      }else{
+        motor.moveDir(180 - camera.def.dir*2, 60);
+      }
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
     }
 
 
     if(line.on){
+      if(!camera.def.is_visible){
+        if(camera.def.dir < 0){
+          motor.moveDir(-45, 60);
+        }else{
+          motor.moveDir(45, 60);
+        }
+      }
       // →  1.ライントレース
       if(camera.def.h > 50){
         state = State::LineTrace;
