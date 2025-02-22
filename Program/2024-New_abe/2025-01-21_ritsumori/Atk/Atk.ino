@@ -105,15 +105,24 @@ void loop() {
   sub.read();
   ui.read();
 
+static float _push_move = 2.0, _push_dir = 5.0;
+  float push_move = (int)(_push_move * 10.0f), push_dir = (int)(_push_dir * 10.0f);
+
   // ディスプレイ
   if(ui.is_toggle){
     Serial.println("display");
     camera.lock = false;
     if(ui.buttonUp(0)) display.next();
 
-    display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
-    display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
-    display.addValiables("offset: "+to_string(offset), &offset);
+    // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    // display.addValiables("offset: "+to_string(offset), &offset);
+    // display.addValiables("x: "+to_string(dir.x), &dir.x);
+    // display.addValiables("y: "+to_string(dir.y), &dir.y);
+    // display.addValiables("z: "+to_string(dir.z), &dir.z);
+    // display.addValiables("accel_avr: "+to_string(dir.accel_avr), &dir.accel_avr);
+    display.addValiables("move: "+to_string(push_move), &_push_move);
+    display.addValiables("dir : "+to_string(push_dir), &_push_dir);
 
     display.debug();
     display.draw();
@@ -122,6 +131,7 @@ void loop() {
     // state = State::KickOff;
     state = State::Follow;
     // state = State::Test;
+    // state = State::Pushing;
     state_begin = millis();
 
     motor.set(0,0,0,0);
@@ -202,23 +212,23 @@ void loop() {
     if(abs(ball.dir)<h){
       move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
       // move_dir = ball.dir * p_gain;
-      h = 20;
+      h = 30;
       face_flag = false;
     }
     // 円周上
     else if(ball.distance < r){
       float theta = 90 + (r-ball.distance) * 90 / r;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 10;
+      h = 5;
       // face_flag = false;
     }
     //接線
     else{
       float theta = degrees(asin(r / ball.distance));
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 10;
+      h = 5;
     }
-    motor.moveDir(move_dir, 80); 
+    motor.moveDir(move_dir, 90); 
 
     // 白線処理
     if(line.on) line_flag = 1;
@@ -276,10 +286,11 @@ void loop() {
     if(ball.is_hold){
       // Test
       state = State::Dribble;
+      state_elapsed = 0;
     }
 
     // 押し込み
-    if(state_elapsed > 4000 && abs(dir.dir) < 15 && camera.atk.h > 50 && abs(ball.dir) < 25 && abs(line.dir) < 5){
+    if(state_elapsed > 4000 && abs(dir.dir) < 15 && camera.atk.is_visible && camera.atk.h > 50 && abs(ball.dir) < 25 && abs(line.dir) < 5){
       line_flag = 0;
       state = State::Oshikomi;
     }
@@ -361,11 +372,14 @@ void loop() {
       state = State::Follow;
     }
 
-
     // ボールなし -> ボールなし
     if(!ball.is_exist) {
       is_decided = false;
       state = State::NoBall;
+    }
+
+    if(state_elapsed > 2500 || dir.accel_avr < 0.5){
+      state = State::Pushing;
     }
 
     dribble_end = millis();
@@ -409,27 +423,40 @@ void loop() {
 
 
   // 押し合い
-  /*
   else if(state == State::Pushing){
     // 左に押した後、右に切り返す
     if(state_elapsed < 2000){
-      motor.moveDirFast(-22.5, 100);
-      motor.setDirAdd(dir.dir+10, dir.dir_prev, dir.p_gain, dir.d_gain);
+      if(dir.dir < 0){
+        motor.moveDir(push_move, 50);
+        motor.setDirAdd(dir.dir+push_dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+      }else{
+        motor.moveDir(push_move, 50);
+        motor.setDirAdd(dir.dir-push_dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+      }
+      
+    }else{
+      motor.moveDir(0, 50);
+      if(dir.dir < 0){
+        motor.setDirAdd(dir.dir+90, dir.dir_prev, dir.p_gain*4, dir.d_gain);
+      }else{
+        motor.setDirAdd(dir.dir-90, dir.dir_prev, dir.p_gain*4, dir.d_gain);
+      }
     }
-    else{
-      motor.moveDirFast(22.5,100);
-      motor.setDirAdd(dir.dir-10, dir.dir_prev, dir.p_gain, dir.d_gain);
-    }
+
+    if(line.on) line_flag = 2;
+
 
 
     // 4秒経過 -> ドリブルに戻る
-    if(state_elapsed > 4000){
+    if(state_elapsed > 3000 || abs(dir.dir) > 50){
       state = State::Dribble;
     }
 
     // ボールを奪えた -> シュート
+    // if(!ball.is_hold){
+    //   state = State::Follow;
+    // }
   }
-  */
 
 
 

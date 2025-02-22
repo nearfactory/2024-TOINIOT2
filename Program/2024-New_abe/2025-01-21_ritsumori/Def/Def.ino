@@ -121,9 +121,9 @@ static float _min = 1.0, _max = 2.5;
     display.debug();
     display.draw();
 
-    // state = State::BackToGoal_Strong;
+    state = State::BackToGoal_Strong;
     // state = State::KeeperDash;
-    state = State::Test;
+    // state = State::Test;
     // state_elapsed = 0;
 
     motor.set(0,0,0,0);

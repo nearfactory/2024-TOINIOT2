@@ -40,8 +40,11 @@ void Line::read(){
 
 
 
-  // 壊れたセンサを反応しいないように修正
-  line[2] = false;
+  // 壊れたセンサを反応しいないように修正  
+  line[5] = false;
+  line[14] = false;
+  line[16] = false;
+
   // for(auto l:line) Serial.printf("%d ", l);
   // Serial.println();
   
