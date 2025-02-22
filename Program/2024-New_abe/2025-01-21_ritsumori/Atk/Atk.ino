@@ -310,12 +310,12 @@ static float _push_move = 2.0, _push_dir = 5.0;
 
     if(!is_decided){
       // ゴールに近すぎる場合、平行移動ですら躱せないためねじる
-      if(camera.atk.h > 36 && !camera.is_center){
+      if((camera.atk.h > 38 && !camera.is_center) || abs(camera.chance_dir) > 20){
       // if(camera.atk.h > 36){
         type = 0;
       }
       // ゴールに近い場合、姿勢制御が間に合わないため平行移動
-      else if(camera.atk.h > 32){
+      else if(camera.atk.h > 34){
         type = 1;
       }
       // 間に合う場合、ゴールに向けて姿勢制御しながら攻める
@@ -341,13 +341,14 @@ static float _push_move = 2.0, _push_dir = 5.0;
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
       if(abs(camera.chance_dir) < 2 && state_elapsed > 200) sub.kick();
-      if(camera.atk.h > 36) sub.kick();
+      if(camera.atk.h > 40) sub.kick();
     }
 
 
     // 空いてる方に向ける
     else if(type == 2){
-      motor.moveDirFast(camera.chance_dir, 100);
+      // motor.moveDirFast(camera.chance_dir, 100);
+      motor.moveDirFast(-dir.dir, 100);
 
       // 一気にゴールに向けるとボールを離してしまうため、出力をコントロールする
       float p_power = state_elapsed / 80;
@@ -427,10 +428,10 @@ static float _push_move = 2.0, _push_dir = 5.0;
     // 左に押した後、右に切り返す
     if(state_elapsed < 2000){
       if(dir.dir < 0){
-        motor.moveDir(push_move, 50);
+        motor.moveDir(push_move, 100);
         motor.setDirAdd(dir.dir+push_dir, dir.dir_prev, dir.p_gain, dir.d_gain);
       }else{
-        motor.moveDir(push_move, 50);
+        motor.moveDir(push_move, 100);
         motor.setDirAdd(dir.dir-push_dir, dir.dir_prev, dir.p_gain, dir.d_gain);
       }
       
@@ -546,7 +547,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
       if(ball.is_hold) sub.kick();
 
       // ギリギリなら戻る
-      if(abs(line.dir) > 90 && line.distance > 1.4 || millis() - timer > 2000){
+      if(abs(line.dir) > 90 && line.distance > 1.4 || millis() - timer > 1000){
         go_flag = false;
         timer = millis();
       }
@@ -557,7 +558,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
       motor.moveDir(180, 60);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain*2, dir.d_gain);
 
-      if(!line.on && abs(line.dir) < 90){
+      if((!line.on && abs(line.dir) < 90) || millis() - timer > 1000){
         go_flag = true;
         count++;
         timer = millis();
