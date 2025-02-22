@@ -101,7 +101,7 @@ void loop() {
   sub.read();
   ui.read();
 
-static float _min = 0.8, _max = 2.0;
+static float _min = 1.0, _max = 2.5;
      int min = (int)(_min*10.0f), max = (int)(_max*10.0f), max_power = 100;
 
 
@@ -239,11 +239,11 @@ static float _min = 0.8, _max = 2.0;
     }else{
       if(millis() - neutral_begin > 2000){
         state = State::KeeperDash;
-        is_neutral = true;
+        is_neutral = false;
       }
 
       // ボールが動かされた判定
-      if(abs(ball.dir) > 45 || ball.distance > 12000){
+      if(abs(ball.dir) > 90 || ball.distance > 12000){
         is_neutral = false;
       }
       ui.buzzer(1760.0f);
@@ -257,7 +257,7 @@ static float _min = 0.8, _max = 2.0;
     }
 
     if(!ball.is_exist){
-      // state = State::Center;
+      state = State::Center;
     }
   }
 
@@ -267,8 +267,20 @@ static float _min = 0.8, _max = 2.0;
   else if(state == State::KeeperDash){
     static uint32_t timer = 0;
 
+    // if(state_elapsed < 500){
+    //   motor.moveDir(0, 0);
+    // }else if(state_elapsed < 700){
+    //   motor.moveDir(0, 70);
+    //   motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    // }else{
+    //   state = State::BackToGoal_Strong;
+    // }
+      
+
+    /*
+    */
     // 回り込み    
-    if(ball.is_hold == false){
+    if(!ball.is_hold){
       
       static float r = 8200;
       static float h = 10;
@@ -295,20 +307,23 @@ static float _min = 0.8, _max = 2.0;
       motor.moveDir(move_dir, 60);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
-    }else{
+
+      // 2秒以上の回り込みを禁止
+      if(state_elapsed > 3000) state = State::BackToGoal_Strong;
+
+    }
+    
+    // ドリブル
+    else{
       motor.moveDir(camera.chance_dir, 80);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
-      sub.kick();
-      timer = millis();
-    }
+      if(camera.atk.h > 26 || abs(camera.chance_dir) < 4){
+        sub.kick();
+        state = State::BackToGoal_Strong;
+      }
 
-    if(millis()-timer < 400){
-      motor.moveDir(0, 0);
-    }else{
-      state = State::BackToGoal_Strong;
     }
-
 
     // 白線処理    
     if(line.on && state_elapsed > 200){
@@ -363,7 +378,6 @@ static float _min = 0.8, _max = 2.0;
     }
 
 
-    // if(state_elapsed > 3000) state = State::LineTrace;
 
     // → 4.ゴール前に戻る(強め)
     // if(is_line || is_stop){
@@ -413,8 +427,10 @@ static float _min = 0.8, _max = 2.0;
       // ベクトルから角度に変換
       float move_dir = degrees(atan2(move.y, move.x));
 
-      motor.moveDir(move_dir, 80);
+      motor.moveDir(move_dir, 60);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }else{
+      motor.moveDir(0, 0);
     }
 
     if(ball.is_exist){
@@ -427,20 +443,30 @@ static float _min = 0.8, _max = 2.0;
   // 4.ゴール前に戻る（強め）
   else if(state == State::BackToGoal_Strong){
 
-    if(abs(dir.dir)>30){
+    if(state_elapsed < 400){
       motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-      // ui.buzzer(1.0f);
-    }else if(state_elapsed > 1000){
-      motor.moveDir(180 - camera.def.dir, 80);
+    }else{
+      motor.moveDir(180 - camera.def.dir*2, 60);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-      // ui.buzzer(440.0f);
     }
 
 
-    // →  1.ライントレース
     if(line.on){
-      state = State::LineTrace;
+      // →  1.ライントレース
+      if(camera.def.h > 50){
+        state = State::LineTrace;
+      }
+      // ゴール前以外の白線に触れた場合
+      else{
+        if(camera.def.dir < 0){
+          motor.moveDir(-90, 60);
+        }else{
+          motor.moveDir(90, 60);
+        }
+        
+      }
     }
+
   }
   
   
@@ -450,13 +476,6 @@ static float _min = 0.8, _max = 2.0;
     state = State::LineTrace;
   }
 
-  /*
-  if(camera.def.is_visible){
-    ui.buzzer(880.0f);
-  }else{
-    ui.buzzer(440.0f);
-  }
-  */
 
 
 

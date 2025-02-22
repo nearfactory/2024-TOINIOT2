@@ -28,7 +28,7 @@ public:
   bool     is_exist = true;
 
   bool     is_hold = false;
-  bool     is_prev_hold = false;
+  bool     is_hold_prev = false;
   uint32_t hold_time = 0;
   uint32_t not_hold_time = 0;
 
