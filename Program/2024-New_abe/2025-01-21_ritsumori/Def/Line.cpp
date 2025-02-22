@@ -136,6 +136,7 @@ void Line::read(){
   // 角度・距離を算出
   dir_prev = dir;
   dir = -degrees(atan2(vec.y, vec.x));
+  if(index == 0) index = 1;
   distance = vec.len() / (float)index;
 
 

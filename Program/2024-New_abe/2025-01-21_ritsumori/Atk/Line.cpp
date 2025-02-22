@@ -41,9 +41,7 @@ void Line::read(){
 
 
   // 壊れたセンサを反応しいないように修正
-  line[5] = false;
-  line[14] = false;
-  line[16] = false;
+  line[2] = false;
   // for(auto l:line) Serial.printf("%d ", l);
   // Serial.println();
   
@@ -138,6 +136,7 @@ void Line::read(){
   // 角度・距離を算出
   dir_prev = dir;
   dir = -degrees(atan2(vec.y, vec.x));
+  if(index == 0) index = 1;
   distance = vec.len() / (float)index;
 
 
