@@ -109,11 +109,12 @@ static float _min = 1.0, _max = 2.5;
     if(ui.buttonUp(0)) display.next();
 
     // variables
-    display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
-    display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
     // display.addValiables("diff :"+to_string(difference), &difference);
     // display.addValiables("min :"+to_string(min), &_min);
     // display.addValiables("max :"+to_string(max), &_max);
+    display.addValiables("diff :"+to_string(ball.diff_avr), &ball.diff_avr);
 
     display.debug();
     display.draw();
@@ -243,7 +244,7 @@ static float _min = 1.0, _max = 2.5;
       }
 
       // ボールが動かされた判定
-      if(abs(ball.dir) > 90 || ball.distance > 12000){
+      if(abs(ball.dir) > 90 || ball.distance > 12000 || ball.diff_avr > 1.0f){
         is_neutral = false;
       }
       ui.buzzer(1760.0f);

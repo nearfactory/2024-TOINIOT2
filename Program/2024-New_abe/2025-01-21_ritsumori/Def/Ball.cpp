@@ -38,8 +38,17 @@ void Ball::read(){
     y += (1023 - ball[i]) * sin(sensor_dir);
   }
 
-  dir = -degrees(atan2(y, x));
   dir_prev = dir;
+  dir = -degrees(atan2(y, x));
+
+  // 平均
+  float diff = dir - dir_prev;
+  queue[id] = abs(diff);
+  id = (id+1) % 20;
+
+  diff = 0;
+  for(auto q:queue) diff += q;
+  diff_avr = diff / 20.0f;
 
   
   is_exist = distance < DISTANCE_MAX;
