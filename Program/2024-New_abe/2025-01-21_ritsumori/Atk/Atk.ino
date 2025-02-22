@@ -571,11 +571,27 @@ void loop() {
     switch(line_flag){
     case 1:{
 
-      // ドリブル直後の場合も考慮
+      // ドリブル直後の場合
       if(millis()-dribble_end < 300){
         back_dir = line.dir + 180.0f;
         timer = millis();
       }
+
+
+      // 反対側のポケットにアクセス
+      // 正面を向いている場合
+      if(!camera.atk.is_visible && abs(dir.dir) < 15 && abs(line.dir) < 10 && ball.distance > 13000){
+        back_dir = 180;
+        timer = millis();
+      }
+      // ゴールの方を向いている場合
+      if(abs(line.dir) < 90 && ball.distance > 13000){
+        if( (dir_type == 1 && -135 < ball.dir && ball.dir < 45)  ||  (dir_type == 2 && -45 < ball.dir && ball.dir < 135) ){
+          back_dir = 180 - dir.dir;
+          timer = millis();
+        }
+      }
+
 
       float avoid_dir = 0;
 

@@ -16,10 +16,11 @@ void Camera::read(){
   // どちらのゴールも見えていない場合は終了
   block_num = pixy.ccc.numBlocks;
   if(block_num == 0){
-    atk.is_visible = false;
-    def.is_visible = false;
     return;
   }
+  
+  atk.is_visible = false;
+  def.is_visible = false;
 
 
 
