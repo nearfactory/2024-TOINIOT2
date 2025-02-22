@@ -36,8 +36,8 @@ State state_prev = State::LineTrace;
 uint32_t state_begin = 0;
 
 
-float p_gain = 1.5;
-float d_gain = 3.0;  // Test
+float p_gain = 1.2;
+float d_gain = 0.0;  // Test
 
 
 void setup() {
@@ -109,11 +109,11 @@ static float _min = 1.0, _max = 2.5;
     if(ui.buttonUp(0)) display.next();
 
     // variables
-    // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
-    // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
     // display.addValiables("diff :"+to_string(difference), &difference);
-    display.addValiables("min :"+to_string(min), &_min);
-    display.addValiables("max :"+to_string(max), &_max);
+    // display.addValiables("min :"+to_string(min), &_min);
+    // display.addValiables("max :"+to_string(max), &_max);
 
     display.debug();
     display.draw();
@@ -267,43 +267,11 @@ static float _min = 1.0, _max = 2.5;
   else if(state == State::KeeperDash){
     static uint32_t timer = 0;
 
-    // if(state_elapsed < 500){
-    //   motor.moveDir(0, 0);
-    // }else if(state_elapsed < 700){
-    //   motor.moveDir(0, 70);
-    //   motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
-    // }else{
-    //   state = State::BackToGoal_Strong;
-    // }
-      
-
-    /*
-    */
     // 回り込み    
     if(!ball.is_hold){
-      
-      static float r = 8200;
-      static float h = 10;
 
-      float move_dir = 0;
-
-
-      if(abs(ball.dir)<h){
-        move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
-        h = 20;
-      }
-      // 円周上
-      else if(ball.distance < r){
-        float theta = 90 + (r-ball.distance) * 90 / r;
-        move_dir = ball.dir + (ball.dir>0?theta:-theta);
-        h = 10;
-      }
-      //接線
-      else{
-        float theta = degrees(asin(r / ball.distance));
-        move_dir = ball.dir + (ball.dir>0?theta:-theta);
-        h = 10;
-      }
+      // PDのみ
+      float move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
       motor.moveDir(move_dir, 60);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
@@ -312,7 +280,8 @@ static float _min = 1.0, _max = 2.5;
       if(state_elapsed > 3000) state = State::BackToGoal_Strong;
 
     }
-    
+
+
     // ドリブル
     else{
       motor.moveDir(camera.chance_dir, 80);
@@ -324,6 +293,7 @@ static float _min = 1.0, _max = 2.5;
       }
 
     }
+
 
     // 白線処理    
     if(line.on && state_elapsed > 200){
@@ -377,12 +347,6 @@ static float _min = 1.0, _max = 2.5;
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
     }
 
-
-
-    // → 4.ゴール前に戻る(強め)
-    // if(is_line || is_stop){
-    //   state = State::BackToGoal_Strong;
-    // }
   }
   
 
