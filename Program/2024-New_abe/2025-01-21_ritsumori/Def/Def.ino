@@ -34,6 +34,7 @@ using namespace std;
 State state = State::LineTrace;
 State state_prev = State::LineTrace;
 uint32_t state_begin = 0;
+uint32_t state_elapsed = 0;
 
 
 float p_gain = 1.2;
@@ -112,15 +113,18 @@ static float _min = 1.0, _max = 2.5;
     // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
     // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
     // display.addValiables("diff :"+to_string(difference), &difference);
-    // display.addValiables("min :"+to_string(min), &_min);
-    // display.addValiables("max :"+to_string(max), &_max);
+    display.addValiables("min :"+to_string(min), &_min);
+    display.addValiables("max :"+to_string(max), &_max);
     display.addValiables("diff :"+to_string(ball.diff_avr), &ball.diff_avr);
+    display.addValiables("elapsed :"+to_string(state_elapsed), nullptr);
 
     display.debug();
     display.draw();
 
-    state = State::BackToGoal_Strong;
+    // state = State::BackToGoal_Strong;
     // state = State::KeeperDash;
+    state = State::Test;
+    // state_elapsed = 0;
 
     motor.set(0,0,0,0);
     is_display_on = true;
@@ -143,7 +147,7 @@ static float _min = 1.0, _max = 2.5;
     state_begin = millis();
   }
   state_prev = state;
-  uint32_t state_elapsed = millis() - state_begin;
+  state_elapsed = millis() - state_begin;
 
 
 
@@ -171,7 +175,6 @@ static float _min = 1.0, _max = 2.5;
 
     float difference = abs(b-l);
 
-
     static bool is_side = false;
     static bool is_stop = false;
 
@@ -197,9 +200,11 @@ static float _min = 1.0, _max = 2.5;
 
     if(is_side){
       motor.moveDir(0, 0);
+      ui.buzzer(1760.0f);
     }
     // 本編
     else{
+      ui.buzzer(440.0f);
       // ベクトルを合成
       Vec2 move(0, 0);
 
@@ -217,6 +222,7 @@ static float _min = 1.0, _max = 2.5;
       int power = max_power * (difference - min) / (max - min);
       if(power < 0) power = 0;
       if(max_power < power) power = max_power;
+
 
       motor.moveDir(move_dir, (uint8_t)power);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
@@ -236,7 +242,6 @@ static float _min = 1.0, _max = 2.5;
         is_neutral = true;
         neutral_begin = millis();
       }
-      ui.buzzer(440.0f);
     }else{
       if(millis() - neutral_begin > 2000){
         state = State::KeeperDash;
@@ -247,8 +252,8 @@ static float _min = 1.0, _max = 2.5;
       if(abs(ball.dir) > 90 || ball.distance > 12000 || ball.diff_avr > 1.0f){
         is_neutral = false;
       }
-      ui.buzzer(1760.0f);
     }
+
 
     if(!camera.def.is_visible){
       state = State::BackToGoal_Strong;
@@ -298,9 +303,13 @@ static float _min = 1.0, _max = 2.5;
 
     }
 
+    if(state_elapsed > 6000){
+      state = State::BackToGoal_Strong;
+    }
+
 
     // 白線処理    
-    if(line.on && state_elapsed > 200){
+    if(line.on && state_elapsed > 500){
 
       float avoid_dir = 0;
 
@@ -357,9 +366,17 @@ static float _min = 1.0, _max = 2.5;
 
   // 3.ゴール前に戻る（弱め）
   else if(state == State::BackToGoal_Weak){
+    // ペナルティエリア
+    if(camera.def.h > 60){
+      motor.moveDir(0, 90);
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }
     // 最後のラインのベクトルへ移動
-    motor.moveDir(line.dir, 90);
-    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    else{
+      motor.moveDir(line.dir, 90);
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }
+    
 
     // →  1.ライントレース
     if(line.on){
@@ -409,7 +426,12 @@ static float _min = 1.0, _max = 2.5;
     }else{
       // ボールの近くでは円を描くようによける
       if(ball.distance < 8500){
-        motor.moveDir(ball.dir+90, 60);
+        if(ball.dir < 0){
+          motor.moveDir(ball.dir-90, 60);
+        }else{
+          motor.moveDir(ball.dir+90, 60);
+        }
+
       }else{
         motor.moveDir(180 - camera.def.dir*2, 60);
       }
@@ -420,26 +442,36 @@ static float _min = 1.0, _max = 2.5;
     if(line.on){
       if(!camera.def.is_visible){
         if(camera.def.dir < 0){
-          motor.moveDir(-45, 60);
+          motor.moveDir(-45, 70);
         }else{
-          motor.moveDir(45, 60);
+          motor.moveDir(45, 70);
         }
       }
       // →  1.ライントレース
-      if(camera.def.h > 50){
+      else if(camera.def.h > 50){
         state = State::LineTrace;
       }
       // ゴール前以外の白線に触れた場合
       else{
         if(camera.def.dir < 0){
-          motor.moveDir(-90, 60);
+          motor.moveDir(-90, 70);
         }else{
-          motor.moveDir(90, 60);
+          motor.moveDir(90, 70);
         }
         
       }
     }
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
+  }
+
+  else if(state == State::Test){
+    if(state_elapsed < 2000){
+      motor.setDir(50,0,dir.p_gain,0);
+    }else{
+      motor.moveDir(0,0);
+      state = State::BackToGoal_Strong;
+    }
   }
   
   

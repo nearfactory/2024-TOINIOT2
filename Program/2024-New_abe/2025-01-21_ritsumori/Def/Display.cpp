@@ -411,44 +411,29 @@ void Display::Game(){
   } 
   // if(ui.damaged_timer < 0) display.invertDisplay(true);
 
-  // switch(state){
-  // case State::KickOff:
-  //   printd(8,56,"kick off");
-  //   break;
-  // case State::Damaged:
-  //   printd(8,56,"damaged");
-  //   break;
-  // case State::Follow:
-  //   printd(8,56,"follow");
-  //   break;
-  // case State::Dribble:
-  //   printd(8,56,"dribble");
-  //   break;
-  // case State::Shoot:
-  //   printd(8,56,"shoot");
-  //   break;
-  // case State::AvoidKeeper:
-  //   printd(8,56,"avoid keeper");
-  //   break;
-  // case State::Pushing:
-  //   printd(8,56,"pushing");
-  //   break;
-  // case State::NoBall:
-  //   printd(8,56,"no ball");
-  //   break;
-  // case State::Neutral:
-  //   printd(8,56,"neutral");
-  //   break;
-  // case State::Oshikomi:
-  //   printd(8,56,"oshikomi");
-  //   break;
-  // case State::Test:
-  //   printd(8,56,"Test");
-  //   break;
-  // default: 
-  //   printd(8,56,"error!");
-  //   break;
-  // }
+  switch(state){
+  case State::KickOff:
+    printd(8,56,"kick off");
+    break;
+  case State::LineTrace:
+    printd(8,56,"Line trace");
+    break;
+  case State::KeeperDash:
+    printd(8,56,"Keeper dash");
+    break;
+  case State::BackToGoal_Weak:
+    printd(8,56,"weak");
+    break;
+  case State::BackToGoal_Strong:
+    printd(8,56,"strong");
+    break;
+  case State::Center:
+    printd(8,56,"center");
+    break;
+  default: 
+    printd(8,56,"error!");
+    break;
+  }
 
   return;
 }
