@@ -37,7 +37,7 @@ bool is_display_on = true;
 float h = 20;         // ヒステリシス
 float r = 11600.0;    // 回り込みの半径
 float p_gain = 1.5;
-float d_gain = 6.0;  // Test
+float d_gain = 3.0;  // Test
 
 float offset = 1.0;
 
@@ -128,8 +128,8 @@ static float _push_move = 2.0, _push_dir = 5.0;
     display.draw();
     is_display_on = true;
 
-    // state = State::KickOff;
-    state = State::Follow;
+    state = State::KickOff;
+    // state = State::Follow;
     // state = State::Test;
     // state = State::Pushing;
     state_begin = millis();
@@ -228,7 +228,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
       h = 30;
     }
-    motor.moveDir(move_dir, 90);
+    motor.moveDir(move_dir, 75);
 
     // 白線処理
     if(line.on) line_flag = 1;
@@ -279,8 +279,8 @@ static float _push_move = 2.0, _push_dir = 5.0;
           break;
       }
     }
-    motor.setDirAdd(dir.dir + face, dir.dir_prev, dir.p_gain, dir.d_gain);
-    // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    // motor.setDirAdd(dir.dir + face, dir.dir_prev, dir.p_gain, dir.d_gain);
+    motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
 
     // ボールを保持 -> ゴールに向かう
@@ -712,7 +712,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
         else                                    avoid_dir = -135;
       }
 
-      motor.moveDirFast(avoid_dir, 100);  // Edit
+      motor.moveDir(avoid_dir, 100);  // Edit
       break;
 
     }
