@@ -13,6 +13,7 @@ enum class State : int{
   NoBall,       // ボールなし
   Neutral,      // (未使用)中立点から
   Oshikomi,     // 押し込み
+  Ritsumori,
   Test          // テスト
 };
 

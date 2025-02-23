@@ -142,40 +142,20 @@ void Line::read(){
   if(index == 0) index = 1;
   distance = vec.len() / (float)index;
 
-
-  // Serial.printf("dir:%f area:%d x:%f y:%f \n", dir, index, vec.x, vec.y);
-
-
-
-
   // 踏み始め
   if(prev_on == false && on == true){
     dir_prev = dir;
   }
 
-  // 継続して踏んでいる場合
-  else if(prev_on == true && on == true){
-
-    // 前回値の±450°を有効な範囲とする
-    float range = 22.5;
-
-
-    float range_start = normalizeAngle(dir_prev - range);
-    float range_end   = normalizeAngle(dir_prev + range);
-    
-
-    // ±180°の壁をまたがない場合
-    if(range_start <= range_end){
-      if(dir <= range_start ||  range_end <= dir){
-        dir = dir_prev;
-      }
-    }else{
-      if(range_end <= dir && dir <= range_start){
-        dir = dir_prev;
-      }
-    }
-
+  float diff = abs(dir - dir_prev);
+  if(diff > 45){
+    dir = dir_prev;
   }
+
+  // Serial.printf("dir:%f area:%d x:%f y:%f \n", dir, index, vec.x, vec.y);
+
+
+
 
 
 

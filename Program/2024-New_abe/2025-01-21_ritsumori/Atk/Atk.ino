@@ -1,6 +1,6 @@
-// new atacker kansai block program
+// new atacker ritsumori
 // Teensy4.1
-// 2024-01-05
+// 2024-02-23
 
 #include <cmath>
 
@@ -61,12 +61,12 @@ void setup() {
   motor.begin();
   sub.begin();
   ui.begin();
-  
+
   // calibration
   uint8_t system=0, gyro=0, accel=0, mag=0;
   while(system<3 || gyro<3 || mag<3){
     display.printd(8,8,to_string(COMPILE));
-    
+
     dir.calibration(&system, &gyro, &accel, &mag);
     digitalWrite(LED_BUILTIN, HIGH);
 
@@ -87,7 +87,7 @@ void setup() {
   display.draw();
   while(!ui.buttonUp(0)){ ui.read(); }
   display.draw();
-  
+
   dir.setDefault();
 
   Serial.println("start");
@@ -228,7 +228,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
       h = 30;
     }
-    motor.moveDir(move_dir, 90); 
+    motor.moveDir(move_dir, 90);
 
     // 白線処理
     if(line.on) line_flag = 1;
@@ -262,7 +262,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
         // ロボットを左に向ける
         case 1:
           face = 20;
-          if(camera.atk.dir > 16 && millis()-t_begin > 0){
+          if(camera.atk.dir > 18 && millis()-t_begin > 0){
           // if(camera.atk.x2 < 170){
             dir_type = 0;
             t_begin = millis();
@@ -271,7 +271,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
         // ロボットを右に向ける
         case 2:
           face = -20;
-          if(camera.atk.dir < -16 && millis()-t_begin > 0){
+          if(camera.atk.dir < -18 && millis()-t_begin > 0){
           // if(camera.atk.x1 > 170){
             dir_type = 0;
             t_begin = millis();
@@ -280,8 +280,9 @@ static float _push_move = 2.0, _push_dir = 5.0;
       }
     }
     motor.setDirAdd(dir.dir + face, dir.dir_prev, dir.p_gain, dir.d_gain);
+    // motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
-   
+
     // ボールを保持 -> ゴールに向かう
     if(ball.is_hold){
       // Test
@@ -401,7 +402,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
       else                    atk_dir = -30;
     }
 
-    
+
     motor.moveDir(-dir.dir, 100);
     motor.setDirAdd(dir.dir-atk_dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
@@ -434,7 +435,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
         motor.moveDir(push_move, 100);
         motor.setDirAdd(dir.dir-push_dir, dir.dir_prev, dir.p_gain, dir.d_gain);
       }
-      
+
     }else{
       motor.moveDir(0, 50);
       if(dir.dir < 0){
@@ -479,7 +480,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
 
 
     // 後ろに見えた -> 逆の回り込み
-    
+
     // 前に見えた -> 回り込み
     if(ball.is_exist){
       // timer_begin = false;
@@ -510,7 +511,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
       h = 20;
     }
-    
+
     // 半分超えたら回り込み直し
     if(camera.atk.h > 24){
       state = State::Follow;
@@ -532,7 +533,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
     if(state_elapsed < 500){
       motor.moveDir(0,0);
     }
-    
+
     // 進む
     else if(go_flag){
       float move_dir = ball.dir;
@@ -578,6 +579,37 @@ static float _push_move = 2.0, _push_dir = 5.0;
   }
 
 
+  else if(state == State::Ritsumori){
+    if(!camera.atk.is_visible && !camera.def.is_visible){
+      motor.moveDir(0, 90);
+      motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+    }else if(camera.def.h >= 20){
+      if(ball.dir < 0){
+        motor.moveDir(-45, 90);
+        motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+      }else{
+        motor.moveDir(45, 90);
+        motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+      }
+    }else{
+      if(ball.dir < 0){
+        motor.moveDir(-90, 90);
+        motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+      }else{
+        motor.moveDir(90, 90);
+        motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+      }
+    }
+
+    if(line.on) line_flag = 1;
+
+
+    if(state_elapsed > 4000 || ball.distance < 12500){
+      state = State::Follow;
+    }
+  }
+
+
   // テスト
   else if(state == State::Test){
 
@@ -610,7 +642,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
 
       // 反対側のポケットにアクセス
       // 正面を向いている場合
-      if(!camera.atk.is_visible && abs(dir.dir) < 15 && abs(line.dir) < 10 && ball.distance > 13000){
+      if(!camera.atk.is_visible && abs(dir.dir) < 15 && abs(line.dir) < 10 && ball.distance > 14000){
         back_dir = 180;
         timer = millis();
       }
@@ -622,21 +654,28 @@ static float _push_move = 2.0, _push_dir = 5.0;
         }
       }
       // 自陣コート側
-      // if(!camera.atk.is_visible && abs(dir.dir) < 15 &&)
+      if(/*!camera.atk.is_visible && */abs(dir.dir) < 15 && abs(line.dir) > 125 && ball.distance > 14000){
+        // back_dir = 0;
+        // timer = millis();
+        state = State::Ritsumori;
+      }
 
 
       float avoid_dir = 0;
 
       // 後ろ
       if(line.dir > 157.5 || line.dir < -157.5){
-        if(abs(ball.dir) < 5) avoid_dir = 0;
-        else if(ball.dir < 0) avoid_dir = 45;
-        else                  avoid_dir = -45;
+        // if(abs(ball.dir) < 5) avoid_dir = 0;
+        /*else*/ if(ball.dir < 0) avoid_dir = -45;
+        else                  avoid_dir = 45;
       }
       // 左後ろ
       else if(line.dir < -112.5){
-        if(-135 < ball.dir && ball.dir < 45)  avoid_dir = 0;
-        else                                  avoid_dir = 90;
+        // if(-135 < ball.dir && ball.dir < 45)  avoid_dir = 0;
+        // else                                  avoid_dir = 90;
+        if(-90 < ball.dir && ball.dir < 0)      avoid_dir = 0;
+        else if(0 < ball.dir && ball.dir < 90)  avoid_dir = 45;
+        else                                    avoid_dir = 135;
       }
       // 左
       else if(line.dir < -67.5){
@@ -650,8 +689,8 @@ static float _push_move = 2.0, _push_dir = 5.0;
       }
       // 正面
       else if(line.dir < 22.5){
-        if(abs(ball.dir) < 5) avoid_dir = 180;
-        else if(ball.dir < 0) avoid_dir = 135;
+        // if(abs(ball.dir) < 5) avoid_dir = 180;
+        if(ball.dir < 0) avoid_dir = 135;
         else                  avoid_dir = -135;
       }
       // 右前
@@ -666,11 +705,14 @@ static float _push_move = 2.0, _push_dir = 5.0;
       }
       // 右後ろ
       else{
-        if(-45 < ball.dir && ball.dir < 135)  avoid_dir = 0;
-        else                                  avoid_dir = -90;
+        // if(-45 < ball.dir && ball.dir < 135)  avoid_dir = 0;
+        // else                                  avoid_dir = -90;
+        if(-90 < ball.dir && ball.dir < 0)      avoid_dir = -45;
+        else if(0 < ball.dir && ball.dir < 90)  avoid_dir = 0;
+        else                                    avoid_dir = -135;
       }
 
-      motor.moveDir(avoid_dir, 100);  // Edit
+      motor.moveDirFast(avoid_dir, 100);  // Edit
       break;
 
     }
