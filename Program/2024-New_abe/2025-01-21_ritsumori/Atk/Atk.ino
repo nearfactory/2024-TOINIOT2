@@ -34,10 +34,10 @@ using namespace std;
 bool is_display_on = true;
 
 // 周り込み
-float h = 45;         // ヒステリシス
-float r = 8200.0;    // 回り込みの半径
+float h = 20;         // ヒステリシス
+float r = 11600.0;    // 回り込みの半径
 float p_gain = 1.5;
-float d_gain = 3.0;  // Test
+float d_gain = 6.0;  // Test
 
 float offset = 1.0;
 
@@ -114,15 +114,15 @@ static float _push_move = 2.0, _push_dir = 5.0;
     camera.lock = false;
     if(ui.buttonUp(0)) display.next();
 
-    // display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
-    // display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
+    display.addValiables("p_gain :"+to_string(p_gain), &p_gain);
+    display.addValiables("d_gain :"+to_string(d_gain), &d_gain);
     // display.addValiables("offset: "+to_string(offset), &offset);
     // display.addValiables("x: "+to_string(dir.x), &dir.x);
     // display.addValiables("y: "+to_string(dir.y), &dir.y);
     // display.addValiables("z: "+to_string(dir.z), &dir.z);
     // display.addValiables("accel_avr: "+to_string(dir.accel_avr), &dir.accel_avr);
-    display.addValiables("move: "+to_string(push_move), &_push_move);
-    display.addValiables("dir : "+to_string(push_dir), &_push_dir);
+    // display.addValiables("move: "+to_string(push_move), &_push_move);
+    // display.addValiables("dir : "+to_string(push_dir), &_push_dir);
 
     display.debug();
     display.draw();
@@ -212,21 +212,21 @@ static float _push_move = 2.0, _push_dir = 5.0;
     if(abs(ball.dir)<h){
       move_dir = ball.dir * p_gain - d_gain*(ball.dir - ball.dir_prev);
       // move_dir = ball.dir * p_gain;
-      h = 30;
+      h = 45;
       face_flag = false;
     }
     // 円周上
     else if(ball.distance < r){
       float theta = 90 + (r-ball.distance) * 90 / r;
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 5;
+      h = 30;
       // face_flag = false;
     }
     //接線
     else{
       float theta = degrees(asin(r / ball.distance));
       move_dir = ball.dir + (ball.dir>0?theta:-theta);
-      h = 5;
+      h = 30;
     }
     motor.moveDir(move_dir, 90); 
 
@@ -310,7 +310,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
 
     if(!is_decided){
       // ゴールに近すぎる場合、平行移動ですら躱せないためねじる
-      if((camera.atk.h > 38 && !camera.is_center) || abs(camera.chance_dir) > 20){
+      if((camera.atk.h > 38 && !camera.is_center) || (abs(camera.chance_dir) > 20 && camera.atk.h > 36)){
       // if(camera.atk.h > 36){
         type = 0;
       }
@@ -595,7 +595,9 @@ static float _push_move = 2.0, _push_dir = 5.0;
   // 速い場合に0.5秒間戻る
   if(millis()-timer < 500){
     motor.moveDirFast(back_dir, 100);
-  }else{
+  }
+  // 普通
+  else{
     switch(line_flag){
     case 1:{
 
@@ -666,7 +668,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
         else                                  avoid_dir = -90;
       }
 
-      motor.moveDirFast(avoid_dir, 100);
+      motor.moveDir(avoid_dir, 100);  // Edit
       break;
 
     }

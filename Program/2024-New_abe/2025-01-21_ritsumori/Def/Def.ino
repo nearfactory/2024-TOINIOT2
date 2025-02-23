@@ -200,11 +200,9 @@ static float _min = 1.0, _max = 2.5;
 
     if(is_side){
       motor.moveDir(0, 0);
-      ui.buzzer(1760.0f);
     }
     // 本編
     else{
-      ui.buzzer(440.0f);
       // ベクトルを合成
       Vec2 move(0, 0);
 
@@ -237,19 +235,21 @@ static float _min = 1.0, _max = 2.5;
     static uint32_t neutral_begin = millis();
 
     if(is_neutral == false){
+      ui.buzzer(440.0f);
       // キーパーダッシュに移行する条件
-      if(abs(ball.dir) < 90 && ball.distance < 12000){
+      if(abs(ball.dir) < 90 && ball.distance < 12800){
         is_neutral = true;
         neutral_begin = millis();
       }
     }else{
+      ui.buzzer(1760.0f);
       if(millis() - neutral_begin > 2000){
         state = State::KeeperDash;
         is_neutral = false;
       }
 
       // ボールが動かされた判定
-      if(abs(ball.dir) > 90 || ball.distance > 12000 || ball.diff_avr > 1.0f){
+      if(abs(ball.dir) > 90 || ball.distance > 13200 || ball.diff_avr > 1.0f){
         is_neutral = false;
       }
     }
@@ -425,7 +425,7 @@ static float _min = 1.0, _max = 2.5;
       motor.setDir(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
     }else{
       // ボールの近くでは円を描くようによける
-      if(ball.distance < 8500){
+      if(ball.distance < 12800){
         if(ball.dir < 0){
           motor.moveDir(ball.dir-90, 60);
         }else{
