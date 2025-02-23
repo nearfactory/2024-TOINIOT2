@@ -331,7 +331,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
     if(type == 0){
       motor.moveDirFast(0, 100);
       // motor.moveDir(0, 100);
-      motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -4.0f , 0);
+      motor.setDirAdd(camera.chance_dir, camera.chance_dir_prev, -7.0f , 0);
     }
 
 
@@ -602,7 +602,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
     case 1:{
 
       // ドリブル直後の場合
-      if(millis()-dribble_end < 300){
+      if(millis()-dribble_end < 400){
         back_dir = line.dir + 180.0f;
         timer = millis();
       }
@@ -621,6 +621,8 @@ static float _push_move = 2.0, _push_dir = 5.0;
           timer = millis();
         }
       }
+      // 自陣コート側
+      // if(!camera.atk.is_visible && abs(dir.dir) < 15 &&)
 
 
       float avoid_dir = 0;
