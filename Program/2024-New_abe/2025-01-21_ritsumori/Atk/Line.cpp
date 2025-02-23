@@ -41,9 +41,9 @@ void Line::read(){
 
 
   // 壊れたセンサを反応しいないように修正  
-  line[5] = false;
+  // line[5] = false;
   line[14] = false;
-  line[16] = false;
+  // line[16] = false;
 
   // for(auto l:line) Serial.printf("%d ", l);
   // Serial.println();
@@ -148,7 +148,7 @@ void Line::read(){
   }
 
   float diff = abs(dir - dir_prev);
-  if(diff > 45){
+  if(diff > 30){
     dir = dir_prev;
   }
 

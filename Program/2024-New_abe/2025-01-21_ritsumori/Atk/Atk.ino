@@ -712,7 +712,7 @@ static float _push_move = 2.0, _push_dir = 5.0;
         else                                    avoid_dir = -135;
       }
 
-      motor.moveDir(avoid_dir, 100);  // Edit
+      motor.moveDir(avoid_dir, 90);  // Edit
       break;
 
     }

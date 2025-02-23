@@ -287,13 +287,13 @@ static float _min = 1.0, _max = 2.5;
 
       // 2秒以上の回り込みを禁止
       if(state_elapsed > 2000) state = State::BackToGoal_Strong;
-
+      // timer  = millis();
     }
 
 
     // ドリブル
     else{
-      motor.moveDir(camera.chance_dir, 80);
+      motor.moveDir(camera.chance_dir*2, 85);
       motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
 
       if(camera.atk.h > 26 || abs(camera.chance_dir) < 4){
