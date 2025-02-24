@@ -22,8 +22,10 @@ TOINIOT² 2024年度 開発用メインリポジトリ
 
 ## Presentation-Sheet
 
-![TOINIOT2-Kansai](https://github.com/user-attachments/assets/6c027d5d-cd59-48a8-a3d7-465de196317f)
+### 関西ブロック大会 2025.01.14 掲出
+![TOINIOT2-Kansai-NoName](https://github.com/user-attachments/assets/a5ca280a-9a8d-47a0-8d4d-eedebdf6297f)
 
+### リツモリカップ 2025.02.23 掲出
 ![TOINIOT2-Ritsumori](https://github.com/user-attachments/assets/b9024533-1788-44be-ac97-3eb14484247d)
 
 
