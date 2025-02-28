@@ -1,3 +1,19 @@
+// void setup(){
+//   Serial1.setPins(D7,D6);
+//   Serial1.begin(9600);
+//   Serial1.println("fujiking");
+// }
+
+// void loop(){
+//   static uint32_t c = 0;
+//   Serial1.printf("fujiki %d\n",c);
+//   c++;
+//   delay(150);
+// }
+
+// atacker
+// celtral
+
 #include <Arduino.h>
 
 #include <BLEDevice.h>
@@ -58,7 +74,7 @@ void setup() {
   NOTIFY = service -> createCharacteristic(NOTIFY_UUID, BLECharacteristic::PROPERTY_NOTIFY);
   NOTIFY -> addDescriptor(new BLE2902());
 
-  D2A = service -> createCharacteristic(D2A_UUID, BLECharacteristic::PROPERTY_WRITE);
+  D2A = service -> createCharacteristic(D2A_UUID, BLECharacteristic::PROPERTY_READ);
   D2A -> addDescriptor(new BLE2902());
 
   A2D = service -> createCharacteristic(A2D_UUID, BLECharacteristic::PROPERTY_WRITE);
@@ -77,8 +93,8 @@ void loop() {
     A2D_str = "central_" + std::to_string(count) ;
     count++;
     Serial.printf( "A2D : \" %s \" ,    D2A : \" %s \" \n", A2D_str.c_str(), D2A_str.c_str() );
-    A2D -> setValue(A2D_str.c_str());
-    A2D -> notify();
+    D2A -> setValue(A2D_str.c_str());
+    D2A -> notify();
     delay(250);
   }
 

@@ -19,7 +19,7 @@ bool oldDeviceConnected = false;
 #define CHARACTERISTIC_UUID_TX "ee64a690-6995-11ed-a1eb-0242ac120002"
 
 #define SERVER_NAME "esp32ble"
-#define Tx_value 'FUJIKI'
+#define Tx_value 'M'
 std::string rx_Data;
 
 class MyServerCallbacks : public BLEServerCallbacks {
@@ -36,9 +36,8 @@ class MyCallbacks: public BLECharacteristicCallbacks {
     void onWrite(BLECharacteristic *pCharacteristic) {
       std::string rxValue = pCharacteristic->getValue();
       if (rxValue.length() > 0) {
-        rx_Data="";
         for (int i = 0; i < rxValue.length(); i++)
-          rx_Data=rx_Data+rxValue[i];
+rx_Data=rx_Data+rxValue[i];
       }
     }
 };
@@ -80,13 +79,13 @@ void setup() {
 void loop() {
 
   if (deviceConnected) {
-    Serial.printf("*** NOTIFY: %s ***\n", Tx_value);
+    Serial.printf("*** NOTIFY: %c ***\n", Tx_value);
     char buffer[10];
-    sprintf(buffer, "%s", Tx_value);
+    sprintf(buffer, "%c", Tx_value);
     pTxCharacteristic->setValue(buffer);
     pTxCharacteristic->notify();
     Serial.printf("%s",rx_Data.c_str());
-    delay(250);
+      delay(1000);
   }
       // disconnecting
     if (!deviceConnected && oldDeviceConnected) {
