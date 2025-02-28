@@ -20,6 +20,15 @@ TOINIOT² 2024年度 開発用メインリポジトリ
 * Team Blog | [TOINIOT² Blog](https://toiniot2-wakayama.github.io/Main/index.html)
 
 
+## Presentation-Sheet
+
+### 関西ブロック大会 2025.01.14 掲出
+![TOINIOT2-Kansai-NoName](https://github.com/user-attachments/assets/a5ca280a-9a8d-47a0-8d4d-eedebdf6297f)
+
+### リツモリカップ 2025.02.23 掲出
+![TOINIOT2-Ritsumori](https://github.com/user-attachments/assets/b9024533-1788-44be-ac97-3eb14484247d)
+
+
 ## Rules
 * 📂 Discord上の _#GitHub_ チャンネルを活用してアップロード済みデータについての情報交換をしっかり!
 
@@ -36,9 +45,6 @@ TOINIOT² 2024年度 開発用メインリポジトリ
 * 👥 自分が困っているときは遠慮なくメンバーにヘルプを求め、メンバーが困っているときは躊躇せずヘルプする!!!!
 
 * 💪 **これが最後のRCJ。やり残しがないようにしよう。**
-
-
-
 
 ## Members
 * NearFactory [@nearfactory](https://x.com/nearfactory/)
