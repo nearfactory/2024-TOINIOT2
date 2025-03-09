@@ -19,14 +19,14 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 
 	// L
 	if (input & BUTTON_L) {
-		DrawBoxAA(CENTER_X - ofs - r, y, CENTER_X - ofs + r, y + h, red, TRUE);
+		DrawBoxAA(CENTER_X - ofs - r, y, CENTER_X - ofs + r, y + h, dark_red, TRUE);
 	}
 	DrawBoxAA(CENTER_X - ofs - r, y, CENTER_X - ofs + r, y + h, white, FALSE);
 	DrawString(CENTER_X - ofs - GetDrawStringWidth("L", strlen("L")) / 2, y + h / 2 - font_size / 2, "L", white);
 
 	// R
 	if (input & BUTTON_R) {
-		DrawBoxAA(CENTER_X + ofs - r, y, CENTER_X + ofs + r, y + h, red, TRUE);
+		DrawBoxAA(CENTER_X + ofs - r, y, CENTER_X + ofs + r, y + h, dark_red, TRUE);
 	}
 	DrawBoxAA(CENTER_X + ofs - r, y, CENTER_X + ofs + r, y + h, white, FALSE);
 	DrawString(CENTER_X + ofs - GetDrawStringWidth("R", strlen("R")) / 2, y + h / 2 - font_size / 2, "R", white);
@@ -40,14 +40,14 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 
 	// A
 	if (input & BUTTON_A) {
-		DrawCircleAA(x + r, y, w, 96, red, TRUE);
+		DrawCircleAA(x + r, y, w, 96, dark_red, TRUE);
 	}
 	DrawCircleAA(x + r, y, w, 96, white, FALSE);
 	DrawString(x + r - GetDrawStringWidth("A", strlen("A")) / 2, y - font_size / 2, "A", white);
 
 	// Y
 	if (input & BUTTON_Y) {
-		DrawCircleAA(x - r, y, w, 96, red, TRUE);
+		DrawCircleAA(x - r, y, w, 96, dark_red, TRUE);
 	}
 	DrawCircleAA(x - r, y, w, 96, white, FALSE);
 	DrawString(x - r - GetDrawStringWidth("Y", strlen("Y")) / 2, y - font_size / 2, "Y", white);
@@ -55,14 +55,14 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 
 	// B
 	if (input & BUTTON_B) {
-		DrawCircleAA(x, y + r, w, 96, red, TRUE);
+		DrawCircleAA(x, y + r, w, 96, dark_red, TRUE);
 	}
 	DrawCircleAA(x, y + r, w, 96, white, FALSE);
 	DrawString(x - GetDrawStringWidth("B", strlen("B")) / 2, y + r - font_size / 2, "B", white);
 
 	// X
 	if (input & BUTTON_X) {
-		DrawCircleAA(x, y - r, w, 96, red, TRUE);
+		DrawCircleAA(x, y - r, w, 96, dark_red, TRUE);
 	}
 	DrawCircleAA(x, y - r, w, 96, white, FALSE);
 	DrawString(x - GetDrawStringWidth("X", strlen("X")) / 2, y - r - font_size / 2, "X", white);
@@ -78,19 +78,19 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 	if (L.x == 0 && L.y == 0) {
 		// A
 		if (input & BUTTON_RIGHT) {
-			DrawCircleAA(x + r, y, w, 96, red, TRUE);
+			DrawCircleAA(x + r, y, w, 96, dark_red, TRUE);
 		}
 		// Y
 		if (input & BUTTON_LEFT) {
-			DrawCircleAA(x - r, y, w, 96, red, TRUE);
+			DrawCircleAA(x - r, y, w, 96, dark_red, TRUE);
 		}
 		// B
 		if (input & BUTTON_DOWN) {
-			DrawCircleAA(x, y + r, w, 96, red, TRUE);
+			DrawCircleAA(x, y + r, w, 96, dark_red, TRUE);
 		}
 		// X
 		if (input & BUTTON_UP) {
-			DrawCircleAA(x, y - r, w, 96, red, TRUE);
+			DrawCircleAA(x, y - r, w, 96, dark_red, TRUE);
 		}
 	}
 
@@ -119,7 +119,7 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 
 	// MINUS
 	if (input & BUTTON_MINUS) {
-		DrawCircleAA(x, y, w, 96, red);
+		DrawCircleAA(x, y, w, 96, dark_red);
 	}
 	DrawCircleAA(x, y, w, 96, white, FALSE);
 	DrawString(x - GetDrawStringWidth("Å[", strlen("Å[")) / 2, y - font_size / 2, "Å[", white);
@@ -127,7 +127,7 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 	// PLUS
 	x = CENTER_X + ofs - r * 3;
 	if (input & BUTTON_PLUS) {
-		DrawCircleAA(x, y, w, 96, red);
+		DrawCircleAA(x, y, w, 96, dark_red);
 	}
 	DrawCircleAA(x, y, w, 96, white, FALSE);
 	DrawString(x - GetDrawStringWidth("Å{", strlen("Å{")) / 2, y - font_size / 2, "Å{", white);
@@ -141,7 +141,7 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 	y = CENTER_Y - r - 40;
 
 	if (input & BUTTON_L_STICK) {
-		DrawCircleAA(x, y, r, 96, red, TRUE);
+		DrawCircleAA(x, y, r, 96, dark_red, TRUE);
 	}
 	DrawCircleAA(x, y, r, 96, white, FALSE);
 	DrawLineAA(x - r, y, x + r, y, white);
@@ -158,7 +158,7 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 	y = CENTER_Y + r + 40;
 
 	if (input & BUTTON_R_STICK) {
-		DrawCircleAA(x, y, r, 96, red, TRUE);
+		DrawCircleAA(x, y, r, 96, dark_red, TRUE);
 	}
 	DrawCircleAA(x, y, r, 96, white, FALSE);
 	DrawLineAA(x - r, y, x + r, y, white);

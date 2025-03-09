@@ -1,7 +1,6 @@
 #include "DxLib.h"
 
 #include "General.hpp"
-
 #include "GamePad.hpp"
 
 
@@ -42,7 +41,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 
 
-		// draw
+		// draw	
 		ClearDrawScreen();
 
 		//DrawLineAA(0, CENTER_Y, WINDOW_W, CENTER_Y, blue);

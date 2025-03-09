@@ -16,5 +16,6 @@
 
 // color
 extern unsigned int red;
+extern unsigned int dark_red;
 extern unsigned int blue;
 extern unsigned int white;
