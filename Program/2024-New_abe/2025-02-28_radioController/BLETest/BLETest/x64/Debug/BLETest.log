@@ -1,0 +1,34 @@
+﻿  main.cpp
+C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include\simpleble\Exceptions.h(14,52): warning C4275: DLL インターフェイスではない class 'std::runtime_error' が DLL インターフェイスのベースになる class 'SimpleBLE::Exception::BaseException' として使われています。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\stdexcept(100,19):
+      'std::runtime_error' の宣言を確認してください
+      C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include\simpleble\Exceptions.h(14,24):
+      'SimpleBLE::Exception::BaseException' の宣言を確認してください
+  
+C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include\simpleble\Descriptor.h(27,37): warning C4251: 'SimpleBLE::Descriptor::internal_': 'std::shared_ptr<SimpleBLE::DescriptorBase>' には、'SimpleBLE::Descriptor' のクライアントが使用する DLL インターフェイスが必要です
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(1557,7):
+      'std::shared_ptr<SimpleBLE::DescriptorBase>' の宣言を確認してください
+  
+C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include\simpleble\Characteristic.h(36,41): warning C4251: 'SimpleBLE::Characteristic::internal_': 'std::shared_ptr<SimpleBLE::CharacteristicBase>' には、'SimpleBLE::Characteristic' のクライアントが使用する DLL インターフェイスが必要です
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(1557,7):
+      'std::shared_ptr<SimpleBLE::CharacteristicBase>' の宣言を確認してください
+  
+C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include\simpleble\Service.h(31,34): warning C4251: 'SimpleBLE::Service::internal_': 'std::shared_ptr<SimpleBLE::ServiceBase>' には、'SimpleBLE::Service' のクライアントが使用する DLL インターフェイスが必要です
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(1557,7):
+      'std::shared_ptr<SimpleBLE::ServiceBase>' の宣言を確認してください
+  
+C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include\simpleble\Peripheral.h(79,37): warning C4251: 'SimpleBLE::Peripheral::internal_': 'std::shared_ptr<SimpleBLE::PeripheralBase>' には、'SimpleBLE::Peripheral' のクライアントが使用する DLL インターフェイスが必要です
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(1557,7):
+      'std::shared_ptr<SimpleBLE::PeripheralBase>' の宣言を確認してください
+  
+C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include\simpleble\Adapter.h(74,34): warning C4251: 'SimpleBLE::Adapter::internal_': 'std::shared_ptr<SimpleBLE::AdapterBase>' には、'SimpleBLE::Adapter' のクライアントが使用する DLL インターフェイスが必要です
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(1557,7):
+      'std::shared_ptr<SimpleBLE::AdapterBase>' の宣言を確認してください
+  
+  BLETest.vcxproj -> C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\BLETest\x64\Debug\BLETest.exe
