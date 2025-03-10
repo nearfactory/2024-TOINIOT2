@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{c4ce733f-cd65-4201-a827-331a6740999d}</ProjectGuid>
+    <ProjectGuid>{3d2ee7e3-446e-4f59-939b-ca7df271873b}</ProjectGuid>
     <RootNamespace>BLETest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -76,14 +76,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\bin;C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>simpleble.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -94,7 +91,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -102,8 +98,6 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\bin;C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>simpleble.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -112,14 +106,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\bin;C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>simpleble.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,7 +121,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -138,8 +128,6 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\bin;C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\@SimpleBLE\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>simpleble.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
