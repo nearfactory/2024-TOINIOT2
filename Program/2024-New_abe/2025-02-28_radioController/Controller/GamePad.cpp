@@ -8,7 +8,6 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 	int h = 0;
 	int r = 150;
 	int ofs = r * 3;
-	int font_size = 16;
 
 
 	// button

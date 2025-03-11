@@ -144,13 +144,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BluetoothLE.cpp" />
     <ClCompile Include="GamePad.cpp" />
     <ClCompile Include="General.cpp" />
     <ClCompile Include="General.hpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="WstringToString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BluetoothLE.hpp" />
     <ClInclude Include="GamePad.hpp" />
+    <ClInclude Include="WstringToString.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -150,7 +150,7 @@ std::wstring ServiceToString(const winrt::guid& uuid)
 wstring getDeviceName(uint64_t addr) {
 	auto dev = BluetoothLEDevice::FromBluetoothAddressAsync(addr).get();
 	if (dev == nullptr) {
-		return L"nullptr!";
+		return L"Unnamed";
 	}
 
 
@@ -188,7 +188,7 @@ wstring getDeviceName(uint64_t addr) {
 vector<uint64_t> addr_list(0);
 
 void onReceived(BluetoothLEAdvertisementWatcher watcher, BluetoothLEAdvertisementReceivedEventArgs eventArgs) {
-	cout << "Received Advertisement!" << endl;
+	//cout << "Received Advertisement!" << endl;
 
 	auto addr = eventArgs.BluetoothAddress();
 	if (addr_list.empty() || !(find(addr_list.begin(), addr_list.end(), addr) != addr_list.end())) {
@@ -198,24 +198,24 @@ void onReceived(BluetoothLEAdvertisementWatcher watcher, BluetoothLEAdvertisemen
 
 
 		// 基本情報
-		cout << "  addr    :" << addr << endl;
-		cout << "  strength:" << eventArgs.RawSignalStrengthInDBm() << "(dbm)" << endl;
+		cout << "  addr        :" << addr << endl;
+		cout << "  connectable?:" << eventArgs.IsConnectable() << endl;
+		cout << "  strength    :" << eventArgs.RawSignalStrengthInDBm() << "(dbm)" << endl;
 
+		//// サービスを取得
+		//auto device = BluetoothLEDevice::FromBluetoothAddressAsync(addr).get();
+		//auto result = device.GetGattServicesAsync(BluetoothCacheMode::Uncached).get();
 		
-		// サービスを取得
-		auto device = BluetoothLEDevice::FromBluetoothAddressAsync(addr).get();
-		auto result = device.GetGattServicesAsync(BluetoothCacheMode::Uncached).get();
-		
-		// 成功時
-		if (result.Status() == GattCommunicationStatus::Success) {
-			auto services = result.Services();
-			// サービス内のキャラクテリスティックを全て吐き出す
-			for (auto service : services) {
-				//wcout << L"UUID:" << service.Uuid() << endl;
-				auto uuid = service.Uuid();
-				wcout << L"  characteristic:" << ServiceToString(uuid) << endl;
-			}
-		}
+		//// 成功時
+		//if (result.Status() == GattCommunicationStatus::Success) {
+		//	auto services = result.Services();
+		//	// サービス内のキャラクテリスティックを全て吐き出す
+		//	for (auto service : services) {
+		//		//wcout << L"UUID:" << service.Uuid() << endl;
+		//		auto uuid = service.Uuid();
+		//		wcout << L"  characteristic:" << ServiceToString(uuid) << endl;
+		//	}
+		//}
 
 		cout << endl;
 
@@ -242,6 +242,8 @@ int main() {
 	watcher.Start();				// 受信を開始 Enterが押されるまで続ける
 	while (getchar() != '\n');
 	watcher.Stop();
+
+	// 通信
 
 
 	return 0;
