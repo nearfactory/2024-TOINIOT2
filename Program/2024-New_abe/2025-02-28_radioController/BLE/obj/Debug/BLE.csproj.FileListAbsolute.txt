@@ -1,7 +1,0 @@
-C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\BLE\bin\Debug\BLE.exe.config
-C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\BLE\bin\Debug\BLE.exe
-C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\BLE\bin\Debug\BLE.pdb
-C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\BLE\obj\Debug\BLE.csproj.AssemblyReference.cache
-C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\BLE\obj\Debug\BLE.csproj.CoreCompileInputs.cache
-C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\BLE\obj\Debug\BLE.exe
-C:\GitHub\2024-TOINIOT2\Program\2024-New_abe\2025-02-28_radioController\BLE\obj\Debug\BLE.pdb
