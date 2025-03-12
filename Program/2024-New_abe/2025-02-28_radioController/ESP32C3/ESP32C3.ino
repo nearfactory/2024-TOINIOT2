@@ -104,6 +104,7 @@ void loop() {
 
   // BLE
   if(connected){
+    Serial.print(CIPO_str.c_str());
     Serial1.print(CIPO_str.c_str());
     // COPI -> setValue(COPI_str.c_str());
     // COPI -> notify();

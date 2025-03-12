@@ -1,200 +1,43 @@
-#include<iostream>
-#include<sstream>
-#include<iomanip>
-#include<condition_variable>
-#include<mutex>
-
-#include<algorithm>
-#include<vector>
-
-#include<winrt/windows.foundation.h>
-#include<winrt/windows.foundation.collections.h>
-#include<winrt/windows.devices.bluetooth.h>
-#include<winrt/windows.devices.bluetooth.advertisement.h>
-#include<winrt/windows.devices.bluetooth.genericattributeprofile.h>
-#include<winrt/windows.devices.enumeration.h>
-#include<winrt/windows.storage.streams.h>
+#include "general.hpp"
 
 
-using namespace std;
+/*
 
-using namespace winrt;
-using namespace Windows::Foundation;
-using namespace Windows::Foundation::Collections;
-using namespace Windows::Devices::Bluetooth;
-using namespace Windows::Devices::Enumeration;
-using namespace Windows::Devices::Bluetooth::Advertisement;
-using namespace Windows::Devices::Bluetooth::GenericAttributeProfile;
-using namespace Windows::Storage::Streams;
+UUID etc...
+#define CENTRAL_NAME "TOINIOT2_CONTROLLER"
+#define SERVICE_UUID "6a10c527-bac9-485e-bdb8-462f3b72bd59"
+#define NOTIFY_UUID "07edec9a-716c-4379-b18b-2bb8eb1a2bea"
+#define CIPO_UUID "d4b0e22e-2597-48e3-886e-ea984f3f7db0"
+#define COPI_UUID "2234bf79-5ff8-4b47-a139-b9a20801eaf4"
 
-
-auto esp_addr = "125783837854410";
+*/
 
 
-std::wstring UUIDToString(const winrt::guid& uuid)
-{
-	std::wstringstream str;
-	str << std::uppercase << std::hex;
-	str << std::setw(8) << std::setfill(L'0') << uuid.Data1 << L"-";
-	str << std::setw(4) << std::setfill(L'0') << uuid.Data2 << L"-";
-	str << std::setw(4) << std::setfill(L'0') << uuid.Data3 << L"-";
-	str << std::setw(2) << std::setfill(L'0') << static_cast<short>(uuid.Data4[0])
-		<< std::setw(2) << std::setfill(L'0') << static_cast<short>(uuid.Data4[1])
-		<< '-'
-		<< std::setw(2) << std::setfill(L'0') << static_cast<short>(uuid.Data4[2])
-		<< std::setw(2) << std::setfill(L'0') << static_cast<short>(uuid.Data4[3])
-		<< std::setw(2) << std::setfill(L'0') << static_cast<short>(uuid.Data4[4])
-		<< std::setw(2) << std::setfill(L'0') << static_cast<short>(uuid.Data4[5])
-		<< std::setw(2) << std::setfill(L'0') << static_cast<short>(uuid.Data4[6])
-		<< std::setw(2) << std::setfill(L'0') << static_cast<short>(uuid.Data4[7]);
-	str << std::nouppercase;
-	return str.str();
-
-}
-
-std::wstring ServiceToString(const winrt::guid& uuid)
-{
-	if (uuid == GattServiceUuids::AlertNotification())
-	{
-		return L"Alert Notification";
-	}
-	if (uuid == GattServiceUuids::Battery())
-	{
-		return L"Battery";
-	}
-	if (uuid == GattServiceUuids::BloodPressure())
-	{
-		return L"Blood Pressure";
-	}
-	if (uuid == GattServiceUuids::CurrentTime())
-	{
-		return L"Current Time";
-	}
-	if (uuid == GattServiceUuids::CyclingPower())
-	{
-		return L"Cycling Power";
-	}
-	if (uuid == GattServiceUuids::CyclingSpeedAndCadence())
-	{
-		return L"Cycling Speed and Cadence";
-	}
-	if (uuid == GattServiceUuids::DeviceInformation())
-	{
-		return L"Device Information";
-	}
-	if (uuid == GattServiceUuids::GenericAccess())
-	{
-		return L"Generic Access";
-	}
-	if (uuid == GattServiceUuids::GenericAttribute())
-	{
-		return L"Generic Attribute";
-	}
-	if (uuid == GattServiceUuids::Glucose())
-	{
-		return L"Glucose";
-	}
-	if (uuid == GattServiceUuids::HealthThermometer())
-	{
-		return L"Health Thermometer";
-	}
-	if (uuid == GattServiceUuids::HeartRate())
-	{
-		return L"Heart Rate";
-	}
-	if (uuid == GattServiceUuids::HumanInterfaceDevice())
-	{
-		return L"Human Interface Device";
-	}
-	if (uuid == GattServiceUuids::ImmediateAlert())
-	{
-		return L"Immediate Alert";
-	}
-	if (uuid == GattServiceUuids::LinkLoss())
-	{
-		return L"Link Loss";
-	}
-	if (uuid == GattServiceUuids::LocationAndNavigation())
-	{
-		return L"Location and Navigation";
-	}
-	if (uuid == GattServiceUuids::NextDstChange())
-	{
-		return L"Next Dst Change";
-	}
-	if (uuid == GattServiceUuids::PhoneAlertStatus())
-	{
-		return L"Phone Alert Status";
-	}
-	if (uuid == GattServiceUuids::ReferenceTimeUpdate())
-	{
-		return L"Reference Time Update";
-	}
-	if (uuid == GattServiceUuids::RunningSpeedAndCadence())
-	{
-		return L"Running Speed and Cadence";
-	}
-	if (uuid == GattServiceUuids::ScanParameters())
-	{
-		return L"Scan Parameters";
-	}
-	if (uuid == GattServiceUuids::TxPower())
-	{
-		return L"Tx Power";
-	}
-	return UUIDToString(uuid);
-}
+bool	 is_found = false;
+uint64_t esp_addr = 260422049255626;
 
 
-// デバイス名を取得
-wstring getDeviceName(uint64_t addr) {
-	auto dev = BluetoothLEDevice::FromBluetoothAddressAsync(addr).get();
-	if (dev == nullptr) {
-		return L"Unnamed";
-	}
-
-
-	// これやると次のキャラクテリスティックの取得が早くなる（全部の情報をここで取得している？）
-	auto gapServicesResult = dev.GetGattServicesForUuidAsync(GattServiceUuids::GenericAccess(), BluetoothCacheMode::Uncached).get();
-	if (gapServicesResult.Status() == GattCommunicationStatus::Success) {
-		IVectorView<GattDeviceService> gapServices = gapServicesResult.Services();
-		if (gapServices.Size() > 0) {
-			GattDeviceService genericAccessSvc = gapServices.GetAt(0);
-			if (genericAccessSvc) {
-				IVectorView<GattCharacteristic> gapDeviceNameChrs = genericAccessSvc.GetCharacteristics(GattCharacteristicUuids::GapDeviceName());
-				if (gapDeviceNameChrs.Size() == 1) {
-					GattCharacteristic gapDeviceNameChr = gapDeviceNameChrs.GetAt(0);
-
-					GattReadResult readRes = gapDeviceNameChr.ReadValueAsync().get();
-					if (readRes.Status() == GattCommunicationStatus::Success) {
-						DataReader reader = DataReader::FromBuffer(readRes.Value());
-						return reader.ReadString(reader.UnconsumedBufferLength()).c_str();
-					}
-				}
-			}
-		}
-	}
-
-	wstring name = dev.Name().c_str();
-	if (name.empty()) {
-		name = L"Unnamed Device";
-	}
-
-	return name;
-}
-
-
-// 受診時の動作
+// 受信時の動作
 vector<uint64_t> addr_list(0);
 
 void onReceived(BluetoothLEAdvertisementWatcher watcher, BluetoothLEAdvertisementReceivedEventArgs eventArgs) {
 	//cout << "Received Advertisement!" << endl;
 
 	auto addr = eventArgs.BluetoothAddress();
-	if (addr_list.empty() || !(find(addr_list.begin(), addr_list.end(), addr) != addr_list.end())) {
+	if (addr_list.empty() || !(find(addr_list.begin(), addr_list.end(), addr) != addr_list.end()) && eventArgs.RawSignalStrengthInDBm() > -80) {
+		if (addr == esp_addr) {
+			cout << "esp32 found!" << endl;
+		}
+
+
 		// デバイス名
 		cout << "(" << addr_list.size() << ") ";
-		wcout << getDeviceName(addr) << endl;
+		if (addr == esp_addr) {
+			wcout << getDeviceName(addr) << endl;
+		}
+		else {
+			cout << endl;
+		}
 
 
 		// 基本情報
@@ -202,28 +45,51 @@ void onReceived(BluetoothLEAdvertisementWatcher watcher, BluetoothLEAdvertisemen
 		cout << "  connectable?:" << eventArgs.IsConnectable() << endl;
 		cout << "  strength    :" << eventArgs.RawSignalStrengthInDBm() << "(dbm)" << endl;
 
-		//// サービスを取得
-		//auto device = BluetoothLEDevice::FromBluetoothAddressAsync(addr).get();
-		//auto result = device.GetGattServicesAsync(BluetoothCacheMode::Uncached).get();
-		
-		//// 成功時
-		//if (result.Status() == GattCommunicationStatus::Success) {
-		//	auto services = result.Services();
-		//	// サービス内のキャラクテリスティックを全て吐き出す
-		//	for (auto service : services) {
-		//		//wcout << L"UUID:" << service.Uuid() << endl;
-		//		auto uuid = service.Uuid();
-		//		wcout << L"  characteristic:" << ServiceToString(uuid) << endl;
-		//	}
-		//}
+
+		// キャラクテリスティックを取得
+		if (addr == esp_addr) {
+			auto device = BluetoothLEDevice::FromBluetoothAddressAsync(addr).get();
+			auto result = device.GetGattServicesAsync(BluetoothCacheMode::Uncached).get();
+
+			// 成功時
+			if (result.Status() == GattCommunicationStatus::Success) {
+				auto services = result.Services();
+				
+				for (auto service : services) {
+					auto uuid = service.Uuid();
+					wcout << endl << L"  Service:" << ServiceToString(uuid) << endl;
+
+					//auto characteristics = service.GetAllCharacteristics();						// 自分で作ったサービスからは取得できない
+					//auto characteristics = service.GetCharacteristics(uuid);						// 全てのサービスから取得不可
+					//auto characteristics = service.GetCharacteristicsForUuidAsync(uuid).get();	// 全てのサービスから取得不可
+					
+					auto result = service.GetCharacteristicsAsync().get();	// 全てのサービスから取得可
+
+					if (result.Status() == GattCommunicationStatus::Success) {
+						auto characteristics = result.Characteristics();
+
+						for (auto characteristic : characteristics) {
+							auto uuid = characteristic.Uuid();
+							wcout << L"  Characteristic:" << ServiceToString(uuid) << endl;
+						}
+					}
+
+
+				}
+			}
+		}
+
 
 		cout << endl;
-
-
 		addr_list.push_back(addr);
+
+
+		if (addr == esp_addr) {
+			is_found = true;
+		}
 	}
 
-	
+
 }
 
 
@@ -240,7 +106,7 @@ int main() {
 
 	// アドバタイズメントをスキャン
 	watcher.Start();				// 受信を開始 Enterが押されるまで続ける
-	while (getchar() != '\n');
+	while (/*getchar() != '\n' && */ is_found == false);
 	watcher.Stop();
 
 	// 通信
