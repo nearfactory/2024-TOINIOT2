@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\GitHub\\2024-TOINIOT2\\Program\\2024-New_abe\\2025-02-28_radioController\\BLEcpp\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAEcAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAIwGsAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-11T07:52:32.053Z",
               "IsPinned": true,
@@ -48,8 +48,7 @@
               "RelativeToolTip": "general.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHUAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-12T06:57:04.402Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T06:57:04.402Z"
             },
             {
               "$type": "Document",
@@ -61,8 +60,7 @@
               "RelativeToolTip": "general.hpp",
               "ViewState": "AgIAABwAAAAAAAAAAAAAACYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-12T06:56:05.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T06:56:05.745Z"
             }
           ]
         }

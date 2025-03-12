@@ -46,40 +46,6 @@ void onReceived(BluetoothLEAdvertisementWatcher watcher, BluetoothLEAdvertisemen
 		cout << "  strength    :" << eventArgs.RawSignalStrengthInDBm() << "(dbm)" << endl;
 
 
-		// キャラクテリスティックを取得
-		if (addr == esp_addr) {
-			auto device = BluetoothLEDevice::FromBluetoothAddressAsync(addr).get();
-			auto result = device.GetGattServicesAsync(BluetoothCacheMode::Uncached).get();
-
-			// 成功時
-			if (result.Status() == GattCommunicationStatus::Success) {
-				auto services = result.Services();
-				
-				for (auto service : services) {
-					auto uuid = service.Uuid();
-					wcout << endl << L"  Service:" << ServiceToString(uuid) << endl;
-
-					//auto characteristics = service.GetAllCharacteristics();						// 自分で作ったサービスからは取得できない
-					//auto characteristics = service.GetCharacteristics(uuid);						// 全てのサービスから取得不可
-					//auto characteristics = service.GetCharacteristicsForUuidAsync(uuid).get();	// 全てのサービスから取得不可
-					
-					auto result = service.GetCharacteristicsAsync().get();	// 全てのサービスから取得可
-
-					if (result.Status() == GattCommunicationStatus::Success) {
-						auto characteristics = result.Characteristics();
-
-						for (auto characteristic : characteristics) {
-							auto uuid = characteristic.Uuid();
-							wcout << L"  Characteristic:" << ServiceToString(uuid) << endl;
-						}
-					}
-
-
-				}
-			}
-		}
-
-
 		cout << endl;
 		addr_list.push_back(addr);
 
@@ -104,12 +70,69 @@ int main() {
 	watcher.Received(&onReceived);	// 受信時の動作を設定
 
 
+
 	// アドバタイズメントをスキャン
 	watcher.Start();				// 受信を開始 Enterが押されるまで続ける
-	while (/*getchar() != '\n' && */ is_found == false);
+	while (is_found == false);
 	watcher.Stop();
 
+
+
 	// 通信
+	auto device = BluetoothLEDevice::FromBluetoothAddressAsync(esp_addr).get();
+	auto result = device.GetGattServicesAsync(BluetoothCacheMode::Uncached).get();
+
+	vector<void*> characteristics(0);
+	
+
+	// 成功時
+	if (result.Status() == GattCommunicationStatus::Success) {
+		auto services = result.Services();
+
+		// サービスを取得
+		for (auto service : services) {
+			auto uuid = service.Uuid();
+			wcout << endl << L"  Service:" << ServiceToString(uuid) << endl;
+
+			// キャラクタリスティックを取得
+			auto result = service.GetCharacteristicsAsync().get();
+			if (result.Status() == GattCommunicationStatus::Success) {
+				auto _characteristics = result.Characteristics();
+
+				for (auto characteristic : _characteristics) {
+					auto uuid = characteristic.Uuid();
+					wcout << L"  Characteristic:" << ServiceToString(uuid) << endl;
+
+					// 書き込み
+					DataWriter writer;
+					writer.WriteString(L"fujiking!!\n");
+
+					auto status = characteristic.WriteValueWithResultAsync(writer.DetachBuffer()).get();
+					if (status.Status() == GattCommunicationStatus::Success) {
+						cout << "write success!" << endl;
+					}
+					else {
+						cout << "write failed!" << endl;
+					}
+
+					//characteristics.push_back(reinterpret_cast<void*>(&characteristic));
+				}
+			}
+
+
+		}
+	}
+	else {
+		cerr << "Failed to connect" << endl;
+	}
+
+	// 通信を終了
+	device.Close();
+
+	for (auto c : characteristics) {
+		
+	}
+	
 
 
 	return 0;
