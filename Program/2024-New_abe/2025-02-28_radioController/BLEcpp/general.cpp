@@ -150,3 +150,21 @@ std::wstring getDeviceName(uint64_t addr) {
 
 	return name;
 }
+
+bool sendWString(GattCharacteristic characteristic, wstring UUID, wstring send_str) {
+
+	if (UUIDToString(characteristic.Uuid()) == UUID){
+		DataWriter writer;
+		writer.WriteString(send_str);
+
+		auto status = characteristic.WriteValueWithResultAsync(writer.DetachBuffer()).get();
+		if (status.Status() == GattCommunicationStatus::Success) {
+			wcout << UUIDToString(characteristic.Uuid()) << L"    wrote: " << send_str;
+		}
+
+		return true;
+	}
+
+	return false;
+
+}

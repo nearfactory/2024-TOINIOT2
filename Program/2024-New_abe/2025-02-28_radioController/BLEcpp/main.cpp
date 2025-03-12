@@ -1,14 +1,28 @@
-#include "general.hpp"
+#include<stdlib.h>
+#include<Windows.h>
 
+#include "general.hpp"
 
 /*
 
-UUID etc...
-#define CENTRAL_NAME "TOINIOT2_CONTROLLER"
-#define SERVICE_UUID "6a10c527-bac9-485e-bdb8-462f3b72bd59"
-#define NOTIFY_UUID "07edec9a-716c-4379-b18b-2bb8eb1a2bea"
-#define CIPO_UUID "d4b0e22e-2597-48e3-886e-ea984f3f7db0"
-#define COPI_UUID "2234bf79-5ff8-4b47-a139-b9a20801eaf4"
+	UUID etc...
+	#define CENTRAL_NAME "TOINIOT2_CONTROLLER"
+	#define SERVICE_UUID "6a10c527-bac9-485e-bdb8-462f3b72bd59"
+	#define NOTIFY_UUID "07edec9a-716c-4379-b18b-2bb8eb1a2bea"
+	#define CIPO_UUID "d4b0e22e-2597-48e3-886e-ea984f3f7db0"
+	#define COPI_UUID "2234bf79-5ff8-4b47-a139-b9a20801eaf4"
+
+*/
+
+/*
+
+	送信
+
+	0: Lスティック左右
+	1: Lスティック上下
+	2: Rスティック左右
+	3: Rスティック上下
+	4: ボタン (キッカー / 姿勢リセット)
 
 */
 
@@ -82,8 +96,9 @@ int main() {
 	auto device = BluetoothLEDevice::FromBluetoothAddressAsync(esp_addr).get();
 	auto result = device.GetGattServicesAsync(BluetoothCacheMode::Uncached).get();
 
-	vector<void*> characteristics(0);
-	
+	IVectorView<GattCharacteristic> characteristics;
+
+
 
 	// 成功時
 	if (result.Status() == GattCommunicationStatus::Success) {
@@ -97,25 +112,16 @@ int main() {
 			// キャラクタリスティックを取得
 			auto result = service.GetCharacteristicsAsync().get();
 			if (result.Status() == GattCommunicationStatus::Success) {
-				auto _characteristics = result.Characteristics();
+				characteristics = result.Characteristics();
 
-				for (auto characteristic : _characteristics) {
-					auto uuid = characteristic.Uuid();
-					wcout << L"  Characteristic:" << ServiceToString(uuid) << endl;
+				for (auto characteristic : characteristics) {
+					// 格納
+					//characteristics.emplace_back(&characteristic);
 
-					// 書き込み
-					DataWriter writer;
-					writer.WriteString(L"fujiking!!\n");
+					// UUIDを表示
+					//auto uuid = characteristic.Uuid();
+					//wcout << L"  Characteristic:" << ServiceToString(uuid) << endl;
 
-					auto status = characteristic.WriteValueWithResultAsync(writer.DetachBuffer()).get();
-					if (status.Status() == GattCommunicationStatus::Success) {
-						cout << "write success!" << endl;
-					}
-					else {
-						cout << "write failed!" << endl;
-					}
-
-					//characteristics.push_back(reinterpret_cast<void*>(&characteristic));
 				}
 			}
 
@@ -126,13 +132,31 @@ int main() {
 		cerr << "Failed to connect" << endl;
 	}
 
+	system("cls");
+	for (const auto& c : characteristics) {
+		auto uuid = c.Uuid();
+		wcout << L"  Characteristic:" << ServiceToString(uuid) << endl;
+	}
+
+	cout << "begin writing" << endl;
+
+
+
+	int val = 0;
+	while (getchar() != ' ') {
+
+		for (auto characteristic : characteristics) {
+			if (sendWString(characteristic, L"D4B0E22E-2597-48E3-886E-EA984F3F7DB0", L"FUJIKI" + to_wstring(val))) {
+				val++;
+			}
+
+		}
+
+	}
+
 	// 通信を終了
 	device.Close();
 
-	for (auto c : characteristics) {
-		
-	}
-	
 
 
 	return 0;

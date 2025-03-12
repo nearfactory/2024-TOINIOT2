@@ -37,3 +37,4 @@ using namespace Windows::Storage::Streams;
 std::wstring UUIDToString(const winrt::guid& uuid);
 std::wstring ServiceToString(const winrt::guid& uuid);
 std::wstring getDeviceName(uint64_t addr);	// デバイス名を取得
+bool sendWString(GattCharacteristic characteristic, wstring UUID, wstring send_str);	// 送信
