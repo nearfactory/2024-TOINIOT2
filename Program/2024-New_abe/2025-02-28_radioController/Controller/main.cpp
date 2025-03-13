@@ -80,10 +80,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// サービスを取得
 		for (auto service : services) {
-			service.Min
 			auto uuid = service.Uuid();
 			//wcout << endl << L"  Service:" << ServiceToString(uuid) << endl;
-			service
+			//service
 
 			// キャラクタリスティックを取得
 			auto result = service.GetCharacteristicsAsync().get();
@@ -119,29 +118,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// 送信する文字列の準備
 		// -1024~1024 (11) -> -128 ~ 128 (8)
-		string send_str = "";
 		stringstream ss;
 		ss << L.x << " " << L.y << " " << R.x << " " << R.y << " " << (bool)(input & BUTTON_R) << " " << (bool)(input & BUTTON_Y);
-		/*send_str += to_string(L.x);
-		send_str += to_string(L.y);
-		send_str += to_string(R.x);
-		send_str += to_string(R.y);
-		send_str += to_string((bool)(input & BUTTON_R));
-		send_str += to_string((bool)(input & BUTTON_Y));
-		send_str += '\0';*/
-		send_str = ss.str();
-		//send_str += (L.x / 8) + 1;
-		//send_str += (L.y / 8) + 1;
-		//send_str += (R.x / 8) + 1;
-		//send_str += (R.y / 8) + 1;
 
-		//int val = 1;
-		//if (input & BUTTON_R) {
-		//	val += 2;
-		//}if (input & BUTTON_Y) {
-		//	val += 4;
-		//}
-		//send_str += val;
+		string send_str = ss.str();
 
 		for (auto characteristic : characteristics) {
 			sendWString(characteristic, L"D4B0E22E-2597-48E3-886E-EA984F3F7DB0", StringToWstring(send_str));

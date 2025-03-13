@@ -9,11 +9,15 @@ void Sub::begin(){
 void Sub::read(){
   if(Serial7.available()){
     str = "";
-    while(Serial7.available()){
-      char c = (char)Serial7.read();
-      str += c;
-      Serial.print(c);
+    char c = ' ';
+    while(c!='_'){
+      if(Serial7.available()){
+        c = (char)Serial7.read();
+        str += c;
+      }
+
     }
+
   }
 
   return;

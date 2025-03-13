@@ -114,18 +114,19 @@ void loop() {
   if(connected){
     if(is_changed){
       Serial.print(CIPO_str.c_str());
-      for(int i=0;i<CIPO_str.size();i++){
-        // if(i==CIPO_str.size()-1){
-        // }else if(i==CIPO_str.size()-2){
-        //   Serial.printf("%d", CIPO_str[i]);
-        // }else{
-        //   Serial.printf("%d ", CIPO_str[i]);
-        // }
-        int val = CIPO_str[i];
-        if(CIPO_str > 127)  val = 127-val;
-        Serial.printf("%d ", val);
-      }
+      // for(int i=0;i<CIPO_str.size();i++){
+      //   // if(i==CIPO_str.size()-1){
+      //   // }else if(i==CIPO_str.size()-2){
+      //   //   Serial.printf("%d", CIPO_str[i]);
+      //   // }else{
+      //   //   Serial.printf("%d ", CIPO_str[i]);
+      //   // }
+      //   int val = CIPO_str[i];
+      //   if(CIPO_str > 127)  val = 127-val;
+      //   Serial.printf("%d ", val);
+      // }
       Serial1.print(CIPO_str.c_str());
+      Serial1.print("_");
       is_changed = false;
     }
     // COPI -> setValue(COPI_str.c_str());
