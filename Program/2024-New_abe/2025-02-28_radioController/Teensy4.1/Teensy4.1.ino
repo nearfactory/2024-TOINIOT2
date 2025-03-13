@@ -72,10 +72,10 @@ void loop() {
   
 
   // main
-  if(sub.str == "k"){
-    sub.kick();
-  }else{
-    motor.moveDir(0, 40);
+  int x=0, y=0;
+  int rotate = 0;
+  for(int i=0;i<4;i++){
+    
   }
 
 
