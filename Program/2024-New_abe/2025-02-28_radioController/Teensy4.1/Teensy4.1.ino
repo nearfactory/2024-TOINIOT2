@@ -112,7 +112,7 @@ void loop() {
   if(x == 0){
     x = 1;
   }
-    move_dir = degrees(atan2((double)y,(double)x));
+  move_dir = degrees(atan2((double)y,(double)x)) + 90.0 - dir.dir;
   double power = sqrt(x*x+y*y)*120.0 / 1414.0;
   if(power > 100.0) power = 100.0;
   // Serial.printf("dir:%lf power:%lf\n", move_dir, power);
@@ -124,16 +124,17 @@ void loop() {
   }
   if(power > 0.1){
     if(reset){
-      motor.moveDir(move_dir+90.0, 100);
+      motor.moveDir(move_dir, 100);
     }else{
-      motor.moveDir(move_dir+90.0, 50);
+      motor.moveDir(move_dir, 50);
     }
 
   }else{
     motor.moveDir(0,0);
   }
 
-  motor.setDirAdd(dir.dir, dir.dir_prev, dir.p_gain, dir.d_gain);
+  double ofs = rotate / 60.0;
+  motor.setDirAdd(dir.dir - ofs, dir.dir_prev, dir.p_gain, dir.d_gain);
 
   // display.addValiables("x:"+to_string(x), nullptr);
   // display.addValiables("y:"+to_string(y), nullptr);

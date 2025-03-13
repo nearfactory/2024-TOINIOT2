@@ -9,6 +9,7 @@
 #include <Adafruit_GFX.h>
 #include <Wire.h>
 
+#include "dir.hpp"
 #include "Motor.hpp"
 #include "Sub.hpp"
 #include "UI.hpp"

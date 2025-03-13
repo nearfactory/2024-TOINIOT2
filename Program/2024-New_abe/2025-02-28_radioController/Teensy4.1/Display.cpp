@@ -141,6 +141,8 @@ void Display::Kicker(){
 
   printd(120,16,"test kick",ALIGN::RIGHT);
   if(ui.buttonUp(1)) sub.kick();
+  printd(120,32, "reset dir",ALIGN::RIGHT);
+  if(ui.buttonUp(2)) dir.setDefault();
   
   return;
 }
