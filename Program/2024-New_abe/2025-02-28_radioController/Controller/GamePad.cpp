@@ -185,4 +185,5 @@ void DrawGamepadScreen(int num, int input, Stick L, Stick R){
 	DrawFormatString(8, 8, white,
 		"Num:%d\nInput:%s\n%d\n\nL\n x:%d\n y:%d\n deg:%lf\n len:%lf\n\nR\n x:%d\n y:%d\n",
 		num, input_str, input, L.x, L.y, L.rad * 180 / PI, L.len, R.x, R.y);
+
 }

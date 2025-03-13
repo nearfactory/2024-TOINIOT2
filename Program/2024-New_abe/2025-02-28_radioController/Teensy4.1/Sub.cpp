@@ -7,11 +7,13 @@ void Sub::begin(){
 
 
 void Sub::read(){
-  str = "";
-  while(Serial7.available()){
-    char c = (char)Serial7.read();
-    str += c;
-    Serial.print(c);
+  if(Serial7.available()){
+    str = "";
+    while(Serial7.available()){
+      char c = (char)Serial7.read();
+      str += c;
+      Serial.print(c);
+    }
   }
 
   return;

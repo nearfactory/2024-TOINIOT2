@@ -44,7 +44,6 @@ void loop() {
   sub.read();
   ui.read();
 
-
   // ディスプレイ
   if(ui.is_toggle){
     Serial.println("display");

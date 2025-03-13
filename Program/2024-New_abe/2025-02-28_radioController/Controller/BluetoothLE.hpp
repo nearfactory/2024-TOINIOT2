@@ -34,6 +34,7 @@ using namespace Windows::Storage::Streams;
 
 
 
+extern bool is_found;
 extern uint64_t esp_addr;
 
 struct Deviceinfo_t {
@@ -48,5 +49,7 @@ extern vector<uint64_t> addr_list;
 
 
 
+std::wstring UUIDToString(const winrt::guid& uuid);
 wstring getDeviceName(uint64_t addr);
 void onReceived(BluetoothLEAdvertisementWatcher watcher, BluetoothLEAdvertisementReceivedEventArgs eventArgs);
+bool sendWString(GattCharacteristic characteristic, wstring UUID, wstring send_str);	// ëóêM

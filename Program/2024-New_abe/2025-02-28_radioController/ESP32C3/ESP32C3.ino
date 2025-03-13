@@ -20,7 +20,9 @@
 
 bool connected = true;
 bool prev_connected = false;
-std::string CIPO_str;
+std::string CIPO_str      = "";
+std::string CIPO_str_prev = "";
+bool is_changed = false;
 BLEServer *central;
 BLECharacteristic *NOTIFY = nullptr;
 BLECharacteristic *CIPO = nullptr;
@@ -40,7 +42,13 @@ class CharacteristicCallbacks : public BLECharacteristicCallbacks{
   void onWrite(BLECharacteristic *_characteristic){
     String _CIPO = _characteristic -> getValue();
     if(_CIPO.length()>0){
+      CIPO_str_prev = CIPO_str;
       CIPO_str = _CIPO.c_str();
+
+      if(CIPO_str != CIPO_str_prev){
+        is_changed = true;
+      }
+
     }
   }
 };
@@ -104,8 +112,22 @@ void loop() {
 
   // BLE
   if(connected){
-    Serial.print(CIPO_str.c_str());
-    Serial1.print(CIPO_str.c_str());
+    if(is_changed){
+      Serial.print(CIPO_str.c_str());
+      for(int i=0;i<CIPO_str.size();i++){
+        // if(i==CIPO_str.size()-1){
+        // }else if(i==CIPO_str.size()-2){
+        //   Serial.printf("%d", CIPO_str[i]);
+        // }else{
+        //   Serial.printf("%d ", CIPO_str[i]);
+        // }
+        int val = CIPO_str[i];
+        if(CIPO_str > 127)  val = 127-val;
+        Serial.printf("%d ", val);
+      }
+      Serial1.print(CIPO_str.c_str());
+      is_changed = false;
+    }
     // COPI -> setValue(COPI_str.c_str());
     // COPI -> notify();
   }

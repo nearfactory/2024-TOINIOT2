@@ -1,5 +1,7 @@
 #include "DxLib.h"
 
+#include<sstream>
+
 #include "BluetoothLE.hpp"
 #include "General.hpp"
 #include "GamePad.hpp"
@@ -22,6 +24,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	SetUseMaskScreenFlag(TRUE);				//書かなくても良い。マスク使うときだけ書こう
 
 
+	init_apartment(apartment_type::multi_threaded);	// 初期化
 	if (DxLib_Init() == -1) {
 		return -1;
 	}
@@ -29,7 +32,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	SetFontSize(font_size);
 
 
-	
+
+
 	// スキャン準備
 	BluetoothLEAdvertisementWatcher watcher;
 	watcher.Received(&onReceived);	// 受信時の動作を設定
@@ -37,32 +41,62 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// アドバタイズメントをスキャン
 	watcher.Start();				// 受信を開始 Enterが押されるまで続ける
-	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_RETURN) == FALSE && CheckHitKey(KEY_INPUT_ESCAPE) == FALSE) {
-		ClearDrawScreen();
-		DrawBox(0, 0, WINDOW_W, WINDOW_H, gray, TRUE);
+	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_RETURN) == FALSE && CheckHitKey(KEY_INPUT_ESCAPE) == FALSE && is_found == false) {
+		//ClearDrawScreen();
+		//DrawBox(0, 0, WINDOW_W, WINDOW_H, gray, TRUE);
 
-		DrawString(8, 8, "Scanning advertisement...", white);
+		//DrawString(8, 8, "Scanning advertisement...", white);
+		//wstring str = L"";
 
-		wstring str = L"";
+		//for (const auto& device : device_list) {
 
-		for (const auto& device : device_list) {
+		//	//str += "\nname: ";
+		//	//str += device.name;
+		//	str += L"\n  uuid: ";
+		//	str += to_wstring(device.uuid);
+		//	str += L"\n  connectable: ";
+		//	str += to_wstring(device.is_connectable);
+		//	str += L"\n  strength: ";
+		//	str += to_wstring(device.strength);
+		//	str += L"\n\n";
+		//}
 
-			//str += "\nname: ";
-			str += device.name;
-			str += L"\n  uuid: ";
-			str += to_wstring(device.uuid);
-			str += L"\n  connectable: ";
-			str += to_wstring(device.is_connectable);
-			str += L"\n  strength: ";
-			str += to_wstring(device.strength);
-			str += L"\n\n";
-		}
+		//DrawString(8, 64, WstringToString(str).c_str(), white);
 
-		DrawString(8, 64, WstringToString(str).c_str(), white);
-
-		ScreenFlip();
+		//ScreenFlip();
 	}
 	watcher.Stop();
+
+
+
+	// 通信
+	auto device = BluetoothLEDevice::FromBluetoothAddressAsync(esp_addr).get();	// err
+	auto result = device.GetGattServicesAsync(BluetoothCacheMode::Uncached).get();
+	IVectorView<GattCharacteristic> characteristics;
+
+	// 接続成功時
+	if (result.Status() == GattCommunicationStatus::Success) {
+		auto services = result.Services();
+
+		// サービスを取得
+		for (auto service : services) {
+			service.Min
+			auto uuid = service.Uuid();
+			//wcout << endl << L"  Service:" << ServiceToString(uuid) << endl;
+			service
+
+			// キャラクタリスティックを取得
+			auto result = service.GetCharacteristicsAsync().get();
+			if (result.Status() == GattCommunicationStatus::Success) {
+				characteristics = result.Characteristics();
+			}
+
+		}
+	}
+	else {
+		DxLib_End();
+		return -1;
+	}
 
 
 
@@ -83,6 +117,36 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// compute
 
+		// 送信する文字列の準備
+		// -1024~1024 (11) -> -128 ~ 128 (8)
+		string send_str = "";
+		stringstream ss;
+		ss << L.x << " " << L.y << " " << R.x << " " << R.y << " " << (bool)(input & BUTTON_R) << " " << (bool)(input & BUTTON_Y);
+		/*send_str += to_string(L.x);
+		send_str += to_string(L.y);
+		send_str += to_string(R.x);
+		send_str += to_string(R.y);
+		send_str += to_string((bool)(input & BUTTON_R));
+		send_str += to_string((bool)(input & BUTTON_Y));
+		send_str += '\0';*/
+		send_str = ss.str();
+		//send_str += (L.x / 8) + 1;
+		//send_str += (L.y / 8) + 1;
+		//send_str += (R.x / 8) + 1;
+		//send_str += (R.y / 8) + 1;
+
+		//int val = 1;
+		//if (input & BUTTON_R) {
+		//	val += 2;
+		//}if (input & BUTTON_Y) {
+		//	val += 4;
+		//}
+		//send_str += val;
+
+		for (auto characteristic : characteristics) {
+			sendWString(characteristic, L"D4B0E22E-2597-48E3-886E-EA984F3F7DB0", StringToWstring(send_str));
+		}
+
 
 
 		// draw	
@@ -95,15 +159,34 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// gamepad
 		DrawGamepadScreen(num, input, L, R);
 
+
+		// send str
+		string draw_str = "";
+		for (auto c : send_str) {
+			for (int i = 0; i < sizeof(c) * 8; i++) {
+				if ((c >> (8 - 1 - i)) & 1) {
+					draw_str += "1";
+				}
+				else {
+					draw_str += "0";
+				}
+			}
+			draw_str += " ";
+		}
+
+		DrawString(8, WINDOW_H - 8 - font_size, draw_str.c_str(), white);
+
 		// frame rate
 		double frame_rate = 1000.0 / (GetNowCount() - prev_time);
 		DrawFormatString(WINDOW_W - 8 - GetDrawFormatStringWidth("%d fps", (int)frame_rate), 8, white, "%d fps", (int)frame_rate);
 		prev_time = GetNowCount();
 
 
+
 		ScreenFlip();
 	}
 
+	device.Close();
 	DxLib_End();    // DXライブラリ終了処理
 
 	return 0;
