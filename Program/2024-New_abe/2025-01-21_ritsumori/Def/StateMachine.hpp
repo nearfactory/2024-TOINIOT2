@@ -5,7 +5,9 @@ enum class State : int{
   LineTrace,
   KeeperDash,
   BackToGoal_Weak,
-  BackToGoal_Strong
+  BackToGoal_Strong,
+  Center,
+  Test
 };
 
 extern State state;

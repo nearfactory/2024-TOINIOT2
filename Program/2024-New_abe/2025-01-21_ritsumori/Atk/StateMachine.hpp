@@ -1,6 +1,6 @@
 #pragma once
 
-#define COMPILE 72
+#define COMPILE 76
 
 enum class State : int{
   KickOff,      // キックオフ
@@ -13,6 +13,7 @@ enum class State : int{
   NoBall,       // ボールなし
   Neutral,      // (未使用)中立点から
   Oshikomi,     // 押し込み
+  Ritsumori,
   Test          // テスト
 };
 

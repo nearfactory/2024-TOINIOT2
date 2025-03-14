@@ -32,6 +32,23 @@ void Dir::read(){
   dir = dir_data.orientation.x-default_dir;
   if(dir<-180) dir += 360;
   if(dir>180)  dir -= 360;
+
+
+  // 加速度
+  sensors_event_t accel_data{};
+  bno.getEvent(&accel_data, Adafruit_BNO055::VECTOR_ACCELEROMETER);
+  x = accel_data.acceleration.x + 0.3;
+  y = accel_data.acceleration.y + 0.3;
+  z = accel_data.acceleration.z - 9.5;
+  float accel = sqrt(x*x + y*y);
+
+  queue[id] = accel;
+  id = (id+1) % 20;
+  
+  accel_avr = 0;
+  for(auto q:queue) accel_avr += q;
+  accel_avr /= 20.0f;
+
   
   return;
 }

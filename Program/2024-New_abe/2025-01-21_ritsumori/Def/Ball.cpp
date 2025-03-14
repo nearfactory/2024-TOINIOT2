@@ -28,45 +28,45 @@ void Ball::read(){
       max = ball[i];
       max_id = i;
     }
+    // Serial.printf("%d\t", ball[i]);
   }
+  // Serial.println();
 
-  for(int i=0;i<16;i++){
+  for(int i=0;i<NUM;i++){
     float sensor_dir = radians(i*360/NUM);
     x += (1023 - ball[i]) * cos(sensor_dir);
     y += (1023 - ball[i]) * sin(sensor_dir);
   }
 
-  dir = -degrees(atan2(y, x));
   dir_prev = dir;
+  dir = -degrees(atan2(y, x));
+
+  // 平均
+  float diff = dir - dir_prev;
+  queue[id] = abs(diff);
+  id = (id+1) % 20;
+
+  diff = 0;
+  for(auto q:queue) diff += q;
+  diff_avr = diff / 20.0f;
 
   
   is_exist = distance < DISTANCE_MAX;
   
-  is_prev_hold = is_hold;
 
-  // 保持
-  // if(is_hold){
-  //   // 持ち終わり
-  //   if(abs(dir) > 30.0 || distance > 6600){
-  //     is_hold = false;
-  //     not_hold_begin = millis();
-  //   }else{
-  //     // 持ち続けている
-  //     hold_time = millis() - hold_begin;
-  //     not_hold_time = 0;
-  //   }
-  // }else{
-  //   // 持ち始め
-  //   if(abs(dir) < 3 && distance < 6000 && sub.is_hold){
-  //     is_hold = true;
-  //     hold_begin = millis();
-  //   }else{
-  //     // 持っていないのが継続している
-  //     hold_time = 0;
-  //     not_hold_time = millis() - not_hold_begin;
-  //   }
-  // }
+
+  is_hold_prev = is_hold;
   is_hold = sub.is_hold;
+  // 保持時間
+  if(is_hold_prev == false && is_hold == true){
+    hold_begin = millis();
+  }
+  if(is_hold){
+    hold_time = millis()-hold_begin;
+  }else{
+    hold_time = 0;
+  }
+
 
   return;
 }

@@ -10,7 +10,6 @@ void Line::begin(int rate){
 
 
 void Line::read(){
-
   // 必要な分のデータを受信していない場合処理を飛ばす
   if(Serial1.available()<STR_SIZE){
     return;
@@ -32,7 +31,6 @@ void Line::read(){
 
   // 読み出して格納
   num = 0;
-  on = false;
   for(int i=0;i<6;i++){
     char c = Serial1.read();
     for(int j=0;j<5;j++){
@@ -40,33 +38,44 @@ void Line::read(){
     }
   }
 
+
+
+  // 壊れたセンサを反応しいないように修正
+  line[2] = false;
+  // for(auto l:line) Serial.printf("%d ", l);
+  // Serial.println();
+  
+
+
+  // 調べる
   for(int i=0;i<INNER_NUM;i++){
     if(line[i]) num++;
   }
+  // 外側
+  front = line[INNER_NUM];
+  left  = line[INNER_NUM+1];
+  back  = line[INNER_NUM+2];
+  right = line[INNER_NUM+3];
 
-  if(num>0){
-    on = true;
-  }else{
-    on = false;
-  }
 
 
+  outside = front | left | back | right;
+
+  angel = num > 0;
+  on = angel | outside;
+  // 踏んでいない場合に処理をスキップ
   if(!on){
     return;
   }
 
 
-  // 壊れたセンサを反応しいないように修正
-
-
 
   // 角度算出
   vec.clear();
-  vec1.set(10.0f, 10.0f);   // ちいさいx, y
-  vec2.set(-10.0f, -10.0f); // でかいx, y
 
 
 
+  // 初期化
   int index = 0;
   Vec2 v[INNER_NUM];
   int count[INNER_NUM];
@@ -78,6 +87,7 @@ void Line::read(){
   }
 
 
+  // 連続する部分をひとまとめにする
   for(int i=0;i<INNER_NUM;i++){
     if(line[i]){
       float sensor_dir = radians(i*360/INNER_NUM);
@@ -91,53 +101,82 @@ void Line::read(){
     }
   }
 
-  if(index>0){
-    area = index;
-  }
-
+  // ループの切れ目を処理
   if(line[INNER_NUM-1]){
     v[0].x += v[index].x;
     v[0].y += v[index].y;
   }
 
+  area = index;
+
   
+  // 合成
   for(int i=0;i<INNER_NUM;i++){
-    // Serial.printf("x:%f y:%f ", v[i].x, )
-    count[i]--;
-    if(count[i] < 1) count[i] = 1;
+    // count[i]--;
+    // if(count[i] < 1) count[i] = 1;
     if(count[i] != 0){
       v[i].x /= (float)count[i];
       v[i].y /= (float)count[i];
-      // v[i].x += 0.2;
       vec.x += v[i].x;
       vec.y += v[i].y;
     }
   }
 
 
+  // 外側のみ反応している場合
+  if(!angel){
+    if(front) vec.x = 1;
+    if(left)  vec.y = 1;
+    if(back)  vec.x = -1;
+    if(right) vec.y = -1;
+  }
 
-  // ラインのベクトル
 
-  vec.y += 0.2;
+
+  // 角度・距離を算出
+  dir_prev = dir;
   dir = -degrees(atan2(vec.y, vec.x));
+  if(index == 0) index = 1;
   distance = vec.len() / (float)index;
+
 
   // Serial.printf("dir:%f area:%d x:%f y:%f \n", dir, index, vec.x, vec.y);
 
 
 
-  // 白線上か  
-  on = num > 0;
+
+  // 踏み始め
+  if(prev_on == false && on == true){
+    dir_prev = dir;
+  }
+
+  // 継続して踏んでいる場合
+  else if(prev_on == true && on == true){
+
+    // 前回値の±450°を有効な範囲とする
+    float range = 22.5;
 
 
+    float range_start = normalizeAngle(dir_prev - range);
+    float range_end   = normalizeAngle(dir_prev + range);
+    
 
-  // 外側
-  outside = front | left | back | right;
+    // ±180°の壁をまたがない場合
+    if(range_start <= range_end){
+      if(dir <= range_start ||  range_end <= dir){
+        dir = dir_prev;
+      }
+    }else{
+      if(range_end <= dir && dir <= range_start){
+        dir = dir_prev;
+      }
+    }
+
+  }
 
 
 
   return;
-
 }
 
 

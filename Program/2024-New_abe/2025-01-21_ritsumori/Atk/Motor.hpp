@@ -30,7 +30,8 @@ private:
   float motor_prev    [NUM] = {0};  // 前ループのプログラマ用の値
   float motor_add     [NUM] = {0};  // Rawに加算(主に姿勢制御)
 
-  static constexpr uint8_t QUEUE_SIZE = 10;   // 出力値の移動平均のサンプル数
+  static constexpr uint8_t QUEUE_SIZE = 32;   // 出力値の移動平均のサンプル数
+  // static constexpr uint8_t QUEUE_SIZE = 24;   // Test 出力値の移動平均のサンプル数
   float queue[QUEUE_SIZE][NUM]{};             // 出力値のキュー
 public:
   float motor_raw[NUM] = {0};  // モーターに反映するやつ

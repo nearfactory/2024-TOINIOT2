@@ -13,24 +13,29 @@ private:
   };
 
   static constexpr uint16_t DISTANCE_MIN = 7000;
-  static constexpr uint16_t DISTANCE_MAX = 16200;
+  static constexpr uint16_t DISTANCE_MAX = 14500;
   uint16_t distance_h = 13200;
 
-  uint32_t hold_begin = 0;
-  uint32_t not_hold_begin = 0;
+  uint16_t  ball[NUM]{0};
+  uint32_t  hold_begin = 0;
+  uint32_t  not_hold_begin = 0;
+
+  float     queue[20]{};
+  int       id = 0;
 
 public:
-  uint16_t ball[NUM]{0};
-  float    dir = 0;
-  float    dir_prev = 0;
-  uint16_t distance = 0;
+  float     dir = 0;
+  float     dir_prev = 0;
+  uint16_t  distance = 0;
 
-  bool     is_exist = true;
+  float     diff_avr = 0;
 
-  bool     is_hold = false;
-  bool     is_prev_hold = false;
-  uint32_t hold_time = 0;
-  uint32_t not_hold_time = 0;
+  bool      is_exist = true;
+
+  bool      is_hold = false;
+  bool      is_hold_prev = false;
+  uint32_t  hold_time = 0;
+  uint32_t  not_hold_time = 0;
 
   Ball() : dir(0), distance(0), is_exist(true), is_hold(false), hold_time(0) {}
 

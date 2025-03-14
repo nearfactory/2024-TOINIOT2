@@ -14,9 +14,15 @@ private:
 
   float default_dir;
 
+  float queue[20]{};
+  int   id = 0;
+
 public:
   float dir;
   float dir_prev;
+
+  float x, y, z;
+  float accel_avr;
 
   float p_gain = 0.45, d_gain = 0.64;
 

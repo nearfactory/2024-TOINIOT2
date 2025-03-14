@@ -27,9 +27,6 @@ extern UI ui;
 extern State state;
 
 
-extern float line_dir;
-extern float follow_dir;
-
 using namespace std;
 
 
@@ -57,7 +54,8 @@ enum MODE : uint8_t{
   LINE,
   MOTOR,
   VARIABLES,
-  GAME
+  GAME,
+  TEST
 };
 
 
@@ -71,7 +69,7 @@ private:
   
   Adafruit_SSD1306 display; 
 
-  static constexpr uint8_t MODE_NUM = 10;
+  static constexpr uint8_t MODE_NUM = 11;
   
   // デバッグ用
   vector<string> variables;
@@ -81,7 +79,7 @@ private:
 public:
   uint8_t mode = 0;
 
-  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::LINE) {}
+  Display() : display(DISPLAY_W, DISPLAY_H, &Wire2, DISPLAY_RESET), variables(), mode(MODE::VARIABLES) {}
 
   void begin();
   void clear();
@@ -106,6 +104,7 @@ public:
   void Motor();
   void Valiables();
   void Game();
+  void Test();
 };
 
 extern Display display;

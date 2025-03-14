@@ -111,9 +111,8 @@ void Motor::moveDirFast(float dir, uint8_t power){
     }
   }
 
-  float rate = 0;
   for(int i=0;i<NUM;i++){
-    motor[i] = motor[i] * 100 / max;
+    motor[i] = motor[i] * power / max;
   }
 
   return;
@@ -124,8 +123,8 @@ void Motor::moveDirFast(float dir, uint8_t power){
 
 
 void Motor::avr() {
-  static int queue_index = 0;           // 出力値のキューのインデックス
-  static float queue_sum[NUM] = {0.0f}; // 各モーターのキュー内の合計値を記録
+  static int   queue_index = 0;       // 出力値のキューのインデックス
+  static float queue_sum[NUM] = {0};  // 各モーターのキュー内の合計値を記録
 
   for (int i = 0; i < NUM; i++) {
     // キューの合計値から古い値を引き、新しい値を足す
@@ -155,7 +154,9 @@ void Motor::write(){
 
     raw_sum += abs(motor_raw[i]);
 
-    digitalWrite( PIN[i][PH], motor_raw[i]>0 );
+
+    if(i != 3)  digitalWrite( PIN[i][PH], motor_raw[i]<0 );
+    else        digitalWrite( PIN[i][PH], motor_raw[i]>0 );
     analogWrite ( PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100) );
   }
 
