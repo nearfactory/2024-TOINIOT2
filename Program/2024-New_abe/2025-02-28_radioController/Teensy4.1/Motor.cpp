@@ -6,8 +6,11 @@ void Motor::begin(){
   for(int i=0;i<NUM;i++){
     pinMode(PIN[i][EN], OUTPUT);
     pinMode(PIN[i][PH], OUTPUT);
+    balance[i] = 10.0;
     analogWriteFrequency(PIN[i][EN], FREQUENCY);
   }
+
+  balance[1] = 8.0;
   
   Serial.println("motor setup");
   return;
@@ -157,7 +160,7 @@ void Motor::write(){
 
     if(i != 3)  digitalWrite( PIN[i][PH], motor_raw[i]<0 );
     else        digitalWrite( PIN[i][PH], motor_raw[i]>0 );
-    analogWrite ( PIN[i][EN], (uint8_t)abs(motor_raw[i]*255/100) );
+    analogWrite ( PIN[i][EN], (uint8_t)abs(motor_raw[i]*balance[i]*255.0/1000.0) );
   }
 
   return;

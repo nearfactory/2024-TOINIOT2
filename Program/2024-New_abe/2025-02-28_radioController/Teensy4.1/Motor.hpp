@@ -37,6 +37,8 @@ public:
   float motor_raw[NUM] = {0};  // モーターに反映するやつ
   float raw_sum = 0;
 
+  float balance[NUM] = {0};
+
   void begin();
 
   void set(float m1, float m2, float m3, float m4);

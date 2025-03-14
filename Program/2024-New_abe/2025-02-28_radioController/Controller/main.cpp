@@ -119,7 +119,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// ‘—M‚·‚é•¶š—ñ‚Ì€”õ
 		// -1024~1024 (11) -> -128 ~ 128 (8)
 		stringstream ss;
-		ss << L.x << " " << L.y << " " << R.x << " " << R.y << " " << (bool)(input & BUTTON_R) << " " << (bool)(input & BUTTON_Y);
+		ss << L.x << " " << L.y << " " << R.x << " " << R.y << " " << (bool)(input & BUTTON_L) << " " << (bool)(input & BUTTON_R) << " " << (bool)(input & BUTTON_Y);
 
 		string send_str = ss.str();
 

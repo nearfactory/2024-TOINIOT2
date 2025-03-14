@@ -97,14 +97,16 @@ void loop() {
   auto strs = splitBySpace(sub.str);
   int x=0, y=0;
   int rotate = 0;
-  int reset=0, kick=0;
-  if(strs.size() > 5){
+  int boost=0, kick=0, reset=0;
+  if(strs.size() > 6){
     for(size_t i=0;i<strs.size();i++){ 
       if(i == 0) x = safeStoi(strs[i], 0);
       if(i == 1) y = safeStoi(strs[i], 0);
-      if(i == 2) rotate = safeStoi(strs[i], 0);
-      if(i == 4) kick = safeStoi(strs[i], 0);
-      if(i == 5) reset = safeStoi(strs[i], 0);
+      // if(i == 2) rotate = safeStoi(strs[i], 0);  // 正面から見る場合
+      if(i == 3) rotate = safeStoi(strs[i], 0);     // 横から見る場合
+      if(i == 4) boost = safeStoi(strs[i], 0);
+      if(i == 5) kick = safeStoi(strs[i], 0);
+      if(i == 6) reset = safeStoi(strs[i], 0);
     }
   }
 
@@ -117,23 +119,21 @@ void loop() {
   if(power > 100.0) power = 100.0;
   // Serial.printf("dir:%lf power:%lf\n", move_dir, power);
 
-  // motor.moveDir(0,80);
-
   if(kick){
     sub.kick();
   }
   if(power > 0.1){
-    if(reset){
-      motor.moveDir(move_dir, 100);
+    if(boost){
+      motor.moveDirFast(move_dir, 100);
     }else{
-      motor.moveDir(move_dir, 50);
+      motor.moveDir(move_dir, 45);
     }
 
   }else{
     motor.moveDir(0,0);
   }
 
-  double ofs = rotate / 60.0;
+  double ofs = rotate / 45.0;
   motor.setDirAdd(dir.dir - ofs, dir.dir_prev, dir.p_gain, dir.d_gain);
 
   // display.addValiables("x:"+to_string(x), nullptr);
@@ -146,6 +146,11 @@ void loop() {
     // Serial.println("display");
 
     if(ui.buttonUp(0)) display.next();
+
+    display.addValiables("m1:"+to_string(motor.balance[0] * 10), &motor.balance[0]);
+    display.addValiables("m2:"+to_string(motor.balance[1] * 10), &motor.balance[1]);
+    display.addValiables("m3:"+to_string(motor.balance[2] * 10), &motor.balance[2]);
+    display.addValiables("m4:"+to_string(motor.balance[3] * 10), &motor.balance[3]);
 
     display.debug();
     display.draw();
