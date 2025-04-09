@@ -36,13 +36,16 @@ void setup() {
   Serial.println("2024-12-24 TOINIOT2 kansai");
 
   display.begin();
-  dir.begin();
+  // dir.begin();
   motor.begin();
   sub.begin();
   ui.begin();
 
   // calibration
   uint8_t system=0, gyro=0, accel=0, mag=0;
+  system = 3;
+  gyro = 3;
+  mag = 3;
   while(system<3 || gyro<3 || mag<3){
     dir.calibration(&system, &gyro, &accel, &mag);
     digitalWrite(LED_BUILTIN, HIGH);
@@ -88,7 +91,7 @@ int safeStoi(const std::string& str, int defaultValue = 0) {
 
 
 void loop() {
-  dir.read();
+  // dir.read();
   sub.read();
   ui.read();
   

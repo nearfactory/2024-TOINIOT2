@@ -111,6 +111,21 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		GetJoypadDirectInputState(DX_INPUT_PAD1, &dinput);
 
 		Stick L{ dinput.X, dinput.Y }, R{ dinput.Rx, dinput.Ry };
+		bool boost = (bool)(input & BUTTON_L);
+		bool kick = (bool)(input & BUTTON_R);
+		bool reset = (bool)(input & BUTTON_Y);
+
+		if (num == 0) {
+			L.x = CheckHitKey(KEY_INPUT_A) ? -1000 : L.x;
+			L.x = CheckHitKey(KEY_INPUT_D) ? 1000 : L.x;
+			L.y = CheckHitKey(KEY_INPUT_W) ? -1000 : L.y;
+			L.y = CheckHitKey(KEY_INPUT_S) ? 1000 : L.y;
+			R.y = CheckHitKey(KEY_INPUT_LEFT) ? -1000 : R.y;
+			R.y = CheckHitKey(KEY_INPUT_RIGHT) ? 1000 : R.y;
+			boost = CheckHitKey(KEY_INPUT_LSHIFT) ? true : false;
+			kick = CheckHitKey(KEY_INPUT_SPACE) ? true : false;
+			reset = CheckHitKey(KEY_INPUT_R) ? true : false;
+		}
 
 
 
@@ -119,7 +134,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// ‘—M‚·‚é•¶š—ñ‚Ì€”õ
 		// -1024~1024 (11) -> -128 ~ 128 (8)
 		stringstream ss;
-		ss << L.x << " " << L.y << " " << R.x << " " << R.y << " " << (bool)(input & BUTTON_L) << " " << (bool)(input & BUTTON_R) << " " << (bool)(input & BUTTON_Y);
+		ss << L.x << " " << L.y << " " << R.x << " " << R.y << " " << boost << " " << kick << " " << reset;
 
 		string send_str = ss.str();
 
